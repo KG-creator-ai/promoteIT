@@ -1,0 +1,206 @@
+{
+  "version": "2.0.0",
+  "project": "promote-IT",
+  "description": "Regional Expansion AV Production PWA — Zero-Backend, Client-Side WebCompute",
+  "lastUpdated": "2026-09-12T01:56:00+05:30",
+  "nodes": [
+    {
+      "id": "db.ts",
+      "type": "DatabaseSchema",
+      "path": "src/db/db.ts",
+      "tables": ["brandTemplates", "campaigns", "exports"],
+      "dexieVersion": 3,
+      "interfaces": ["BrandTemplate", "AVCut", "VideoPrompt", "Campaign", "ExportHistory", "AVSceneNode", "AVResourceRef"]
+    },
+    {
+      "id": "auth.ts",
+      "type": "DatabaseSchema",
+      "path": "src/db/auth.ts",
+      "tables": ["users", "sessions"],
+      "interfaces": ["User", "Session"]
+    },
+    {
+      "id": "seed.ts",
+      "type": "SeedScript",
+      "path": "src/db/seed.ts",
+      "seeds": ["brandTemplates", "campaigns"]
+    },
+    {
+      "id": "useWebLLM.ts",
+      "type": "CustomHook",
+      "path": "src/hooks/useWebLLM.ts",
+      "engine": "@mlc-ai/web-llm",
+      "vramTimeout": 300000,
+      "fallbackProvider": "remote-api",
+      "exports": ["useWebLLM", "LLMFallbackProvider"]
+    },
+    {
+      "id": "useDexieCampaign.ts",
+      "type": "CustomHook",
+      "path": "src/hooks/useDexieCampaign.ts",
+      "exports": ["useDexieCampaign"],
+      "methods": ["addCampaign", "updateCampaign", "deleteCampaign", "addBrandTemplate", "setActiveCampaign"]
+    },
+    {
+      "id": "useBrandTheme.ts",
+      "type": "CustomHook",
+      "path": "src/hooks/useBrandTheme.ts",
+      "exports": ["useBrandTheme"],
+      "wcagCompliance": "AA"
+    },
+    {
+      "id": "usePWAInstall.ts",
+      "type": "CustomHook",
+      "path": "src/hooks/usePWAInstall.ts",
+      "exports": ["usePWAInstall"]
+    },
+    {
+      "id": "useOnClickOutside.ts",
+      "type": "CustomHook",
+      "path": "src/hooks/useOnClickOutside.ts",
+      "exports": ["useOnClickOutside"]
+    },
+    {
+      "id": "App.tsx",
+      "type": "RootComponent",
+      "path": "src/App.tsx",
+      "routes": ["dashboard", "wizard", "script", "prompts", "audio", "studio", "system", "settings"]
+    },
+    {
+      "id": "Layout.tsx",
+      "type": "LayoutShell",
+      "path": "src/components/layout/Layout.tsx",
+      "children": ["Sidebar", "Header", "SutraAssistant", "SutraFAB", "CommandPalette"]
+    },
+    {
+      "id": "Sidebar.tsx",
+      "type": "Navigation",
+      "path": "src/components/layout/Sidebar.tsx",
+      "navItems": ["dashboard", "wizard", "script", "prompts", "audio", "studio", "system", "settings"]
+    },
+    {
+      "id": "Header.tsx",
+      "type": "AppBar",
+      "path": "src/components/layout/Header.tsx",
+      "features": ["BrandSwitcher", "ThemeToggle", "SutraTrigger", "PWAInstall", "OnlineStatus", "EngineStatus"]
+    },
+    {
+      "id": "AVArtVark.tsx",
+      "type": "MainView",
+      "path": "src/components/dashboard/AVArtVark.tsx",
+      "views": ["kanban", "grid", "list"],
+      "route": "dashboard"
+    },
+    {
+      "id": "CampaignWizard.tsx",
+      "type": "WizardView",
+      "path": "src/components/wizard/CampaignWizard.tsx",
+      "steps": ["Brand & Context", "Document Ingestion", "AI Generation", "Review & Export"],
+      "route": "wizard"
+    },
+    {
+      "id": "MasterScriptTable.tsx",
+      "type": "TableView",
+      "path": "src/components/script/MasterScriptTable.tsx",
+      "route": "script"
+    },
+    {
+      "id": "PromptHub.tsx",
+      "type": "CardGrid",
+      "path": "src/components/prompts/PromptHub.tsx",
+      "models": ["veo3", "runway_gen3", "sora2", "pika2"],
+      "route": "prompts"
+    },
+    {
+      "id": "AudioStudio.tsx",
+      "type": "StudioView",
+      "path": "src/components/audio/AudioStudio.tsx",
+      "features": ["WaveformVisualizer", "TTSSettings", "SegmentPlayer"],
+      "route": "audio"
+    },
+    {
+      "id": "ResourceStitcher.tsx",
+      "type": "StudioView",
+      "path": "src/components/studio/ResourceStitcher.tsx",
+      "features": ["ResourceMatrix", "SceneTimeline", "ResourceLinking"],
+      "route": "studio"
+    },
+    {
+      "id": "SutraAssistant.tsx",
+      "type": "FloatingChat",
+      "path": "src/components/chat/SutraAssistant.tsx",
+      "layout": "non-blocking-popover"
+    },
+    {
+      "id": "StorageQuotaIndicator.tsx",
+      "type": "SystemView",
+      "path": "src/components/system/StorageQuotaIndicator.tsx",
+      "route": "system"
+    },
+    {
+      "id": "GlassCard.tsx",
+      "type": "UIComponent",
+      "path": "src/components/ui/GlassCard.tsx"
+    },
+    {
+      "id": "pdfWorker.ts",
+      "type": "WebWorker",
+      "path": "src/workers/pdfWorker.ts",
+      "library": "pdfjs-dist"
+    },
+    {
+      "id": "ocrWorker.ts",
+      "type": "WebWorker",
+      "path": "src/workers/ocrWorker.ts",
+      "library": "tesseract.js"
+    },
+    {
+      "id": "avGenerator.ts",
+      "type": "LibraryModule",
+      "path": "src/lib/avGenerator.ts"
+    },
+    {
+      "id": "exporters.ts",
+      "type": "LibraryModule",
+      "path": "src/lib/exporters.ts",
+      "libraries": ["jspdf", "html-to-image"]
+    },
+    {
+      "id": "audioEngine.ts",
+      "type": "ServiceModule",
+      "path": "src/services/audioEngine.ts"
+    },
+    {
+      "id": "videoRenderer.ts",
+      "type": "ServiceModule",
+      "path": "src/services/videoRenderer.ts"
+    }
+  ],
+  "edges": [
+    { "source": "App.tsx", "target": "useDexieCampaign.ts", "relation": "uses_hook" },
+    { "source": "App.tsx", "target": "useWebLLM.ts", "relation": "uses_hook" },
+    { "source": "App.tsx", "target": "useBrandTheme.ts", "relation": "uses_hook" },
+    { "source": "App.tsx", "target": "Layout.tsx", "relation": "renders" },
+    { "source": "App.tsx", "target": "AVArtVark.tsx", "relation": "renders" },
+    { "source": "App.tsx", "target": "CampaignWizard.tsx", "relation": "renders" },
+    { "source": "App.tsx", "target": "MasterScriptTable.tsx", "relation": "renders" },
+    { "source": "App.tsx", "target": "PromptHub.tsx", "relation": "renders" },
+    { "source": "App.tsx", "target": "AudioStudio.tsx", "relation": "renders" },
+    { "source": "App.tsx", "target": "ResourceStitcher.tsx", "relation": "renders" },
+    { "source": "App.tsx", "target": "StorageQuotaIndicator.tsx", "relation": "renders" },
+    { "source": "Layout.tsx", "target": "Sidebar.tsx", "relation": "renders" },
+    { "source": "Layout.tsx", "target": "Header.tsx", "relation": "renders" },
+    { "source": "Layout.tsx", "target": "SutraAssistant.tsx", "relation": "renders" },
+    { "source": "AVArtVark.tsx", "target": "useDexieCampaign.ts", "relation": "reads_and_writes" },
+    { "source": "MasterScriptTable.tsx", "target": "useDexieCampaign.ts", "relation": "reads" },
+    { "source": "PromptHub.tsx", "target": "useDexieCampaign.ts", "relation": "reads" },
+    { "source": "AudioStudio.tsx", "target": "useDexieCampaign.ts", "relation": "reads" },
+    { "source": "ResourceStitcher.tsx", "target": "useDexieCampaign.ts", "relation": "reads_and_writes" },
+    { "source": "SutraAssistant.tsx", "target": "useWebLLM.ts", "relation": "dispatches_inference" },
+    { "source": "Header.tsx", "target": "usePWAInstall.ts", "relation": "uses_hook" },
+    { "source": "Header.tsx", "target": "db.ts", "relation": "reads" },
+    { "source": "useDexieCampaign.ts", "target": "db.ts", "relation": "reads_and_writes" },
+    { "source": "seed.ts", "target": "db.ts", "relation": "writes" },
+    { "source": "MasterScriptTable.tsx", "target": "exporters.ts", "relation": "calls" }
+  ]
+}
