@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { Play, Square, Volume2, Settings2, Download, Waves, Layers } from 'lucide-react';
 import { GlassCard } from '../ui/GlassCard';
-import { useDexieCampaign } from '../../hooks/useDexieCampaign';
+import { useCampaignContext } from '../../context/CampaignContext';
 
 export function AudioStudio() {
-  const { activeCampaign } = useDexieCampaign();
+  const { activeCampaign, scenes } = useCampaignContext();
   const campaign = activeCampaign;
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Prefer sceneGraph, fall back to avScript
-  const scenes = campaign?.sceneGraph || [];
   const legacyCuts = campaign?.avScript || [];
   const hasContent = scenes.length > 0 || legacyCuts.length > 0;
 

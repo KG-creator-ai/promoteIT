@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDexieCampaign } from '../../hooks/useDexieCampaign';
+import { useCampaignContext } from '../../context/CampaignContext';
 import { GlassCard } from '../ui/GlassCard';
 import { 
   FolderOpen, Plus, Trash2, Copy, Play, Calendar, Layers, 
@@ -11,7 +11,7 @@ interface ProjectWorkspaceProps {
 }
 
 export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
-  const { campaigns, activeCampaign, setActiveCampaign, addCampaign, updateCampaign, deleteCampaign } = useDexieCampaign();
+  const { allCampaigns, activeCampaign, setActiveCampaignId, createNewCampaign, duplicateCampaign, deleteCampaign, updateCampaign } = useCampaignContext();
   const [isCreating, setIsCreating] = useState(false);
   const [newTitle, setNewTitle] = useState('');
   const [newIndustry, setNewIndustry] = useState('');
@@ -20,31 +20,15 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
 
   const handleCreate = async () => {
     if (!newTitle.trim()) return;
-    const id = await addCampaign({
-      title: newTitle.trim(),
-      industry: newIndustry.trim() || undefined,
-      status: 'draft',
-      sceneGraph: [],
-      resourceLibrary: [],
-    });
-    setActiveCampaign(id);
+    const id = await createNewCampaign(newTitle.trim(), newIndustry.trim() || undefined);
     setNewTitle('');
     setNewIndustry('');
     setIsCreating(false);
     onNavigate('wizard');
   };
 
-  const handleDuplicate = async (campaign: typeof campaigns extends (infer T)[] | undefined ? T : never) => {
-    if (!campaign) return;
-    const id = await addCampaign({
-      title: `${campaign.title} (Copy)`,
-      industry: campaign.industry,
-      status: 'draft',
-      sceneGraph: campaign.sceneGraph ? JSON.parse(JSON.stringify(campaign.sceneGraph)) : [],
-      resourceLibrary: campaign.resourceLibrary ? JSON.parse(JSON.stringify(campaign.resourceLibrary)) : [],
-      videoPrompts: campaign.videoPrompts ? JSON.parse(JSON.stringify(campaign.videoPrompts)) : [],
-    });
-    setActiveCampaign(id);
+  const handleDuplicate = async (campaign: typeof allCampaigns[number]) => {
+    await duplicateCampaign(campaign.id!);
     onNavigate('script');
   };
 
@@ -54,7 +38,7 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
   };
 
   const handleOpen = (id: string) => {
-    setActiveCampaign(id);
+    setActiveCampaignId(id);
     onNavigate('script');
   };
 
@@ -83,10 +67,9 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
     }
   };
 
-  const getSceneCount = (c: typeof campaigns extends (infer T)[] | undefined ? T : never) => {
-    if (!c) return 0;
+  const getSceneCount = (c: typeof allCampaigns[number]) => {
     if (c.sceneGraph && c.sceneGraph.length > 0) return c.sceneGraph.length;
-    return c.avScript?.length || 0;
+    return 0;
   };
 
   return (
@@ -127,9 +110,9 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
       )}
 
       {/* Campaign cards */}
-      {!isCreating && campaigns && campaigns.length > 0 && (
+      {!isCreating && allCampaigns.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {campaigns.map(campaign => {
+          {allCampaigns.map(campaign => {
             const isActive = activeCampaign?.id === campaign.id;
             const scenes = getSceneCount(campaign);
             const isEditing = editingId === campaign.id;
@@ -190,7 +173,7 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
       )}
 
       {/* Empty state */}
-      {!isCreating && (!campaigns || campaigns.length === 0) && (
+      {!isCreating && allCampaigns.length === 0 && (
         <div className="text-center py-20">
           <FolderOpen className="w-16 h-16 mx-auto mb-4 text-slate-300 dark:text-slate-600" />
           <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-2">No campaigns yet</h3>

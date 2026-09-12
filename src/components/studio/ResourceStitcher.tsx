@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDexieCampaign } from '../../hooks/useDexieCampaign';
+import { useCampaignContext } from '../../context/CampaignContext';
 import { GlassCard } from '../ui/GlassCard';
 import { 
   FileText, FileImage, Mic, Video, Clock, Link2, Unlink, 
@@ -17,7 +17,7 @@ const RESOURCE_TYPE_META: Record<AVResourceRef['type'], { icon: typeof FileText;
 };
 
 export function ResourceStitcher() {
-  const { activeCampaign, linkResource, unlinkResource } = useDexieCampaign();
+  const { activeCampaign, scenes, resources, linkResource, unlinkResource } = useCampaignContext();
   const [expandedScene, setExpandedScene] = useState<string | null>(null);
   const [linkingScene, setLinkingScene] = useState<string | null>(null);
 
@@ -31,19 +31,15 @@ export function ResourceStitcher() {
     );
   }
 
-  const scenes = activeCampaign.sceneGraph || [];
-  const resources = activeCampaign.resourceLibrary || [];
-  const campaignId = activeCampaign.id!;
-
   const getResourceById = (id: string) => resources.find(r => r.id === id);
 
   const handleLink = async (sceneId: string, resourceId: string) => {
-    await linkResource(campaignId, sceneId, resourceId);
+    await linkResource(sceneId, resourceId);
     setLinkingScene(null);
   };
 
   const handleUnlink = async (sceneId: string, resourceId: string) => {
-    await unlinkResource(campaignId, sceneId, resourceId);
+    await unlinkResource(sceneId, resourceId);
   };
 
   const getUnlinkedResources = (scene: AVSceneNode) => {
@@ -90,7 +86,7 @@ export function ResourceStitcher() {
                 </div>
                 {resource.blobOrTextRef && (
                   <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 line-clamp-2 leading-relaxed">
-                    {resource.blobOrTextRef.substring(0, 120)}{resource.blobOrTextRef.length > 120 ? '…' : ''}
+                    {resource.blobOrTextRef.substring(0, 120)}{resource.blobOrTextRef.length > 120 ? '...' : ''}
                   </p>
                 )}
               </GlassCard>

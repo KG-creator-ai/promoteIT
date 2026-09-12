@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDexieCampaign } from '../../hooks/useDexieCampaign';
+import { useCampaignContext } from '../../context/CampaignContext';
 import { Download, Clock, Camera, Mic, History, Layers, Play } from 'lucide-react';
 import { exportScriptToPdf } from '../../lib/exporters';
 import { GlassCard } from '../ui/GlassCard';
@@ -10,7 +10,7 @@ interface MasterScriptTableProps {
 }
 
 export function MasterScriptTable({ onNavigate }: MasterScriptTableProps) {
-  const { activeCampaign } = useDexieCampaign();
+  const { activeCampaign } = useCampaignContext();
   const campaign = activeCampaign;
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { useDexieCampaign } from '../../hooks/useDexieCampaign';
+import { useCampaignContext } from '../../context/CampaignContext';
 import { GlassCard } from '../ui/GlassCard';
 import {
   Play, Pause, SkipBack, SkipForward, Volume2, VolumeX,
@@ -44,7 +44,7 @@ function formatSeconds(seconds: number): string {
 }
 
 export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
-  const { activeCampaign, updateCampaign } = useDexieCampaign();
+  const { activeCampaign, scenes, updateCampaign } = useCampaignContext();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animFrameRef = useRef<number>(0);
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -61,7 +61,6 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     muted: false,
   });
 
-  const scenes: AVSceneNode[] = activeCampaign?.sceneGraph || [];
   const totalDuration = scenes.reduce((acc, s) => {
     const start = parseTimeToSeconds(s.timeStart);
     const end = parseTimeToSeconds(s.timeEnd);

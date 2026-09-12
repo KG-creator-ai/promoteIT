@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import { useDexieCampaign } from '../../hooks/useDexieCampaign';
+import { useCampaignContext } from '../../context/CampaignContext';
 import { Copy, CheckCircle2 } from 'lucide-react';
 import { GlassCard } from '../ui/GlassCard';
 
 const MODELS = ['veo3', 'runway_gen3', 'sora2', 'pika2'] as const;
 
 export function PromptHub() {
-  const { activeCampaign } = useDexieCampaign();
+  const { activeCampaign, scenes } = useCampaignContext();
   const campaign = activeCampaign;
   const [activeModel, setActiveModel] = useState<typeof MODELS[number]>('veo3');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   // Prefer sceneGraph, fall back to avScript
-  const scenes = campaign?.sceneGraph || [];
   const legacyCuts = campaign?.avScript || [];
   const hasContent = scenes.length > 0 || legacyCuts.length > 0;
 

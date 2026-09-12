@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { UploadCloud, FileText, Settings2, PlayCircle, Loader2, Check, Wand2, X, TriangleAlert } from 'lucide-react';
 import type { ChatCompletionMessageParam } from '@mlc-ai/web-llm';
-import { useDexieCampaign } from '../../hooks/useDexieCampaign';
+import { useCampaignContext } from '../../context/CampaignContext';
 import { buildAVGeneratorPrompt, parseAVGeneratorResponse } from '../../lib/avGenerator';
 import type { AVResourceRef, AVSceneNode } from '../../db/db';
 
@@ -57,7 +57,7 @@ async function extractOcrText(file: File): Promise<{ text: string; confidence: n
 }
 
 export function CampaignWizard({ onNavigate, engineState, onGenerateResponse }: CampaignWizardProps) {
-  const { addCampaign, updateCampaign, setActiveCampaign } = useDexieCampaign();
+  const { createNewCampaign, updateCampaign, setActiveCampaignId } = useCampaignContext();
   const [step, setStep] = useState(1);
   const [title, setTitle] = useState('');
   const [audience, setAudience] = useState('');
@@ -136,15 +136,18 @@ export function CampaignWizard({ onNavigate, engineState, onGenerateResponse }: 
         createdAt: Date.now(),
       }));
 
-      const campaignId = await addCampaign({
-        title: title.trim() || 'Untitled Campaign',
-        industry: audience.trim() || undefined,
+      // Create clean campaign via context
+      const campaignId = await createNewCampaign(
+        title.trim() || 'Untitled Campaign',
+        audience.trim() || undefined
+      );
+
+      // Store resources and brief on the campaign
+      await updateCampaign(campaignId, {
         rawBriefText: briefText || undefined,
         resourceLibrary,
-        sceneGraph: [],
         status: 'briefing',
       });
-      setActiveCampaign(campaignId);
 
       // Attempt AI structuring only when an inference provider is online.
       if (onGenerateResponse && engineState.provider && briefText) {
@@ -289,7 +292,7 @@ export function CampaignWizard({ onNavigate, engineState, onGenerateResponse }: 
                     <div className="min-w-0 flex-1">
                       <div className="font-medium text-slate-800 dark:text-slate-200 truncate">{s.name}</div>
                       <div className="text-xs text-slate-500 dark:text-slate-400">
-                        {s.status === 'extracting' && 'Extracting…'}
+                        {s.status === 'extracting' && 'Extracting...'}
                         {s.status === 'ready' && `Ready · ${s.detail}`}
                         {s.status === 'error' && `Failed · ${s.detail}`}
                       </div>
@@ -331,7 +334,7 @@ export function CampaignWizard({ onNavigate, engineState, onGenerateResponse }: 
             {isGenerating && (
               <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400" aria-live="polite">
                 <Loader2 className="w-4 h-4 animate-spin text-primary" />
-                Creating campaign{engineState.provider ? ' and structuring scenes' : ''}…
+                Creating campaign{engineState.provider ? ' and structuring scenes' : ''}...
               </div>
             )}
             {genError && (
@@ -376,7 +379,7 @@ export function CampaignWizard({ onNavigate, engineState, onGenerateResponse }: 
               className="px-6 py-2.5 min-h-[44px] rounded-xl font-medium bg-primary text-white hover:bg-primary/90 disabled:opacity-50 transition-colors shadow-sm flex items-center gap-2"
             >
               {(isGenerating || (step === 2 && isExtracting)) && <Loader2 className="w-4 h-4 animate-spin" />}
-              {step === 3 ? (isGenerating ? 'Generating…' : 'Generate Script') : 'Continue'}
+              {step === 3 ? (isGenerating ? 'Generating...' : 'Generate Script') : 'Continue'}
             </button>
           ) : (
             <button

@@ -12,12 +12,13 @@ import { ResourceStitcher } from './components/studio/ResourceStitcher';
 import { AVVideoPlayer } from './components/studio/AVVideoPlayer';
 import { seedDatabase } from './db/seed';
 import { seedAuthDatabase } from './db/auth';
+import { CampaignProvider } from './context/CampaignContext';
 import { useDexieCampaign } from './hooks/useDexieCampaign';
 import { useBrandTheme } from './hooks/useBrandTheme';
 import { useWebLLM } from './hooks/useWebLLM';
 import { Loader2 } from 'lucide-react';
 
-export default function App() {
+function AppInner() {
   const [activeView, setActiveView] = useState('dashboard');
   const [isDbReady, setIsDbReady] = useState(false);
   const { brandTemplates } = useDexieCampaign();
@@ -88,5 +89,13 @@ export default function App() {
     >
       {renderView()}
     </Layout>
+  );
+}
+
+export default function App() {
+  return (
+    <CampaignProvider>
+      <AppInner />
+    </CampaignProvider>
   );
 }

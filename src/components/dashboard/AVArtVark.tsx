@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDexieCampaign } from '../../hooks/useDexieCampaign';
+import { useCampaignContext } from '../../context/CampaignContext';
 import { LayoutGrid, List as ListIcon, Columns, Plus, MoreVertical, Play, Calendar, Layers } from 'lucide-react';
 
 interface AVArtVarkProps {
@@ -7,7 +7,7 @@ interface AVArtVarkProps {
 }
 
 export function AVArtVark({ onNavigate }: AVArtVarkProps) {
-  const { campaigns, setActiveCampaign } = useDexieCampaign();
+  const { allCampaigns: campaigns, setActiveCampaignId: setActiveCampaign } = useCampaignContext();
   const [viewMode, setViewMode] = useState<'kanban' | 'grid' | 'list'>('grid');
   const [searchQuery, setSearchQuery] = useState('');
 
