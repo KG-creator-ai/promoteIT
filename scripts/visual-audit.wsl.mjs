@@ -21,16 +21,17 @@ const VIEWPORTS = [
 
 const ROUTES = [
   { id: 'dashboard', label: '01_AVArtVark_Dashboard' },
-  { id: 'studio',    label: '02_Resource_Stitcher' },
+  { id: 'projects',  label: '02_Campaign_Workspace' },
   { id: 'wizard',    label: '03_Campaign_Wizard' },
-  { id: 'script',    label: '04_Master_Script_Studio' },
-  { id: 'prompts',   label: '05_AI_Prompt_Hub' },
-  { id: 'audio',     label: '06_Audio_Studio' },
-  { id: 'settings',  label: '07_Settings_Studio' }
+  { id: 'studio',    label: '04_Resource_Stitcher' },
+  { id: 'script',    label: '05_Master_Script_Studio' },
+  { id: 'prompts',   label: '06_AI_Prompt_Hub' },
+  { id: 'audio',     label: '07_Audio_Studio' },
+  { id: 'settings',  label: '08_Settings_Studio' }
 ];
 
 async function runAudit() {
-  console.log('Starting WSL Visual Audit across 7 Routes & 4 Viewports...');
+  console.log('Starting WSL Visual Audit across 8 Routes & 4 Viewports...');
 
   const browser = await puppeteer.launch({
     executablePath: CHROME_PATH,
@@ -67,6 +68,7 @@ async function runAudit() {
         const clicked = await page.evaluate((targetId) => {
           const ROUTE_MAP = {
             'dashboard': 'AV-ArtVark',
+            'projects': 'Projects',
             'studio': 'Resource Stitcher',
             'wizard': 'Wizard',
             'script': 'Script Studio',

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Layout } from './components/layout/Layout';
 import { AVArtVark } from './components/dashboard/AVArtVark';
+import { ProjectWorkspace } from './components/projects/ProjectWorkspace';
 import { CampaignWizard } from './components/wizard/CampaignWizard';
 import { MasterScriptTable } from './components/script/MasterScriptTable';
 import { PromptHub } from './components/prompts/PromptHub';
@@ -8,6 +9,7 @@ import { SettingsView } from './components/settings/SettingsView';
 import { AudioStudio } from './components/audio/AudioStudio';
 import { StorageQuotaIndicator } from './components/system/StorageQuotaIndicator';
 import { ResourceStitcher } from './components/studio/ResourceStitcher';
+import { AVVideoPlayer } from './components/studio/AVVideoPlayer';
 import { seedDatabase } from './db/seed';
 import { seedAuthDatabase } from './db/auth';
 import { useDexieCampaign } from './hooks/useDexieCampaign';
@@ -21,7 +23,6 @@ export default function App() {
   const { brandTemplates } = useDexieCampaign();
   const engine = useWebLLM();
   
-  // Theme injection
   const template = brandTemplates?.[0];
   useBrandTheme(
     template?.primaryColor || '#062A30',
@@ -30,8 +31,6 @@ export default function App() {
   );
 
   useEffect(() => {
-    // Seeding is idempotent (put-based), but concurrent mounts (StrictMode dev
-    // double-effects, multi-tab) must never surface unhandled rejections.
     Promise.all([seedDatabase(), seedAuthDatabase()])
       .then(() => setIsDbReady(true))
       .catch(err => {
@@ -52,16 +51,20 @@ export default function App() {
     switch (activeView) {
       case 'dashboard':
         return <AVArtVark onNavigate={setActiveView} />;
+      case 'projects':
+        return <ProjectWorkspace onNavigate={setActiveView} />;
       case 'wizard':
         return <CampaignWizard onNavigate={setActiveView} onGenerateResponse={engine.generateResponse} engineState={{ isLoading: engine.isLoading, provider: engine.provider }} />;
       case 'studio':
         return <ResourceStitcher />;
       case 'script':
-        return <MasterScriptTable />;
+        return <MasterScriptTable onNavigate={setActiveView} />;
       case 'prompts':
         return <PromptHub />;
       case 'audio':
         return <AudioStudio />;
+      case 'player':
+        return <AVVideoPlayer onNavigate={setActiveView} />;
       case 'system':
         return <StorageQuotaIndicator />;
       case 'settings':

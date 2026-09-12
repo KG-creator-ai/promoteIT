@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useDexieCampaign } from '../../hooks/useDexieCampaign';
-import { Download, Clock, Camera, Mic, History, Layers } from 'lucide-react';
+import { Download, Clock, Camera, Mic, History, Layers, Play } from 'lucide-react';
 import { exportScriptToPdf } from '../../lib/exporters';
 import { GlassCard } from '../ui/GlassCard';
 import { VersionHistoryModal } from './VersionHistoryModal';
 
-export function MasterScriptTable() {
+interface MasterScriptTableProps {
+  onNavigate?: (view: string) => void;
+}
+
+export function MasterScriptTable({ onNavigate }: MasterScriptTableProps) {
   const { activeCampaign } = useDexieCampaign();
   const campaign = activeCampaign;
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
@@ -36,7 +40,14 @@ export function MasterScriptTable() {
             </span>
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
+          <button 
+            onClick={() => onNavigate?.('player')}
+            className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/20 px-4 py-2 rounded-lg font-medium flex items-center justify-center gap-2 shadow-sm transition-colors min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          >
+            <Play className="w-4 h-4" />
+            <span className="hidden sm:inline">Preview Player</span>
+          </button>
           <button 
             onClick={() => setIsHistoryOpen(true)}
             className="bg-slate-200/50 dark:bg-slate-800/50 hover:bg-slate-300 dark:hover:bg-slate-800 border border-slate-300/50 dark:border-white/10 text-slate-700 dark:text-slate-200 px-4 py-2 rounded-lg font-medium flex items-center justify-center gap-2 shadow-sm transition-colors min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
