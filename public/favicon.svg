@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#19988B"/>
+      <stop offset="100%" stop-color="#062A30"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C37C5B"/>
+      <stop offset="100%" stop-color="#19988B"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer ring — aperture blades -->
+  <circle cx="64" cy="64" r="58" stroke="url(#g1)" stroke-width="4" fill="none" opacity="0.6"/>
+  <circle cx="64" cy="64" r="48" stroke="url(#g2)" stroke-width="2" fill="none" opacity="0.3"/>
+  <!-- Aperture blades -->
+  <path d="M64 8 L76 28 L52 28 Z" fill="url(#g1)" opacity="0.8"/>
+  <path d="M112 48 L92 36 L92 60 Z" fill="url(#g1)" opacity="0.7"/>
+  <path d="M92 100 L100 76 L76 76 Z" fill="url(#g2)" opacity="0.7"/>
+  <path d="M36 100 L28 76 L52 76 Z" fill="url(#g2)" opacity="0.8"/>
+  <path d="M16 48 L36 36 L36 60 Z" fill="url(#g1)" opacity="0.6"/>
+  <!-- Center compute node -->
+  <circle cx="64" cy="64" r="18" fill="url(#g1)"/>
+  <circle cx="64" cy="64" r="12" fill="#0f172a"/>
+  <!-- Inner glow dot -->
+  <circle cx="64" cy="64" r="5" fill="#19988B" opacity="0.9"/>
+  <!-- Data flow lines -->
+  <line x1="64" y1="46" x2="64" y2="30" stroke="#19988B" stroke-width="1.5" opacity="0.5"/>
+  <line x1="82" y1="64" x2="98" y2="64" stroke="#C37C5B" stroke-width="1.5" opacity="0.5"/>
+  <line x1="64" y1="82" x2="64" y2="98" stroke="#19988B" stroke-width="1.5" opacity="0.5"/>
+  <line x1="46" y1="64" x2="30" y2="64" stroke="#C37C5B" stroke-width="1.5" opacity="0.5"/>
+  <!-- Corner nodes -->
+  <circle cx="64" cy="26" r="3" fill="#19988B" opacity="0.7"/>
+  <circle cx="102" cy="64" r="3" fill="#C37C5B" opacity="0.7"/>
+  <circle cx="64" cy="102" r="3" fill="#19988B" opacity="0.7"/>
+  <circle cx="26" cy="64" r="3" fill="#C37C5B" opacity="0.7"/>
+</svg>

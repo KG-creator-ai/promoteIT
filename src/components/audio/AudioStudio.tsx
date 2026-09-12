@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Play, Square, Volume2, Settings2, Download, Waves, Layers } from 'lucide-react';
 import { GlassCard } from '../ui/GlassCard';
 import { useCampaignContext } from '../../context/CampaignContext';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 export function AudioStudio() {
   const { activeCampaign, scenes } = useCampaignContext();
+  usePageTitle('Audio & TTS Studio', 'Client-side voiceover synthesis and audio visualizer.');
   const campaign = activeCampaign;
   const [isPlaying, setIsPlaying] = useState(false);
 

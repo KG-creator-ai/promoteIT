@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { UploadCloud, FileText, Settings2, PlayCircle, Loader2, Check, Wand2, X, TriangleAlert } from 'lucide-react';
 import type { ChatCompletionMessageParam } from '@mlc-ai/web-llm';
 import { useCampaignContext } from '../../context/CampaignContext';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import { buildAVGeneratorPrompt, parseAVGeneratorResponse } from '../../lib/avGenerator';
 import type { AVResourceRef, AVSceneNode } from '../../db/db';
 
@@ -58,6 +59,7 @@ async function extractOcrText(file: File): Promise<{ text: string; confidence: n
 
 export function CampaignWizard({ onNavigate, engineState, onGenerateResponse }: CampaignWizardProps) {
   const { createNewCampaign, updateCampaign, setActiveCampaignId } = useCampaignContext();
+  usePageTitle('4-Step Campaign Wizard', 'Ingest briefs and generate AV scripts.');
   const [step, setStep] = useState(1);
   const [title, setTitle] = useState('');
   const [audience, setAudience] = useState('');

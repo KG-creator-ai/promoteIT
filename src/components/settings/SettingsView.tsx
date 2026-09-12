@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { ThemeCustomizer } from './ThemeCustomizer';
 import { ModelStudio } from './ModelStudio';
 import { Settings as SettingsIcon, Cpu } from 'lucide-react';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 export function SettingsView() {
+  usePageTitle('WebLLM & Model Studio', 'WebGPU model manager and offline settings.');
   const [activeTab, setActiveTab] = useState<'theme' | 'models'>('models');
 
   return (

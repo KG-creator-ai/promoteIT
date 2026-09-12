@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCampaignContext } from '../../context/CampaignContext';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import { Download, Clock, Camera, Mic, History, Layers, Play } from 'lucide-react';
 import { exportScriptToPdf } from '../../lib/exporters';
 import { GlassCard } from '../ui/GlassCard';
@@ -11,6 +12,7 @@ interface MasterScriptTableProps {
 
 export function MasterScriptTable({ onNavigate }: MasterScriptTableProps) {
   const { activeCampaign } = useCampaignContext();
+  usePageTitle('Master Script Studio', 'Interactive N-scene AV production table.');
   const campaign = activeCampaign;
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 

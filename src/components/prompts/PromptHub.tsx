@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCampaignContext } from '../../context/CampaignContext';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import { Copy, CheckCircle2 } from 'lucide-react';
 import { GlassCard } from '../ui/GlassCard';
 
@@ -7,6 +8,7 @@ const MODELS = ['veo3', 'runway_gen3', 'sora2', 'pika2'] as const;
 
 export function PromptHub() {
   const { activeCampaign, scenes } = useCampaignContext();
+  usePageTitle('AI Video Prompt Hub', 'Veo 3, Runway Gen-3, Sora 2, and Pika 2.2 prompts.');
   const campaign = activeCampaign;
   const [activeModel, setActiveModel] = useState<typeof MODELS[number]>('veo3');
   const [copiedId, setCopiedId] = useState<string | null>(null);

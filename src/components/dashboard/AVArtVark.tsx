@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCampaignContext } from '../../context/CampaignContext';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import { LayoutGrid, List as ListIcon, Columns, Plus, MoreVertical, Play, Calendar, Layers } from 'lucide-react';
 
 interface AVArtVarkProps {
@@ -8,6 +9,7 @@ interface AVArtVarkProps {
 
 export function AVArtVark({ onNavigate }: AVArtVarkProps) {
   const { allCampaigns: campaigns, setActiveCampaignId: setActiveCampaign } = useCampaignContext();
+  usePageTitle('AV-ArtVark Workspace', 'Manage active promotional campaigns.');
   const [viewMode, setViewMode] = useState<'kanban' | 'grid' | 'list'>('grid');
   const [searchQuery, setSearchQuery] = useState('');
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCampaignContext } from '../../context/CampaignContext';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import { GlassCard } from '../ui/GlassCard';
 import { 
   FolderOpen, Plus, Trash2, Copy, Play, Calendar, Layers, 
@@ -12,6 +13,7 @@ interface ProjectWorkspaceProps {
 
 export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
   const { allCampaigns, activeCampaign, setActiveCampaignId, createNewCampaign, duplicateCampaign, deleteCampaign, updateCampaign } = useCampaignContext();
+  usePageTitle('Campaign Projects', 'Create, import, and manage client brand profiles.');
   const [isCreating, setIsCreating] = useState(false);
   const [newTitle, setNewTitle] = useState('');
   const [newIndustry, setNewIndustry] = useState('');

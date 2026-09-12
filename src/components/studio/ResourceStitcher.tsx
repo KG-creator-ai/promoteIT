@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCampaignContext } from '../../context/CampaignContext';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import { GlassCard } from '../ui/GlassCard';
 import { 
   FileText, FileImage, Mic, Video, Clock, Link2, Unlink, 
@@ -18,6 +19,7 @@ const RESOURCE_TYPE_META: Record<AVResourceRef['type'], { icon: typeof FileText;
 
 export function ResourceStitcher() {
   const { activeCampaign, scenes, resources, linkResource, unlinkResource } = useCampaignContext();
+  usePageTitle('Resource Stitcher', 'Correlate PDF briefs, OCR text, scripts, and audio.');
   const [expandedScene, setExpandedScene] = useState<string | null>(null);
   const [linkingScene, setLinkingScene] = useState<string | null>(null);
 
