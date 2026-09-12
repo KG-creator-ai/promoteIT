@@ -5,8 +5,8 @@ import type { AVSceneNode, AVResourceRef } from './db';
 export async function seedDatabase() {
   const templatesCount = await db.brandTemplates.count();
   if (templatesCount === 0) {
-    // Seed default Arka Template
-    await db.brandTemplates.add({
+    // Seed default Arka Template (put = idempotent under concurrent/double seed runs)
+    await db.brandTemplates.put({
       id: 'template-arka-default',
       name: 'Arka Corporate Brand',
       primaryColor: '#062A30', // Dark Teal
@@ -68,7 +68,7 @@ export async function seedDatabase() {
       }
     ];
 
-    await db.campaigns.add({
+    await db.campaigns.put({
       id: 'campaign-default',
       title: title,
       brandTemplateId: 'template-arka-default',

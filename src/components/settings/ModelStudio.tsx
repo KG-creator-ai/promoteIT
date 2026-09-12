@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Download, Trash2, Key, Database, ShieldAlert, CheckCircle2, Server } from 'lucide-react';
 
 const PRE_SEEDED_MODELS = [
@@ -12,7 +12,45 @@ export function ModelStudio() {
   const [downloadProgress, setDownloadProgress] = useState<{ [key: string]: number }>({});
   const [activeModel, setActiveModel] = useState<string>('Llama-3.2-3B-Instruct-q4f16_1-MLC');
   const [apiKeys, setApiKeys] = useState({ gemini: '', openrouter: '' });
-  const [cacheSize, setCacheSize] = useState('0.00 GB');
+  const [cacheSize, setCacheSize] = useState('…');
+  const [statusMsg, setStatusMsg] = useState<string | null>(null);
+
+  // Load persisted keys (local-only, zero-backend) + real storage estimate
+  useEffect(() => {
+    try {
+      const gemini = localStorage.getItem('promote_it_gemini_key') || '';
+      const openrouter = localStorage.getItem('promote_it_openrouter_key') || '';
+      if (gemini || openrouter) setApiKeys({ gemini, openrouter });
+    } catch {
+      // storage unavailable — keep empty
+    }
+    refreshCacheSize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const refreshCacheSize = async () => {
+    try {
+      if (navigator.storage?.estimate) {
+        const est = await navigator.storage.estimate();
+        const gb = (est.usage || 0) / (1024 * 1024 * 1024);
+        setCacheSize(`${gb.toFixed(2)} GB`);
+        return;
+      }
+    } catch {
+      // fall through
+    }
+    setCacheSize('unknown');
+  };
+
+  const handleSaveKeys = () => {
+    try {
+      localStorage.setItem('promote_it_gemini_key', apiKeys.gemini.trim());
+      localStorage.setItem('promote_it_openrouter_key', apiKeys.openrouter.trim());
+      setStatusMsg('API keys saved locally — they never leave this browser except to the provider API.');
+    } catch {
+      setStatusMsg('Could not persist keys: browser storage is unavailable.');
+    }
+  };
 
   // Simulated handlers for UI non-blocking test
   const handleDownload = (id: string) => {
@@ -35,9 +73,17 @@ export function ModelStudio() {
     }, 200);
   };
 
-  const clearCache = () => {
-    setCacheSize('0.00 GB');
-    alert('Model cache cleared from CacheStorage.');
+  const clearCache = async () => {
+    try {
+      if ('caches' in window) {
+        const names = await caches.keys();
+        await Promise.all(names.map(n => caches.delete(n)));
+      }
+      await refreshCacheSize();
+      setStatusMsg('Model cache cleared from CacheStorage.');
+    } catch {
+      setStatusMsg('Could not clear cache: CacheStorage is unavailable.');
+    }
   };
 
   return (
@@ -157,9 +203,17 @@ export function ModelStudio() {
             </div>
             
             <div className="pt-2">
-              <button className="w-full py-2.5 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-xl text-sm font-semibold hover:bg-slate-800 dark:hover:bg-white transition-colors">
+              <button
+                onClick={handleSaveKeys}
+                className="w-full py-2.5 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-xl text-sm font-semibold hover:bg-slate-800 dark:hover:bg-white transition-colors min-h-[44px]"
+              >
                 Save API Keys
               </button>
+              {statusMsg && (
+                <p aria-live="polite" className="mt-2 text-xs text-emerald-700 dark:text-emerald-400 leading-relaxed">
+                  {statusMsg}
+                </p>
+              )}
             </div>
           </div>
           

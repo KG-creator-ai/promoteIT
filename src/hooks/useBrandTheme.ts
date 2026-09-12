@@ -27,6 +27,10 @@ export function useBrandTheme(primaryHex: string, secondaryHex: string, accentHe
     const sRgb = hexToRgb(secondaryHex);
     const aRgb = hexToRgb(accentHex);
 
+    root.style.setProperty('--brand-primary', primaryHex);
+    root.style.setProperty('--brand-secondary', secondaryHex);
+    root.style.setProperty('--brand-accent', accentHex);
+
     root.style.setProperty('--color-primary', `${pRgb.r} ${pRgb.g} ${pRgb.b}`);
     root.style.setProperty('--color-secondary', `${sRgb.r} ${sRgb.g} ${sRgb.b}`);
     root.style.setProperty('--color-accent', `${aRgb.r} ${aRgb.g} ${aRgb.b}`);

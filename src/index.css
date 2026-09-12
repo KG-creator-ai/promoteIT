@@ -1,14 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: rgb(var(--color-primary) / <alpha-value>);
-  --color-secondary: rgb(var(--color-secondary) / <alpha-value>);
-  --color-accent: rgb(var(--color-accent) / <alpha-value>);
+  --color-primary: var(--brand-primary, #062a30);
+  --color-secondary: var(--brand-secondary, #19988b);
+  --color-accent: var(--brand-accent, #c37c5b);
 }
 
 @layer base {
   :root {
     /* Default Arka Fincap brand colors */
+    --color-primary-rgb: 6 42 48;
+    --color-secondary-rgb: 25 152 139;
+    --color-accent-rgb: 195 124 91;
     --color-primary: 6 42 48;
     --color-secondary: 25 152 139;
     --color-accent: 195 124 91;
@@ -57,4 +60,41 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Explicit Brand Color Utility Layer */
+@layer utilities {
+  .bg-primary {
+    background-color: var(--brand-primary, #062a30);
+  }
+  .hover\:bg-primary\/90:hover {
+    background-color: color-mix(in srgb, var(--brand-primary, #062a30) 90%, transparent);
+  }
+  .bg-primary\/30 {
+    background-color: color-mix(in srgb, var(--brand-primary, #062a30) 30%, transparent);
+  }
+  .hover\:bg-primary\/30:hover {
+    background-color: color-mix(in srgb, var(--brand-primary, #062a30) 30%, transparent);
+  }
+  .bg-primary\/20 {
+    background-color: color-mix(in srgb, var(--brand-primary, #062a30) 20%, transparent);
+  }
+  .bg-primary\/10 {
+    background-color: color-mix(in srgb, var(--brand-primary, #062a30) 10%, transparent);
+  }
+  .bg-primary\/5 {
+    background-color: color-mix(in srgb, var(--brand-primary, #062a30) 5%, transparent);
+  }
+  .text-primary {
+    color: var(--brand-primary, #062a30);
+  }
+  .border-primary {
+    border-color: var(--brand-primary, #062a30);
+  }
+  .border-primary\/20 {
+    border-color: color-mix(in srgb, var(--brand-primary, #062a30) 20%, transparent);
+  }
+  .border-primary\/30 {
+    border-color: color-mix(in srgb, var(--brand-primary, #062a30) 30%, transparent);
+  }
 }

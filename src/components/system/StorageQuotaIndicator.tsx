@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { HardDrive, Cpu, Database, Activity } from 'lucide-react';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '../../db/db';
 import { GlassCard } from '../ui/GlassCard';
 
 export function StorageQuotaIndicator() {
   const [quota, setQuota] = useState<{ usage: number, quota: number, percent: number }>({ usage: 0, quota: 0, percent: 0 });
-  const [dbStatus, setDbStatus] = useState({ records: 1, lastSync: new Date().toLocaleTimeString() });
+  const [lastSync, setLastSync] = useState(new Date().toLocaleTimeString());
+  const campaignCount = useLiveQuery(() => db.campaigns.count()) ?? 0;
+  const templateCount = useLiveQuery(() => db.brandTemplates.count()) ?? 0;
+  const exportCount = useLiveQuery(() => db.exports.count()) ?? 0;
 
   useEffect(() => {
     const checkQuota = async () => {
@@ -17,7 +22,10 @@ export function StorageQuotaIndicator() {
       }
     };
     checkQuota();
-    const interval = setInterval(checkQuota, 10000);
+    const interval = setInterval(() => {
+      checkQuota();
+      setLastSync(new Date().toLocaleTimeString());
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -51,7 +59,11 @@ export function StorageQuotaIndicator() {
           <div className="grid grid-cols-2 gap-4 pt-2">
             <div className="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-white/5">
               <div className="text-xs text-slate-500 mb-1 flex items-center gap-1"><Database className="w-3 h-3" /> IndexedDB</div>
-              <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">{dbStatus.records} Records</div>
+              <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">{campaignCount + templateCount + exportCount} Records</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                {campaignCount} campaigns · {templateCount} templates · {exportCount} exports
+              </div>
+              <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Synced {lastSync}</div>
             </div>
             <div className="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-white/5">
               <div className="text-xs text-slate-500 mb-1 flex items-center gap-1"><Activity className="w-3 h-3" /> Cache API</div>

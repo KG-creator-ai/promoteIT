@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "project": "promote-IT",
   "description": "Regional Expansion AV Production PWA — Zero-Backend, Client-Side WebCompute",
-  "lastUpdated": "2026-09-12T01:56:00+05:30",
+  "lastUpdated": "2026-09-12T02:45:00+05:30",
   "nodes": [
     {
       "id": "db.ts",
@@ -10,6 +10,7 @@
       "path": "src/db/db.ts",
       "tables": ["brandTemplates", "campaigns", "exports"],
       "dexieVersion": 3,
+      "seedStrategy": "put-based-idempotent",
       "interfaces": ["BrandTemplate", "AVCut", "VideoPrompt", "Campaign", "ExportHistory", "AVSceneNode", "AVResourceRef"]
     },
     {
@@ -32,6 +33,8 @@
       "engine": "@mlc-ai/web-llm",
       "vramTimeout": 300000,
       "fallbackProvider": "remote-api",
+      "fallbackTransport": "gemini-rest-direct",
+      "keyResolution": ["explicit-arg", "localStorage:promote_it_gemini_key", "env:VITE_GEMINI_API_KEY"],
       "exports": ["useWebLLM", "LLMFallbackProvider"]
     },
     {
@@ -96,7 +99,10 @@
       "type": "WizardView",
       "path": "src/components/wizard/CampaignWizard.tsx",
       "steps": ["Brand & Context", "Document Ingestion", "AI Generation", "Review & Export"],
-      "route": "wizard"
+      "route": "wizard",
+      "features": ["ControlledBriefFields", "RealWorkerIngestion", "CampaignCreation", "EngineJsonStructuring"],
+      "workers": ["pdfWorker.ts", "ocrWorker.ts"],
+      "fallbackStatus": "briefing"
     },
     {
       "id": "MasterScriptTable.tsx",
@@ -178,6 +184,10 @@
   ],
   "edges": [
     { "source": "App.tsx", "target": "useDexieCampaign.ts", "relation": "uses_hook" },
+    { "source": "CampaignWizard.tsx", "target": "useDexieCampaign.ts", "relation": "reads_and_writes" },
+    { "source": "CampaignWizard.tsx", "target": "avGenerator.ts", "relation": "calls" },
+    { "source": "CampaignWizard.tsx", "target": "pdfWorker.ts", "relation": "spawns" },
+    { "source": "CampaignWizard.tsx", "target": "ocrWorker.ts", "relation": "spawns" },
     { "source": "App.tsx", "target": "useWebLLM.ts", "relation": "uses_hook" },
     { "source": "App.tsx", "target": "useBrandTheme.ts", "relation": "uses_hook" },
     { "source": "App.tsx", "target": "Layout.tsx", "relation": "renders" },

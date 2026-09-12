@@ -9,11 +9,21 @@ interface AVArtVarkProps {
 export function AVArtVark({ onNavigate }: AVArtVarkProps) {
   const { campaigns, setActiveCampaign } = useDexieCampaign();
   const [viewMode, setViewMode] = useState<'kanban' | 'grid' | 'list'>('grid');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleOpenCampaign = (campaignId: string, target: string) => {
     setActiveCampaign(campaignId);
     onNavigate(target);
   };
+
+  const q = searchQuery.trim().toLowerCase();
+  const filteredCampaigns = q
+    ? campaigns?.filter(c =>
+        c.title.toLowerCase().includes(q) ||
+        (c.industry || '').toLowerCase().includes(q) ||
+        (c.status || '').toLowerCase().includes(q)
+      )
+    : campaigns;
 
   // Helper: get scene count from either sceneGraph or legacy avScript
   const getSceneCount = (campaign: typeof campaigns extends (infer T)[] | undefined ? T : never) => {
@@ -41,32 +51,51 @@ export function AVArtVark({ onNavigate }: AVArtVarkProps) {
           <p className="text-slate-600 dark:text-slate-400 mt-1">Manage and produce audio-visual corporate campaign assets.</p>
         </div>
         
-        <div className="flex items-center gap-2 bg-slate-200/60 dark:bg-slate-800/50 p-1 rounded-xl border border-slate-300 dark:border-white/10 backdrop-blur-md">
+        <div className="flex items-center gap-2 bg-slate-200/60 dark:bg-slate-800/50 p-1 rounded-xl border border-slate-300 dark:border-white/10 backdrop-blur-md" role="group" aria-label="Workspace view mode">
           <button 
             onClick={() => setViewMode('kanban')}
-            className={`p-2 rounded-lg transition-colors ${viewMode === 'kanban' ? 'bg-white dark:bg-slate-700 shadow-sm text-primary' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}
+            className={`p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-colors ${viewMode === 'kanban' ? 'bg-white dark:bg-slate-700 shadow-sm text-primary' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}
             aria-label="Kanban View"
+            aria-pressed={viewMode === 'kanban'}
             title="Kanban View"
           >
             <Columns className="w-5 h-5" />
           </button>
           <button 
             onClick={() => setViewMode('grid')}
-            className={`p-2 rounded-lg transition-colors ${viewMode === 'grid' ? 'bg-white dark:bg-slate-700 shadow-sm text-primary' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}
+            className={`p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-colors ${viewMode === 'grid' ? 'bg-white dark:bg-slate-700 shadow-sm text-primary' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}
             aria-label="Grid View"
+            aria-pressed={viewMode === 'grid'}
             title="Grid View"
           >
             <LayoutGrid className="w-5 h-5" />
           </button>
           <button 
             onClick={() => setViewMode('list')}
-            className={`p-2 rounded-lg transition-colors ${viewMode === 'list' ? 'bg-white dark:bg-slate-700 shadow-sm text-primary' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}
+            className={`p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-colors ${viewMode === 'list' ? 'bg-white dark:bg-slate-700 shadow-sm text-primary' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}
             aria-label="List View"
+            aria-pressed={viewMode === 'list'}
             title="List View"
           >
             <ListIcon className="w-5 h-5" />
           </button>
         </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-3">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          placeholder="Search by title, industry, or status…"
+          aria-label="Search campaigns"
+          className="px-4 py-2 min-h-[44px] bg-white/80 dark:bg-slate-900/80 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl text-sm w-full sm:max-w-xs focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+        {q && (
+          <p className="text-sm text-slate-500 dark:text-slate-400 self-center" aria-live="polite">
+            {filteredCampaigns?.length || 0} of {campaigns?.length || 0} campaigns
+          </p>
+        )}
       </div>
 
       {viewMode === 'grid' && (
@@ -81,7 +110,7 @@ export function AVArtVark({ onNavigate }: AVArtVarkProps) {
             <span className="text-lg font-medium text-slate-900 dark:text-slate-100">New AV Campaign</span>
           </button>
           
-          {campaigns?.map(campaign => {
+          {filteredCampaigns?.map(campaign => {
             const sceneCount = getSceneCount(campaign);
             return (
               <div key={campaign.id} className="relative group flex flex-col h-64 bg-white/80 dark:bg-slate-900/80 rounded-3xl p-6 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-primary/40 transition-all backdrop-blur-xl">
@@ -138,12 +167,11 @@ export function AVArtVark({ onNavigate }: AVArtVarkProps) {
 
       {viewMode === 'list' && (
         <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-3xl overflow-hidden shadow-lg">
-           <div className="p-4 border-b border-slate-200 dark:border-white/10 flex justify-between items-center gap-4">
-             <input type="text" placeholder="Search campaigns..." className="px-4 py-2 bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl text-sm w-64 focus:outline-none focus:ring-2 focus:ring-primary" />
-             <button onClick={() => onNavigate('wizard')} className="px-4 py-2 bg-primary text-white rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm">
-               + New Campaign
-             </button>
-           </div>
+            <div className="p-4 border-b border-slate-200 dark:border-white/10 flex justify-end items-center gap-4">
+              <button onClick={() => onNavigate('wizard')} className="px-4 py-2 min-h-[44px] bg-primary text-white rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm">
+                + New Campaign
+              </button>
+            </div>
            <table className="w-full text-left text-sm text-slate-600 dark:text-slate-300">
              <thead className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-white/10 text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400">
                <tr>
@@ -155,8 +183,8 @@ export function AVArtVark({ onNavigate }: AVArtVarkProps) {
                  <th className="px-6 py-4 text-right">Actions</th>
                </tr>
              </thead>
-             <tbody className="divide-y divide-slate-200 dark:divide-white/5">
-               {campaigns?.map(campaign => (
+              <tbody className="divide-y divide-slate-200 dark:divide-white/5">
+                {filteredCampaigns?.map(campaign => (
                  <tr key={campaign.id} className="hover:bg-slate-50/70 dark:hover:bg-slate-800/30 transition-colors">
                    <td className="px-6 py-4 font-medium text-slate-900 dark:text-slate-100">{campaign.title}</td>
                    <td className="px-6 py-4">
@@ -181,10 +209,10 @@ export function AVArtVark({ onNavigate }: AVArtVarkProps) {
         <div className="flex gap-6 overflow-x-auto pb-4 snap-x">
           {['Briefing', 'Scripting', 'Prompt Engineering', 'Audio Sync', 'Export Ready'].map((stage, idx) => {
             const stageKeys = ['briefing', 'scripting', 'prompting', 'audio_sync', 'export_ready'];
-            const stageCampaigns = campaigns?.filter(c => c.status === stageKeys[idx]) || [];
+            const stageCampaigns = filteredCampaigns?.filter(c => c.status === stageKeys[idx]) || [];
             // For backward compat, put 'active'/'draft' campaigns in first column
             const allStageCampaigns = idx === 0 
-              ? [...stageCampaigns, ...(campaigns?.filter(c => c.status === 'active' || c.status === 'draft' || !c.status) || [])]
+              ? [...stageCampaigns, ...(filteredCampaigns?.filter(c => c.status === 'active' || c.status === 'draft' || !c.status) || [])]
               : stageCampaigns;
 
             return (

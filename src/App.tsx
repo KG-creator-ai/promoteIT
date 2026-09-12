@@ -30,7 +30,14 @@ export default function App() {
   );
 
   useEffect(() => {
-    Promise.all([seedDatabase(), seedAuthDatabase()]).then(() => setIsDbReady(true));
+    // Seeding is idempotent (put-based), but concurrent mounts (StrictMode dev
+    // double-effects, multi-tab) must never surface unhandled rejections.
+    Promise.all([seedDatabase(), seedAuthDatabase()])
+      .then(() => setIsDbReady(true))
+      .catch(err => {
+        console.error('Database seeding failed:', err);
+        setIsDbReady(true);
+      });
   }, []);
 
   if (!isDbReady) {
@@ -46,7 +53,7 @@ export default function App() {
       case 'dashboard':
         return <AVArtVark onNavigate={setActiveView} />;
       case 'wizard':
-        return <CampaignWizard onNavigate={setActiveView} engineState={{ isLoading: engine.isLoading, provider: engine.provider }} />;
+        return <CampaignWizard onNavigate={setActiveView} onGenerateResponse={engine.generateResponse} engineState={{ isLoading: engine.isLoading, provider: engine.provider }} />;
       case 'studio':
         return <ResourceStitcher />;
       case 'script':

@@ -22,7 +22,7 @@ export function SutraAssistant({ isOpen, onClose, engineState, onGenerateRespons
   const [messages, setMessages] = useState<{role: 'user'|'assistant', content: string}[]>([
     { 
       role: 'assistant', 
-      content: "Namaste! I'm S.U.T.R.A. (Scripting & Universal Transforming Rendering Assistant). I can generate 6-act regional scripts, Veo/Runway camera prompts, voiceover guides, or stitch timeline cues. How may I assist your campaign today?" 
+      content: "Namaste! I'm S.U.T.R.A. (Scripting & Universal Transforming Rendering Assistant). I can generate N-scene regional scripts, Veo/Runway camera prompts, voiceover guides, or stitch timeline cues. How may I assist your campaign today?" 
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
@@ -116,7 +116,7 @@ export function SutraAssistant({ isOpen, onClose, engineState, onGenerateRespons
         /* Mobile: Bottom Sheet Drawer */
         inset-x-0 bottom-0 h-[80vh] rounded-t-3xl border-b-0
         /* Desktop: Pinned Floating Glass Popover */
-        md:inset-x-auto md:bottom-20 md:right-6 md:rounded-3xl md:border-b
+        md:inset-x-auto md:bottom-6 md:right-6 md:rounded-3xl md:border-b
         ${isExpanded 
           ? 'md:w-[600px] md:h-[720px] md:max-w-[calc(100vw-3rem)] md:max-h-[calc(100vh-6rem)]' 
           : 'md:w-[420px] md:h-[580px] md:max-w-[calc(100vw-2rem)] md:max-h-[calc(100vh-6rem)]'

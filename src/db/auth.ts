@@ -47,7 +47,7 @@ export async function seedAuthDatabase() {
 
     const adminId = 'user-admin-1';
 
-    await authDb.users.add({
+    await authDb.users.put({
       id: adminId,
       username: 'Agency Admin',
       role: 'admin',
@@ -57,7 +57,7 @@ export async function seedAuthDatabase() {
       lastLoginAt: Date.now()
     });
 
-    await authDb.sessions.add({
+    await authDb.sessions.put({
       id: 'session-1',
       userId: adminId,
       token: 'dev-token-abc-123',

@@ -88,29 +88,68 @@ export function useWebLLM(remoteApiKey?: string) {
     }
   }, [resetIdleTimer]);
 
+  const resolveRemoteKey = useCallback(() => {
+    if (remoteApiKey) return remoteApiKey;
+    try {
+      const stored = localStorage.getItem('promote_it_gemini_key');
+      if (stored) return stored;
+    } catch {
+      // storage unavailable — fall through to env
+    }
+    return (import.meta.env.VITE_GEMINI_API_KEY as string | undefined) || '';
+  }, [remoteApiKey]);
+
   const fallbackToRemoteAPI = async (messages: ChatCompletionMessageParam[], userApiKey?: string): Promise<ChatCompletion> => {
-    // This is a stub for calling Gemini API or OpenRouter
-    if (!userApiKey) {
+    // Zero-backend failover: browser calls the Gemini REST endpoint directly.
+    // The key never leaves the user's machine except to Google's API.
+    const key = userApiKey || resolveRemoteKey();
+    if (!key) {
       throw new Error('Remote API key missing for fallback.');
     }
-    // E.g., make fetch call to remote API here
+    const systemText = messages
+      .filter(m => m.role === 'system')
+      .map(m => (typeof m.content === 'string' ? m.content : JSON.stringify(m.content)))
+      .join('\n');
+    const contents = messages
+      .filter(m => m.role !== 'system')
+      .map(m => ({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: typeof m.content === 'string' ? m.content : JSON.stringify(m.content) }],
+      }));
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          systemInstruction: systemText ? { parts: [{ text: systemText }] } : undefined,
+          contents,
+        }),
+      }
+    );
+    if (!res.ok) {
+      throw new Error(`Remote API fallback failed (HTTP ${res.status}).`);
+    }
+    const data = await res.json();
+    const text: string =
+      data?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text || '').join('') || '';
     return {
-      id: 'mock-id',
-      choices: [{ 
+      id: 'gemini-fallback',
+      choices: [{
         finish_reason: 'stop',
         index: 0,
-        message: { role: 'assistant', content: 'This is a mocked remote API fallback response.' },
+        message: { role: 'assistant', content: text },
         logprobs: null
       }],
       created: Date.now(),
-      model: 'remote-fallback',
+      model: 'gemini-2.0-flash',
       object: 'chat.completion',
       usage: {
         prompt_tokens: 0,
         completion_tokens: 0,
         total_tokens: 0
       }
-    } as any;
+    } as unknown as ChatCompletion;
   };
 
   const generateResponse = useCallback(async (messages: ChatCompletionMessageParam[]) => {
