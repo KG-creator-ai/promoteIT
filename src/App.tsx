@@ -13,9 +13,12 @@ import { AVVideoPlayer } from './components/studio/AVVideoPlayer';
 import { seedDatabase } from './db/seed';
 import { seedAuthDatabase } from './db/auth';
 import { CampaignProvider } from './context/CampaignContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthModal } from './components/auth/AuthModal';
 import { useDexieCampaign } from './hooks/useDexieCampaign';
 import { useBrandTheme } from './hooks/useBrandTheme';
 import { useWebLLM } from './hooks/useWebLLM';
+import { pushNotification } from './lib/notifications';
 import { Loader2 } from 'lucide-react';
 
 function AppInner() {
@@ -23,7 +26,8 @@ function AppInner() {
   const [isDbReady, setIsDbReady] = useState(false);
   const { brandTemplates } = useDexieCampaign();
   const engine = useWebLLM();
-  
+  const { currentUser, isVaultUnlocked } = useAuth();
+
   const template = brandTemplates?.[0];
   useBrandTheme(
     template?.primaryColor || '#062A30',
@@ -33,12 +37,24 @@ function AppInner() {
 
   useEffect(() => {
     Promise.all([seedDatabase(), seedAuthDatabase()])
-      .then(() => setIsDbReady(true))
+      .then(() => {
+        setIsDbReady(true);
+        pushNotification('System Ready', 'promote-IT Studio loaded. All data stored locally.', { type: 'info', category: 'general' }, 'init');
+      })
       .catch(err => {
         console.error('Database seeding failed:', err);
         setIsDbReady(true);
       });
   }, []);
+
+  // Engine status notifications
+  useEffect(() => {
+    if (engine.provider === 'webgpu') {
+      pushNotification('WebGPU Engine Active', 'Local AI inference via WebGPU is now available.', { type: 'success', category: 'engine' }, 'engine_webgpu');
+    } else if (engine.provider === 'remote-api') {
+      pushNotification('Remote API Fallback', 'WebGPU unavailable. Using Gemini API (requires key).', { type: 'warning', category: 'engine' }, 'engine_remote');
+    }
+  }, [engine.provider]);
 
   if (!isDbReady) {
     return (
@@ -76,26 +92,35 @@ function AppInner() {
   };
 
   return (
-    <Layout 
-      activeView={activeView} 
-      onNavigate={setActiveView}
-      onEngineInit={engine.initEngine}
-      onGenerateResponse={engine.generateResponse}
-      engineState={{
-        isLoading: engine.isLoading,
-        provider: engine.provider,
-        progress: engine.progress
-      }}
-    >
-      {renderView()}
-    </Layout>
+    <>
+      {/* Auth Modal — shown when no user or vault is locked */}
+      {!isVaultUnlocked && (
+        <AuthModal isOpen={true} />
+      )}
+
+      <Layout
+        activeView={activeView}
+        onNavigate={setActiveView}
+        onEngineInit={engine.initEngine}
+        onGenerateResponse={engine.generateResponse}
+        engineState={{
+          isLoading: engine.isLoading,
+          provider: engine.provider,
+          progress: engine.progress
+        }}
+      >
+        {renderView()}
+      </Layout>
+    </>
   );
 }
 
 export default function App() {
   return (
-    <CampaignProvider>
-      <AppInner />
-    </CampaignProvider>
+    <AuthProvider>
+      <CampaignProvider>
+        <AppInner />
+      </CampaignProvider>
+    </AuthProvider>
   );
 }

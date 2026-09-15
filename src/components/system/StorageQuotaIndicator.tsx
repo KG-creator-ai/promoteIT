@@ -3,6 +3,7 @@ import { HardDrive, Cpu, Database, Activity } from 'lucide-react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../../db/db';
 import { GlassCard } from '../ui/GlassCard';
+import { pushNotification } from '../../lib/notifications';
 
 export function StorageQuotaIndicator() {
   const [quota, setQuota] = useState<{ usage: number, quota: number, percent: number }>({ usage: 0, quota: 0, percent: 0 });
@@ -28,6 +29,27 @@ export function StorageQuotaIndicator() {
     }, 10000);
     return () => clearInterval(interval);
   }, []);
+
+  // Push storage quota notifications
+  useEffect(() => {
+    if (quota.percent > 0) {
+      if (quota.percent > 80) {
+        pushNotification(
+          'Storage Quota Warning',
+          `IndexedDB usage at ${quota.percent.toFixed(1)}%. Consider archiving old campaigns.`,
+          { type: 'warning', category: 'storage' },
+          'storage_high'
+        );
+      } else if (quota.percent > 50) {
+        pushNotification(
+          'Storage Usage',
+          `IndexedDB usage at ${quota.percent.toFixed(1)}% (${quota.usage.toFixed(1)} MB).`,
+          { type: 'info', category: 'storage' },
+          'storage_info'
+        );
+      }
+    }
+  }, [quota.percent]);
 
   return (
     <div className="space-y-6 animate-in fade-in duration-500">

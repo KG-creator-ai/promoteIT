@@ -30,6 +30,23 @@ const ROUTES = [
   { id: 'settings',  label: '08_Settings_Studio' }
 ];
 
+const TEST_USER = {
+  username: 'audit_tester',
+  email: 'audit@promoteit.local',
+  password: 'TestPass123!',
+  pin: '999999',
+};
+
+// Helper to fill a React-controlled input properly
+function defineReactHelpers() {
+  window.__reactFill = function (input, value) {
+    const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+    setter.call(input, value);
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  };
+}
+
 async function runAudit() {
   console.log('Starting WSL Visual Audit across 8 Routes & 4 Viewports...');
 
@@ -51,6 +68,116 @@ async function runAudit() {
   await page.goto(BASE_URL, { waitUntil: 'domcontentloaded', timeout: 30000 });
   await new Promise(r => setTimeout(r, 3000));
 
+  // Inject React helpers into the page
+  await page.evaluate(defineReactHelpers);
+
+  // ═══════════════════════════════════════════════
+  // AUTH FLOW: Create a test user to unlock the vault
+  // ═══════════════════════════════════════════════
+  console.log('Setting up test user (audit_tester)...');
+  const authOK = await page.evaluate(async (user) => {
+    const authModal = document.querySelector('[role="dialog"][aria-label="Authentication"]');
+    if (!authModal) return 'no_modal';
+
+    // Click "Create Account" tab
+    const tabs = Array.from(authModal.querySelectorAll('button'));
+    const signupTab = tabs.find(b => b.textContent && b.textContent.trim() === 'Create Account');
+    if (signupTab) signupTab.click();
+    await new Promise(r => setTimeout(r, 300));
+
+    const fill = window.__reactFill;
+
+    // Fill username
+    const u = authModal.querySelector('input[placeholder="Choose a username"]');
+    if (u) { u.focus(); fill(u, user.username); }
+    await new Promise(r => setTimeout(r, 50));
+
+    // Fill email
+    const e = authModal.querySelector('input[type="email"]');
+    if (e) { e.focus(); fill(e, user.email); }
+    await new Promise(r => setTimeout(r, 50));
+
+    // Fill password
+    const p = authModal.querySelector('input[placeholder="Create a strong password"]');
+    if (p) { p.focus(); fill(p, user.password); }
+    await new Promise(r => setTimeout(r, 50));
+
+    // Fill PIN fields
+    const pins = Array.from(authModal.querySelectorAll('input[placeholder="000000"]'));
+    if (pins[0]) { pins[0].focus(); fill(pins[0], user.pin); }
+    await new Promise(r => setTimeout(r, 50));
+    if (pins[1]) { pins[1].focus(); fill(pins[1], user.pin); }
+    await new Promise(r => setTimeout(r, 50));
+
+    // Submit
+    const submitBtn = Array.from(authModal.querySelectorAll('button[type="submit"]')).find(
+      b => b.textContent && b.textContent.includes('Create Encrypted Vault')
+    );
+    if (submitBtn) { submitBtn.click(); return 'submitted'; }
+    return 'no_submit';
+  }, TEST_USER);
+
+  console.log('Auth signup status: ' + authOK);
+  await new Promise(r => setTimeout(r, 3000));
+
+  // Check vault status
+  let vaultStatus = await page.evaluate(() => {
+    const authModal = document.querySelector('[role="dialog"][aria-label="Authentication"]');
+    return authModal ? 'locked' : 'unlocked';
+  });
+  console.log('Vault status: ' + vaultStatus);
+
+  // Fallback: if vault still locked, try login (user may already exist)
+  if (vaultStatus === 'locked') {
+    console.log('Signup did not unlock vault, trying login...');
+    await page.evaluate(async (user) => {
+      const authModal = document.querySelector('[role="dialog"][aria-label="Authentication"]');
+      if (!authModal) return 'no_modal';
+
+      // Click "Sign In" tab
+      const tabs = Array.from(authModal.querySelectorAll('button'));
+      const loginTab = tabs.find(b => b.textContent && b.textContent.trim() === 'Sign In');
+      if (loginTab) loginTab.click();
+      await new Promise(r => setTimeout(r, 300));
+
+      const fill = window.__reactFill;
+
+      const u = authModal.querySelector('input[placeholder="Enter username"]');
+      if (u) { u.focus(); fill(u, user.username); }
+      await new Promise(r => setTimeout(r, 50));
+
+      const p = authModal.querySelector('input[placeholder="Enter password"]');
+      if (p) { p.focus(); fill(p, user.password); }
+      await new Promise(r => setTimeout(r, 50));
+
+      const pin = authModal.querySelector('input[placeholder="000000"]');
+      if (pin) { pin.focus(); fill(pin, user.pin); }
+      await new Promise(r => setTimeout(r, 50));
+
+      const submitBtn = Array.from(authModal.querySelectorAll('button[type="submit"]')).find(
+        b => b.textContent && b.textContent.includes('Unlock Vault')
+      );
+      if (submitBtn) { submitBtn.click(); return 'submitted'; }
+      return 'no_submit';
+    }, TEST_USER);
+    await new Promise(r => setTimeout(r, 2000));
+
+    vaultStatus = await page.evaluate(() => {
+      const authModal = document.querySelector('[role="dialog"][aria-label="Authentication"]');
+      return authModal ? 'locked' : 'unlocked';
+    });
+    console.log('Vault status after login attempt: ' + vaultStatus);
+  }
+
+  // ═══════════════════════════════════════════════
+  // CAPTURE 1: Auth Modal Screenshot (if locked)
+  // ═══════════════════════════════════════════════
+  if (vaultStatus === 'locked') {
+    console.warn('Vault remains locked — capturing auth modal screenshot only.');
+    await page.screenshot({ path: path.join(ARTIFACTS_DIR, '00_AuthModal_Locked.png'), fullPage: false });
+    console.log('  Saved: 00_AuthModal_Locked.png');
+  }
+
   const results = {
     totalScreenshots: 0,
     routesAudited: [],
@@ -59,6 +186,9 @@ async function runAudit() {
     pageErrors: []
   };
 
+  // ═══════════════════════════════════════════════
+  // ROUTE SCREENSHOTS
+  // ═══════════════════════════════════════════════
   for (const vp of VIEWPORTS) {
     console.log('\nViewport: ' + vp.name + ' (' + vp.width + 'x' + vp.height + ')');
     await page.setViewport({ width: vp.width, height: vp.height });
@@ -128,6 +258,55 @@ async function runAudit() {
     }
   }
 
+  // ═══════════════════════════════════════════════
+  // VAULT LOCK TEST
+  // ═══════════════════════════════════════════════
+  if (vaultStatus === 'unlocked') {
+    console.log('\nTesting Vault Lock...');
+    try {
+      await page.evaluate(() => {
+        const profileBtn = document.querySelector('button[aria-label="Profile and Security"]');
+        if (profileBtn) profileBtn.click();
+      });
+      await new Promise(r => setTimeout(r, 400));
+
+      await page.evaluate(() => {
+        const lockBtn = Array.from(document.querySelectorAll('button')).find(b =>
+          b.textContent && b.textContent.includes('Lock Vault')
+        );
+        if (lockBtn) lockBtn.click();
+      });
+      await new Promise(r => setTimeout(r, 600));
+      await page.screenshot({ path: path.join(ARTIFACTS_DIR, '10_Vault_Locked.png'), fullPage: false });
+      console.log('  Saved: 10_Vault_Locked.png');
+      results.totalScreenshots++;
+
+      // Re-auth to unlock for final check
+      await page.evaluate(async (user) => {
+        const authModal = document.querySelector('[role="dialog"][aria-label="Authentication"]');
+        if (!authModal) return;
+        const fill = window.__reactFill;
+        const u = authModal.querySelector('input[placeholder="Enter username"]');
+        if (u) { u.focus(); fill(u, user.username); }
+        const p = authModal.querySelector('input[placeholder="Enter password"]');
+        if (p) { p.focus(); fill(p, user.password); }
+        const pin = authModal.querySelector('input[placeholder="000000"]');
+        if (pin) { pin.focus(); fill(pin, user.pin); }
+        await new Promise(r => setTimeout(r, 100));
+        const submitBtn = Array.from(authModal.querySelectorAll('button[type="submit"]')).find(
+          b => b.textContent && b.textContent.includes('Unlock Vault')
+        );
+        if (submitBtn) submitBtn.click();
+      }, TEST_USER);
+      await new Promise(r => setTimeout(r, 2000));
+    } catch (e) {
+      console.warn('  Vault lock test error: ' + e.message);
+    }
+  }
+
+  // ═══════════════════════════════════════════════
+  // THEME TOGGLE
+  // ═══════════════════════════════════════════════
   console.log('\nTesting Theme Toggle...');
   await page.setViewport({ width: 1920, height: 1080 });
   try {

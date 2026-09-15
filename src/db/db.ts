@@ -35,7 +35,7 @@ export interface AVResourceRef {
   type: 'pdf_brief' | 'ocr_extract' | 'raw_script' | 'tts_audio' | 'video_prompt' | 'timeline_render';
   title: string;
   mimeType: string;
-  blobOrTextRef?: string; // IndexedDB key or raw text
+  blobOrTextRef?: string;
   metadata?: Record<string, any>;
   createdAt: number;
 }
@@ -46,15 +46,15 @@ export interface AVResourceRef {
 export interface AVSceneNode {
   id: string;
   sceneIndex: number;
-  actName: string; // Dynamic label (e.g. "Hook", "Problem", "Solution", "CTA")
-  timeStart: string; // e.g. "00:00"
-  timeEnd: string;   // e.g. "00:15"
+  actName: string;
+  timeStart: string;
+  timeEnd: string;
   visualDescription: string;
   cameraMovement: string;
   voiceoverText: string;
   phoneticGuide?: string;
   bgmCue?: string;
-  linkedResourceIds: string[]; // ID links to AVResourceRef elements
+  linkedResourceIds: string[];
 }
 
 // ──────────────────────────────────────────────
@@ -80,11 +80,8 @@ export interface Campaign {
   normalizedBrief?: string;
   brandTemplateId?: string;
   status?: 'briefing' | 'scripting' | 'prompting' | 'audio_sync' | 'export_ready' | 'draft' | 'active';
-  // Legacy flat 6-Act structure (preserved for backward compat)
   avScript?: AVCut[];
-  // New N-Scene dynamic graph
   sceneGraph?: AVSceneNode[];
-  // Arbitrary resource library
   resourceLibrary?: AVResourceRef[];
   videoPrompts?: VideoPrompt[];
   createdAt: number;
@@ -101,12 +98,58 @@ export interface ExportHistory {
 }
 
 // ──────────────────────────────────────────────
+// User Profile (Zero-Backend Auth)
+// ──────────────────────────────────────────────
+export interface UserProfile {
+  id: string;
+  username: string;
+  email: string;
+  displayName?: string;
+  authMethod: 'password_pin' | 'fido2_passkey';
+  passwordSalt: string;
+  passwordHash: string;
+  pinHash: string;
+  credentialId?: string;
+  publicKey?: string;
+  encryptedVaultKey: string;
+  createdAt: number;
+  lastLoginAt: number;
+}
+
+// ──────────────────────────────────────────────
+// Encrypted Campaign Vault (Per-User Isolation)
+// ──────────────────────────────────────────────
+export interface EncryptedCampaignVault {
+  id: string;
+  userId: string;
+  encryptedPayload: string;
+  iv: string;
+  updatedAt: number;
+}
+
+// ──────────────────────────────────────────────
+// Notification Log (Background Worker Events)
+// ──────────────────────────────────────────────
+export interface AppNotification {
+  id?: string;
+  type: 'info' | 'warning' | 'error' | 'success';
+  category: 'worker' | 'storage' | 'auth' | 'engine' | 'general';
+  title: string;
+  message: string;
+  read: boolean;
+  timestamp: number;
+}
+
+// ──────────────────────────────────────────────
 // Dexie Database Class
 // ──────────────────────────────────────────────
 export class PromoteITDatabase extends Dexie {
   brandTemplates!: Table<BrandTemplate>;
   campaigns!: Table<Campaign>;
   exports!: Table<ExportHistory>;
+  userProfiles!: Table<UserProfile>;
+  encryptedVaults!: Table<EncryptedCampaignVault>;
+  notifications!: Table<AppNotification>;
 
   constructor() {
     super('PromoteITDatabase');
@@ -125,7 +168,6 @@ export class PromoteITDatabase extends Dexie {
       return tx.table('campaigns').toCollection().modify(campaign => {
         campaign.status = campaign.status || 'draft';
         if (campaign.avScript) {
-          // Normalize nested 6-Act structure if schema updated
           campaign.avScript = campaign.avScript.map((cut: any) => ({
             ...cut,
             cameraMovement: cut.cameraMovement || 'Static Center'
@@ -139,7 +181,6 @@ export class PromoteITDatabase extends Dexie {
       campaigns: 'id, title, brandTemplateId, clientBrandId, status, createdAt, updatedAt'
     }).upgrade(async tx => {
       return tx.table('campaigns').toCollection().modify(campaign => {
-        // Auto-convert legacy avScript → sceneGraph if not already present
         if (!campaign.sceneGraph && campaign.avScript && campaign.avScript.length > 0) {
           campaign.sceneGraph = campaign.avScript.map((cut: AVCut, idx: number) => ({
             id: `scene-${crypto.randomUUID().slice(0, 8)}`,
@@ -155,15 +196,20 @@ export class PromoteITDatabase extends Dexie {
             linkedResourceIds: []
           }));
         }
-        // Initialize empty resource library if not present
         if (!campaign.resourceLibrary) {
           campaign.resourceLibrary = [];
         }
-        // Set clientBrandId from brandTemplateId if available
         if (!campaign.clientBrandId && campaign.brandTemplateId) {
           campaign.clientBrandId = campaign.brandTemplateId;
         }
       });
+    });
+
+    // Version 4 — Auth, Vault, Notifications
+    this.version(4).stores({
+      userProfiles: 'id, username, email, authMethod',
+      encryptedVaults: 'id, userId, updatedAt',
+      notifications: 'id, type, category, read, timestamp'
     });
   }
 }
