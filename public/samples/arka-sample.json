@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "format": "promoteit-zip",
+  "exportedAt": 0,
+  "campaign": {
+    "title": "Arka Regional Expansion 2026",
+    "industry": "Financial Services",
+    "status": "active",
+    "brandTemplateId": "template-arka-default",
+    "clientBrandId": "template-arka-default",
+    "createdAt": 0,
+    "updatedAt": 0
+  },
+  "sceneGraph": [
+    {
+      "id": "scene-arka-00",
+      "sceneIndex": 0,
+      "actName": "Respect to Tamil Nadu Culture & Spirit",
+      "timeStart": "00:00",
+      "timeEnd": "00:05",
+      "visualDescription": "Heritage Gateway: Chennai Central at Sunrise",
+      "cameraMovement": "drone_sweep",
+      "voiceoverText": "Vanakkam Tamil Nadu! A land where centuries of rich heritage seamlessly weave with unstoppable modern ambition.",
+      "bgmCue": "Resonant Nadaswaram melody blending smoothly into an inspiring orchestral buildup.",
+      "linkedResourceIds": []
+    },
+    {
+      "id": "scene-arka-01",
+      "sceneIndex": 1,
+      "actName": "Respect to Tamil Nadu Culture & Spirit",
+      "timeStart": "00:05",
+      "timeEnd": "00:10",
+      "visualDescription": "Artisanal Craft & Kanchipuram Silk Looms",
+      "cameraMovement": "macro_zoom",
+      "voiceoverText": "From world-renowned textile craft in Kanchipuram to the agricultural heartlands that feed our nation,",
+      "bgmCue": "Nadaswaram continues with soft acoustic tanpura drone; gentle loom percussion sync.",
+      "linkedResourceIds": []
+    },
+    {
+      "id": "scene-arka-02",
+      "sceneIndex": 2,
+      "actName": "Respect to Tamil Nadu Culture & Spirit",
+      "timeStart": "00:10",
+      "timeEnd": "00:15",
+      "visualDescription": "Modern Technology & OMR Industrial Corridors",
+      "cameraMovement": "pan_right",
+      "voiceoverText": "to high-tech industrial corridors and bustling highways, it is your relentless spirit, integrity, and drive that power the economic engine of India.",
+      "bgmCue": "Full orchestral crescendo with uplifting string arrangement.",
+      "linkedResourceIds": []
+    },
+    {
+      "id": "scene-arka-03",
+      "sceneIndex": 3,
+      "actName": "The Arka Entrance & Product Relevance",
+      "timeStart": "00:20",
+      "timeEnd": "00:24",
+      "visualDescription": "Arka Entrance: 140+ Branches & Regional Gateway",
+      "cameraMovement": "slow_push_in",
+      "voiceoverText": "Established in 2018 as an RBI-approved NBFC, Arka Fincap is present in over 140 branches nationwide with an 1,800-strong dedicated team.",
+      "bgmCue": "Upbeat, inspiring background score with a steady rhythmic pulse.",
+      "linkedResourceIds": []
+    },
+    {
+      "id": "scene-arka-04",
+      "sceneIndex": 4,
+      "actName": "The Arka Entrance & Product Relevance",
+      "timeStart": "00:24",
+      "timeEnd": "00:28",
+      "visualDescription": "Branch Presence & Dedicated 1,800+ Team",
+      "cameraMovement": "pan_right",
+      "voiceoverText": "With dedicated branch desks across Tamil Nadu, our teams provide personalized guidance to every business owner and applicant.",
+      "bgmCue": "Warm acoustic guitar building melodic clarity with gentle rhythm.",
+      "linkedResourceIds": []
+    },
+    {
+      "id": "scene-arka-05",
+      "sceneIndex": 5,
+      "actName": "The Arka Entrance & Product Relevance",
+      "timeStart": "00:28",
+      "timeEnd": "00:32",
+      "visualDescription": "Small Ticket LAP (STLAP) & Secured Business Loans",
+      "cameraMovement": "macro_zoom",
+      "voiceoverText": "We deliver dependable Small Ticket LAP and Secured Business Loans to workshop owners, traders, and retail entrepreneurs.",
+      "bgmCue": "Uplifting piano chords with subtle percussion groove.",
+      "linkedResourceIds": []
+    },
+    {
+      "id": "scene-arka-06",
+      "sceneIndex": 6,
+      "actName": "Legacy of Trust & Institutional Strength",
+      "timeStart": "00:35",
+      "timeEnd": "00:40",
+      "visualDescription": "Kirloskar Group Legacy: 130+ Years of Nation Building",
+      "cameraMovement": "slow_push_in",
+      "voiceoverText": "Backed by the legendary 130-plus year legacy of the Kirloskar Group, our foundation rests on an unshakeable promise of nation-building.",
+      "bgmCue": "Proud brass fanfare blending into warm orchestral underscore.",
+      "linkedResourceIds": []
+    },
+    {
+      "id": "scene-arka-07",
+      "sceneIndex": 7,
+      "actName": "Legacy of Trust & Institutional Strength",
+      "timeStart": "00:40",
+      "timeEnd": "00:45",
+      "visualDescription": "Trust, Empathy, and Partnership Values",
+      "cameraMovement": "dolly_zoom",
+      "voiceoverText": "Guided by Trust, Empathy, and Partnership, we believe character counts as much as capital — living by: Aapka Apna Arka.",
+      "bgmCue": "Emotional string melody with soft piano accents.",
+      "linkedResourceIds": []
+    },
+    {
+      "id": "scene-arka-08",
+      "sceneIndex": 8,
+      "actName": "Rock-Solid Stability & AAA Rating",
+      "timeStart": "00:48",
+      "timeEnd": "00:53",
+      "visualDescription": "CRISIL & ICRA AAA Rating Achievement",
+      "cameraMovement": "static_center",
+      "voiceoverText": "Backing your growth demands rock-solid stability. Proudly rated AAA by CRISIL and ICRA, Arka Fincap represents the gold standard of financial safety.",
+      "bgmCue": "Confident orchestral theme with triumphant brass accents.",
+      "linkedResourceIds": []
+    },
+    {
+      "id": "scene-arka-09",
+      "sceneIndex": 9,
+      "actName": "Regional Expansion & Future Vision",
+      "timeStart": "00:56",
+      "timeEnd": "01:01",
+      "visualDescription": "Tamil Nadu Regional Hub Network Expansion",
+      "cameraMovement": "drone_sweep",
+      "voiceoverText": "Guided by leadership strategic vision, we are swiftly expanding our regional hub networks across Chennai, Coimbatore, Madurai, Trichy, Salem, and Cuddalore, targeting a 1,000 Crore Tamil Nadu footprint.",
+      "bgmCue": "Driving orchestral momentum with modern electronic percussion.",
+      "linkedResourceIds": []
+    },
+    {
+      "id": "scene-arka-10",
+      "sceneIndex": 10,
+      "actName": "Together We Build Tomorrow",
+      "timeStart": "01:04",
+      "timeEnd": "01:09",
+      "visualDescription": "Arka Fincap Brand Outro & Partnership Call",
+      "cameraMovement": "slow_push_in",
+      "voiceoverText": "Together, let us build a stronger, more prosperous tomorrow. Partner with us as we continue to drive financial progress and business growth. Arka Fincap Limited — Aapka Apna Kirloskar.",
+      "bgmCue": "Grand finale orchestral swell with triumphant resolution and brand signature chime.",
+      "linkedResourceIds": []
+    }
+  ],
+  "videoPrompts": [
+    {
+      "id": "prompt-veo3-00",
+      "actIndex": 0,
+      "targetModel": "veo3",
+      "promptText": "Cinematic slow-motion drone sweep flying past the red heritage Victorian gothic architecture of Chennai Central Station during golden hour sunrise. Smooth parallax movement with street traffic moving naturally at the base and warm sunlight reflecting off the clock tower. Visual accents in Dark Teal (#062A30) and Copper (#C37C5B). Professional cinematic lighting, photorealistic 8k."
+    },
+    {
+      "id": "prompt-runway-03",
+      "actIndex": 3,
+      "targetModel": "runway_gen3",
+      "promptText": "Grand architectural entrance shot of an Arka Fincap regional branch in Tamil Nadu with signature teal and copper signage. Welcoming glass facade symbolizing transparency and financial inclusion."
+    },
+    {
+      "id": "prompt-veo3-08",
+      "actIndex": 8,
+      "targetModel": "veo3",
+      "promptText": "Confident corporate presentation of CRISIL and ICRA AAA rating certificates in a modern boardroom setting. Dramatic lighting emphasizing gold and teal brand colors. Professional 4K cinematic quality."
+    }
+  ],
+  "resources": [
+    {
+      "id": "res-arka-brief",
+      "type": "pdf_brief",
+      "title": "Arka Regional Expansion Brief",
+      "mimeType": "application/pdf",
+      "blobOrTextRef": "Arka Fincap regional expansion corporate strategy document — Q3 2026 targets, MSME penetration goals, and brand awareness KPIs.",
+      "metadata": { "pages": 12, "source": "client_upload" },
+      "createdAt": 0
+    },
+    {
+      "id": "res-arka-script",
+      "type": "raw_script",
+      "title": "Master AV Script v1",
+      "mimeType": "text/plain",
+      "blobOrTextRef": "Auto-generated 6-Act AV script from ingested brief.",
+      "metadata": { "version": 1, "actCount": 11 },
+      "createdAt": 0
+    }
+  ]
+}

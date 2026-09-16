@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useCampaignContext } from '../../context/CampaignContext';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import { GlassCard } from '../ui/GlassCard';
-import { 
-  FolderOpen, Plus, Trash2, Copy, Play, Calendar, Layers, 
-  FileText, Settings, Pencil, Check, X 
+import { exportCampaignZip } from '../../lib/zipExporter';
+import { ImportProjectModal } from './ImportProjectModal';
+import {
+  FolderOpen, Plus, Trash2, Copy, Play, Calendar, Layers,
+  FileText, Pencil, Check, X, Download, Upload, PackageOpen, Sparkles
 } from 'lucide-react';
 
 interface ProjectWorkspaceProps {
@@ -19,6 +21,8 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
   const [newIndustry, setNewIndustry] = useState('');
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState('');
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [exportingId, setExportingId] = useState<string | null>(null);
 
   const handleCreate = async () => {
     if (!newTitle.trim()) return;
@@ -44,6 +48,17 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
     onNavigate('script');
   };
 
+  const handleExport = async (campaign: typeof allCampaigns[number]) => {
+    setExportingId(campaign.id!);
+    try {
+      await exportCampaignZip(campaign);
+    } catch (err) {
+      console.error('Export failed:', err);
+    } finally {
+      setExportingId(null);
+    }
+  };
+
   const startEdit = (id: string, title: string) => {
     setEditingId(id);
     setEditTitle(title);
@@ -55,6 +70,33 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
     }
     setEditingId(null);
     setEditTitle('');
+  };
+
+  const handleLoadSample = async () => {
+    try {
+      const res = await fetch('/samples/arka-sample.json');
+      const sample = await res.json();
+      // Import using the zip importer's internal logic
+      const { db } = await import('../../db/db');
+      const newId = crypto.randomUUID();
+      await db.campaigns.put({
+        id: newId,
+        title: sample.campaign.title,
+        industry: sample.campaign.industry,
+        status: 'active',
+        brandTemplateId: sample.campaign.brandTemplateId,
+        clientBrandId: sample.campaign.clientBrandId,
+        sceneGraph: sample.sceneGraph || [],
+        resourceLibrary: sample.resources || [],
+        videoPrompts: sample.videoPrompts || [],
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      });
+      setActiveCampaignId(newId);
+      onNavigate('script');
+    } catch (err) {
+      console.error('Failed to load sample:', err);
+    }
   };
 
   const getStatusColor = (status?: string) => {
@@ -81,13 +123,22 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
           <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">Campaign Workspace</h1>
           <p className="text-slate-600 dark:text-slate-400 mt-1">Manage all AV campaign projects. Create, edit, duplicate, or delete campaigns.</p>
         </div>
-        <button
-          onClick={() => setIsCreating(true)}
-          className="flex items-center gap-2 px-4 py-2.5 min-h-[44px] bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 transition-colors shadow-sm"
-        >
-          <Plus className="w-4 h-4" />
-          New Campaign
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setIsImportModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2.5 min-h-[44px] bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
+          >
+            <Upload className="w-4 h-4" />
+            Import
+          </button>
+          <button
+            onClick={() => setIsCreating(true)}
+            className="flex items-center gap-2 px-4 py-2.5 min-h-[44px] bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 transition-colors shadow-sm"
+          >
+            <Plus className="w-4 h-4" />
+            New Campaign
+          </button>
+        </div>
       </div>
 
       {/* Create form */}
@@ -118,6 +169,7 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
             const isActive = activeCampaign?.id === campaign.id;
             const scenes = getSceneCount(campaign);
             const isEditing = editingId === campaign.id;
+            const isExporting = exportingId === campaign.id;
             return (
               <GlassCard key={campaign.id} className={`p-6 flex flex-col ${isActive ? 'ring-2 ring-primary shadow-lg' : ''}`}>
                 <div className="flex justify-between items-start mb-4">
@@ -141,7 +193,7 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
                     </>
                   )}
                 </div>
-                
+
                 {!isEditing && <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-2 line-clamp-2">{campaign.title}</h3>}
                 {campaign.industry && !isEditing && <span className="text-xs text-slate-500 dark:text-slate-400 mb-3">{campaign.industry}</span>}
 
@@ -152,7 +204,7 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
                       <span className="flex items-center gap-1"><Layers className="w-3.5 h-3.5" /> {scenes} scenes</span>
                       <span className="flex items-center gap-1"><FileText className="w-3.5 h-3.5" /> {campaign.resourceLibrary?.length || 0} resources</span>
                     </div>
-                    
+
                     <div className="flex items-center justify-between border-t border-slate-200 dark:border-white/10 pt-4 gap-2">
                       <div className="flex gap-1.5">
                         <button onClick={() => handleOpen(campaign.id!)} className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center bg-primary text-white rounded-lg hover:scale-105 transition-transform shadow-sm" title="Open in Script Studio" aria-label="Open campaign">
@@ -160,6 +212,15 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
                         </button>
                         <button onClick={() => handleDuplicate(campaign)} className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors" title="Duplicate campaign" aria-label="Duplicate campaign">
                           <Copy className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => handleExport(campaign)}
+                          disabled={isExporting}
+                          className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors disabled:opacity-50"
+                          title="Export as ZIP"
+                          aria-label="Export campaign"
+                        >
+                          <Download className="w-4 h-4" />
                         </button>
                       </div>
                       <button onClick={() => handleDelete(campaign.id!)} className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-lg transition-colors" title="Delete campaign" aria-label="Delete campaign">
@@ -180,13 +241,34 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
           <FolderOpen className="w-16 h-16 mx-auto mb-4 text-slate-300 dark:text-slate-600" />
           <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-2">No campaigns yet</h3>
           <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 max-w-sm mx-auto">
-            Create your first campaign to start generating AV scripts, video prompts, and voiceovers.
+            Create your first campaign or import a project archive to get started.
           </p>
-          <button onClick={() => setIsCreating(true)} className="px-6 py-3 min-h-[44px] bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-colors shadow-sm">
-            Create Campaign
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <button onClick={() => setIsCreating(true)} className="px-6 py-3 min-h-[44px] bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-colors shadow-sm flex items-center justify-center gap-2">
+              <Plus className="w-4 h-4" />
+              Create Campaign
+            </button>
+            <button onClick={() => setIsImportModalOpen(true)} className="px-6 py-3 min-h-[44px] bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl font-semibold hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors flex items-center justify-center gap-2">
+              <PackageOpen className="w-4 h-4" />
+              Import Archive (.zip)
+            </button>
+            <button onClick={handleLoadSample} className="px-6 py-3 min-h-[44px] bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-xl font-semibold hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors flex items-center justify-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              Load Arka Sample Project
+            </button>
+          </div>
         </div>
       )}
+
+      <ImportProjectModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onImportComplete={(result) => {
+          setActiveCampaignId(result.campaignId);
+          setIsImportModalOpen(false);
+          onNavigate('script');
+        }}
+      />
     </div>
   );
 }

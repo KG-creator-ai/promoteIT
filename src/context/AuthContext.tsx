@@ -4,7 +4,6 @@ import {
   hashPassword, verifyPassword,
   hashPin, verifyPin,
   generateVaultKey, wrapVaultKey, unwrapVaultKey,
-  encryptVault, decryptVault,
 } from '../lib/security';
 import { isWebAuthnSupported, registerPasskey, authenticateWithPasskey } from '../lib/webauthn';
 import { requestPersistentStorage } from '../lib/storage';
@@ -14,9 +13,13 @@ export interface AuthContextType {
   currentUser: UserProfile | null;
   isVaultUnlocked: boolean;
   isAuthenticating: boolean;
+  isFirstTimeUser: boolean | null;
+  isGuestMode: boolean;
   signUp: (username: string, email: string, password: string, pin: string, enableFIDO2: boolean) => Promise<void>;
   loginWithPassword: (username: string, password: string, pin: string) => Promise<boolean>;
   loginWithFIDO2: () => Promise<boolean>;
+  loginAsGuest: () => void;
+  loginAsDemo: () => Promise<void>;
   lockVault: () => void;
   logout: () => Promise<void>;
   getUnwrappedVaultKey: () => CryptoKey | null;
@@ -39,22 +42,28 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [isVaultUnlocked, setIsVaultUnlocked] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [vaultKey, setVaultKey] = useState<CryptoKey | null>(null);
+  const [isFirstTimeUser, setIsFirstTimeUser] = useState<boolean | null>(null);
+  const [isGuestMode, setIsGuestMode] = useState(false);
 
   // Request persistent storage on mount
   useEffect(() => {
     requestPersistentStorage();
   }, []);
 
-  // Check for existing session on mount
+  // Check for existing session + first-time user detection
   useEffect(() => {
     const checkSession = async () => {
       try {
+        // First-time detection: check if any users exist
+        const userCount = await db.userProfiles.count();
+        setIsFirstTimeUser(userCount === 0);
+
+        // Check for existing session
         const lastUserId = localStorage.getItem('promote_it_active_user');
         if (lastUserId) {
           const profile = await db.userProfiles.get(lastUserId);
           if (profile) {
             setCurrentUser(profile);
-            // Vault starts locked — user must re-authenticate
           }
         }
       } catch {
@@ -109,6 +118,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setCurrentUser(profile);
       setVaultKey(newVaultKey);
       setIsVaultUnlocked(true);
+      setIsGuestMode(false);
+      setIsFirstTimeUser(false);
       localStorage.setItem('promote_it_active_user', id);
       pushNotification('Account Created', `Vault initialized for ${username}. All data encrypted client-side.`, { type: 'success', category: 'auth' }, 'signup');
     } finally {
@@ -133,6 +144,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setVaultKey(unwrappedKey);
       setCurrentUser(profile);
       setIsVaultUnlocked(true);
+      setIsGuestMode(false);
       localStorage.setItem('promote_it_active_user', profile.id);
 
       await db.userProfiles.update(profile.id, { lastLoginAt: Date.now() });
@@ -157,10 +169,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const result = await authenticateWithPasskey(fido2Profile.credentialId);
       if (!result.verified) return false;
 
-      // FIDO2 login: derive vault key using stored password (user must enter password once to unwrap)
-      // For fully passwordless flow, password is stored hashed but vault key needs a secret.
-      // We use a session-derived approach: the FIDO2 assertion proves presence, but we still need
-      // the password to unwrap the vault key. This is by design for maximum security.
       setCurrentUser(fido2Profile);
       localStorage.setItem('promote_it_active_user', fido2Profile.id);
       return true;
@@ -172,10 +180,82 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }, []);
 
+  // ── 1-Click Dev Demo Login ──
+  const loginAsDemo = useCallback(async () => {
+    setIsAuthenticating(true);
+    try {
+      const demoUsername = 'demo';
+      const demoPassword = 'Password123!';
+      const demoPin = '123456';
+      const demoEmail = 'demo@promoteit.app';
+
+      // Check if demo user already exists
+      const existing = await db.userProfiles.where('username').equals(demoUsername).first();
+      if (existing) {
+        // Login with existing demo credentials
+        const passwordValid = await verifyPassword(demoPassword, existing.passwordSalt, existing.passwordHash);
+        if (passwordValid) {
+          const pinValid = await verifyPin(demoPin, existing.pinHash);
+          if (pinValid) {
+            const unwrappedKey = await unwrapVaultKey(existing.encryptedVaultKey, demoPassword, existing.passwordSalt);
+            setVaultKey(unwrappedKey);
+            setCurrentUser(existing);
+            setIsVaultUnlocked(true);
+            setIsGuestMode(false);
+            localStorage.setItem('promote_it_active_user', existing.id);
+            await db.userProfiles.update(existing.id, { lastLoginAt: Date.now() });
+            pushNotification('Demo Login', 'Welcome to promote-IT demo mode.', { type: 'success', category: 'auth' }, 'demo');
+            return;
+          }
+        }
+      }
+
+      // Create demo user
+      const id = crypto.randomUUID();
+      const { salt, hash } = await hashPassword(demoPassword);
+      const pinH = await hashPin(demoPin);
+      const newVaultKey = await generateVaultKey();
+      const wrappedKey = await wrapVaultKey(newVaultKey, demoPassword, salt);
+
+      const profile: UserProfile = {
+        id,
+        username: demoUsername,
+        email: demoEmail,
+        authMethod: 'password_pin',
+        passwordSalt: salt,
+        passwordHash: hash,
+        pinHash: pinH,
+        encryptedVaultKey: wrappedKey,
+        createdAt: Date.now(),
+        lastLoginAt: Date.now(),
+      };
+
+      await db.userProfiles.put(profile);
+      setCurrentUser(profile);
+      setVaultKey(newVaultKey);
+      setIsVaultUnlocked(true);
+      setIsGuestMode(false);
+      setIsFirstTimeUser(false);
+      localStorage.setItem('promote_it_active_user', id);
+      pushNotification('Demo Account Created', 'Welcome to promote-IT demo mode.', { type: 'success', category: 'auth' }, 'demo');
+    } finally {
+      setIsAuthenticating(false);
+    }
+  }, []);
+
+  // ── Guest Mode (Developer Mode) ──
+  const loginAsGuest = useCallback(() => {
+    setIsVaultUnlocked(true);
+    setIsGuestMode(true);
+    setCurrentUser(null);
+    pushNotification('Guest Mode', 'Developer mode active. Campaign data not encrypted.', { type: 'info', category: 'auth' }, 'guest');
+  }, []);
+
   // ── Lock Vault (clear keys from memory) ──
   const lockVault = useCallback(() => {
     setVaultKey(null);
     setIsVaultUnlocked(false);
+    setIsGuestMode(false);
     pushNotification('Vault Locked', 'Encryption key cleared from memory. All campaign data hidden.', { type: 'warning', category: 'auth' }, 'lock');
   }, []);
 
@@ -184,6 +264,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setVaultKey(null);
     setCurrentUser(null);
     setIsVaultUnlocked(false);
+    setIsGuestMode(false);
     localStorage.removeItem('promote_it_active_user');
     pushNotification('Signed Out', 'Session terminated. All decrypted keys purged.', { type: 'info', category: 'auth' }, 'logout');
   }, []);
@@ -197,9 +278,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     currentUser,
     isVaultUnlocked,
     isAuthenticating,
+    isFirstTimeUser,
+    isGuestMode,
     signUp,
     loginWithPassword,
     loginWithFIDO2,
+    loginAsGuest,
+    loginAsDemo,
     lockVault,
     logout,
     getUnwrappedVaultKey,

@@ -7,7 +7,7 @@ interface ProfileWidgetProps {
 }
 
 export function ProfileWidget({ className = '' }: ProfileWidgetProps) {
-  const { currentUser, isVaultUnlocked, lockVault, logout } = useAuth();
+  const { currentUser, isVaultUnlocked, isGuestMode, lockVault, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -66,11 +66,18 @@ export function ProfileWidget({ className = '' }: ProfileWidgetProps) {
             </div>
             {/* Security Status */}
             <div className={`mt-3 flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium ${
-              isVaultUnlocked
-                ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
+              isGuestMode
+                ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400'
+                : isVaultUnlocked
+                  ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                  : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
             }`}>
-              {isVaultUnlocked ? (
+              {isGuestMode ? (
+                <>
+                  <User className="w-3.5 h-3.5" />
+                  <span>Guest Mode (Dev)</span>
+                </>
+              ) : isVaultUnlocked ? (
                 <>
                   <Shield className="w-3.5 h-3.5" />
                   <span>Vault Unlocked</span>

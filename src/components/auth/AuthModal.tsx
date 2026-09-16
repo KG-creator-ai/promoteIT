@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { isWebAuthnSupported, isPlatformAuthenticatorAvailable } from '../../lib/webauthn';
-import { Shield, User, Lock, KeyRound, Fingerprint, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Shield, User, Lock, KeyRound, Fingerprint, Eye, EyeOff, Loader2, Zap, UserX } from 'lucide-react';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -9,8 +9,11 @@ interface AuthModalProps {
 }
 
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
-  const { signUp, loginWithPassword, loginWithFIDO2, isAuthenticating } = useAuth();
-  const [mode, setMode] = useState<'login' | 'signup'>('login');
+  const { signUp, loginWithPassword, loginWithFIDO2, loginAsDemo, loginAsGuest, isAuthenticating, isFirstTimeUser } = useAuth();
+  const [mode, setMode] = useState<'login' | 'signup'>(() => {
+    // Auto-detect: if no users exist, start on signup
+    return isFirstTimeUser === true ? 'signup' : 'login';
+  });
 
   // Login fields
   const [loginUsername, setLoginUsername] = useState('');
@@ -33,6 +36,13 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   React.useEffect(() => {
     isPlatformAuthenticatorAvailable().then(setFido2Supported);
   }, []);
+
+  // Switch to signup when first-time user is confirmed
+  React.useEffect(() => {
+    if (isFirstTimeUser === true) {
+      setMode('signup');
+    }
+  }, [isFirstTimeUser]);
 
   if (!isOpen) return null;
 
@@ -71,9 +81,18 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     if (!success) setError('FIDO2 authentication failed.');
   };
 
+  const handleDemoLogin = async () => {
+    setError('');
+    try {
+      await loginAsDemo();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Demo login failed.');
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" role="dialog" aria-label="Authentication">
-      <div className="w-full max-w-md bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+      <div className="w-full max-w-md bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="px-6 pt-6 pb-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-3">
@@ -87,6 +106,38 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <p className="text-xs text-slate-500 dark:text-slate-400">
                 Zero-backend encrypted authentication
               </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Access Buttons */}
+        <div className="px-6 pt-4 pb-2 space-y-2">
+          <button
+            onClick={handleDemoLogin}
+            disabled={isAuthenticating}
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2 min-h-[44px]"
+          >
+            {isAuthenticating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
+            {isAuthenticating ? 'Setting up...' : '1-Click Dev Demo Login'}
+          </button>
+          <button
+            onClick={loginAsGuest}
+            disabled={isAuthenticating}
+            className="w-full py-3 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-sm hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2 min-h-[44px]"
+          >
+            <UserX className="w-4 h-4" />
+            Continue as Local Guest
+          </button>
+        </div>
+
+        {/* Divider */}
+        <div className="px-6 py-2">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-slate-200 dark:border-slate-700"></div>
+            </div>
+            <div className="relative flex justify-center text-xs">
+              <span className="bg-white dark:bg-slate-900 px-3 text-slate-400">or sign in with credentials</span>
             </div>
           </div>
         </div>
@@ -125,7 +176,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
           {mode === 'login' ? (
             <form onSubmit={handleLogin} className="space-y-4">
-              {/* Username */}
               <div>
                 <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">Username</label>
                 <div className="relative">
@@ -142,7 +192,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 </div>
               </div>
 
-              {/* Password */}
               <div>
                 <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">Master Password</label>
                 <div className="relative">
@@ -156,17 +205,12 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     autoComplete="current-password"
                     required
                   />
-                  <button
-                    type="button"
-                    onClick={() => setShowLoginPassword(!showLoginPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-                  >
+                  <button type="button" onClick={() => setShowLoginPassword(!showLoginPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
                     {showLoginPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
-              {/* 6-Digit PIN */}
               <div>
                 <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">6-Digit 2FA PIN</label>
                 <div className="relative">
@@ -208,7 +252,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </form>
           ) : (
             <form onSubmit={handleSignup} className="space-y-4">
-              {/* Username */}
               <div>
                 <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">Username</label>
                 <div className="relative">
@@ -225,7 +268,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 </div>
               </div>
 
-              {/* Email */}
               <div>
                 <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">Email</label>
                 <input
@@ -239,7 +281,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 />
               </div>
 
-              {/* Password */}
               <div>
                 <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">Master Password (min 8 chars)</label>
                 <div className="relative">
@@ -254,17 +295,12 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     required
                     minLength={8}
                   />
-                  <button
-                    type="button"
-                    onClick={() => setShowSignupPassword(!showSignupPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-                  >
+                  <button type="button" onClick={() => setShowSignupPassword(!showSignupPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
                     {showSignupPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
-              {/* PIN */}
               <div>
                 <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">6-Digit 2FA PIN</label>
                 <div className="relative">
@@ -283,7 +319,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 </div>
               </div>
 
-              {/* Confirm PIN */}
               <div>
                 <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">Confirm PIN</label>
                 <div className="relative">
@@ -302,18 +337,12 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 </div>
               </div>
 
-              {/* FIDO2 Toggle */}
               {fido2Supported && (
                 <label className="flex items-center gap-3 p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={enableFIDO2}
-                    onChange={e => setEnableFIDO2(e.target.checked)}
-                    className="w-4 h-4 rounded accent-primary"
-                  />
+                  <input type="checkbox" checked={enableFIDO2} onChange={e => setEnableFIDO2(e.target.checked)} className="w-4 h-4 rounded accent-primary" />
                   <div className="flex items-center gap-2">
                     <Fingerprint className="w-4 h-4 text-primary" />
-                    <span className="text-sm text-slate-700 dark:text-slate-300">Enable Biometric Passkey (TouchID / FaceID / Windows Hello)</span>
+                    <span className="text-sm text-slate-700 dark:text-slate-300">Enable Biometric Passkey</span>
                   </div>
                 </label>
               )}
@@ -329,7 +358,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </form>
           )}
 
-          {/* Footer */}
           <p className="mt-4 text-center text-[11px] text-slate-400 dark:text-slate-500">
             All data encrypted locally with WebCrypto AES-256-GCM. No data leaves your device.
           </p>
