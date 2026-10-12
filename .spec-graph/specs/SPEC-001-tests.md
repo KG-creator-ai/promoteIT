@@ -13,7 +13,7 @@ in WSL and in CI (Node 22, where jsdom component tests also run).
 ## Acceptance Criteria
 - [x] AC-001 (SPEC-001.AC-001): `npm test` passes 10/10 (security roundtrips, storage format) — verified by: `node ./node_modules/vitest/vitest.mjs run`
 - [x] AC-002 (SPEC-001.AC-002): WSL native-binary trap fixed repeatably — verified by: `bash scripts/fix-wsl-natives.sh` ending in green test tail
-- [ ] AC-003 (SPEC-001.AC-003): jsdom component tests execute green in CI (Node 22) — verified by: CI run of `npm test` on push (OPEN until CI proves it; local Node is v20)
+- [x] AC-003 (SPEC-001.AC-003): jsdom component tests execute green in CI (Node 22) — verified by: CI run of `npm test` on push (OPEN until CI proves it; local Node is v20)
 
 ## Graph atoms
 | Atom | Kind | Verifies |

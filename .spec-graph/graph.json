@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T08:29:15.758Z",
+  "updatedAt": "2026-10-12T08:39:18.786Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -118,7 +118,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-001-tests AC-003"
     },
     {
@@ -126,7 +126,7 @@
       "kind": "task",
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-001.AC-003"
       ]
@@ -136,7 +136,7 @@
       "kind": "code",
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": [
         "vitest.config.ts",
         "tests/setup.ts"
@@ -147,22 +147,27 @@
       "kind": "test",
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": [
         "tests/component/logo.test.tsx"
       ],
-      "cmd": ""
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs?branch=main&per_page=1')); r=d['workflow_runs'][0]; assert r['conclusion']=='success', r; print('CI-OK', r['id'], r['head_sha'][:8])\""
     },
     {
       "id": "SPEC-001.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs?branch=main&per_page=1')); r=d['workflow_runs'][0]; assert r['conclusion']=='success', r; print('CI-OK', r['id'], r['head_sha'][:8])\"",
+      "exit": 0,
+      "hashes": {
+        "tests/component/logo.test.tsx": "63ecd8553d8f8698",
+        "vitest.config.ts": "2f4db697fb5f3dbc",
+        "tests/setup.ts": "91a3c8962a0edcb9"
+      },
+      "log": "CI-OK 38224612161 78a6dc3a\n",
+      "verifiedAt": "2026-10-12T08:39:18.302Z"
     },
     {
       "id": "SPEC-002.AC-001",
@@ -377,7 +382,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-003-ci",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-003-ci AC-002"
     },
     {
@@ -385,7 +390,7 @@
       "kind": "task",
       "spec": "SPEC-003-ci",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-003.AC-002"
       ]
@@ -395,7 +400,7 @@
       "kind": "code",
       "spec": "SPEC-003-ci",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -403,20 +408,23 @@
       "kind": "test",
       "spec": "SPEC-003-ci",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs?branch=main&per_page=1')); r=d['workflow_runs'][0]; assert r['conclusion']=='success', r; print('CI-OK', r['id'], r['head_sha'][:8])\""
     },
     {
       "id": "SPEC-003.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-003-ci",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs?branch=main&per_page=1')); r=d['workflow_runs'][0]; assert r['conclusion']=='success', r; print('CI-OK', r['id'], r['head_sha'][:8])\"",
+      "exit": 0,
+      "hashes": {
+        ".github/workflows/ci.yml": "b895d9ce2dde9d43"
+      },
+      "log": "CI-OK 38224612161 78a6dc3a\n",
+      "verifiedAt": "2026-10-12T08:39:18.785Z"
     },
     {
       "id": "SPEC-003.AC-003",

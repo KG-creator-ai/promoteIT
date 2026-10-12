@@ -9,9 +9,9 @@
 ## Ordered specs
 
 | # | Spec | Goal | ACs | Depends | State |
-| 1 | SPEC-001 | Test suite runs green locally + CI | 3 | — | 2/3 verified (AC-003 needs CI) |
+| 1 | SPEC-001 | Test suite runs green locally + CI | 3 | — | DONE (3/3 verified) |
 | 2 | SPEC-002 | npm scripts work in WSL + CI | 3 | — | DONE (3/3 verified) |
-| 3 | SPEC-003 | CI workflows + pre-push gate | 3 | SPEC-002 | 2/3 verified (AC-002 needs CI) |
+| 3 | SPEC-003 | CI workflows + pre-push gate | 3 | SPEC-002 | DONE (3/3 verified) |
 | 4 | SPEC-004 | Real PWA assets (icons per manifest, og-image) | 3 | — | DONE (3/3 verified) |
 | 5 | SPEC-005 | Accurate README/docs | 2 | — | DONE (2/2 verified) |
 | 6 | SPEC-006 | SPEC-GRAPH harness functional | 3 | — | DONE (3/3 verified) |

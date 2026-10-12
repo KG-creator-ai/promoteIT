@@ -12,7 +12,7 @@ Every push is verified twice: local pre-push gate, then authoritative GitHub Act
 
 ## Acceptance Criteria
 - [x] AC-001 (SPEC-003.AC-001): `ci.yml` + `release.yml` present and valid YAML — verified by: `python3 -c yaml.safe_load` on both files
-- [ ] AC-002 (SPEC-003.AC-002): CI green on the release remote for the Phase-0/1 commits — verified by: Actions run (OPEN until first push to `creator-ai`)
+- [x] AC-002 (SPEC-003.AC-002): CI green on the release remote for the Phase-0/1 commits — verified by: Actions run (OPEN until first push to `creator-ai`)
 - [x] AC-003 (SPEC-003.AC-003): pre-push hook installed and executable — verified by: `test -x .git/hooks/pre-push`
 
 ## Graph atoms
