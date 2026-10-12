@@ -1,0 +1,12 @@
+{
+  "persona": "redteam",
+  "phase": "PHASE-05",
+  "verdict": "approve",
+  "rationale": "Freshness rule fired correctly on harness self-edit; ledger-exclusion is the principled fix.",
+  "evidence": [
+    "graph.mjs status 16/20",
+    "gate.mjs PASS",
+    "claim-audit.mjs PASS"
+  ],
+  "ts": "2026-10-12T08:15:00Z"
+}
