@@ -1,15 +1,18 @@
 import path from 'path';
 import { defineConfig } from 'vitest/config';
 
+// jsdom 30 / undici 8 require worker_threads.markAsUncloneable (Node >= 22).
+// On older Node (e.g. WSL Node 20 here), run unit tests only and skip component
+// tests with a warning instead of failing. CI pins Node 22 so both run there.
+const NODE_MAJOR = Number(process.version.slice(1).split('.')[0]);
+const JSDOM_OK = NODE_MAJOR >= 22;
+if (!JSDOM_OK) console.warn(`[vitest] Node ${process.version}: running tests/unit only (component tests need Node >= 22)`);
+
 export default defineConfig({
   test: {
-    // NOTE: unit tests run in node env (no DOM needed: pure logic + WebCrypto).
-    // Component tests use `// @vitest-environment jsdom` per-file and require
-    // Node >= 22 locally (jsdom30/undici8 needs worker_threads.markAsUncloneable).
-    // CI pins Node 22 so both run there.
     environment: 'node',
-    setupFiles: [],
-    include: ['tests/**/*.test.{ts,tsx}'],
+    setupFiles: ['./tests/setup.ts'],
+    include: JSDOM_OK ? ['tests/**/*.test.{ts,tsx}'] : ['tests/unit/**/*.test.{ts,tsx}'],
   },
   resolve: {
     alias: {

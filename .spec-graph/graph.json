@@ -137,7 +137,10 @@
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
       "status": "open",
-      "paths": []
+      "paths": [
+        "vitest.config.ts",
+        "tests/setup.ts"
+      ]
     },
     {
       "id": "SPEC-001.AC-003.test",
@@ -145,7 +148,9 @@
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
       "status": "open",
-      "paths": [],
+      "paths": [
+        "tests/component/logo.test.tsx"
+      ],
       "cmd": ""
     },
     {
