@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T08:02:04.084Z",
+  "updatedAt": "2026-10-12T08:04:51.481Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -469,7 +469,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-004-pwa-assets AC-001"
     },
     {
@@ -477,7 +477,7 @@
       "kind": "task",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-004.AC-001"
       ]
@@ -487,35 +487,47 @@
       "kind": "code",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-001",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "scripts/gen-favicons.cjs",
+        "public/icon-192x192.png",
+        "public/icon-512x512.png"
+      ]
     },
     {
       "id": "SPEC-004.AC-001.test",
       "kind": "test",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-001",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "tests/unit/pwa-assets.test.ts"
+      ],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/pwa-assets.test.ts"
     },
     {
       "id": "SPEC-004.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-001",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/pwa-assets.test.ts",
+      "exit": 0,
+      "hashes": {
+        "tests/unit/pwa-assets.test.ts": "16f3c72fac23dfc3",
+        "scripts/gen-favicons.cjs": "560228e39181fdb7",
+        "public/icon-192x192.png": "3d13667a8a3a4a79",
+        "public/icon-512x512.png": "72363b5c54a68033"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  5 passed (5)\n   Start at  08:04:48\n   Duration  2.15s (import 38%, transform 22%, tests 20%, worker 20%)\n\n",
+      "verifiedAt": "2026-10-12T08:04:50.857Z"
     },
     {
       "id": "SPEC-004.AC-002",
       "kind": "spec_atom",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-004-pwa-assets AC-002"
     },
     {
@@ -523,7 +535,7 @@
       "kind": "task",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-004.AC-002"
       ]
@@ -533,35 +545,45 @@
       "kind": "code",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-002",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "public/og-image.png",
+        "index.html"
+      ]
     },
     {
       "id": "SPEC-004.AC-002.test",
       "kind": "test",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-002",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "tests/unit/pwa-assets.test.ts"
+      ],
+      "cmd": "python3 -c \"import struct; d=open('public/og-image.png','rb').read(); w,h=struct.unpack('>II',d[16:24]); assert (w,h)>=(1200,630), (w,h); print('OG-OK',w,h)\""
     },
     {
       "id": "SPEC-004.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "python3 -c \"import struct; d=open('public/og-image.png','rb').read(); w,h=struct.unpack('>II',d[16:24]); assert (w,h)>=(1200,630), (w,h); print('OG-OK',w,h)\"",
+      "exit": 0,
+      "hashes": {
+        "tests/unit/pwa-assets.test.ts": "16f3c72fac23dfc3",
+        "public/og-image.png": "99b79750b2a4f53c",
+        "index.html": "6ac6a56e9319b673"
+      },
+      "log": "OG-OK 1200 630\n",
+      "verifiedAt": "2026-10-12T08:04:51.179Z"
     },
     {
       "id": "SPEC-004.AC-003",
       "kind": "spec_atom",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-004-pwa-assets AC-003"
     },
     {
@@ -569,7 +591,7 @@
       "kind": "task",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-004.AC-003"
       ]
@@ -579,28 +601,36 @@
       "kind": "code",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-003",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "public/apple-touch-icon.png"
+      ]
     },
     {
       "id": "SPEC-004.AC-003.test",
       "kind": "test",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-003",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "tests/unit/pwa-assets.test.ts"
+      ],
+      "cmd": "python3 -c \"import struct; d=open('public/apple-touch-icon.png','rb').read(); assert struct.unpack('>II',d[16:24])==(180,180); print('TOUCH-OK')\""
     },
     {
       "id": "SPEC-004.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-004-pwa-assets",
       "ac": "AC-003",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "python3 -c \"import struct; d=open('public/apple-touch-icon.png','rb').read(); assert struct.unpack('>II',d[16:24])==(180,180); print('TOUCH-OK')\"",
+      "exit": 0,
+      "hashes": {
+        "tests/unit/pwa-assets.test.ts": "16f3c72fac23dfc3",
+        "public/apple-touch-icon.png": "85fe2ca38d24f4e5"
+      },
+      "log": "TOUCH-OK\n",
+      "verifiedAt": "2026-10-12T08:04:51.479Z"
     },
     {
       "id": "SPEC-005.AC-001",
