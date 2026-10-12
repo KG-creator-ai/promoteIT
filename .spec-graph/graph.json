@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T08:39:18.786Z",
+  "updatedAt": "2026-10-12T08:45:12.652Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -963,7 +963,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-007-release",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-007-release AC-002"
     },
     {
@@ -971,7 +971,7 @@
       "kind": "task",
       "spec": "SPEC-007-release",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-007.AC-002"
       ]
@@ -981,7 +981,7 @@
       "kind": "code",
       "spec": "SPEC-007-release",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -989,27 +989,28 @@
       "kind": "test",
       "spec": "SPEC-007-release",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/releases/tags/v1.0.0')); assert d['tag_name']=='v1.0.0'; names=[a['name'] for a in d['assets']]; assert any(n.endswith('.zip') for n in names), names; print('RELEASE-OK', names)\""
     },
     {
       "id": "SPEC-007.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-007-release",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
+      "status": "verified",
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/releases/tags/v1.0.0')); assert d['tag_name']=='v1.0.0'; names=[a['name'] for a in d['assets']]; assert any(n.endswith('.zip') for n in names), names; print('RELEASE-OK', names)\"",
+      "exit": 0,
       "hashes": {},
-      "log": ""
+      "log": "RELEASE-OK ['promote-it-v1.0.0.zip', 'RELEASE-REPORT-v1.0.0.md']\n",
+      "verifiedAt": "2026-10-12T08:44:19.007Z"
     },
     {
       "id": "SPEC-007.AC-003",
       "kind": "spec_atom",
       "spec": "SPEC-007-release",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-007-release AC-003"
     },
     {
@@ -1017,7 +1018,7 @@
       "kind": "task",
       "spec": "SPEC-007-release",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-007.AC-003"
       ]
@@ -1027,7 +1028,7 @@
       "kind": "code",
       "spec": "SPEC-007-release",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -1035,20 +1036,21 @@
       "kind": "test",
       "spec": "SPEC-007-release",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node .spec-graph/ops/report.mjs PHASE-07 && node .spec-graph/ops/claim-audit.mjs"
     },
     {
       "id": "SPEC-007.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-007-release",
       "ac": "AC-003",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
+      "status": "verified",
+      "cmd": "node .spec-graph/ops/report.mjs PHASE-07 && node .spec-graph/ops/claim-audit.mjs",
+      "exit": 0,
       "hashes": {},
-      "log": ""
+      "log": "# SPEC-GRAPH Report — PHASE-07\n- Date: 2026-10-12T08:45:11.288Z\n- Graph: 19/20 atoms verified (95%)\n- Open atoms: SPEC-007.AC-003\n- Gate: PASS | Claim-audit: PASS\n- Verdicts: none recorded\n## DoD checklist\n- [ ] 0 open/blocked atoms\n- [x] gate.mjs PASS\n- [x] claim-audit.mjs PASS\n- [ ] 6/6 persona approvals recorded for PHASE-07\n\n\n{\n  \"verdict\": \"PASS\",\n  \"problems\": []\n}\n",
+      "verifiedAt": "2026-10-12T08:45:12.651Z"
     }
   ],
   "edges": [

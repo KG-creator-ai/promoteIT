@@ -1,6 +1,6 @@
 # Roadmap — promote-IT AV Studio to v1.0.0
 
-- Status: draft → **awaiting HUMAN SIGN-OFF #1** → executing → released
+- Status: RELEASED v1.0.0 (2026-10-12)
 - DoD: 0 open atoms ∧ `gate.mjs` PASS ∧ `claim-audit.mjs` PASS ∧ 6/6 persona approvals
   at every phase ∧ CI green on `creator-ai` remote ∧ tag `v1.0.0` + GitHub Release.
 - Remote: release pushes go to `creator-ai` (https://github.com/KG-creator-ai/promoteIT.git).
@@ -15,14 +15,14 @@
 | 4 | SPEC-004 | Real PWA assets (icons per manifest, og-image) | 3 | — | DONE (3/3 verified) |
 | 5 | SPEC-005 | Accurate README/docs | 2 | — | DONE (2/2 verified) |
 | 6 | SPEC-006 | SPEC-GRAPH harness functional | 3 | — | DONE (3/3 verified) |
-| 7 | SPEC-007 | Release mechanics to v1.0.0 | 3 | SPEC-001–006 | 1/3 (rest in Phase 07) |
+| 7 | SPEC-007 | Release mechanics to v1.0.0 | 3 | SPEC-001–006 | DONE (3/3 verified) |
 
 ## Milestones
 
 - M1 Phase 0 bootstrap green — DONE (commits ec906a3, 10a67ae; gate PASS).
 - M2 Spec baseline signed — DONE (user approval 2026-10-12; autonomous execution authorized to release).
 - M3 All specs implemented + verified (graph closed).
-- M4 Hardened, CI green, released v1.0.0.
+- M4 Hardened, CI green, released v1.0.0 — DONE (tag + GitHub Release with dist zip + report).
 
 ## Out of scope for v1.0.0 (non-goals)
 
