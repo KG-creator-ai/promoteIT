@@ -15,3 +15,7 @@
   zero imports repo-wide), eliminating the proxy-addr/qs advisory chain. Remaining 3
   advisories accepted with rationale: dompurify×2 via jspdf (client-side, same-origin
   export path; worst case self-XSS) and source-map-js (build-time only, never shipped).
+- D10 CI-evidence rule: a workflow run cannot cite its own success (self-reference
+  paradox — "latest run" query returns the in-progress run). CI atoms are verified
+  OUT-OF-BAND with pinned successful run IDs (here: 38224612161 @78a6dc3); any later
+  change to hash-tracked code/test paths auto-reopens them for a fresh pinned run.

@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T08:45:12.652Z",
+  "updatedAt": "2026-10-12T08:49:56.331Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -151,7 +151,7 @@
       "paths": [
         "tests/component/logo.test.tsx"
       ],
-      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs?branch=main&per_page=1')); r=d['workflow_runs'][0]; assert r['conclusion']=='success', r; print('CI-OK', r['id'], r['head_sha'][:8])\""
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38224612161')); assert d['conclusion']=='success' and d['head_sha'].startswith('78a6dc3'), d; print('CI-OK pinned 38224612161')\""
     },
     {
       "id": "SPEC-001.AC-003.ev",
@@ -159,15 +159,15 @@
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
       "status": "verified",
-      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs?branch=main&per_page=1')); r=d['workflow_runs'][0]; assert r['conclusion']=='success', r; print('CI-OK', r['id'], r['head_sha'][:8])\"",
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38224612161')); assert d['conclusion']=='success' and d['head_sha'].startswith('78a6dc3'), d; print('CI-OK pinned 38224612161')\"",
       "exit": 0,
       "hashes": {
         "tests/component/logo.test.tsx": "63ecd8553d8f8698",
         "vitest.config.ts": "2f4db697fb5f3dbc",
         "tests/setup.ts": "91a3c8962a0edcb9"
       },
-      "log": "CI-OK 38224612161 78a6dc3a\n",
-      "verifiedAt": "2026-10-12T08:39:18.302Z"
+      "log": "CI-OK pinned 38224612161\n",
+      "verifiedAt": "2026-10-12T08:49:55.691Z"
     },
     {
       "id": "SPEC-002.AC-001",
@@ -410,7 +410,7 @@
       "ac": "AC-002",
       "status": "verified",
       "paths": [],
-      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs?branch=main&per_page=1')); r=d['workflow_runs'][0]; assert r['conclusion']=='success', r; print('CI-OK', r['id'], r['head_sha'][:8])\""
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38224612161')); assert d['conclusion']=='success' and d['head_sha'].startswith('78a6dc3'), d; print('CI-OK pinned 38224612161')\""
     },
     {
       "id": "SPEC-003.AC-002.ev",
@@ -418,13 +418,13 @@
       "spec": "SPEC-003-ci",
       "ac": "AC-002",
       "status": "verified",
-      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs?branch=main&per_page=1')); r=d['workflow_runs'][0]; assert r['conclusion']=='success', r; print('CI-OK', r['id'], r['head_sha'][:8])\"",
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38224612161')); assert d['conclusion']=='success' and d['head_sha'].startswith('78a6dc3'), d; print('CI-OK pinned 38224612161')\"",
       "exit": 0,
       "hashes": {
         ".github/workflows/ci.yml": "b895d9ce2dde9d43"
       },
-      "log": "CI-OK 38224612161 78a6dc3a\n",
-      "verifiedAt": "2026-10-12T08:39:18.785Z"
+      "log": "CI-OK pinned 38224612161\n",
+      "verifiedAt": "2026-10-12T08:49:56.331Z"
     },
     {
       "id": "SPEC-003.AC-003",
