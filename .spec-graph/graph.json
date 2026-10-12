@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T08:49:56.331Z",
+  "updatedAt": "2026-10-12T09:16:20.814Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -1051,6 +1051,742 @@
       "hashes": {},
       "log": "# SPEC-GRAPH Report — PHASE-07\n- Date: 2026-10-12T08:45:11.288Z\n- Graph: 19/20 atoms verified (95%)\n- Open atoms: SPEC-007.AC-003\n- Gate: PASS | Claim-audit: PASS\n- Verdicts: none recorded\n## DoD checklist\n- [ ] 0 open/blocked atoms\n- [x] gate.mjs PASS\n- [x] claim-audit.mjs PASS\n- [ ] 6/6 persona approvals recorded for PHASE-07\n\n\n{\n  \"verdict\": \"PASS\",\n  \"problems\": []\n}\n",
       "verifiedAt": "2026-10-12T08:45:12.651Z"
+    },
+    {
+      "id": "SPEC-008.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-008",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-008 AC-001"
+    },
+    {
+      "id": "SPEC-008.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-008",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-008.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-008.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-008",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-008.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-008",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-008.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-008",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-008.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-008",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-008 AC-002"
+    },
+    {
+      "id": "SPEC-008.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-008",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-008.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-008.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-008",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-008.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-008",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-008.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-008",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-008.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-008",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-008 AC-003"
+    },
+    {
+      "id": "SPEC-008.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-008",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-008.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-008.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-008",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-008.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-008",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-008.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-008",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-009.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-009",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-009 AC-001"
+    },
+    {
+      "id": "SPEC-009.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-009",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-009.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-009.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-009",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-009.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-009",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-009.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-009",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-009.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-009",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-009 AC-002"
+    },
+    {
+      "id": "SPEC-009.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-009",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-009.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-009.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-009",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-009.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-009",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-009.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-009",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-009.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-009",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-009 AC-003"
+    },
+    {
+      "id": "SPEC-009.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-009",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-009.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-009.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-009",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-009.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-009",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-009.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-009",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-010.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-010",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-010 AC-001"
+    },
+    {
+      "id": "SPEC-010.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-010",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-010.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-010.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-010",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-010.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-010",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-010.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-010",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-010.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-010",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-010 AC-002"
+    },
+    {
+      "id": "SPEC-010.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-010",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-010.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-010.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-010",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-010.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-010",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-010.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-010",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-010.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-010",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-010 AC-003"
+    },
+    {
+      "id": "SPEC-010.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-010",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-010.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-010.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-010",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-010.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-010",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-010.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-010",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-011.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-011",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-011 AC-001"
+    },
+    {
+      "id": "SPEC-011.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-011",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-011.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-011.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-011",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-011.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-011",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-011.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-011",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-011.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-011",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-011 AC-002"
+    },
+    {
+      "id": "SPEC-011.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-011",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-011.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-011.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-011",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-011.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-011",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-011.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-011",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-012.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-012",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-012 AC-001"
+    },
+    {
+      "id": "SPEC-012.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-012",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-012.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-012.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-012",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-012.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-012",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-012.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-012",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-012.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-012",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-012 AC-002"
+    },
+    {
+      "id": "SPEC-012.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-012",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-012.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-012.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-012",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-012.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-012",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-012.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-012",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-013.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-013",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-013 AC-001"
+    },
+    {
+      "id": "SPEC-013.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-013",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-013.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-013.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-013",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-013.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-013",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-013.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-013",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-013.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-013",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-013 AC-002"
+    },
+    {
+      "id": "SPEC-013.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-013",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-013.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-013.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-013",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-013.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-013",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-013.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-013",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-013.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-013",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-013 AC-003"
+    },
+    {
+      "id": "SPEC-013.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-013",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-013.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-013.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-013",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-013.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-013",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-013.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-013",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
     }
   ],
   "edges": [
@@ -1452,6 +2188,326 @@
     {
       "from": "SPEC-007.AC-003.ev",
       "to": "SPEC-007.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-008.AC-001.task",
+      "to": "SPEC-008.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-008.AC-001.code",
+      "to": "SPEC-008.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-008.AC-001.test",
+      "to": "SPEC-008.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-008.AC-001.ev",
+      "to": "SPEC-008.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-008.AC-002.task",
+      "to": "SPEC-008.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-008.AC-002.code",
+      "to": "SPEC-008.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-008.AC-002.test",
+      "to": "SPEC-008.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-008.AC-002.ev",
+      "to": "SPEC-008.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-008.AC-003.task",
+      "to": "SPEC-008.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-008.AC-003.code",
+      "to": "SPEC-008.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-008.AC-003.test",
+      "to": "SPEC-008.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-008.AC-003.ev",
+      "to": "SPEC-008.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-009.AC-001.task",
+      "to": "SPEC-009.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-009.AC-001.code",
+      "to": "SPEC-009.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-009.AC-001.test",
+      "to": "SPEC-009.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-009.AC-001.ev",
+      "to": "SPEC-009.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-009.AC-002.task",
+      "to": "SPEC-009.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-009.AC-002.code",
+      "to": "SPEC-009.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-009.AC-002.test",
+      "to": "SPEC-009.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-009.AC-002.ev",
+      "to": "SPEC-009.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-009.AC-003.task",
+      "to": "SPEC-009.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-009.AC-003.code",
+      "to": "SPEC-009.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-009.AC-003.test",
+      "to": "SPEC-009.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-009.AC-003.ev",
+      "to": "SPEC-009.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-010.AC-001.task",
+      "to": "SPEC-010.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-010.AC-001.code",
+      "to": "SPEC-010.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-010.AC-001.test",
+      "to": "SPEC-010.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-010.AC-001.ev",
+      "to": "SPEC-010.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-010.AC-002.task",
+      "to": "SPEC-010.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-010.AC-002.code",
+      "to": "SPEC-010.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-010.AC-002.test",
+      "to": "SPEC-010.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-010.AC-002.ev",
+      "to": "SPEC-010.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-010.AC-003.task",
+      "to": "SPEC-010.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-010.AC-003.code",
+      "to": "SPEC-010.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-010.AC-003.test",
+      "to": "SPEC-010.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-010.AC-003.ev",
+      "to": "SPEC-010.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-011.AC-001.task",
+      "to": "SPEC-011.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-011.AC-001.code",
+      "to": "SPEC-011.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-011.AC-001.test",
+      "to": "SPEC-011.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-011.AC-001.ev",
+      "to": "SPEC-011.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-011.AC-002.task",
+      "to": "SPEC-011.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-011.AC-002.code",
+      "to": "SPEC-011.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-011.AC-002.test",
+      "to": "SPEC-011.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-011.AC-002.ev",
+      "to": "SPEC-011.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-012.AC-001.task",
+      "to": "SPEC-012.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-012.AC-001.code",
+      "to": "SPEC-012.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-012.AC-001.test",
+      "to": "SPEC-012.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-012.AC-001.ev",
+      "to": "SPEC-012.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-012.AC-002.task",
+      "to": "SPEC-012.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-012.AC-002.code",
+      "to": "SPEC-012.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-012.AC-002.test",
+      "to": "SPEC-012.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-012.AC-002.ev",
+      "to": "SPEC-012.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-013.AC-001.task",
+      "to": "SPEC-013.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-013.AC-001.code",
+      "to": "SPEC-013.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-013.AC-001.test",
+      "to": "SPEC-013.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-013.AC-001.ev",
+      "to": "SPEC-013.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-013.AC-002.task",
+      "to": "SPEC-013.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-013.AC-002.code",
+      "to": "SPEC-013.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-013.AC-002.test",
+      "to": "SPEC-013.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-013.AC-002.ev",
+      "to": "SPEC-013.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-013.AC-003.task",
+      "to": "SPEC-013.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-013.AC-003.code",
+      "to": "SPEC-013.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-013.AC-003.test",
+      "to": "SPEC-013.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-013.AC-003.ev",
+      "to": "SPEC-013.AC-003.test",
       "rel": "verifies"
     }
   ]
