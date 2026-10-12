@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T09:27:59.820Z",
+  "updatedAt": "2026-10-12T09:40:02.824Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -1369,7 +1369,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-010",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-010 AC-001"
     },
     {
@@ -1377,7 +1377,7 @@
       "kind": "task",
       "spec": "SPEC-010",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-010.AC-001"
       ]
@@ -1387,35 +1387,45 @@
       "kind": "code",
       "spec": "SPEC-010",
       "ac": "AC-001",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "src/components/settings/ModelStudio.tsx",
+        "src/components/settings/SettingsView.tsx",
+        "src/App.tsx"
+      ]
     },
     {
       "id": "SPEC-010.AC-001.test",
       "kind": "test",
       "spec": "SPEC-010",
       "ac": "AC-001",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "tests/component/model-studio.test.tsx"
+      ],
+      "cmd": "npm test"
     },
     {
       "id": "SPEC-010.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-010",
       "ac": "AC-001",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "npm test",
+      "exit": 0,
+      "hashes": {
+        "tests/component/model-studio.test.tsx": "2e4caa101a0e9dfe",
+        "src/components/settings/ModelStudio.tsx": "68217a880cbf7420"
+      },
+      "log": "\n> react-example@0.0.0 test\n> node ./node_modules/vitest/vitest.mjs run\n\n\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv5.0.3 \u001b[39m\u001b[90mD:/Promote-IT_AV-Studio\u001b[39m\n\n \u001b[32m✓\u001b[39m tests/unit/pwa-assets.test.ts \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 27\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/no-mocks.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 8\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/providers.test.ts \u001b[2m(\u001b[22m\u001b[2m11 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 19\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/storage.test.ts \u001b[2m(\u001b[22m\u001b[2m3 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 7\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/security.test.ts \u001b[2m(\u001b[22m\u001b[2m7 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 290\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/scene-adapter.test.ts \u001b[2m(\u001b[22m\u001b[2m6 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 8\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/logo.test.tsx \u001b[2m(\u001b[22m\u001b[2m2 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 572\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m PromoteITLogo smoke (jsdom) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m renders an accessible img role\u001b[33m 552\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/audio-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1288\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m AudioStudio (real TTS wiring) \u001b[2m(4)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m segment Play speaks the scene text via the engine\u001b[33m 563\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/model-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1793\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m ModelStudio provider config (SPEC-010) \u001b[2m(5)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m Test Connection reports success honestly\u001b[33m 926\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m9 passed\u001b[39m\u001b[22m\u001b[90m (9)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m44 passed\u001b[39m\u001b[22m\u001b[90m (44)\u001b[39m\n\u001b[2m   Start at \u001b[22m 15:09:31\n\u001b[2m   Duration \u001b[22m 11.40s\u001b[2m (environment 47%, setup 30%, tests 10%, transform 9%, import 4%, worker 1%)\u001b[22m\n\n",
+      "verifiedAt": "2026-10-12T09:39:43.708Z"
     },
     {
       "id": "SPEC-010.AC-002",
       "kind": "spec_atom",
       "spec": "SPEC-010",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-010 AC-002"
     },
     {
@@ -1423,7 +1433,7 @@
       "kind": "task",
       "spec": "SPEC-010",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-010.AC-002"
       ]
@@ -1433,28 +1443,38 @@
       "kind": "code",
       "spec": "SPEC-010",
       "ac": "AC-002",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "src/lib/providers.ts",
+        "src/hooks/useWebLLM.ts"
+      ]
     },
     {
       "id": "SPEC-010.AC-002.test",
       "kind": "test",
       "spec": "SPEC-010",
       "ac": "AC-002",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "tests/unit/providers.test.ts"
+      ],
+      "cmd": "npm test"
     },
     {
       "id": "SPEC-010.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-010",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "npm test",
+      "exit": 0,
+      "hashes": {
+        "tests/unit/providers.test.ts": "d4af80a1ab55e9ae",
+        "src/lib/providers.ts": "f91cb1e2d0838f2f",
+        "src/hooks/useWebLLM.ts": "9ddfdb96d826a41c"
+      },
+      "log": "\n> react-example@0.0.0 test\n> node ./node_modules/vitest/vitest.mjs run\n\n\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv5.0.3 \u001b[39m\u001b[90mD:/Promote-IT_AV-Studio\u001b[39m\n\n \u001b[32m✓\u001b[39m tests/unit/pwa-assets.test.ts \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 25\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/no-mocks.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 7\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/providers.test.ts \u001b[2m(\u001b[22m\u001b[2m11 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 26\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/storage.test.ts \u001b[2m(\u001b[22m\u001b[2m3 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 7\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/security.test.ts \u001b[2m(\u001b[22m\u001b[2m7 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 304\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/scene-adapter.test.ts \u001b[2m(\u001b[22m\u001b[2m6 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 10\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/logo.test.tsx \u001b[2m(\u001b[22m\u001b[2m2 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 414\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m PromoteITLogo smoke (jsdom) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m renders an accessible img role\u001b[33m 391\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/audio-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1149\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m AudioStudio (real TTS wiring) \u001b[2m(4)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m segment Play speaks the scene text via the engine\u001b[33m 605\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/model-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1850\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m ModelStudio provider config (SPEC-010) \u001b[2m(5)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m Test Connection reports success honestly\u001b[33m 876\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m Test Connection reports auth failure honestly\u001b[33m 405\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m9 passed\u001b[39m\u001b[22m\u001b[90m (9)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m44 passed\u001b[39m\u001b[22m\u001b[90m (44)\u001b[39m\n\u001b[2m   Start at \u001b[22m 15:09:51\n\u001b[2m   Duration \u001b[22m 10.91s\u001b[2m (environment 46%, setup 31%, tests 10%, transform 9%, import 3%, worker 1%)\u001b[22m\n\n",
+      "verifiedAt": "2026-10-12T09:40:02.823Z"
     },
     {
       "id": "SPEC-010.AC-003",
@@ -1480,7 +1500,9 @@
       "spec": "SPEC-010",
       "ac": "AC-003",
       "status": "open",
-      "paths": []
+      "paths": [
+        "src/lib/providers.ts"
+      ]
     },
     {
       "id": "SPEC-010.AC-003.test",

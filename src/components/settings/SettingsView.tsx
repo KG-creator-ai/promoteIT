@@ -4,7 +4,10 @@ import { ModelStudio } from './ModelStudio';
 import { Settings as SettingsIcon, Cpu } from 'lucide-react';
 import { usePageTitle } from '../../hooks/usePageTitle';
 
-export function SettingsView() {
+export function SettingsView({ onLoadModel, engineState }: {
+  onLoadModel?: (modelId: string) => Promise<void> | void;
+  engineState?: { isLoading: boolean; provider: string | null; progress: string };
+} = {}) {
   usePageTitle('WebLLM & Model Studio', 'WebGPU model manager and offline settings.');
   const [activeTab, setActiveTab] = useState<'theme' | 'models'>('models');
 
@@ -43,7 +46,7 @@ export function SettingsView() {
       </div>
 
       <div className="pt-4">
-        {activeTab === 'models' ? <ModelStudio /> : <ThemeCustomizer />}
+        {activeTab === 'models' ? <ModelStudio onLoadModel={onLoadModel} engineState={engineState} /> : <ThemeCustomizer />}
       </div>
     </div>
   );

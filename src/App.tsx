@@ -85,7 +85,7 @@ function AppInner() {
       case 'system':
         return <StorageQuotaIndicator />;
       case 'settings':
-        return <SettingsView />;
+        return <SettingsView onLoadModel={(modelId: string) => engine.initEngine(modelId)} engineState={{ isLoading: engine.isLoading, provider: engine.provider, progress: engine.progress }} />;
       default:
         return <AVArtVark onNavigate={setActiveView} />;
     }

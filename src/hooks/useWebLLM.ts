@@ -1,5 +1,12 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { CreateMLCEngine, MLCEngine, InitProgressReport, ChatCompletionMessageParam, ChatCompletion } from '@mlc-ai/web-llm';
+import {
+  resolveRemoteConfig,
+  geminiChatCompletion,
+  openAIChatCompletion,
+  toChatCompletion,
+  type RemoteConfig,
+} from '../lib/providers';
 
 export type LLMFallbackProvider = 'webgpu' | 'wasm-simd' | 'remote-api';
 
@@ -40,7 +47,7 @@ export function useWebLLM(remoteApiKey?: string) {
     }, IDLE_TIMEOUT_MS);
   }, [unloadEngine]);
 
-  const initEngine = useCallback(async (modelId: string = 'Llama-3.1-8B-Instruct-q4f32_1-MLC') => {
+  const initEngine = useCallback(async (modelId: string = 'Qwen2.5-7B-Instruct-q4f16_1-MLC') => {
     setIsLoading(true);
     setError(null);
 
@@ -88,68 +95,27 @@ export function useWebLLM(remoteApiKey?: string) {
     }
   }, [resetIdleTimer]);
 
-  const resolveRemoteKey = useCallback(() => {
-    if (remoteApiKey) return remoteApiKey;
-    try {
-      const stored = localStorage.getItem('promote_it_gemini_key');
-      if (stored) return stored;
-    } catch {
-      // storage unavailable — fall through to env
+  const resolveRemoteConfigCb = useCallback((): RemoteConfig | null => {
+    // Explicit hook arg keeps legacy behavior: a raw Gemini key override.
+    if (remoteApiKey) {
+      return { provider: 'gemini', apiKey: remoteApiKey, model: 'gemini-2.0-flash', baseUrl: 'https://generativelanguage.googleapis.com' };
     }
-    return (import.meta.env.VITE_GEMINI_API_KEY as string | undefined) || '';
+    return resolveRemoteConfig();
   }, [remoteApiKey]);
 
   const fallbackToRemoteAPI = async (messages: ChatCompletionMessageParam[], userApiKey?: string): Promise<ChatCompletion> => {
-    // Zero-backend failover: browser calls the Gemini REST endpoint directly.
-    // The key never leaves the user's machine except to Google's API.
-    const key = userApiKey || resolveRemoteKey();
-    if (!key) {
+    // Zero-backend failover: browser calls the provider REST endpoint directly.
+    // The key never leaves the user's machine except to the selected provider.
+    const cfg: RemoteConfig | null = userApiKey
+      ? { provider: 'gemini', apiKey: userApiKey, model: 'gemini-2.0-flash', baseUrl: 'https://generativelanguage.googleapis.com' }
+      : resolveRemoteConfigCb();
+    if (!cfg?.apiKey) {
       throw new Error('Remote API key missing for fallback.');
     }
-    const systemText = messages
-      .filter(m => m.role === 'system')
-      .map(m => (typeof m.content === 'string' ? m.content : JSON.stringify(m.content)))
-      .join('\n');
-    const contents = messages
-      .filter(m => m.role !== 'system')
-      .map(m => ({
-        role: m.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: typeof m.content === 'string' ? m.content : JSON.stringify(m.content) }],
-      }));
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          systemInstruction: systemText ? { parts: [{ text: systemText }] } : undefined,
-          contents,
-        }),
-      }
-    );
-    if (!res.ok) {
-      throw new Error(`Remote API fallback failed (HTTP ${res.status}).`);
-    }
-    const data = await res.json();
-    const text: string =
-      data?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text || '').join('') || '';
-    return {
-      id: 'gemini-fallback',
-      choices: [{
-        finish_reason: 'stop',
-        index: 0,
-        message: { role: 'assistant', content: text },
-        logprobs: null
-      }],
-      created: Date.now(),
-      model: 'gemini-2.0-flash',
-      object: 'chat.completion',
-      usage: {
-        prompt_tokens: 0,
-        completion_tokens: 0,
-        total_tokens: 0
-      }
-    } as unknown as ChatCompletion;
+    const text = cfg.provider === 'gemini'
+      ? await geminiChatCompletion(cfg, messages)
+      : await openAIChatCompletion(cfg, messages);
+    return toChatCompletion(text, cfg.model);
   };
 
   const generateResponse = useCallback(async (messages: ChatCompletionMessageParam[]) => {
