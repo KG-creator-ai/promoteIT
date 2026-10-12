@@ -13,9 +13,9 @@ honest progress, working export. Zero mocks, zero backend.
   honest "System voices (Web Speech)" picker). No cloud TTS.
 
 ## Acceptance Criteria
-- [ ] AC-001 (SPEC-008.AC-001): voice picker lists real `speechSynthesis` voices via `getAvailableVoices()`; selection routes to `setSelectedVoiceURI` and persists — verified by: component test with mocked speechSynthesis + e2e voice count > 0
-- [ ] AC-002 (SPEC-008.AC-002): segment Play calls `playVoiceover(text, pitch, rate, voiceURI, false, sceneIndex)`; master play speaks scenes sequentially to `onSceneSpeechEnd`; stop cancels via `stopVoiceover` — verified by: e2e asserting `speechSynthesis.speak` fired + utterance text matches scene
-- [ ] AC-003 (SPEC-008.AC-003): rate/volume sliders drive utterance params; progress bar is boundary/listener-driven (no `Math.random` in render path); TTS-unavailable browsers get an honest notice, not a fake UI — verified by: `grep -c Math.random AudioStudio.tsx` == 0 + e2e
+- [x] AC-001 (SPEC-008.AC-001): voice picker lists real `speechSynthesis` voices via `getAvailableVoices()`; selection routes to `setSelectedVoiceURI` and persists — verified by: component test with mocked speechSynthesis + e2e voice count > 0
+- [x] AC-002 (SPEC-008.AC-002): segment Play calls `playVoiceover(text, pitch, rate, voiceURI, false, sceneIndex)`; master play speaks scenes sequentially to `onSceneSpeechEnd`; stop cancels via `stopVoiceover` — verified by: e2e asserting `speechSynthesis.speak` fired + utterance text matches scene
+- [x] AC-003 (SPEC-008.AC-003): rate/volume sliders drive utterance params; progress bar is boundary/listener-driven (no `Math.random` in render path); TTS-unavailable browsers get an honest notice, not a fake UI — verified by: `grep -c Math.random AudioStudio.tsx` == 0 + e2e
 
 ## Graph atoms
 | Atom | Kind | Verifies |

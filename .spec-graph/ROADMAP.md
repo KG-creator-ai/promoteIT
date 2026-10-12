@@ -32,7 +32,7 @@ no E2E ever ran. This phase makes every control real (zero-backend, edge-compute
 and certifies L1–L4.
 
 | # | Spec | Goal | ACs | Depends | State |
-| 8 | SPEC-008 | Real TTS in AudioStudio (voices, progress, export) | 3 | — | open |
+| 8 | SPEC-008 | Real TTS in AudioStudio (voices, progress, export) | 3 | — | DONE (3/3 verified) |
 | 9 | SPEC-009 | VideoRenderer consolidation + webm-with-audio export | 3 | SPEC-008 | open |
 | 10 | SPEC-010 | Multi-provider AI (Gemini/OpenRouter/NVIDIA) + Qwen default | 3 | — | open |
 | 11 | SPEC-011 | E2E harness + L3 artifacts | 2 | SPEC-008–010 | open |

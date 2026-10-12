@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T09:16:20.814Z",
+  "updatedAt": "2026-10-12T09:27:59.820Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -1057,7 +1057,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-008",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-008 AC-001"
     },
     {
@@ -1065,7 +1065,7 @@
       "kind": "task",
       "spec": "SPEC-008",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-008.AC-001"
       ]
@@ -1075,35 +1075,45 @@
       "kind": "code",
       "spec": "SPEC-008",
       "ac": "AC-001",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "src/components/audio/AudioStudio.tsx",
+        "src/services/audioEngine.ts"
+      ]
     },
     {
       "id": "SPEC-008.AC-001.test",
       "kind": "test",
       "spec": "SPEC-008",
       "ac": "AC-001",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "tests/component/audio-studio.test.tsx"
+      ],
+      "cmd": "npm test"
     },
     {
       "id": "SPEC-008.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-008",
       "ac": "AC-001",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "npm test",
+      "exit": 0,
+      "hashes": {
+        "tests/component/audio-studio.test.tsx": "357f4ace75276e66",
+        "src/components/audio/AudioStudio.tsx": "7b52ae6f69d7b7ee",
+        "src/services/audioEngine.ts": "ede5762883e6ece3"
+      },
+      "log": "\n> react-example@0.0.0 test\n> node ./node_modules/vitest/vitest.mjs run\n\n\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv5.0.3 \u001b[39m\u001b[90mD:/Promote-IT_AV-Studio\u001b[39m\n\n \u001b[32m✓\u001b[39m tests/unit/no-mocks.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 9\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/pwa-assets.test.ts \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 24\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/storage.test.ts \u001b[2m(\u001b[22m\u001b[2m3 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 8\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/security.test.ts \u001b[2m(\u001b[22m\u001b[2m7 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 293\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/logo.test.tsx \u001b[2m(\u001b[22m\u001b[2m2 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 438\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m PromoteITLogo smoke (jsdom) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m renders an accessible img role\u001b[33m 412\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/audio-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1309\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m AudioStudio (real TTS wiring) \u001b[2m(4)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m segment Play speaks the scene text via the engine\u001b[33m 626\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m6 passed\u001b[39m\u001b[22m\u001b[90m (6)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m22 passed\u001b[39m\u001b[22m\u001b[90m (22)\u001b[39m\n\u001b[2m   Start at \u001b[22m 14:56:20\n\u001b[2m   Duration \u001b[22m 10.84s\u001b[2m (environment 54%, setup 27%, tests 9%, transform 7%, import 2%, worker 1%)\u001b[22m\n\n",
+      "verifiedAt": "2026-10-12T09:26:31.202Z"
     },
     {
       "id": "SPEC-008.AC-002",
       "kind": "spec_atom",
       "spec": "SPEC-008",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-008 AC-002"
     },
     {
@@ -1111,7 +1121,7 @@
       "kind": "task",
       "spec": "SPEC-008",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-008.AC-002"
       ]
@@ -1121,35 +1131,44 @@
       "kind": "code",
       "spec": "SPEC-008",
       "ac": "AC-002",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "src/components/audio/AudioStudio.tsx",
+        "src/services/audioEngine.ts"
+      ]
     },
     {
       "id": "SPEC-008.AC-002.test",
       "kind": "test",
       "spec": "SPEC-008",
       "ac": "AC-002",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "tests/component/audio-studio.test.tsx"
+      ],
+      "cmd": "npm test"
     },
     {
       "id": "SPEC-008.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-008",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "npm test",
+      "exit": 0,
+      "hashes": {
+        "tests/component/audio-studio.test.tsx": "357f4ace75276e66",
+        "src/components/audio/AudioStudio.tsx": "7b52ae6f69d7b7ee"
+      },
+      "log": "\n> react-example@0.0.0 test\n> node ./node_modules/vitest/vitest.mjs run\n\n\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv5.0.3 \u001b[39m\u001b[90mD:/Promote-IT_AV-Studio\u001b[39m\n\n \u001b[32m✓\u001b[39m tests/unit/no-mocks.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 8\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/pwa-assets.test.ts \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 26\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/storage.test.ts \u001b[2m(\u001b[22m\u001b[2m3 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 7\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/security.test.ts \u001b[2m(\u001b[22m\u001b[2m7 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 218\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/logo.test.tsx \u001b[2m(\u001b[22m\u001b[2m2 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 474\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m PromoteITLogo smoke (jsdom) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m renders an accessible img role\u001b[33m 438\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/audio-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1185\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m AudioStudio (real TTS wiring) \u001b[2m(4)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m lists real browser voices in the picker\u001b[33m 330\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m segment Play speaks the scene text via the engine\u001b[33m 567\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m6 passed\u001b[39m\u001b[22m\u001b[90m (6)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m22 passed\u001b[39m\u001b[22m\u001b[90m (22)\u001b[39m\n\u001b[2m   Start at \u001b[22m 14:57:33\n\u001b[2m   Duration \u001b[22m 9.99s\u001b[2m (environment 50%, setup 31%, tests 9%, transform 7%, import 2%)\u001b[22m\n\n",
+      "verifiedAt": "2026-10-12T09:27:44.138Z"
     },
     {
       "id": "SPEC-008.AC-003",
       "kind": "spec_atom",
       "spec": "SPEC-008",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-008 AC-003"
     },
     {
@@ -1157,7 +1176,7 @@
       "kind": "task",
       "spec": "SPEC-008",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-008.AC-003"
       ]
@@ -1167,28 +1186,36 @@
       "kind": "code",
       "spec": "SPEC-008",
       "ac": "AC-003",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "src/components/audio/AudioStudio.tsx"
+      ]
     },
     {
       "id": "SPEC-008.AC-003.test",
       "kind": "test",
       "spec": "SPEC-008",
       "ac": "AC-003",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "tests/unit/no-mocks.test.ts"
+      ],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/no-mocks.test.ts"
     },
     {
       "id": "SPEC-008.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-008",
       "ac": "AC-003",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/no-mocks.test.ts",
+      "exit": 0,
+      "hashes": {
+        "tests/unit/no-mocks.test.ts": "2018dcfd576d4d9d",
+        "src/components/audio/AudioStudio.tsx": "7b52ae6f69d7b7ee"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  1 passed (1)\n   Start at  09:27:48\n   Duration  11.50s (setup 96%, transform 3%, worker 1%)\n\n",
+      "verifiedAt": "2026-10-12T09:27:59.819Z"
     },
     {
       "id": "SPEC-009.AC-001",

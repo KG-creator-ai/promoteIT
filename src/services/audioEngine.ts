@@ -277,7 +277,8 @@ class AudioEngine {
     preferredVoiceURI?: string,
     isSequentialTransition = false,
     sceneIndex = -1,
-    onEnd?: () => void
+    onEnd?: () => void,
+    volume = 0.8
   ) {
     if (!this.voiceoverEnabled || !('speechSynthesis' in window) || !text || !text.trim()) {
       this.activeSpeakingSceneIndex = -1;
@@ -333,6 +334,7 @@ class AudioEngine {
         // Deep resonant corporate male narration
         utterance.pitch = Math.max(0.7, Math.min(1.2, pitch));
         utterance.rate = Math.max(0.75, Math.min(1.15, rate));
+        utterance.volume = Math.max(0, Math.min(1, volume));
 
         // Audio ducking & state notification
         utterance.onstart = () => {
