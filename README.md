@@ -1,19 +1,43 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# promote-IT AV Studio
 
-# Run and deploy your AI Studio app
+Zero-backend, client-side AV script & AI video-prompt PWA (React 19 + Vite 6).
+All compute runs in the browser: Dexie (IndexedDB), Web Workers (PDF/OCR),
+WebGPU WebLLM with Gemini REST fallback, Web Speech TTS, Workbox PWA.
 
-This contains everything you need to run your app locally.
-https://ai.studio/apps/db22ef4d-b754-4f08-b2cc-61a4321222e0
+## Run locally
 
-## Run Locally
+Prerequisites: Node.js.
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+npm run dev      # → http://localhost:3000
+```
 
+WSL note: Windows npm installs only win32 rollup/esbuild natives, so Vitest needs
+Linux natives first: `bash scripts/fix-wsl-natives.sh` (re-run after any
+`npm install` that prunes them). CI (Ubuntu) is unaffected.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Gemini API key (client-side only)
+
+The browser reads **only `VITE_GEMINI_API_KEY`** (Vite exposes just `VITE_*`).
+Resolution order: explicit arg → `localStorage promote_it_gemini_key`
+(Settings → Model Studio) → `VITE_GEMINI_API_KEY`. A bare `GEMINI_API_KEY`
+in `.env` is invisible to the app. Never commit `.env*`; never log keys.
+
+## Verify
+
+```bash
+npm run lint   # tsc --noEmit (only check; no ESLint)
+npm test       # Vitest (unit in node env; jsdom component tests need Node ≥ 22)
+npm run build  # production build + PWA precache (~3 min)
+npm run gate   # typecheck + tests + secret-scan (SPEC-GRAPH local gate)
+```
+
+Headless UI audit: `node scripts/visual-audit.wsl.mjs` (needs dev server +
+Windows Chrome; clears the AuthModal gate automatically).
+
+## How this repo is built (SPEC-GRAPH)
+
+Autonomous spec-driven delivery: `.spec-graph/` (process, personas, living
+traceability graph, executable gates) + `opencode.json` (persona agents).
+Start with `AGENTS.md`, then `.spec-graph/README.md` and `.spec-graph/ROADMAP.md`.

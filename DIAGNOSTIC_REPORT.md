@@ -1,5 +1,8 @@
 # Deep Diagnostic Inspection & Technical Architecture Report
 
+> **SUPERSEDED snapshot (pre-v3 schema).** Trust the code + `AGENTS.md` over this
+> document. Kept for history only.
+
 ## 1. Current Backend & Storage Details
 
 ### 1.1 IndexedDB Schema (`src/db/db.ts`)

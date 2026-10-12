@@ -13,7 +13,7 @@
 | 2 | SPEC-002 | npm scripts work in WSL + CI | 3 | — | DONE (3/3 verified) |
 | 3 | SPEC-003 | CI workflows + pre-push gate | 3 | SPEC-002 | 2/3 verified (AC-002 needs CI) |
 | 4 | SPEC-004 | Real PWA assets (icons per manifest, og-image) | 3 | — | DONE (3/3 verified) |
-| 5 | SPEC-005 | Accurate README/docs | 2 | — | open |
+| 5 | SPEC-005 | Accurate README/docs | 2 | — | DONE (2/2 verified) |
 | 6 | SPEC-006 | SPEC-GRAPH harness functional | 3 | — | DONE (3/3 verified) |
 | 7 | SPEC-007 | Release mechanics to v1.0.0 | 3 | SPEC-001–006 | 1/3 (rest in Phase 07) |
 

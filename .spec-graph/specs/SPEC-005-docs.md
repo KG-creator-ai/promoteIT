@@ -12,8 +12,8 @@ Stale audit snapshots are marked superseded so agents don't trust them.
 - Rewriting ARCHITECTURE_AUDIT.md / DIAGNOSTIC_REPORT.md content (banner only).
 
 ## Acceptance Criteria
-- [ ] AC-001 (SPEC-005.AC-001): README lists correct env var, `npm run lint|test|build|dev|gate`, and test/CI notes — verified by: `grep` checks for `VITE_GEMINI_API_KEY`, `npm test`, absence of `.env.local`
-- [ ] AC-002 (SPEC-005.AC-002): stale docs carry a superseded banner pointing at code/AGENTS.md — verified by: `grep` for superseded banner in both audit files
+- [x] AC-001 (SPEC-005.AC-001): README lists correct env var, `npm run lint|test|build|dev|gate`, and test/CI notes — verified by: `grep` checks for `VITE_GEMINI_API_KEY`, `npm test`, absence of `.env.local`
+- [x] AC-002 (SPEC-005.AC-002): stale docs carry a superseded banner pointing at code/AGENTS.md — verified by: `grep` for superseded banner in both audit files
 
 ## Graph atoms
 | Atom | Kind | Verifies |

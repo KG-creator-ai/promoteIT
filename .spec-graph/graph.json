@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T08:04:51.481Z",
+  "updatedAt": "2026-10-12T08:06:15.588Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -637,7 +637,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-005-docs",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-005-docs AC-001"
     },
     {
@@ -645,7 +645,7 @@
       "kind": "task",
       "spec": "SPEC-005-docs",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-005.AC-001"
       ]
@@ -655,35 +655,43 @@
       "kind": "code",
       "spec": "SPEC-005-docs",
       "ac": "AC-001",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "README.md"
+      ]
     },
     {
       "id": "SPEC-005.AC-001.test",
       "kind": "test",
       "spec": "SPEC-005-docs",
       "ac": "AC-001",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "tests/unit/pwa-assets.test.ts"
+      ],
+      "cmd": "grep -q VITE_GEMINI_API_KEY README.md && grep -q 'npm test' README.md && ! grep -q 'env.local' README.md && echo README-OK"
     },
     {
       "id": "SPEC-005.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-005-docs",
       "ac": "AC-001",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "grep -q VITE_GEMINI_API_KEY README.md && grep -q 'npm test' README.md && ! grep -q 'env.local' README.md && echo README-OK",
+      "exit": 0,
+      "hashes": {
+        "tests/unit/pwa-assets.test.ts": "16f3c72fac23dfc3",
+        "README.md": "048d3b8a6cf36346"
+      },
+      "log": "README-OK\n",
+      "verifiedAt": "2026-10-12T08:06:15.202Z"
     },
     {
       "id": "SPEC-005.AC-002",
       "kind": "spec_atom",
       "spec": "SPEC-005-docs",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-005-docs AC-002"
     },
     {
@@ -691,7 +699,7 @@
       "kind": "task",
       "spec": "SPEC-005-docs",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-005.AC-002"
       ]
@@ -701,28 +709,35 @@
       "kind": "code",
       "spec": "SPEC-005-docs",
       "ac": "AC-002",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "ARCHITECTURE_AUDIT.md",
+        "DIAGNOSTIC_REPORT.md"
+      ]
     },
     {
       "id": "SPEC-005.AC-002.test",
       "kind": "test",
       "spec": "SPEC-005-docs",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "grep -q SUPERSEDED ARCHITECTURE_AUDIT.md && grep -q SUPERSEDED DIAGNOSTIC_REPORT.md && echo BANNERS-OK"
     },
     {
       "id": "SPEC-005.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-005-docs",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "grep -q SUPERSEDED ARCHITECTURE_AUDIT.md && grep -q SUPERSEDED DIAGNOSTIC_REPORT.md && echo BANNERS-OK",
+      "exit": 0,
+      "hashes": {
+        "ARCHITECTURE_AUDIT.md": "44faafef51b7c43e",
+        "DIAGNOSTIC_REPORT.md": "20b450d7faf73420"
+      },
+      "log": "BANNERS-OK\n",
+      "verifiedAt": "2026-10-12T08:06:15.586Z"
     },
     {
       "id": "SPEC-006.AC-001",
