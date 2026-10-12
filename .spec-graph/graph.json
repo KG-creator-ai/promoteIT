@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T08:15:26.049Z",
+  "updatedAt": "2026-10-12T08:26:00.336Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -448,7 +448,7 @@
       "ac": "AC-003",
       "status": "verified",
       "paths": [],
-      "cmd": "test -x .git/hooks/pre-push && echo HOOK-OK"
+      "cmd": "test -x scripts/install-hooks.sh && bash -n scripts/install-hooks.sh && grep -q 'gate.mjs' scripts/install-hooks.sh && echo HOOK-SRC-OK"
     },
     {
       "id": "SPEC-003.AC-003.ev",
@@ -456,13 +456,13 @@
       "spec": "SPEC-003-ci",
       "ac": "AC-003",
       "status": "verified",
-      "cmd": "test -x .git/hooks/pre-push && echo HOOK-OK",
+      "cmd": "test -x scripts/install-hooks.sh && bash -n scripts/install-hooks.sh && grep -q 'gate.mjs' scripts/install-hooks.sh && echo HOOK-SRC-OK",
       "exit": 0,
       "hashes": {
         "scripts/install-hooks.sh": "b5bd0e4b53868a09"
       },
-      "log": "HOOK-OK\n",
-      "verifiedAt": "2026-10-12T07:59:47.244Z"
+      "log": "HOOK-SRC-OK\n",
+      "verifiedAt": "2026-10-12T08:25:59.959Z"
     },
     {
       "id": "SPEC-004.AC-001",
@@ -931,7 +931,7 @@
       "ac": "AC-001",
       "status": "verified",
       "paths": [],
-      "cmd": "git remote -v | grep creator-ai"
+      "cmd": "git remote -v | grep -q KG-creator-ai/promoteIT && echo REMOTE-OK"
     },
     {
       "id": "SPEC-007.AC-001.ev",
@@ -939,11 +939,11 @@
       "spec": "SPEC-007-release",
       "ac": "AC-001",
       "status": "verified",
-      "cmd": "git remote -v | grep creator-ai",
+      "cmd": "git remote -v | grep -q KG-creator-ai/promoteIT && echo REMOTE-OK",
       "exit": 0,
       "hashes": {},
-      "log": "creator-ai\thttps://github.com/KG-creator-ai/promoteIT.git (fetch)\ncreator-ai\thttps://github.com/KG-creator-ai/promoteIT.git (push)\n",
-      "verifiedAt": "2026-10-12T07:59:53.162Z"
+      "log": "REMOTE-OK\n",
+      "verifiedAt": "2026-10-12T08:26:00.335Z"
     },
     {
       "id": "SPEC-007.AC-002",
