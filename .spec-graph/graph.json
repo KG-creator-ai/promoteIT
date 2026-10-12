@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T08:06:15.588Z",
+  "updatedAt": "2026-10-12T08:07:54.196Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -790,13 +790,13 @@
       "exit": 0,
       "hashes": {
         ".spec-graph/ops/gate.mjs": "d7d5f421110c5a3f",
-        ".spec-graph/ops/claim-audit.mjs": "1937c73b013f8421",
+        ".spec-graph/ops/claim-audit.mjs": "f690961b909c896a",
         ".spec-graph/ops/report.mjs": "0e8e922fa3b09646",
         ".spec-graph/ops/init.mjs": "ba65ee03b4bc302a",
-        ".spec-graph/ops/graph.mjs": "8603b0a90c954871"
+        ".spec-graph/ops/graph.mjs": "ec7d40c14e769ffc"
       },
-      "log": "{\n  \"verdict\": \"PASS\",\n  \"results\": [\n    {\n      \"name\": \"typecheck\",\n      \"status\": \"pass\",\n      \"tail\": \"\"\n    },\n    {\n      \"name\": \"test\",\n      \"status\": \"pass\",\n      \"tail\": \"\\n Test Files  2 passed (2)\\n      Tests  10 passed (10)\\n   Start at  08:01:52\\n   Duration  2.43s (import 33%, transform 31%, tests 21%, worker 15%)\"\n    },\n    {\n      \"name\": \"secret-scan\",\n      \"status\": \"pass\"\n    }\n  ]\n}\n",
-      "verifiedAt": "2026-10-12T08:01:57.065Z"
+      "log": "{\n  \"verdict\": \"PASS\",\n  \"results\": [\n    {\n      \"name\": \"typecheck\",\n      \"status\": \"pass\",\n      \"tail\": \"\"\n    },\n    {\n      \"name\": \"test\",\n      \"status\": \"pass\",\n      \"tail\": \"\\n Test Files  3 passed (3)\\n      Tests  15 passed (15)\\n   Start at  08:07:49\\n   Duration  2.52s (transform 37%, import 32%, tests 19%, worker 13%)\"\n    },\n    {\n      \"name\": \"secret-scan\",\n      \"status\": \"pass\"\n    }\n  ]\n}\n",
+      "verifiedAt": "2026-10-12T08:07:54.195Z"
     },
     {
       "id": "SPEC-006.AC-002",
@@ -894,11 +894,9 @@
       "status": "verified",
       "cmd": "node .spec-graph/ops/graph.mjs status",
       "exit": 0,
-      "hashes": {
-        ".spec-graph/graph.json": "8aa080114542514e"
-      },
-      "log": "{\n  \"total\": 100,\n  \"byStatus\": {\n    \"verified\": 50,\n    \"open\": 50\n  },\n  \"atoms\": \"10/20\",\n  \"staleEvidence\": [],\n  \"openAtoms\": [\n    \"SPEC-001.AC-003\",\n    \"SPEC-003.AC-002\",\n    \"SPEC-004.AC-001\",\n    \"SPEC-004.AC-002\",\n    \"SPEC-004.AC-003\",\n    \"SPEC-005.AC-001\",\n    \"SPEC-005.AC-002\",\n    \"SPEC-006.AC-003\",\n    \"SPEC-007.AC-002\",\n    \"SPEC-007.AC-003\"\n  ]\n}\n",
-      "verifiedAt": "2026-10-12T08:02:04.083Z"
+      "hashes": {},
+      "log": "{\n  \"total\": 100,\n  \"byStatus\": {\n    \"verified\": 80,\n    \"open\": 20\n  },\n  \"atoms\": \"16/20\",\n  \"staleEvidence\": [\n    \"SPEC-006.AC-001.ev\",\n    \"SPEC-006.AC-003.ev\"\n  ],\n  \"openAtoms\": [\n    \"SPEC-001.AC-003\",\n    \"SPEC-003.AC-002\",\n    \"SPEC-007.AC-002\",\n    \"SPEC-007.AC-003\"\n  ]\n}\n",
+      "verifiedAt": "2026-10-12T08:07:05.125Z"
     },
     {
       "id": "SPEC-007.AC-001",

@@ -98,7 +98,10 @@ function verify(atomId, cmd, extraPaths) {
   let exit = 0, out = '';
   try { out = execSync(cmd, { cwd: root, stdio: 'pipe', timeout: 600000 }).toString().slice(-4000); }
   catch (e) { exit = e.status ?? 1; out = ((e.stdout || '') + '' + (e.stderr || '')).slice(-4000); }
-  evNode.cmd = cmd; evNode.exit = exit; evNode.log = out; evNode.hashes = hashPaths(paths);
+  evNode.cmd = cmd; evNode.exit = exit; evNode.log = out;
+  // Ledger-exclusion rule: graph.json is the ledger, not source — it can never
+  // evidence itself (saving evidence changes its own hash). Skip it.
+  evNode.hashes = Object.fromEntries(Object.entries(hashPaths(paths)).filter(([p]) => !p.endsWith('graph.json')));
   evNode.status = exit === 0 ? 'verified' : 'open';
   evNode.verifiedAt = new Date().toISOString();
   if (exit === 0 && testNode) { testNode.status = 'verified'; testNode.cmd = cmd; }

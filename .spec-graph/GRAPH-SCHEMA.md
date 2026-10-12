@@ -27,5 +27,6 @@ Single source of truth. Machine-editable via `ops/graph.mjs`; humans read via `s
 - `status`: open|in_progress|verified|blocked|waived (waived needs releaser+po rationale).
 - `evidence` node: records cmd, exit code, output sha, file hashes at capture, timestamp.
 - **Freshness rule**: verify/re-verify recomputes hashes of linked code/test paths; mismatch with stored hashes ⇒ auto-reopen to `open` with reason `stale-evidence`.
+- **Ledger-exclusion rule**: `graph.json` itself is never hash-tracked (saving evidence changes the ledger's own hash — self-reference paradox). Claim-audit skips it too.
 - Metrics: `status` prints verified/total, % per spec, blockers list.
 - Release-ready ⇔ no node with status open|blocked (waived excluded with rationale) ∧ gate.mjs green ∧ verdicts all approve.

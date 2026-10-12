@@ -25,6 +25,7 @@ for (const n of g.nodes.filter(n => n.status === 'verified')) {
 // 2. Freshness: recompute hashes of evidence-linked paths
 for (const n of g.nodes.filter(n => n.kind === 'evidence' && n.status === 'verified')) {
   for (const [p, h] of Object.entries(n.hashes || {})) {
+    if (p.endsWith('graph.json')) continue; // ledger-exclusion rule (see GRAPH-SCHEMA.md)
     const f = path.join(root, p);
     const cur = fs.existsSync(f) ? sha(fs.readFileSync(f)) : 'MISSING';
     if (cur !== h) problems.push(`${n.id}: STALE — ${p} changed since evidence`);
