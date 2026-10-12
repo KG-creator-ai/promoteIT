@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useCampaignContext } from '../../context/CampaignContext';
 import { GlassCard } from '../ui/GlassCard';
 import {
@@ -6,6 +6,9 @@ import {
   Download, Camera, Mic, Music, Layers, Clock, Settings2, X
 } from 'lucide-react';
 import type { AVSceneNode } from '../../db/db';
+import { VideoRenderer } from '../../services/videoRenderer';
+import type { Scene, VideoSettings } from '../../types';
+import { audioEngine } from '../../services/audioEngine';
 
 interface AVVideoPlayerProps {
   onNavigate?: (view: string) => void;
@@ -43,9 +46,66 @@ function formatSeconds(seconds: number): string {
   return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 }
 
+// ── SPEC-009: AVSceneNode → renderer Scene adapter (single scene renderer) ──
+const MOTION_TO_RENDERER: Record<string, Scene['motionType']> = {
+  drone_sweep: 'drone_sweep',
+  pan_right: 'pan_right',
+  macro_zoom: 'macro_zoom',
+  orbital_sweep: 'orbital_sweep',
+  slow_push_in: 'slow_push_in',
+  outro_reveal: 'outro_reveal',
+  Static: 'slow_push_in',
+  'Static Center': 'slow_push_in',
+};
+
+const RENDER_SETTINGS: VideoSettings = {
+  aspectRatio: '16:9',
+  resolution: '1080p',
+  voiceoverEnabled: true,
+  voicePitch: 0.84,
+  voiceRate: 0.9,
+  voiceoverMode: 'seamless_full',
+  bgmEnabled: true,
+  bgmVolume: 0.7,
+  showSubtitles: true,
+  showLowerThird: false,
+  showWatermark: false,
+  colorGrade: 'cinematic_teal',
+};
+
+export function sceneToRendererScene(
+  scene: AVSceneNode,
+  idx: number,
+  start: number,
+  end: number,
+  imageSrc: string,
+): Scene {
+  const motion = MOTION_TO_RENDERER[scene.cameraMovement] || 'slow_push_in';
+  const isStatic = motion === 'slow_push_in' && (scene.cameraMovement === 'Static' || scene.cameraMovement === 'Static Center' || !scene.cameraMovement);
+  return {
+    id: scene.id || `scene-${idx}`,
+    actNumber: idx + 1,
+    actTitle: scene.actName || `Act ${idx + 1}`,
+    sceneTitle: scene.actName || `Scene ${idx + 1}`,
+    startTime: start,
+    endTime: end,
+    imageSrc,
+    mediaType: imageSrc ? 'image' : undefined,
+    motionType: motion,
+    startScale: 1,
+    endScale: isStatic ? 1 : 1.12,
+    ostTag: scene.bgmCue || '',
+    ostTitle: scene.bgmCue || '',
+    aiPrompt: scene.visualDescription || '',
+    voiceoverText: scene.voiceoverText || '',
+    audioCues: scene.bgmCue || '',
+  };
+}
+
 export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
-  const { activeCampaign, scenes, updateCampaign } = useCampaignContext();
+  const { activeCampaign, scenes, resources, updateCampaign } = useCampaignContext();
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rendererRef = useRef<VideoRenderer | null>(null);
   const animFrameRef = useRef<number>(0);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const startTimeRef = useRef<number>(0);
@@ -82,6 +142,21 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     return sceneTimeline.length - 1;
   }, [sceneTimeline]);
 
+  // SPEC-009: renderer Scene list (image resolution from linked image resources)
+  const rendererScenes: Scene[] = useMemo(() => {
+    return sceneTimeline.map((entry, i) => {
+      let imageSrc = '';
+      for (const rid of entry.scene.linkedResourceIds || []) {
+        const res = resources.find(r => r.id === rid);
+        if (res && (res.mimeType || '').startsWith('image/') && res.blobOrTextRef) {
+          imageSrc = res.blobOrTextRef;
+          break;
+        }
+      }
+      return sceneToRendererScene(entry.scene, i, entry.start, entry.end, imageSrc);
+    });
+  }, [sceneTimeline, resources]);
+
   const seekTo = useCallback((time: number) => {
     setState(prev => ({
       ...prev,
@@ -90,7 +165,8 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     }));
   }, [totalDuration, getCurrentSceneIndex]);
 
-  // Canvas rendering loop
+  // Canvas rendering loop — scene drawing is owned by VideoRenderer (SPEC-009);
+  // the player keeps transport overlays (badge, titles, voiceover, progress).
   const drawFrame = useCallback((time: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -100,14 +176,29 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     const w = canvas.width;
     const h = canvas.height;
 
-    // Background gradient
-    const grad = ctx.createLinearGradient(0, 0, w, h);
-    grad.addColorStop(0, '#0f172a');
-    grad.addColorStop(1, '#1e293b');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, w, h);
+    // Lazy renderer init (try/catch: jsdom/test envs have no 2D context).
+    if (!rendererRef.current) {
+      try {
+        rendererRef.current = new VideoRenderer(canvas);
+      } catch {
+        rendererRef.current = null;
+      }
+    }
 
-    // Find current scene
+    if (rendererRef.current) {
+      try {
+        rendererRef.current.renderFrame(time, rendererScenes, RENDER_SETTINGS, totalDuration);
+      } catch {
+        // Fall through to overlays on a plain background.
+        ctx.fillStyle = '#0f172a';
+        ctx.fillRect(0, 0, w, h);
+      }
+    } else {
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    // Transport overlays (player-owned; scene pixels come from VideoRenderer).
     const idx = getCurrentSceneIndex(time);
     const entry = sceneTimeline[idx];
     if (!entry) {
@@ -117,42 +208,9 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
       ctx.fillText('No scene data', w / 2, h / 2);
       return;
     }
-
     const scene = entry.scene;
-    const sceneLocalTime = time - entry.start;
-    const sceneDuration = entry.end - entry.start;
-    const progress = sceneDuration > 0 ? sceneLocalTime / sceneDuration : 0;
-
-    // Scene background with motion
     const motion = scene.cameraMovement || 'Static';
     const motionData = CAMERA_MOTIONS[motion] || CAMERA_MOTIONS.Static;
-
-    // Animated background based on camera motion
-    ctx.save();
-    if (motion === 'pan_right') {
-      ctx.translate(-progress * 200, 0);
-    } else if (motion === 'slow_push_in') {
-      const scale = 1 + progress * 0.15;
-      ctx.translate(w / 2, h / 2);
-      ctx.scale(scale, scale);
-      ctx.translate(-w / 2, -h / 2);
-    } else if (motion === 'drone_sweep') {
-      ctx.translate(progress * 100, -progress * 50);
-    } else if (motion === 'orbital_sweep') {
-      const angle = progress * Math.PI * 0.5;
-      ctx.translate(w / 2, h / 2);
-      ctx.rotate(angle * 0.1);
-      ctx.translate(-w / 2, -h / 2);
-    }
-
-    // Scene visual representation (gradient + scene info)
-    const sceneGrad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.7);
-    const hue = (idx * 47) % 360;
-    sceneGrad.addColorStop(0, `hsla(${hue}, 40%, 25%, 0.9)`);
-    sceneGrad.addColorStop(1, `hsla(${hue + 30}, 30%, 10%, 0.95)`);
-    ctx.fillStyle = sceneGrad;
-    ctx.fillRect(0, 0, w, h);
-    ctx.restore();
 
     // Scene index badge
     ctx.fillStyle = 'rgba(255,255,255,0.15)';
@@ -213,7 +271,7 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     ctx.font = '12px monospace';
     ctx.textAlign = 'right';
     ctx.fillText(`${formatSeconds(time)} / ${formatSeconds(totalDuration)}`, w - 20, barY - 6);
-  }, [scenes, sceneTimeline, totalDuration, getCurrentSceneIndex]);
+  }, [scenes, sceneTimeline, rendererScenes, totalDuration, getCurrentSceneIndex]);
 
   // Playback loop
   useEffect(() => {
@@ -305,6 +363,13 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const stream = canvas.captureStream(30);
+    // SPEC-009: mix the BGM bus so the export carries real audio.
+    try {
+      const audioTrack = audioEngine.getAudioStream();
+      if (audioTrack) stream.addTrack(audioTrack);
+    } catch {
+      // Audio bus unavailable — video-only export still proceeds.
+    }
     const recorder = new MediaRecorder(stream, { mimeType: 'video/webm;codecs=vp9' });
     const chunks: Blob[] = [];
     recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };

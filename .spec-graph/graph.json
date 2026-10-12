@@ -1241,7 +1241,10 @@
       "spec": "SPEC-009",
       "ac": "AC-001",
       "status": "open",
-      "paths": []
+      "paths": [
+        "src/components/studio/AVVideoPlayer.tsx",
+        "src/services/videoRenderer.ts"
+      ]
     },
     {
       "id": "SPEC-009.AC-001.test",
@@ -1249,7 +1252,9 @@
       "spec": "SPEC-009",
       "ac": "AC-001",
       "status": "open",
-      "paths": [],
+      "paths": [
+        "tests/unit/scene-adapter.test.ts"
+      ],
       "cmd": ""
     },
     {
@@ -1287,7 +1292,9 @@
       "spec": "SPEC-009",
       "ac": "AC-002",
       "status": "open",
-      "paths": []
+      "paths": [
+        "src/components/studio/AVVideoPlayer.tsx"
+      ]
     },
     {
       "id": "SPEC-009.AC-002.test",
@@ -1333,7 +1340,9 @@
       "spec": "SPEC-009",
       "ac": "AC-003",
       "status": "open",
-      "paths": []
+      "paths": [
+        "src/components/studio/AVVideoPlayer.tsx"
+      ]
     },
     {
       "id": "SPEC-009.AC-003.test",
