@@ -1,0 +1,1400 @@
+{
+  "version": "3.0.0",
+  "project": "Promote-IT_AV-Studio",
+  "updatedAt": "2026-10-12T08:02:04.084Z",
+  "nodes": [
+    {
+      "id": "SPEC-001.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-001",
+      "status": "verified",
+      "title": "SPEC-001-tests AC-001"
+    },
+    {
+      "id": "SPEC-001.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-001",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-001.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-001.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [
+        "src/lib/security.ts",
+        "src/lib/storage.ts",
+        "vitest.config.ts"
+      ]
+    },
+    {
+      "id": "SPEC-001.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [
+        "tests/unit/security.test.ts",
+        "tests/unit/storage.test.ts"
+      ],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run"
+    },
+    {
+      "id": "SPEC-001.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-001",
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run",
+      "exit": 0,
+      "hashes": {
+        "tests/unit/security.test.ts": "b77c06c0a1707947",
+        "tests/unit/storage.test.ts": "c651411cac1ff164"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  2 passed (2)\n      Tests  10 passed (10)\n   Start at  07:57:51\n   Duration  2.32s (transform 38%, import 32%, tests 20%, worker 10%)\n\n",
+      "verifiedAt": "2026-10-12T07:57:53.533Z"
+    },
+    {
+      "id": "SPEC-001.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-002",
+      "status": "verified",
+      "title": "SPEC-001-tests AC-002"
+    },
+    {
+      "id": "SPEC-001.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-002",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-001.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-001.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [
+        "scripts/fix-wsl-natives.sh"
+      ]
+    },
+    {
+      "id": "SPEC-001.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [
+        "scripts/fix-wsl-natives.sh"
+      ],
+      "cmd": "bash scripts/fix-wsl-natives.sh"
+    },
+    {
+      "id": "SPEC-001.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-002",
+      "status": "verified",
+      "cmd": "bash scripts/fix-wsl-natives.sh",
+      "exit": 0,
+      "hashes": {
+        "scripts/fix-wsl-natives.sh": "dc62b0d262dedc5a"
+      },
+      "log": "Linux natives installed for rollup@4.63.1 esbuild@0.25.12\n}\n\n\n\n",
+      "verifiedAt": "2026-10-12T07:58:09.863Z"
+    },
+    {
+      "id": "SPEC-001.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-001-tests AC-003"
+    },
+    {
+      "id": "SPEC-001.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-001.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-001.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-001.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-001.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-001-tests",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-002.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-001",
+      "status": "verified",
+      "title": "SPEC-002-scripts AC-001"
+    },
+    {
+      "id": "SPEC-002.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-001",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-002.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-002.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [
+        "package.json"
+      ]
+    },
+    {
+      "id": "SPEC-002.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [],
+      "cmd": "npm run lint"
+    },
+    {
+      "id": "SPEC-002.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-001",
+      "status": "verified",
+      "cmd": "npm run lint",
+      "exit": 0,
+      "hashes": {
+        "package.json": "425ab41fed41ba1f"
+      },
+      "log": "\n> react-example@0.0.0 lint\n> node ./node_modules/typescript/bin/tsc --noEmit\n\n",
+      "verifiedAt": "2026-10-12T07:58:30.053Z"
+    },
+    {
+      "id": "SPEC-002.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-002",
+      "status": "verified",
+      "title": "SPEC-002-scripts AC-002"
+    },
+    {
+      "id": "SPEC-002.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-002",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-002.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-002.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [
+        "package.json"
+      ]
+    },
+    {
+      "id": "SPEC-002.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [],
+      "cmd": "npm test"
+    },
+    {
+      "id": "SPEC-002.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-002",
+      "status": "verified",
+      "cmd": "npm test",
+      "exit": 0,
+      "hashes": {
+        "package.json": "425ab41fed41ba1f"
+      },
+      "log": "\n> react-example@0.0.0 test\n> node ./node_modules/vitest/vitest.mjs run\n\n\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv5.0.3 \u001b[39m\u001b[90mD:/Promote-IT_AV-Studio\u001b[39m\n\n \u001b[32m✓\u001b[39m tests/unit/storage.test.ts \u001b[2m(\u001b[22m\u001b[2m3 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 8\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/security.test.ts \u001b[2m(\u001b[22m\u001b[2m7 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 203\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m2 passed\u001b[39m\u001b[22m\u001b[90m (2)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m10 passed\u001b[39m\u001b[22m\u001b[90m (10)\u001b[39m\n\u001b[2m   Start at \u001b[22m 13:28:37\n\u001b[2m   Duration \u001b[22m 1.12s\u001b[2m (transform 44%, tests 32%, import 21%, worker 4%)\u001b[22m\n\n",
+      "verifiedAt": "2026-10-12T07:58:39.074Z"
+    },
+    {
+      "id": "SPEC-002.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-003",
+      "status": "verified",
+      "title": "SPEC-002-scripts AC-003"
+    },
+    {
+      "id": "SPEC-002.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-003",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-002.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-002.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": [
+        "package.json",
+        "package-lock.json"
+      ]
+    },
+    {
+      "id": "SPEC-002.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": [],
+      "cmd": "npm run build"
+    },
+    {
+      "id": "SPEC-002.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-002-scripts",
+      "ac": "AC-003",
+      "status": "verified",
+      "cmd": "npm run build",
+      "exit": 0,
+      "hashes": {
+        "package.json": "425ab41fed41ba1f",
+        "package-lock.json": "3a54fd023850c0a5"
+      },
+      "log": "\n> react-example@0.0.0 build\n> node ./node_modules/vite/bin/vite.js build\n\n\u001b[36mvite v6.4.3 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m✓\u001b[39m 1992 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mregisterSW.js                       \u001b[39m\u001b[1m\u001b[2m    0.13 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32mmanifest.webmanifest                \u001b[39m\u001b[1m\u001b[2m    0.40 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                          \u001b[39m\u001b[1m\u001b[2m    3.27 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:     1.33 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/ocrWorker-Cu1Wi4WU.js        \u001b[39m\u001b[1m\u001b[2m   15.96 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/pdfWorker-CDFqgEk2.js        \u001b[39m\u001b[1m\u001b[2m  482.30 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/pdf.worker.min-Dswkl-cV.mjs  \u001b[39m\u001b[1m\u001b[2m1,265.41 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[35massets/index-DLN3Re_P.css           \u001b[39m\u001b[1m\u001b[2m  115.81 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    16.95 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/purify.es-DedTAGkB.js        \u001b[39m\u001b[1m\u001b[2m   29.05 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    11.18 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/index.es-BRZ0LRyM.js         \u001b[39m\u001b[1m\u001b[2m  159.72 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    53.54 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/html2canvas.esm-QH1iLAAe.js  \u001b[39m\u001b[1m\u001b[2m  202.38 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    48.04 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/index-mfM7jG8V.js            \u001b[39m\u001b[1m\u001b[33m7,089.50 kB\u001b[39m\u001b[22m\u001b[2m │ gzip: 2,465.95 kB\u001b[22m\n\u001b[32m✓ built in 23.34s\u001b[39m\n\nPWA v1.3.0\nmode      generateSW\nprecache  19 entries (7910.70 KiB)\nfiles generated\n  dist/sw.js\n  dist/workbox-835c8c05.js\n",
+      "verifiedAt": "2026-10-12T07:59:40.458Z"
+    },
+    {
+      "id": "SPEC-003.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-001",
+      "status": "verified",
+      "title": "SPEC-003-ci AC-001"
+    },
+    {
+      "id": "SPEC-003.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-001",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-003.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-003.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/release.yml"
+      ]
+    },
+    {
+      "id": "SPEC-003.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [],
+      "cmd": "python3 -c \"import yaml,sys; [yaml.safe_load(open(f)) for f in ['.github/workflows/ci.yml','.github/workflows/release.yml']]; print('YAML-OK')\""
+    },
+    {
+      "id": "SPEC-003.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-001",
+      "status": "verified",
+      "cmd": "python3 -c \"import yaml,sys; [yaml.safe_load(open(f)) for f in ['.github/workflows/ci.yml','.github/workflows/release.yml']]; print('YAML-OK')\"",
+      "exit": 0,
+      "hashes": {
+        ".github/workflows/ci.yml": "b895d9ce2dde9d43",
+        ".github/workflows/release.yml": "fb008aac12952f8e"
+      },
+      "log": "YAML-OK\n",
+      "verifiedAt": "2026-10-12T07:59:46.981Z"
+    },
+    {
+      "id": "SPEC-003.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-003-ci AC-002"
+    },
+    {
+      "id": "SPEC-003.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-003.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-003.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-003.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-003.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-003.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-003",
+      "status": "verified",
+      "title": "SPEC-003-ci AC-003"
+    },
+    {
+      "id": "SPEC-003.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-003",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-003.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-003.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": [
+        "scripts/install-hooks.sh"
+      ]
+    },
+    {
+      "id": "SPEC-003.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": [],
+      "cmd": "test -x .git/hooks/pre-push && echo HOOK-OK"
+    },
+    {
+      "id": "SPEC-003.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-003-ci",
+      "ac": "AC-003",
+      "status": "verified",
+      "cmd": "test -x .git/hooks/pre-push && echo HOOK-OK",
+      "exit": 0,
+      "hashes": {
+        "scripts/install-hooks.sh": "b5bd0e4b53868a09"
+      },
+      "log": "HOOK-OK\n",
+      "verifiedAt": "2026-10-12T07:59:47.244Z"
+    },
+    {
+      "id": "SPEC-004.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-004-pwa-assets AC-001"
+    },
+    {
+      "id": "SPEC-004.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-004.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-004.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-004.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-004.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-004.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-004-pwa-assets AC-002"
+    },
+    {
+      "id": "SPEC-004.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-004.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-004.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-004.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-004.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-004.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-004-pwa-assets AC-003"
+    },
+    {
+      "id": "SPEC-004.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-004.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-004.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-004.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-004.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-004-pwa-assets",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-005.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-005-docs",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-005-docs AC-001"
+    },
+    {
+      "id": "SPEC-005.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-005-docs",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-005.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-005.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-005-docs",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-005.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-005-docs",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-005.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-005-docs",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-005.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-005-docs",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-005-docs AC-002"
+    },
+    {
+      "id": "SPEC-005.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-005-docs",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-005.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-005.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-005-docs",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-005.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-005-docs",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-005.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-005-docs",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-006.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-001",
+      "status": "verified",
+      "title": "SPEC-006-harness AC-001"
+    },
+    {
+      "id": "SPEC-006.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-001",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-006.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-006.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [
+        ".spec-graph/ops/graph.mjs",
+        ".spec-graph/ops/gate.mjs",
+        ".spec-graph/ops/claim-audit.mjs",
+        ".spec-graph/ops/report.mjs",
+        ".spec-graph/ops/init.mjs"
+      ]
+    },
+    {
+      "id": "SPEC-006.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node .spec-graph/ops/gate.mjs"
+    },
+    {
+      "id": "SPEC-006.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-001",
+      "status": "verified",
+      "cmd": "node .spec-graph/ops/gate.mjs",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/ops/gate.mjs": "d7d5f421110c5a3f",
+        ".spec-graph/ops/claim-audit.mjs": "1937c73b013f8421",
+        ".spec-graph/ops/report.mjs": "0e8e922fa3b09646",
+        ".spec-graph/ops/init.mjs": "ba65ee03b4bc302a",
+        ".spec-graph/ops/graph.mjs": "8603b0a90c954871"
+      },
+      "log": "{\n  \"verdict\": \"PASS\",\n  \"results\": [\n    {\n      \"name\": \"typecheck\",\n      \"status\": \"pass\",\n      \"tail\": \"\"\n    },\n    {\n      \"name\": \"test\",\n      \"status\": \"pass\",\n      \"tail\": \"\\n Test Files  2 passed (2)\\n      Tests  10 passed (10)\\n   Start at  08:01:52\\n   Duration  2.43s (import 33%, transform 31%, tests 21%, worker 15%)\"\n    },\n    {\n      \"name\": \"secret-scan\",\n      \"status\": \"pass\"\n    }\n  ]\n}\n",
+      "verifiedAt": "2026-10-12T08:01:57.065Z"
+    },
+    {
+      "id": "SPEC-006.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-002",
+      "status": "verified",
+      "title": "SPEC-006-harness AC-002"
+    },
+    {
+      "id": "SPEC-006.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-002",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-006.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-006.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [
+        "opencode.json"
+      ]
+    },
+    {
+      "id": "SPEC-006.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node -e \"JSON.parse(require('fs').readFileSync('opencode.json','utf8')); console.log('agents:', require('fs').readdirSync('.opencode/agents').length, 'commands:', require('fs').readdirSync('.opencode/commands').length)\""
+    },
+    {
+      "id": "SPEC-006.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-002",
+      "status": "verified",
+      "cmd": "node -e \"JSON.parse(require('fs').readFileSync('opencode.json','utf8')); console.log('agents:', require('fs').readdirSync('.opencode/agents').length, 'commands:', require('fs').readdirSync('.opencode/commands').length)\"",
+      "exit": 0,
+      "hashes": {
+        "opencode.json": "35890026108acca2"
+      },
+      "log": "agents: 6 commands: 3\n",
+      "verifiedAt": "2026-10-12T07:59:52.812Z"
+    },
+    {
+      "id": "SPEC-006.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-003",
+      "status": "verified",
+      "title": "SPEC-006-harness AC-003"
+    },
+    {
+      "id": "SPEC-006.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-003",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-006.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-006.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": [
+        ".spec-graph/graph.json"
+      ]
+    },
+    {
+      "id": "SPEC-006.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node .spec-graph/ops/graph.mjs status"
+    },
+    {
+      "id": "SPEC-006.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-006-harness",
+      "ac": "AC-003",
+      "status": "verified",
+      "cmd": "node .spec-graph/ops/graph.mjs status",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/graph.json": "8aa080114542514e"
+      },
+      "log": "{\n  \"total\": 100,\n  \"byStatus\": {\n    \"verified\": 50,\n    \"open\": 50\n  },\n  \"atoms\": \"10/20\",\n  \"staleEvidence\": [],\n  \"openAtoms\": [\n    \"SPEC-001.AC-003\",\n    \"SPEC-003.AC-002\",\n    \"SPEC-004.AC-001\",\n    \"SPEC-004.AC-002\",\n    \"SPEC-004.AC-003\",\n    \"SPEC-005.AC-001\",\n    \"SPEC-005.AC-002\",\n    \"SPEC-006.AC-003\",\n    \"SPEC-007.AC-002\",\n    \"SPEC-007.AC-003\"\n  ]\n}\n",
+      "verifiedAt": "2026-10-12T08:02:04.083Z"
+    },
+    {
+      "id": "SPEC-007.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-007-release",
+      "ac": "AC-001",
+      "status": "verified",
+      "title": "SPEC-007-release AC-001"
+    },
+    {
+      "id": "SPEC-007.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-007-release",
+      "ac": "AC-001",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-007.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-007.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-007-release",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-007.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-007-release",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [],
+      "cmd": "git remote -v | grep creator-ai"
+    },
+    {
+      "id": "SPEC-007.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-007-release",
+      "ac": "AC-001",
+      "status": "verified",
+      "cmd": "git remote -v | grep creator-ai",
+      "exit": 0,
+      "hashes": {},
+      "log": "creator-ai\thttps://github.com/KG-creator-ai/promoteIT.git (fetch)\ncreator-ai\thttps://github.com/KG-creator-ai/promoteIT.git (push)\n",
+      "verifiedAt": "2026-10-12T07:59:53.162Z"
+    },
+    {
+      "id": "SPEC-007.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-007-release",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-007-release AC-002"
+    },
+    {
+      "id": "SPEC-007.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-007-release",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-007.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-007.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-007-release",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-007.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-007-release",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-007.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-007-release",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-007.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-007-release",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-007-release AC-003"
+    },
+    {
+      "id": "SPEC-007.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-007-release",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-007.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-007.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-007-release",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-007.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-007-release",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-007.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-007-release",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "SPEC-001.AC-001.task",
+      "to": "SPEC-001.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-001.AC-001.code",
+      "to": "SPEC-001.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-001.AC-001.test",
+      "to": "SPEC-001.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-001.AC-001.ev",
+      "to": "SPEC-001.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-001.AC-002.task",
+      "to": "SPEC-001.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-001.AC-002.code",
+      "to": "SPEC-001.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-001.AC-002.test",
+      "to": "SPEC-001.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-001.AC-002.ev",
+      "to": "SPEC-001.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-001.AC-003.task",
+      "to": "SPEC-001.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-001.AC-003.code",
+      "to": "SPEC-001.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-001.AC-003.test",
+      "to": "SPEC-001.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-001.AC-003.ev",
+      "to": "SPEC-001.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-002.AC-001.task",
+      "to": "SPEC-002.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-002.AC-001.code",
+      "to": "SPEC-002.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-002.AC-001.test",
+      "to": "SPEC-002.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-002.AC-001.ev",
+      "to": "SPEC-002.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-002.AC-002.task",
+      "to": "SPEC-002.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-002.AC-002.code",
+      "to": "SPEC-002.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-002.AC-002.test",
+      "to": "SPEC-002.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-002.AC-002.ev",
+      "to": "SPEC-002.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-002.AC-003.task",
+      "to": "SPEC-002.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-002.AC-003.code",
+      "to": "SPEC-002.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-002.AC-003.test",
+      "to": "SPEC-002.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-002.AC-003.ev",
+      "to": "SPEC-002.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-003.AC-001.task",
+      "to": "SPEC-003.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-003.AC-001.code",
+      "to": "SPEC-003.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-003.AC-001.test",
+      "to": "SPEC-003.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-003.AC-001.ev",
+      "to": "SPEC-003.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-003.AC-002.task",
+      "to": "SPEC-003.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-003.AC-002.code",
+      "to": "SPEC-003.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-003.AC-002.test",
+      "to": "SPEC-003.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-003.AC-002.ev",
+      "to": "SPEC-003.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-003.AC-003.task",
+      "to": "SPEC-003.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-003.AC-003.code",
+      "to": "SPEC-003.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-003.AC-003.test",
+      "to": "SPEC-003.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-003.AC-003.ev",
+      "to": "SPEC-003.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-004.AC-001.task",
+      "to": "SPEC-004.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-004.AC-001.code",
+      "to": "SPEC-004.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-004.AC-001.test",
+      "to": "SPEC-004.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-004.AC-001.ev",
+      "to": "SPEC-004.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-004.AC-002.task",
+      "to": "SPEC-004.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-004.AC-002.code",
+      "to": "SPEC-004.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-004.AC-002.test",
+      "to": "SPEC-004.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-004.AC-002.ev",
+      "to": "SPEC-004.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-004.AC-003.task",
+      "to": "SPEC-004.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-004.AC-003.code",
+      "to": "SPEC-004.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-004.AC-003.test",
+      "to": "SPEC-004.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-004.AC-003.ev",
+      "to": "SPEC-004.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-005.AC-001.task",
+      "to": "SPEC-005.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-005.AC-001.code",
+      "to": "SPEC-005.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-005.AC-001.test",
+      "to": "SPEC-005.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-005.AC-001.ev",
+      "to": "SPEC-005.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-005.AC-002.task",
+      "to": "SPEC-005.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-005.AC-002.code",
+      "to": "SPEC-005.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-005.AC-002.test",
+      "to": "SPEC-005.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-005.AC-002.ev",
+      "to": "SPEC-005.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-006.AC-001.task",
+      "to": "SPEC-006.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-006.AC-001.code",
+      "to": "SPEC-006.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-006.AC-001.test",
+      "to": "SPEC-006.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-006.AC-001.ev",
+      "to": "SPEC-006.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-006.AC-002.task",
+      "to": "SPEC-006.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-006.AC-002.code",
+      "to": "SPEC-006.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-006.AC-002.test",
+      "to": "SPEC-006.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-006.AC-002.ev",
+      "to": "SPEC-006.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-006.AC-003.task",
+      "to": "SPEC-006.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-006.AC-003.code",
+      "to": "SPEC-006.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-006.AC-003.test",
+      "to": "SPEC-006.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-006.AC-003.ev",
+      "to": "SPEC-006.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-007.AC-001.task",
+      "to": "SPEC-007.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-007.AC-001.code",
+      "to": "SPEC-007.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-007.AC-001.test",
+      "to": "SPEC-007.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-007.AC-001.ev",
+      "to": "SPEC-007.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-007.AC-002.task",
+      "to": "SPEC-007.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-007.AC-002.code",
+      "to": "SPEC-007.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-007.AC-002.test",
+      "to": "SPEC-007.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-007.AC-002.ev",
+      "to": "SPEC-007.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-007.AC-003.task",
+      "to": "SPEC-007.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-007.AC-003.code",
+      "to": "SPEC-007.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-007.AC-003.test",
+      "to": "SPEC-007.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-007.AC-003.ev",
+      "to": "SPEC-007.AC-003.test",
+      "rel": "verifies"
+    }
+  ]
+}

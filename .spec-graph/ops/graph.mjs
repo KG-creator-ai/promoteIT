@@ -32,7 +32,11 @@ function parseSpecACs(file) {
   const txt = fs.readFileSync(file, 'utf8');
   const id = path.basename(file, '.md');
   const acs = [];
-  for (const m of txt.matchAll(/AC-(\d+)\s*\(\s*([^)]+?)\s*\)/g)) acs.push({ ac: `AC-${m[1]}`, atom: m[2].trim() });
+  for (const line of txt.split('\n')) {
+    if (!/^- \[[ x]\] AC-\d+/.test(line)) continue;
+    const m = line.match(/AC-(\d+)\s*\(\s*([^)]+?)\s*\)/);
+    if (m) acs.push({ ac: `AC-${m[1]}`, atom: m[2].trim() });
+  }
   return { id, acs };
 }
 
