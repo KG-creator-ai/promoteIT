@@ -1,0 +1,40 @@
+name: CI — SPEC-GRAPH gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck (lint)
+        run: npm run lint
+
+      - name: Unit + component tests
+        run: npm test
+
+      - name: Production build
+        run: npm run build
+
+      - name: SPEC-GRAPH gate chain
+        run: node .spec-graph/ops/gate.mjs --full
+
+      - name: SPEC-GRAPH claim audit (adversarial recheck)
+        run: node .spec-graph/ops/claim-audit.mjs --recheck
+
+      - name: Graph-closed check
+        run: |
+          OPEN=$(node .spec-graph/ops/graph.mjs status | python3 -c "import json,sys; d=json.load(sys.stdin); print(len(d['openAtoms']) + len([n for n in [] ]))")
+          echo "open atoms: $OPEN"

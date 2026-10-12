@@ -1,0 +1,22 @@
+{
+  "project": "react-example",
+  "generatedAt": "2026-10-12T07:50:47.959Z",
+  "toolchain": {
+    "node": true,
+    "typescript": true,
+    "vite": true,
+    "vitest": true,
+    "react": true,
+    "dexie": true
+  },
+  "gates": {
+    "typecheck": "./node_modules/.bin/tsc --noEmit",
+    "test": "./node_modules/.bin/vitest run",
+    "build": "./node_modules/.bin/vite build",
+    "audit": "node scripts/visual-audit.wsl.mjs"
+  },
+  "paths": {
+    "graph": ".spec-graph/graph.json",
+    "verdicts": ".spec-graph/personas/verdicts"
+  }
+}
