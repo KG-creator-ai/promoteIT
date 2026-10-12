@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T08:26:00.336Z",
+  "updatedAt": "2026-10-12T08:29:15.758Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -462,7 +462,7 @@
         "scripts/install-hooks.sh": "b5bd0e4b53868a09"
       },
       "log": "HOOK-SRC-OK\n",
-      "verifiedAt": "2026-10-12T08:25:59.959Z"
+      "verifiedAt": "2026-10-12T08:29:15.756Z"
     },
     {
       "id": "SPEC-004.AC-001",
