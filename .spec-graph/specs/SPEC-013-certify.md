@@ -15,7 +15,7 @@ report (artifacts stay local for L3 review, never in git).
 ## Acceptance Criteria
 - [x] AC-001 (SPEC-013.AC-001): CERTIFICATION.md exists with L1–L4 verdicts, artifact index, and known limits — verified by: file + link check
 - [x] AC-002 (SPEC-013.AC-002): CI green on the v1.1.0 release commit — verified by: pinned successful run ID (D10 rule)
-- [ ] AC-003 (SPEC-013.AC-003): tag `v1.1.0` + GitHub Release with CERTIFICATION.md — verified by: release API (tag + asset)
+- [x] AC-003 (SPEC-013.AC-003): tag `v1.1.0` + GitHub Release with CERTIFICATION.md — verified by: release API (tag + asset)
 
 ## Graph atoms
 | Atom | Kind | Verifies |

@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-13T02:02:53.679Z",
+  "updatedAt": "2026-10-13T02:25:38.916Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -1871,7 +1871,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-013",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-013 AC-003"
     },
     {
@@ -1879,7 +1879,7 @@
       "kind": "task",
       "spec": "SPEC-013",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-013.AC-003"
       ]
@@ -1889,7 +1889,7 @@
       "kind": "code",
       "spec": "SPEC-013",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -1897,20 +1897,21 @@
       "kind": "test",
       "spec": "SPEC-013",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/releases/tags/v1.1.0')); assert d['tag_name']=='v1.1.0'; names=[a['name'] for a in d['assets']]; assert any(n.endswith('.zip') for n in names) and 'CERTIFICATION.md' in names, names; print('RELEASE-OK', names)\""
     },
     {
       "id": "SPEC-013.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-013",
       "ac": "AC-003",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
+      "status": "verified",
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/releases/tags/v1.1.0')); assert d['tag_name']=='v1.1.0'; names=[a['name'] for a in d['assets']]; assert any(n.endswith('.zip') for n in names) and 'CERTIFICATION.md' in names, names; print('RELEASE-OK', names)\"",
+      "exit": 0,
       "hashes": {},
-      "log": ""
+      "log": "RELEASE-OK ['CERTIFICATION.md', 'promote-it-v1.1.0.zip', 'RELEASE-REPORT-v1.1.0.md']\n",
+      "verifiedAt": "2026-10-13T02:25:38.915Z"
     }
   ],
   "edges": [
