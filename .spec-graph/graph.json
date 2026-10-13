@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-13T01:54:42.683Z",
+  "updatedAt": "2026-10-13T02:02:53.679Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -1824,7 +1824,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-013",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-013 AC-002"
     },
     {
@@ -1832,7 +1832,7 @@
       "kind": "task",
       "spec": "SPEC-013",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-013.AC-002"
       ]
@@ -1842,7 +1842,7 @@
       "kind": "code",
       "spec": "SPEC-013",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -1850,20 +1850,21 @@
       "kind": "test",
       "spec": "SPEC-013",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38334729207')); assert d['conclusion']=='success', d; print('CI-OK pinned 38334729207')\""
     },
     {
       "id": "SPEC-013.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-013",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
+      "status": "verified",
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38334729207')); assert d['conclusion']=='success', d; print('CI-OK pinned 38334729207')\"",
+      "exit": 0,
       "hashes": {},
-      "log": ""
+      "log": "CI-OK pinned 38334729207\n",
+      "verifiedAt": "2026-10-13T02:02:53.678Z"
     },
     {
       "id": "SPEC-013.AC-003",
