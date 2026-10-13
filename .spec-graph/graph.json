@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-13T00:47:21.904Z",
+  "updatedAt": "2026-10-13T00:55:23.607Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -1267,13 +1267,13 @@
       "exit": 0,
       "hashes": {
         "tests/unit/scene-adapter.test.ts": "5aec8567bd8004f2",
-        "src/components/studio/AVVideoPlayer.tsx": "9ff8891d8cb4d295",
+        "src/components/studio/AVVideoPlayer.tsx": "c04aaa29f69852cd",
         "src/services/videoRenderer.ts": "468201642c754ce9",
         "scripts/e2e-av.mjs": "6936df2f07c641ca",
         "scripts/e2e-assert.mjs": "ddc9553818737079"
       },
-      "log": "E2E-LEG-OK player-renders — canvasBytes=609566 clock=00:00->00:06\n",
-      "verifiedAt": "2026-10-13T00:17:03.421Z"
+      "log": "E2E-LEG-OK player-renders — canvasBytes=593738 clock=00:00->00:06\n",
+      "verifiedAt": "2026-10-13T00:55:18.838Z"
     },
     {
       "id": "SPEC-009.AC-002",
@@ -1324,11 +1324,11 @@
       "exit": 0,
       "hashes": {
         "scripts/e2e-av.mjs": "6936df2f07c641ca",
-        "src/components/studio/AVVideoPlayer.tsx": "9ff8891d8cb4d295",
+        "src/components/studio/AVVideoPlayer.tsx": "c04aaa29f69852cd",
         "scripts/e2e-assert.mjs": "ddc9553818737079"
       },
-      "log": "WEBM-AV-OK bytes=6199316 video=true audio=true\n",
-      "verifiedAt": "2026-10-13T00:17:04.685Z"
+      "log": "WEBM-AV-OK bytes=4096366 video=true audio=true\n",
+      "verifiedAt": "2026-10-13T00:55:21.397Z"
     },
     {
       "id": "SPEC-009.AC-003",
@@ -1379,10 +1379,10 @@
       "exit": 0,
       "hashes": {
         "scripts/e2e-av.mjs": "6936df2f07c641ca",
-        "src/components/studio/AVVideoPlayer.tsx": "9ff8891d8cb4d295"
+        "src/components/studio/AVVideoPlayer.tsx": "c04aaa29f69852cd"
       },
       "log": "NO-PAGE-ERRORS-OK\n",
-      "verifiedAt": "2026-10-13T00:17:06.242Z"
+      "verifiedAt": "2026-10-13T00:55:23.602Z"
     },
     {
       "id": "SPEC-010.AC-001",
