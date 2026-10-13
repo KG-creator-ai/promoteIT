@@ -11,6 +11,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { parseSpecACs } from './spec-parse.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const sg = path.join(root, '.spec-graph');
@@ -28,27 +29,15 @@ const hashPaths = (paths) => {
   return out;
 };
 
-function parseSpecACs(file) {
-  const txt = fs.readFileSync(file, 'utf8');
-  const id = path.basename(file, '.md');
-  const acs = [];
-  for (const line of txt.split('\n')) {
-    if (!/^- \[[ x]\] AC-\d+/.test(line)) continue;
-    const m = line.match(/AC-(\d+)\s*\(\s*([^)]+?)\s*\)/);
-    if (m) acs.push({ ac: `AC-${m[1]}`, atom: m[2].trim() });
-  }
-  return { id, acs };
-}
-
 function init() {
   const specsDir = path.join(sg, 'specs');
   const files = fs.existsSync(specsDir) ? fs.readdirSync(specsDir).filter(f => f.endsWith('.md')) : [];
-  const g = { version: '3.0.0', project: path.basename(root), updatedAt: new Date().toISOString(), nodes: [], edges: [] };
+  const g = { version: '3.1.0', project: path.basename(root), updatedAt: new Date().toISOString(), nodes: [], edges: [] };
   for (const f of files) {
-    const { id, acs } = parseSpecACs(path.join(specsDir, f));
+    const { id, acs, domains } = parseSpecACs(path.join(specsDir, f));
     for (const { ac, atom } of acs) {
       g.nodes.push(
-        { id: atom, kind: 'spec_atom', spec: id, ac, status: 'open', title: `${id} ${ac}` },
+        { id: atom, kind: 'spec_atom', spec: id, ac, status: 'open', title: `${id} ${ac}`, domains },
         { id: atom + '.task', kind: 'task', spec: id, ac, status: 'open', dependsOn: [atom] },
         { id: atom + '.code', kind: 'code', spec: id, ac, status: 'open', paths: [] },
         { id: atom + '.test', kind: 'test', spec: id, ac, status: 'open', paths: [], cmd: '' },
@@ -124,14 +113,18 @@ function reopen(atomId, reason) {
   console.log(`reopened ${base}* — ${reason}`);
 }
 
-const [, , cmd, ...rest] = process.argv;
-if (cmd === 'init') init();
-else if (cmd === 'status') status();
-else if (cmd === 'open') open();
-else if (cmd === 'verify') {
-  const ci = rest.indexOf('--cmd');
-  const pi = rest.indexOf('--paths');
-  verify(rest[0], ci >= 0 ? rest[ci + 1] : '', pi >= 0 ? rest[pi + 1].split(',') : []);
+export { parseSpecACs };
+const invokedDirectly = process.argv[1] && path.basename(process.argv[1]) === 'graph.mjs';
+if (invokedDirectly) {
+  const [, , cmd, ...rest] = process.argv;
+  if (cmd === 'init') init();
+  else if (cmd === 'status') status();
+  else if (cmd === 'open') open();
+  else if (cmd === 'verify') {
+    const ci = rest.indexOf('--cmd');
+    const pi = rest.indexOf('--paths');
+    verify(rest[0], ci >= 0 ? rest[ci + 1] : '', pi >= 0 ? rest[pi + 1].split(',') : []);
+  }
+  else if (cmd === 'reopen') reopen(rest[0], rest.slice(rest.indexOf('--reason') + 1).join(' ') || 'manual');
+  else { console.error('usage: init|status|open|verify <atom> --cmd "<cmd>" [--paths a,b]|reopen <atom> --reason ...'); process.exit(2); }
 }
-else if (cmd === 'reopen') reopen(rest[0], rest.slice(rest.indexOf('--reason') + 1).join(' ') || 'manual');
-else { console.error('usage: init|status|open|verify <atom> --cmd "<cmd>" [--paths a,b]|reopen <atom> --reason ...'); process.exit(2); }

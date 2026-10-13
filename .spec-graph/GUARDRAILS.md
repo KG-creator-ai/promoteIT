@@ -16,6 +16,13 @@
 - No `v1.0.0-prod`-style release tags and no GitHub Releases without phase-07 verdicts + green CI.
 - Attempt-2-class directives (SLM retune, GGUF export, dispatcher deploys) execute ONLY when their prerequisite artifacts exist in-repo; otherwise record BLOCKED with evidence (anti-hallucination: never simulate training results).
 
+## Persona & quorum rules (SPEC-014)
+- Builder cannot self-approve; qa/redteam reruns verify builder atoms.
+- Quorum is tiered (PERSONAS.md): core6 always + domain auditors iff the
+  phase's specs carry their domain + analyst on discovery specs.
+  `claim-audit.mjs` check #6 enforces it — a missing/non-approve required
+  verdict FAILs the audit. No prose-only verdicts: every verdict cites evidence.
+
 ## Escalation protocol
 1. Gate fails → autonomous repair (re-read spec → re-diagnose → redesign).
 2. 3rd consecutive failure → write `.spec-graph/ESCALATION-<date>-<topic>.md` (what, evidence, options, recommendation) → STOP that track, continue unrelated atoms.

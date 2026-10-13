@@ -6,9 +6,10 @@ Every spec lives at `.spec-graph/specs/<SPEC-ID>.md` (e.g. `SPEC-001-tests.md`).
 
 ```markdown
 # SPEC-<NNN>: <Title>
-- Status: draft|baselined|in_progress|done
+- Status: draft
 - Phase: 01
 - Owner-persona: po
+- Domains: security (optional; subset of security|perf|ux|resilience|docs|discovery — declares which Tier-2 auditors must vote; parsed by `graph.mjs init`)
 
 ## Goal
 <1–3 sentences. What user-visible outcome.>

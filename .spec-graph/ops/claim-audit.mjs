@@ -5,6 +5,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { requiredFor, CORE } from './quorum.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const GRAPH = path.join(root, '.spec-graph/graph.json');
@@ -42,12 +43,34 @@ for (const n of g.nodes.filter(n => (n.kind === 'code' || n.kind === 'test') && 
 }
 // 5. Verdict files must exist for current phase (if any verdicts recorded)
 const vd = path.join(root, '.spec-graph/personas/verdicts');
+// 6. Tiered quorum (SPEC-014): per phase, required = CORE6 + domain-mapped
+//    personas of the specs listed in that phase's verdicts `specs` fields
+//    (phases without `specs` resolve to core6 — backward compat with 00–08).
+//    Any block/request_changes verdict fails (advance rule, PERSONAS.md).
 if (fs.existsSync(vd)) {
+  const byPhase = {};
   for (const f of fs.readdirSync(vd).filter(f => f.endsWith('.json'))) {
     try {
       const v = JSON.parse(fs.readFileSync(path.join(vd, f), 'utf8'));
       if (!['approve', 'request_changes', 'block'].includes(v.verdict)) problems.push(`${f}: invalid verdict`);
+      const ph = (v.phase || '').toString().padStart(2, '0');
+      (byPhase[ph] = byPhase[ph] || []).push({ file: f, v });
     } catch { problems.push(`${f}: unparsable`); }
+  }
+  for (const [ph, vs] of Object.entries(byPhase)) {
+    for (const { file, v } of vs) {
+      if (v.verdict === 'block') problems.push(`${file}: BLOCK verdict unresolved`);
+      else if (v.verdict === 'request_changes') problems.push(`${file}: request_changes unresolved`);
+    }
+    const specs = [...new Set(vs.flatMap(({ v }) => v.specs || []))];
+    const { required } = requiredFor(g, specs);
+    const have = new Set(vs.filter(({ v }) => v.verdict === 'approve').map(({ v }) => v.persona));
+    for (const p of required) {
+      if (!have.has(p)) problems.push(`phase-${ph}: quorum missing approve from ${p} (specs: ${specs.join(',') || 'core-only'})`);
+    }
+    for (const p of CORE) {
+      if (!vs.some(({ v }) => v.persona === p)) problems.push(`phase-${ph}: core verdict missing: ${p}`);
+    }
   }
 }
 

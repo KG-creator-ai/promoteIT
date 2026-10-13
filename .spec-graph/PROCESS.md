@@ -9,13 +9,13 @@ Each phase: entry criteria → work → exit gate (persona verdicts recorded). N
 
 ## 01 SPEC
 - Entry: intake approved.
-- Work: gap audit → ROADMAP.md (ordered specs) → per-spec files with testable ACs (SPEC-FORMAT.md). Every AC gets atom ID.
+- Work: gap audit → ROADMAP.md (ordered specs) → per-spec files with testable ACs (SPEC-FORMAT.md). Every AC gets atom ID. Tag domain auditors per spec (`- Domains:` line: security|perf|ux|resilience|docs|discovery). Analyst delivers competitive matrix + VOC triage as gap-audit inputs.
 - Exit: **HUMAN SIGN-OFF #1** (spec baseline) + all personas approve. No implementation before this.
 
 ## 02 ARCH
 - Entry: specs baselined.
 - Work: graph build (`graph.mjs init`), ADR-lite decisions (`.spec-graph/DECISIONS.md`), test strategy, gate profile.
-- Exit: Architect + QA + Security approve.
+- Exit: Architect + QA + Security-Auditor approve.
 
 ## 03 PLAN
 - Entry: graph built.
@@ -35,7 +35,7 @@ Each phase: entry criteria → work → exit gate (persona verdicts recorded). N
 ## 06 HARDEN
 - Entry: verify green.
 - Work: dep audit, PWA/manifest validity, a11y spot-checks, docs sync (README/AGENTS.md/graph), perf sanity.
-- Exit: Security + Architect approve.
+- Exit: Security-Auditor + Architect approve.
 
 ## 07 RELEASE
 - Entry: harden approved, CI green on remote.
@@ -44,3 +44,9 @@ Each phase: entry criteria → work → exit gate (persona verdicts recorded). N
 
 ## Deadlock rule
 Any gate failing 3 consecutive autonomous repair cycles → escalation card (`.spec-graph/ESCALATION-*.md`) → human. This is the only allowed interruption outside the two touchpoints.
+
+## Extension phases (08+)
+Post-release phases (product completion, framework upgrades) reuse 00–07
+loop mechanics per spec batch: spec → implement → verify → harden → release
+(minor/major tag). Tiered quorum (PERSONAS.md) applies; the phase's specs
+declare their domains and the required verdict set follows.

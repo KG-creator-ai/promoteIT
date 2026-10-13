@@ -38,3 +38,16 @@
   System Health OPFS snapshot card (SPEC-012); SutraCopilot barrel DELETED
   (name still re-exported from SutraAssistant); assetLibrary DELETED
   (inventory superseded by campaignPresets direct media imports — single source).
+- D15 Compliance posture (Phase 09): licenses, privacy claims (no-analytics),
+  and crypto-export (AES-GCM/WebAuthn) stay a *section* of security-auditor,
+  not a separate persona. Split condition: first enterprise procurement that
+  requires a named compliance signatory → new `compliance-counsel` persona.
+- D16 Tiered quorum (Phase 09): 6 core always + 5 conditional auditors
+  (security/perf/ux/design→design-reviewer/resilience/docs) + analyst on
+  discovery specs only. Merges: UX+UI → design-reviewer (co-vote identical);
+  market+VOC → analyst (same artifact). A flat 13-persona committee was
+  rejected as quorum bureaucracy — auditors vote IFF their domain is tagged.
+- D17 DAST-equivalence for zero-backend: no server ⇒ no classic DAST.
+  Honest equivalent = authenticated headless probing (CSP/headers via served
+  preview, auth-gate abuse paths, console PII-leak scan) + threat-model doc.
+  Never claim pentest coverage; redteam blocks overclaims.

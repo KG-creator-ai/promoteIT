@@ -1,10 +1,13 @@
-# SPEC-GRAPH Personas — Consent Protocol
+# SPEC-GRAPH Personas — Consent Protocol (12 personas, tiered quorum)
 
-Six personas. Every phase gate requires a verdict file per persona:
+Every phase gate requires verdict files per *required* persona:
 `.spec-graph/personas/verdicts/phase-<NN>-<persona>.json`
-`{"persona":"...","phase":"...","verdict":"approve|request_changes|block","rationale":"...","evidence":["..."],"ts":"..."}`
+`{"persona":"...","phase":"...","verdict":"approve|request_changes|block","rationale":"...","evidence":["..."],"specs":["SPEC-0xx",...],"ts":"..."}`
+(`specs` lists the specs this verdict covers; phases without `specs` resolve to core-only — backward compat with 00–08.)
 
-Advance ⇔ zero `block` AND zero unresolved `request_changes`.
+Advance ⇔ zero `block` AND zero unresolved `request_changes` among required personas.
+
+## Tier 1 — Core (always vote, 6)
 
 ## 1. po (Product / Spec SME)
 - Mandate: roadmap clarity, AC testability, scope control.
@@ -30,7 +33,33 @@ Advance ⇔ zero `block` AND zero unresolved `request_changes`.
 - Mandate: secret scan, dep audit, license sanity, tagging, release artifacts, docs currency.
 - Veto: security findings, dirty release (failing CI, missing artifact).
 
-## Quorum
-- Phase gates 00–06: all six vote; advance needs 6× approve (request_changes must be remediated then re-voted autonomously).
+## Tier 2 — Domain auditors (conditional: vote IFF the phase's specs carry their domain, 5)
+
+Domain tags live on spec_atom nodes (`domains`, schema v3.1.0) and on specs
+(`- Domains:` line, SPEC-FORMAT.md).
+
+| Domain | Persona | Mandate | Veto |
+|---|---|---|---|
+| `security` | security-auditor | SAST/DAST-equivalence/VAPT-lite, supply chain, auth/crypto review, compliance section (licenses, privacy claims, crypto-export) | hardcoded secrets, unsafe sinks, weak auth/crypto, unwaived high advisories |
+| `perf` | perf-engineer | bundle budget, vitals, render cost, memory/VRAM discipline | budget regressions, leaks, missing cleanup |
+| `ux` | design-reviewer | UX heuristics + UI craft + a11y (axe, 44px, contrast, keyboard/Esc) | a11y blockers, token-bypass styling |
+| `resilience` | resilience-engineer | migrations, backup/restore round-trips, worker-crash recovery, PWA update path, offline re-entry | untested migrations, unrestored backups, swallowed persistence errors |
+| `docs` | docs-reviewer | docs *quality*: clean-room boot test, command accuracy, schema drift | commands that don't work as written, docs contradicting code |
+
+Rationale for merges (D16): UX+UI co-vote identically → one persona, two
+checklist halves. Compliance stays a section of security-auditor until an
+enterprise sale demands the split (D15).
+
+## Tier 3 — Discovery (Phase-01 + discovery specs only, 1)
+
+## 12. analyst (Market + Voice-of-Customer)
+- Mandate: competitive feature matrix, differentiation ranking by evidence, VOC intake triage → SPEC drafts. Never a release veto.
+- Veto: none at release gates. Can `request_changes` a spec baseline missing its evidence.
+
+## Quorum (enforced by `ops/quorum.mjs` + claim-audit check #6)
+- Required set = Tier 1 (6) + Tier 2 personas whose domain appears in the
+  phase's specs + analyst iff phase covers a `discovery` spec.
+- Extra approvals beyond required are allowed; missing/non-approve required ⇒ gate FAIL.
+- Phase gates 00–06: all required vote; advance needs all-approve (request_changes must be remediated then re-voted autonomously).
 - Release gate 07: releaser approval is mandatory + CI green + 0 open atoms.
 - 3 consecutive deadlocks (same gate failing after remediation) → escalation card to human.

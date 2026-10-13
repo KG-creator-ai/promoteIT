@@ -39,7 +39,23 @@ and certifies L1–L4.
 | 12 | SPEC-012 | Orphan/honesty sweep (incl. real ModelStudio downloads) | 2 | SPEC-008–010 | DONE (2/2 verified) |
 | 13 | SPEC-013 | CERTIFICATION.md + v1.1.0 | 3 | SPEC-008–012 | DONE (3/3 verified) |
 
-## Out of scope for v1.0.0 (non-goals)
+## Phase 09 — "10/10 Framework" enterprise assurance → v1.2.0 (user-approved 2026-10-13)
 
+GOAT finding: v1.1.0 certifies delivery integrity, but enterprise-grade
+assurance is release-shallow — no security-audit, perf, UX/a11y, or
+resilience persona can veto; PROCESS.md even names a Security approver that
+does not exist. This phase adds tiered quorum (12 personas, conditional
+voting), evidence-backed assurance scanners, vision-L3 protocol, a proven
+export kit, and a discovery loop.
+
+| # | Spec | Goal | ACs | Depends | State |
+| 14 | SPEC-014 | Tiered persona roster (12) + domains schema + conditional quorum | 3 | — | DONE (3/3 verified) |
+| 15 | SPEC-015 | Assurance tooling: SAST/dep-audit/budget/axe/resilience in gate+CI | 4 | SPEC-014 | open |
+| 16 | SPEC-016 | Vision-L3 protocol (frame extraction + rubric + verdict JSON) | 3 | — | open |
+| 17 | SPEC-017 | Export kit (quickstart fix, GUARDRAILS template, version stamp, clean-room self-test) | 3 | SPEC-014–016 | open |
+| 18 | SPEC-018 | Discovery loop (competitive scan + VOC intake + roadmap atoms) | 2 | — | open |
+| 19 | SPEC-019 | CERTIFICATION.md refresh + v1.2.0 | 3 | SPEC-014–018 | open |
+
+## Out of scope for v1.0.0 (non-goals)
 - New product features beyond gap closure; SLM/Attempt-2 work (BLOCKED, see
   ATTEMPT-2-ASSESSMENT.md); server/backend of any kind (zero-backend constraint).

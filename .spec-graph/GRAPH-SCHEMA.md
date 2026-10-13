@@ -1,14 +1,16 @@
-# Graph Schema v3 (`graph.json`)
+# Graph Schema v3.1 (`graph.json`)
 
 Single source of truth. Machine-editable via `ops/graph.mjs`; humans read via `status`.
+v3.1 adds optional `domains` on spec_atom nodes (SPEC-014 tiered quorum);
+v3.0 graphs load unchanged (missing `domains` ≡ `[]`).
 
 ```json
 {
-  "version": "3.0.0",
+  "version": "3.1.0",
   "project": "<name>",
   "updatedAt": "<ISO>",
   "nodes": [
-    {"id":"SPEC-001.AC-001","kind":"spec_atom","spec":"SPEC-001","ac":"AC-001","status":"open","title":"..."},
+    {"id":"SPEC-001.AC-001","kind":"spec_atom","spec":"SPEC-001","ac":"AC-001","status":"open","title":"...","domains":["security"]},
     {"id":"SPEC-001.AC-001.task","kind":"task","status":"open","dependsOn":["SPEC-001.AC-001"]},
     {"id":"SPEC-001.AC-001.code","kind":"code","status":"open","paths":["src/..."]},
     {"id":"SPEC-001.AC-001.test","kind":"test","status":"open","paths":["tests/..."],"cmd":"..."},
@@ -24,6 +26,7 @@ Single source of truth. Machine-editable via `ops/graph.mjs`; humans read via `s
 ```
 
 - `kind`: spec_atom|task|code|test|evidence|defect.
+- `domains` (spec_atom only, optional): subset of security|perf|ux|resilience|docs|discovery. Parsed by `graph.mjs init` from the spec's `- Domains:` line; drives tiered quorum (`ops/quorum.mjs`, PERSONAS.md).
 - `status`: open|in_progress|verified|blocked|waived (waived needs releaser+po rationale).
 - `evidence` node: records cmd, exit code, output sha, file hashes at capture, timestamp.
 - **Freshness rule**: verify/re-verify recomputes hashes of linked code/test paths; mismatch with stored hashes ⇒ auto-reopen to `open` with reason `stale-evidence`.
