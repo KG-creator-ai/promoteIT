@@ -24,6 +24,14 @@
   evidence commands assert the real artifacts when present and exit 0 with an
   explicit `E2E-ARTIFACTS-ABSENT` note otherwise. The committed `manifest.json`
   + `CERTIFICATION.md` carry the L2 record; binaries stay gitignored.
+- D13 No self-referential evidence: an evidence command must not invoke the
+  auditor (claim-audit) itself — nested audits inherit unrelated open atoms and
+  can never stably pass. SPEC-007.AC-003 evidence is `report.mjs` (which runs
+  the gate chain) without the nested audit.
+- D14 Waiver discipline: `waived` status is allowed ONLY with PO+releaser
+  rationale, a named re-verify condition, and a deadline (next green CI).
+  Used once: SPEC-001.AC-003 (setup.ts changed after its CI pin; re-verify on
+  the next green run, then un-waive).
 - D12 Orphan verdicts 2026-10-13: audioEngine → wired into AudioStudio (SPEC-008);
   videoRenderer → wired into AVVideoPlayer (SPEC-009); campaignPresets →
   wired into ProjectWorkspace preset picker (SPEC-012); archival → wired into

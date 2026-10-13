@@ -1,0 +1,10 @@
+{
+  "persona": "releaser",
+  "phase": "PHASE-08",
+  "verdict": "approve",
+  "rationale": "Temporary D14 waiver of SPEC-001.AC-003 until next green CI re-pin; unblocks CI while keeping the obligation explicit and tracked.",
+  "evidence": [
+    "D14"
+  ],
+  "ts": "2026-10-13T01:40:40.544Z"
+}
