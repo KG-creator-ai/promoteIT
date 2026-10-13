@@ -15,7 +15,7 @@ fields + a real Test-Connection. Keys live in localStorage/`.env.local` only.
 ## Acceptance Criteria
 - [x] AC-001 (SPEC-010.AC-001): provider selector + NVIDIA key + model inputs + Test-Connection button that performs a real minimal request and reports ok/fail honestly — verified by: component test with mocked fetch (ok + 401 paths)
 - [x] AC-002 (SPEC-010.AC-002): `useWebLLM` resolves provider config from localStorage; OpenAI-compatible chat path returns `ChatCompletion`-shaped replies for OpenRouter + NIM; WebLLM default model is Qwen2.5-7B; ModelStudio preset list is Qwen-first — verified by: unit tests with mocked fetch (no keys) + `tsc`
-- [ ] AC-003 (SPEC-010.AC-003): live L4 proof — one real generation through the wizard path populates `sceneGraph` with provider-produced content (key from env, never logged/committed) — verified by: e2e run log (scene count + content hash, no secrets)
+- [x] AC-003 (SPEC-010.AC-003): live L4 proof — one real generation through the wizard path populates `sceneGraph` with provider-produced content (key from env, never logged/committed) — verified by: e2e run log (scene count + content hash, no secrets)
 
 ## Graph atoms
 | Atom | Kind | Verifies |

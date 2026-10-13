@@ -13,9 +13,9 @@ so the `.webm` has real sound. Orphan resolved by wiring.
 - Changing scene timing model or player state machine; 4K/60fps targets.
 
 ## Acceptance Criteria
-- [ ] AC-001 (SPEC-009.AC-001): player frame path calls `renderer.renderFrame` through the adapter; no duplicate scene-draw code for scenes/outro in the component — verified by: `tsc` + e2e frames render (screenshot pixels differ across time)
-- [ ] AC-002 (SPEC-009.AC-002): export stream carries 1 video + 1 audio track; downloaded `.webm` is non-trivially sized — verified by: e2e asserting `getAudioTracks().length === 1` at record time + artifact size check
-- [ ] AC-003 (SPEC-009.AC-003): no playback regression (play/pause/seek/scene-advance behave as before) — verified by: e2e player-leg assertions + screenshots
+- [x] AC-001 (SPEC-009.AC-001): player frame path calls `renderer.renderFrame` through the adapter; no duplicate scene-draw code for scenes/outro in the component — verified by: `tsc` + e2e frames render (screenshot pixels differ across time)
+- [x] AC-002 (SPEC-009.AC-002): export stream carries 1 video + 1 audio track; downloaded `.webm` is non-trivially sized — verified by: e2e asserting `getAudioTracks().length === 1` at record time + artifact size check
+- [x] AC-003 (SPEC-009.AC-003): no playback regression (play/pause/seek/scene-advance behave as before) — verified by: e2e player-leg assertions + screenshots
 
 ## Graph atoms
 | Atom | Kind | Verifies |

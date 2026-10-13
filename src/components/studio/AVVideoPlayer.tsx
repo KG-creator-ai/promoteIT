@@ -109,6 +109,9 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
   const animFrameRef = useRef<number>(0);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const startTimeRef = useRef<number>(0);
+  // Live playback mirror for interval-driven flows (export): avoids stale
+  // `state` closures — the recorder must stop exactly at the real end.
+  const liveRef = useRef({ time: 0, playing: false });
   const [showShotEditor, setShowShotEditor] = useState(false);
   const [editingScene, setEditingScene] = useState<AVSceneNode | null>(null);
 
@@ -127,13 +130,14 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     return acc + (end - start);
   }, 0);
 
-  // Calculate scene absolute start/end times
-  const sceneTimeline = scenes.reduce<{ scene: AVSceneNode; start: number; end: number }[]>((acc, scene, i) => {
+  // Calculate scene absolute start/end times (memoized: identity must be stable
+  // or getCurrentSceneIndex + the playback effect reset the clock every render).
+  const sceneTimeline = useMemo(() => scenes.reduce<{ scene: AVSceneNode; start: number; end: number }[]>((acc, scene, i) => {
     const start = i === 0 ? 0 : acc[i - 1].end;
     const dur = parseTimeToSeconds(scene.timeEnd) - parseTimeToSeconds(scene.timeStart);
     acc.push({ scene, start, end: start + dur });
     return acc;
-  }, []);
+  }, []), [scenes]);
 
   const getCurrentSceneIndex = useCallback((time: number) => {
     for (let i = 0; i < sceneTimeline.length; i++) {
@@ -158,10 +162,12 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
   }, [sceneTimeline, resources]);
 
   const seekTo = useCallback((time: number) => {
+    const t = Math.max(0, Math.min(time, totalDuration));
+    liveRef.current = { time: t, playing: liveRef.current.playing };
     setState(prev => ({
       ...prev,
-      currentTime: Math.max(0, Math.min(time, totalDuration)),
-      currentSceneIndex: getCurrentSceneIndex(Math.max(0, Math.min(time, totalDuration))),
+      currentTime: t,
+      currentSceneIndex: getCurrentSceneIndex(t),
     }));
   }, [totalDuration, getCurrentSceneIndex]);
 
@@ -285,9 +291,11 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     const tick = (now: number) => {
       const elapsed = (now - startTimeRef.current) / 1000;
       if (elapsed >= totalDuration) {
+        liveRef.current = { time: totalDuration, playing: false };
         setState(prev => ({ ...prev, isPlaying: false, currentTime: totalDuration }));
         return;
       }
+      liveRef.current = { time: elapsed, playing: true };
       setState(prev => ({
         ...prev,
         currentTime: elapsed,
@@ -327,7 +335,9 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     if (state.currentTime >= totalDuration) {
       seekTo(0);
     }
-    setState(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
+    const next = !state.isPlaying;
+    liveRef.current = { time: liveRef.current.time, playing: next };
+    setState(prev => ({ ...prev, isPlaying: next }));
   };
 
   const skipForward = () => {
@@ -370,7 +380,9 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     } catch {
       // Audio bus unavailable — video-only export still proceeds.
     }
-    const recorder = new MediaRecorder(stream, { mimeType: 'video/webm;codecs=vp9' });
+    const mimeType = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm']
+      .find(m => { try { return MediaRecorder.isTypeSupported(m); } catch { return false; } }) || '';
+    const recorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
     const chunks: Blob[] = [];
     recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
     recorder.onstop = () => {
@@ -383,15 +395,17 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
       URL.revokeObjectURL(url);
     };
 
-    // Record full playback
+    // Record full playback — driven by the live ref (never a stale closure).
     seekTo(0);
+    liveRef.current = { time: 0, playing: true };
     setState(prev => ({ ...prev, isPlaying: true }));
     recorder.start();
 
     const checkEnd = setInterval(() => {
-      if (state.currentTime >= totalDuration || !state.isPlaying) {
+      if (liveRef.current.time >= totalDuration || !liveRef.current.playing) {
         clearInterval(checkEnd);
-        recorder.stop();
+        try { recorder.stop(); } catch { /* already stopped */ }
+        liveRef.current = { time: liveRef.current.time, playing: false };
         setState(prev => ({ ...prev, isPlaying: false }));
       }
     }, 100);

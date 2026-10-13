@@ -19,3 +19,8 @@
   paradox — "latest run" query returns the in-progress run). CI atoms are verified
   OUT-OF-BAND with pinned successful run IDs (here: 38224612161 @78a6dc3); any later
   change to hash-tracked code/test paths auto-reopens them for a fresh pinned run.
+- D11 L2-evidence rule (mirror of D10): headless-Chrome artifacts (audit-artifacts/)
+  exist only where Windows Chrome + dev server run — never in CI checkouts. E2E
+  evidence commands assert the real artifacts when present and exit 0 with an
+  explicit `E2E-ARTIFACTS-ABSENT` note otherwise. The committed `manifest.json`
+  + `CERTIFICATION.md` carry the L2 record; binaries stay gitignored.

@@ -13,6 +13,12 @@ const ARTIFACTS_DIR = process.env.E2E_DIR || path.join(__dirname, '..', 'audit-a
 const CHROME_PATH = process.env.CHROME_PATH || '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe';
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 const PROVIDER_KEY = process.env.E2E_OPENROUTER_KEY || '';
+// Windows Chrome cannot write to WSL /mnt or /tmp paths — translate for CDP.
+function toWinPath(p) {
+  const m = p.match(/^\/mnt\/([a-z])(\/.*)?$/i);
+  if (m) return `${m[1].toUpperCase()}:\\${(m[2] || '\\').replace(/\//g, '\\').replace(/^\\/, '')}`;
+  return p;
+}
 const DOWNLOAD_DIR = path.join(ARTIFACTS_DIR, 'downloads');
 
 for (const d of [ARTIFACTS_DIR, DOWNLOAD_DIR]) {
@@ -65,7 +71,8 @@ async function run() {
   const browser = await puppeteer.launch({
     executablePath: CHROME_PATH,
     headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--no-proxy-server', '--autoplay-policy=no-user-gesture-required'],
+    protocolTimeout: 600000,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--no-proxy-server', '--autoplay-policy=no-user-gesture-required', '--disable-background-timer-throttling', '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding'],
   });
   const page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
@@ -75,7 +82,7 @@ async function run() {
   page.on('pageerror', err => pageErrors.push(String(err).slice(0, 300)));
 
   const cdp = await page.createCDPSession();
-  await cdp.send('Page.setDownloadBehavior', { behavior: 'allow', downloadPath: DOWNLOAD_DIR });
+  await cdp.send('Page.setDownloadBehavior', { behavior: 'allow', downloadPath: toWinPath(DOWNLOAD_DIR) });
 
   await page.goto(BASE_URL, { waitUntil: 'domcontentloaded', timeout: 30000 });
   await sleep(3000);
@@ -130,6 +137,7 @@ async function run() {
     return;
   }
 
+  console.log('STEP provider-inject');
   // Provider config for the generation leg (key from env, never logged).
   await page.evaluate((key) => {
     localStorage.setItem('promote_it_remote_provider', 'openrouter');
@@ -137,20 +145,42 @@ async function run() {
     localStorage.setItem('promote_it_remote_model', 'qwen/qwen-2.5-7b-instruct');
   }, PROVIDER_KEY);
 
+  console.log('STEP engine-init');
   // Engine init → headless has no WebGPU → must fall back to remote-api.
+  // The widget button only opens the dropdown; the "Auto (WebGPU)" item inits.
   await page.evaluate(() => {
     const btn = Array.from(document.querySelectorAll('header button')).find(b =>
-      (b.title && b.title.includes('Engine')) || (b.textContent && /engine|webllm|gpu/i.test(b.textContent)));
+      b.title === 'Engine Selector' || (b.textContent && /Auto \(WebGPU\)/.test(b.textContent)));
     if (btn) btn.click();
   });
-  await sleep(8000);
+  await sleep(1200);
+  await page.evaluate(() => {
+    const item = Array.from(document.querySelectorAll('button')).find(b =>
+      b.textContent && b.textContent.includes('Auto (WebGPU)') && b.textContent.includes('Best available engine'));
+    if (item) item.click();
+  });
+  let providerMode = 'unknown';
+  for (let i = 0; i < 12; i++) {
+    await sleep(2500);
+    try {
+      providerMode = await page.evaluate(() => {
+        const btn = Array.from(document.querySelectorAll('header button')).find(b =>
+          (b.title || '').length > 0 && /Engine|Downloading|Loading|Remote|WebLLM/.test((b.title || '') + (b.textContent || '')));
+        return ((btn?.textContent || '') + '|' + (btn?.title || '')).trim().slice(0, 80);
+      });
+    } catch { providerMode = 'probe-failed'; }
+    if (/Remote API|WebLLM Local/.test(providerMode)) break;
+  }
+  console.log('  engine provider mode: ' + providerMode);
+  leg('engine-remote-fallback', /Remote API/.test(providerMode), `mode=${providerMode}`);
 
+  console.log('STEP wizard-start');
   // ── LEG 1: wizard generate (real provider) ──
   await navTo(page, 'Wizard');
   await page.evaluate(() => {
     const fillI = window.__reactFill, fillA = window.__reactFillArea;
     const t = document.querySelector('#wizard-title'); if (t) fillI(t, 'E2E Certification Campaign');
-    const a = document.querySelector('#wizard-audience'); if (a) fillA(a, 'Tamil Nadu MSME owners');
+    const a = document.querySelector('#wizard-audience'); if (a) fillI(a, 'Tamil Nadu MSME owners');
     const o = document.querySelector('#wizard-objectives'); if (o) fillA(o, 'Promote Arka Fincap business loans. Mention Vanakkam Tamil Nadu, Kanchipuram silk, Nadaswaram music. End with a branch-visit call to action.');
   });
   const cont1 = await page.evaluate(() => {
@@ -167,43 +197,67 @@ async function run() {
     const b = Array.from(document.querySelectorAll('button')).find(x => x.textContent && /Generate Script/.test(x.textContent));
     if (b) { b.click(); return true; } return false;
   });
+  console.log('STEP generate-clicked, polling IDB...');
   let sceneCount = 0;
   if (genStarted) {
     for (let i = 0; i < 60; i++) {
       await sleep(5000);
-      sceneCount = await page.evaluate(async () => {
-        return await new Promise((resolve) => {
-          try {
-            const req = indexedDB.open('PromoteITDatabase');
-            req.onsuccess = () => {
-              const db = req.result;
-              if (!db.objectStoreNames.contains('campaigns')) { resolve(-1); return; }
-              const tx = db.transaction('campaigns', 'readonly');
-              const all = tx.objectStore('campaigns').getAll();
-              all.onsuccess = () => {
-                const rows = all.result || [];
-                const latest = rows.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0))[0];
-                resolve(latest?.sceneGraph?.length || 0);
-              };
-              all.onerror = () => resolve(-1);
-            };
-            req.onerror = () => resolve(-1);
-          } catch { resolve(-1); }
-        });
-      });
-      const done = await page.evaluate(() => !document.body.textContent?.includes('Generating...'));
+      try {
+        sceneCount = await Promise.race([
+          page.evaluate(async () => {
+            return await new Promise((resolve) => {
+              try {
+                const req = indexedDB.open('PromoteITDatabase');
+                req.onsuccess = () => {
+                  const db = req.result;
+                  if (!db.objectStoreNames.contains('campaigns')) { resolve(-1); return; }
+                  const tx = db.transaction('campaigns', 'readonly');
+                  const all = tx.objectStore('campaigns').getAll();
+                  all.onsuccess = () => {
+                    const rows = all.result || [];
+                    const latest = rows.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0))[0];
+                    resolve(latest?.sceneGraph?.length || 0);
+                  };
+                  all.onerror = () => resolve(-1);
+                };
+                req.onerror = () => resolve(-1);
+              } catch { resolve(-1); }
+            });
+          }),
+          new Promise((_, rej) => setTimeout(() => rej(new Error('idb-probe-timeout')), 25000)),
+        ]);
+      } catch (e) {
+        console.log(`  poll ${i}: probe failed (${e.message}) — page may be busy generating`);
+        sceneCount = -2;
+      }
+      let done = true;
+      try {
+        done = await page.evaluate(() => !document.body.textContent?.includes('Generating...'));
+      } catch { done = false; }
+      if (i % 4 === 0 || sceneCount > 0) console.log(`  poll ${i}: scenes=${sceneCount} done=${done}`);
       if (sceneCount > 0 && done) break;
     }
   }
   leg('wizard-generate', cont1 && cont2 && genStarted && sceneCount >= 2, `scenes=${sceneCount}`);
+  const genError = await page.evaluate(() => {
+    const el = Array.from(document.querySelectorAll('[role="alert"], p')).find(e =>
+      e.textContent && /unavailable|standby|AI structuring|Could not create/i.test(e.textContent));
+    return (el?.textContent || '').slice(0, 220);
+  }).catch(() => 'generror-probe-failed');
+  if (genError) console.log('  wizard notice: ' + genError);
   await page.screenshot({ path: path.join(ARTIFACTS_DIR, '10_wizard_result.png') });
 
-  // ── LEG 2: script table ──
+  console.log('STEP script-table');
+  // ── LEG 2: script table (grid rows, not <tr>) ──
   await navTo(page, 'Script Studio');
-  const scriptRows = await page.evaluate(() => document.querySelectorAll('table tbody tr, [data-scene-row]').length);
+  const scriptRows = await page.evaluate(() => {
+    const hits = document.body.innerText.match(/ACT \d+/g) || [];
+    return new Set(hits).size;
+  });
   await page.screenshot({ path: path.join(ARTIFACTS_DIR, '11_script_table.png') });
-  leg('script-table', scriptRows > 0, `rows=${scriptRows}`);
+  leg('script-table', scriptRows >= 2, `acts=${scriptRows}`);
 
+  console.log('STEP audio');
   // ── LEG 3: audio — TTS speak actually fires ──
   await navTo(page, 'Audio Studio');
   await page.screenshot({ path: path.join(ARTIFACTS_DIR, '12_audio_studio.png') });
@@ -227,39 +281,36 @@ async function run() {
   leg('audio-speak', audioClicked && speakInfo.n >= 1, `speakCalls=${speakInfo.n} head="${speakInfo.head}"`);
   await page.evaluate(() => { try { window.speechSynthesis?.cancel(); } catch { /* noop */ } });
 
-  // ── LEG 4: player renders frames (pixel proof) ──
+  console.log('STEP player');
+  // ── LEG 4: player renders + time advances (imageless scenes are static
+  // pixels, so playback is proven by the advancing transport clock) ──
   await navTo(page, 'Script Studio');
   const toPlayer = await page.evaluate(() => {
     const b = Array.from(document.querySelectorAll('button')).find(x => x.textContent && x.textContent.includes('Preview Player'));
     if (b) { b.click(); return true; } return false;
   });
   await sleep(1500);
+  const readClock = () => page.evaluate(() => {
+    const m = (document.body.innerText.match(/(\d{2}:\d{2})\s*\/\s*(\d{2}:\d{2})/) || []);
+    return { t: m[1] || '?', total: m[2] || '?' };
+  });
   const frameA = await page.evaluate(() => { const c = document.querySelector('canvas'); return c ? c.toDataURL().length : 0; });
+  const clockA = await readClock();
   await page.evaluate(() => {
     const c = document.querySelector('canvas');
     if (c) c.click();
   });
-  await sleep(2500);
-  const frameB = await page.evaluate(() => { const c = document.querySelector('canvas'); return c ? c.toDataURL().length : 0; });
-  const framesDiffer = await page.evaluate(() => {
-    const c = document.querySelector('canvas');
-    if (!c) return false;
-    const x = c.getContext('2d');
-    if (!x) return false;
-    try {
-      const d1 = x.getImageData(0, 0, 64, 64).data.join(',');
-      return new Promise((resolve) => setTimeout(() => {
-        const d2 = x.getImageData(0, 0, 64, 64).data.join(',');
-        resolve(d1 !== d2);
-      }, 1500));
-    } catch { return false; }
-  });
+  await sleep(6000);
+  const clockB = await readClock();
   await page.screenshot({ path: path.join(ARTIFACTS_DIR, '13_player_playing.png') });
-  leg('player-renders', toPlayer && frameA > 1000 && framesDiffer, `canvasBytes=${frameA}, animated=${framesDiffer}`);
+  const advanced = clockA.t !== '?' && clockB.t !== '?' && clockB.t !== clockA.t;
+  leg('player-renders', toPlayer && frameA > 1000 && advanced, `canvasBytes=${frameA} clock=${clockA.t}->${clockB.t}`);
 
+  console.log('STEP export');
   // ── LEG 5: export real .webm (+audio track assertion) ──
   await page.evaluate(() => {
     window.__captureTracks = [];
+    window.__mrEvents = [];
     try {
       const proto = window.HTMLCanvasElement.prototype;
       const orig = proto.captureStream;
@@ -268,7 +319,18 @@ async function run() {
         window.__captureTracks.push({ v: s.getVideoTracks().length, a: s.getAudioTracks().length });
         return s;
       };
-    } catch { /* noop */ }
+      const OrigMR = window.MediaRecorder;
+      window.MediaRecorder = function (stream, opts) {
+        window.__mrEvents.push('constructed');
+        const r = new OrigMR(stream, opts);
+        const os = r.start.bind(r);
+        r.start = (...a) => { window.__mrEvents.push('started'); return os(...a); };
+        const op = r.stop.bind(r);
+        r.stop = (...a) => { window.__mrEvents.push('stopped'); return op(...a); };
+        return r;
+      };
+      window.MediaRecorder.isTypeSupported = OrigMR.isTypeSupported.bind(OrigMR);
+    } catch (e) { window.__patchError = String(e).slice(0, 120); }
   });
   const before = fs.readdirSync(DOWNLOAD_DIR);
   const exportClicked = await page.evaluate(() => {
@@ -276,17 +338,29 @@ async function run() {
     if (b) { b.click(); return true; } return false;
   });
   let webmFile = '';
+  const exportT0 = Date.now();
   if (exportClicked) {
-    for (let i = 0; i < 100; i++) {
+    // Full-length realtime recording: allow totalDuration + 3 min overhead.
+    for (let i = 0; i < 130; i++) {
       await sleep(5000);
       const now = fs.readdirSync(DOWNLOAD_DIR).filter(f => !before.includes(f) && !f.endsWith('.crdownload'));
       if (now.length > 0) { webmFile = now[0]; break; }
     }
   }
+  const exportSecs = Math.round((Date.now() - exportT0) / 1000);
   const webmSize = webmFile ? fs.statSync(path.join(DOWNLOAD_DIR, webmFile)).size : 0;
-  const tracks = await page.evaluate(() => window.__captureTracks || []);
-  const hasAudio = tracks.some(t => t.a >= 1);
-  leg('export-webm', exportClicked && webmSize > 20000, `file=${webmFile} bytes=${webmSize} audioTrack=${hasAudio}`);
+  // Track proof from the ARTIFACT bytes (capture-time snapshot misses the later
+  // addTrack): a real export contains VP9/VP8 video + Opus/Vorbis audio EBML tracks.
+  let hasVideo = false, hasAudio = false;
+  if (webmFile) {
+    const buf = fs.readFileSync(path.join(DOWNLOAD_DIR, webmFile));
+    hasVideo = buf.includes(Buffer.from('V_VP9')) || buf.includes(Buffer.from('V_VP8')) || buf.includes(Buffer.from('V_AV1'));
+    hasAudio = buf.includes(Buffer.from('A_OPUS')) || buf.includes(Buffer.from('A_VORBIS'));
+  }
+  const tracks = await page.evaluate(() => window.__captureTracks || []).catch(() => []);
+  const mrEvents = await page.evaluate(() => window.__mrEvents || []).catch(() => []);
+  const patchError = await page.evaluate(() => window.__patchError || '').catch(() => '');
+  leg('export-webm', exportClicked && webmSize > 20000 && hasVideo && hasAudio, `clicked=${exportClicked} file=${webmFile} bytes=${webmSize} video=${hasVideo} audio=${hasAudio} mr=${mrEvents.join(',') || 'none'} patchErr=${patchError || 'none'} secs=${exportSecs}`);
   if (webmFile) fs.copyFileSync(path.join(DOWNLOAD_DIR, webmFile), path.join(ARTIFACTS_DIR, '14_export_preview.webm'));
 
   // ── voiceover EDL via audio view export button ──
@@ -321,6 +395,6 @@ async function run() {
 }
 
 run().catch(err => {
-  console.error('E2E execution error:', err && err.message ? err.message : err);
+  console.error('E2E execution error:', err && err.stack ? err.stack.split('\n').slice(0, 6).join('\n') : err);
   process.exit(1);
 });

@@ -24,10 +24,10 @@ export function EngineSelectorWidget({ provider, isLoading, progress, onEngineIn
   const modes = [
     { id: 'auto', label: 'Auto (WebGPU)', icon: Zap, desc: 'Best available engine' },
     { id: 'webgpu', label: 'WebLLM Local', icon: Cpu, desc: 'On-device inference' },
-    { id: 'remote-api', label: 'Gemini API', icon: Wifi, desc: 'Cloud fallback' },
+    { id: 'remote-api', label: 'Remote API', icon: Wifi, desc: 'Provider fallback (Settings → Model Studio)' },
   ] as const;
 
-  const currentMode = provider === 'webgpu' ? 'WebLLM Local' : provider === 'remote-api' ? 'Gemini API' : 'Auto (WebGPU)';
+  const currentMode = provider === 'webgpu' ? 'WebLLM Local' : provider === 'remote-api' ? 'Remote API' : 'Auto (WebGPU)';
 
   return (
     <div ref={ref} className="relative">

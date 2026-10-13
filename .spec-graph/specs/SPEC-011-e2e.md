@@ -12,8 +12,8 @@ wizard brief → AI generate → script table → TTS speak fired → player pla
 - Replacing CI unit gates; subjective quality scoring (L3 is human).
 
 ## Acceptance Criteria
-- [ ] AC-001 (SPEC-011.AC-001): e2e exits 0 with all legs green against local dev server + Windows Chrome — verified by: the run itself + artifact manifest
-- [ ] AC-002 (SPEC-011.AC-002): `audit-artifacts/` contains per-view screenshots + exported `.webm` + voiceover EDL, all non-empty and indexed in `manifest.json` — verified by: manifest check (sizes > 0)
+- [x] AC-001 (SPEC-011.AC-001): e2e exits 0 with all legs green against local dev server + Windows Chrome — verified by: the run itself + artifact manifest
+- [x] AC-002 (SPEC-011.AC-002): `audit-artifacts/` contains per-view screenshots + exported `.webm` + voiceover EDL, all non-empty and indexed in `manifest.json` — verified by: manifest check (sizes > 0)
 
 ## Graph atoms
 | Atom | Kind | Verifies |

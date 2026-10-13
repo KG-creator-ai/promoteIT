@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-12T09:40:02.824Z",
+  "updatedAt": "2026-10-13T00:17:27.766Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -1222,7 +1222,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-009",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-009 AC-001"
     },
     {
@@ -1230,7 +1230,7 @@
       "kind": "task",
       "spec": "SPEC-009",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-009.AC-001"
       ]
@@ -1240,7 +1240,7 @@
       "kind": "code",
       "spec": "SPEC-009",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "paths": [
         "src/components/studio/AVVideoPlayer.tsx",
         "src/services/videoRenderer.ts"
@@ -1251,29 +1251,36 @@
       "kind": "test",
       "spec": "SPEC-009",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "paths": [
         "tests/unit/scene-adapter.test.ts"
       ],
-      "cmd": ""
+      "cmd": "node scripts/e2e-assert.mjs leg player-renders"
     },
     {
       "id": "SPEC-009.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-009",
       "ac": "AC-001",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node scripts/e2e-assert.mjs leg player-renders",
+      "exit": 0,
+      "hashes": {
+        "tests/unit/scene-adapter.test.ts": "5aec8567bd8004f2",
+        "src/components/studio/AVVideoPlayer.tsx": "9ff8891d8cb4d295",
+        "src/services/videoRenderer.ts": "468201642c754ce9",
+        "scripts/e2e-av.mjs": "6936df2f07c641ca",
+        "scripts/e2e-assert.mjs": "ddc9553818737079"
+      },
+      "log": "E2E-LEG-OK player-renders — canvasBytes=609566 clock=00:00->00:06\n",
+      "verifiedAt": "2026-10-13T00:17:03.421Z"
     },
     {
       "id": "SPEC-009.AC-002",
       "kind": "spec_atom",
       "spec": "SPEC-009",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-009 AC-002"
     },
     {
@@ -1281,7 +1288,7 @@
       "kind": "task",
       "spec": "SPEC-009",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-009.AC-002"
       ]
@@ -1291,7 +1298,7 @@
       "kind": "code",
       "spec": "SPEC-009",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": [
         "src/components/studio/AVVideoPlayer.tsx"
       ]
@@ -1301,27 +1308,34 @@
       "kind": "test",
       "spec": "SPEC-009",
       "ac": "AC-002",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "scripts/e2e-av.mjs"
+      ],
+      "cmd": "node scripts/e2e-assert.mjs webm"
     },
     {
       "id": "SPEC-009.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-009",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node scripts/e2e-assert.mjs webm",
+      "exit": 0,
+      "hashes": {
+        "scripts/e2e-av.mjs": "6936df2f07c641ca",
+        "src/components/studio/AVVideoPlayer.tsx": "9ff8891d8cb4d295",
+        "scripts/e2e-assert.mjs": "ddc9553818737079"
+      },
+      "log": "WEBM-AV-OK bytes=6199316 video=true audio=true\n",
+      "verifiedAt": "2026-10-13T00:17:04.685Z"
     },
     {
       "id": "SPEC-009.AC-003",
       "kind": "spec_atom",
       "spec": "SPEC-009",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-009 AC-003"
     },
     {
@@ -1329,7 +1343,7 @@
       "kind": "task",
       "spec": "SPEC-009",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-009.AC-003"
       ]
@@ -1339,7 +1353,7 @@
       "kind": "code",
       "spec": "SPEC-009",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": [
         "src/components/studio/AVVideoPlayer.tsx"
       ]
@@ -1349,20 +1363,26 @@
       "kind": "test",
       "spec": "SPEC-009",
       "ac": "AC-003",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "scripts/e2e-av.mjs"
+      ],
+      "cmd": "node scripts/e2e-assert.mjs no-page-errors"
     },
     {
       "id": "SPEC-009.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-009",
       "ac": "AC-003",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node scripts/e2e-assert.mjs no-page-errors",
+      "exit": 0,
+      "hashes": {
+        "scripts/e2e-av.mjs": "6936df2f07c641ca",
+        "src/components/studio/AVVideoPlayer.tsx": "9ff8891d8cb4d295"
+      },
+      "log": "NO-PAGE-ERRORS-OK\n",
+      "verifiedAt": "2026-10-13T00:17:06.242Z"
     },
     {
       "id": "SPEC-010.AC-001",
@@ -1481,7 +1501,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-010",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-010 AC-003"
     },
     {
@@ -1489,7 +1509,7 @@
       "kind": "task",
       "spec": "SPEC-010",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-010.AC-003"
       ]
@@ -1499,7 +1519,7 @@
       "kind": "code",
       "spec": "SPEC-010",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": [
         "src/lib/providers.ts"
       ]
@@ -1509,27 +1529,34 @@
       "kind": "test",
       "spec": "SPEC-010",
       "ac": "AC-003",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "scripts/e2e-av.mjs"
+      ],
+      "cmd": "node scripts/e2e-assert.mjs leg wizard-generate"
     },
     {
       "id": "SPEC-010.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-010",
       "ac": "AC-003",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node scripts/e2e-assert.mjs leg wizard-generate",
+      "exit": 0,
+      "hashes": {
+        "scripts/e2e-av.mjs": "6936df2f07c641ca",
+        "src/lib/providers.ts": "f91cb1e2d0838f2f",
+        "scripts/e2e-assert.mjs": "ddc9553818737079"
+      },
+      "log": "E2E-LEG-OK wizard-generate — scenes=6\n",
+      "verifiedAt": "2026-10-13T00:17:25.344Z"
     },
     {
       "id": "SPEC-011.AC-001",
       "kind": "spec_atom",
       "spec": "SPEC-011",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-011 AC-001"
     },
     {
@@ -1537,7 +1564,7 @@
       "kind": "task",
       "spec": "SPEC-011",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-011.AC-001"
       ]
@@ -1547,35 +1574,43 @@
       "kind": "code",
       "spec": "SPEC-011",
       "ac": "AC-001",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "scripts/e2e-av.mjs"
+      ]
     },
     {
       "id": "SPEC-011.AC-001.test",
       "kind": "test",
       "spec": "SPEC-011",
       "ac": "AC-001",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "scripts/e2e-av.mjs"
+      ],
+      "cmd": "node scripts/e2e-assert.mjs manifest"
     },
     {
       "id": "SPEC-011.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-011",
       "ac": "AC-001",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node scripts/e2e-assert.mjs manifest",
+      "exit": 0,
+      "hashes": {
+        "scripts/e2e-av.mjs": "6936df2f07c641ca",
+        "scripts/e2e-assert.mjs": "ddc9553818737079"
+      },
+      "log": "MANIFEST-OK artifacts=7 legs=8/8\n",
+      "verifiedAt": "2026-10-13T00:17:26.454Z"
     },
     {
       "id": "SPEC-011.AC-002",
       "kind": "spec_atom",
       "spec": "SPEC-011",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-011 AC-002"
     },
     {
@@ -1583,7 +1618,7 @@
       "kind": "task",
       "spec": "SPEC-011",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-011.AC-002"
       ]
@@ -1593,28 +1628,33 @@
       "kind": "code",
       "spec": "SPEC-011",
       "ac": "AC-002",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "scripts/e2e-av.mjs"
+      ]
     },
     {
       "id": "SPEC-011.AC-002.test",
       "kind": "test",
       "spec": "SPEC-011",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node scripts/e2e-assert.mjs manifest"
     },
     {
       "id": "SPEC-011.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-011",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node scripts/e2e-assert.mjs manifest",
+      "exit": 0,
+      "hashes": {
+        "scripts/e2e-av.mjs": "6936df2f07c641ca"
+      },
+      "log": "MANIFEST-OK artifacts=7 legs=8/8\n",
+      "verifiedAt": "2026-10-13T00:17:27.765Z"
     },
     {
       "id": "SPEC-012.AC-001",
