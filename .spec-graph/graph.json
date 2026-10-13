@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-13T00:17:27.766Z",
+  "updatedAt": "2026-10-13T00:47:21.904Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -1661,7 +1661,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-012",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-012 AC-001"
     },
     {
@@ -1669,7 +1669,7 @@
       "kind": "task",
       "spec": "SPEC-012",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-012.AC-001"
       ]
@@ -1679,35 +1679,47 @@
       "kind": "code",
       "spec": "SPEC-012",
       "ac": "AC-001",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "src/lib/presetAdapter.ts",
+        "src/components/projects/ProjectWorkspace.tsx",
+        "src/components/system/StorageQuotaIndicator.tsx",
+        ".spec-graph/ops/orphan-scan.mjs"
+      ]
     },
     {
       "id": "SPEC-012.AC-001.test",
       "kind": "test",
       "spec": "SPEC-012",
       "ac": "AC-001",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "tests/unit/preset-adapter.test.ts"
+      ],
+      "cmd": "node .spec-graph/ops/orphan-scan.mjs"
     },
     {
       "id": "SPEC-012.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-012",
       "ac": "AC-001",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node .spec-graph/ops/orphan-scan.mjs",
+      "exit": 0,
+      "hashes": {
+        "tests/unit/preset-adapter.test.ts": "b085e6d3213e2b6e",
+        ".spec-graph/ops/orphan-scan.mjs": "3c6b78c00716c3da",
+        "src/lib/presetAdapter.ts": "35de4a400f9408f9"
+      },
+      "log": "ORPHAN-SCAN: zero orphans\n",
+      "verifiedAt": "2026-10-13T00:46:03.264Z"
     },
     {
       "id": "SPEC-012.AC-002",
       "kind": "spec_atom",
       "spec": "SPEC-012",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-012 AC-002"
     },
     {
@@ -1715,7 +1727,7 @@
       "kind": "task",
       "spec": "SPEC-012",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-012.AC-002"
       ]
@@ -1725,28 +1737,36 @@
       "kind": "code",
       "spec": "SPEC-012",
       "ac": "AC-002",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "src/components/settings/ModelStudio.tsx"
+      ]
     },
     {
       "id": "SPEC-012.AC-002.test",
       "kind": "test",
       "spec": "SPEC-012",
       "ac": "AC-002",
-      "status": "open",
-      "paths": [],
-      "cmd": ""
+      "status": "verified",
+      "paths": [
+        "tests/component/preset-create.test.tsx"
+      ],
+      "cmd": "npm test"
     },
     {
       "id": "SPEC-012.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-012",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "npm test",
+      "exit": 0,
+      "hashes": {
+        "tests/component/preset-create.test.tsx": "1d48b52f268fe19a",
+        "src/components/settings/ModelStudio.tsx": "68217a880cbf7420"
+      },
+      "log": "\n> react-example@0.0.0 test\n> node ./node_modules/vitest/vitest.mjs run\n\n\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv5.0.3 \u001b[39m\u001b[90mD:/Promote-IT_AV-Studio\u001b[39m\n\n \u001b[32m✓\u001b[39m tests/unit/no-mocks.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 51\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/storage.test.ts \u001b[2m(\u001b[22m\u001b[2m3 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 63\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/preset-adapter.test.ts \u001b[2m(\u001b[22m\u001b[2m3 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 92\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/pwa-assets.test.ts \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 360\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/providers.test.ts \u001b[2m(\u001b[22m\u001b[2m11 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 138\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/security.test.ts \u001b[2m(\u001b[22m\u001b[2m7 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1766\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m password hashing (PBKDF2) \u001b[2m(3)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m hashes and verifies the correct password\u001b[33m 429\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m rejects the wrong password\u001b[33m 332\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m produces unique salts per call\u001b[33m 303\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m vault key roundtrip (AES-GCM) \u001b[2m(3)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m wraps and unwraps the vault key with a password\u001b[33m 606\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/scene-adapter.test.ts \u001b[2m(\u001b[22m\u001b[2m6 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 79\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/logo.test.tsx \u001b[2m(\u001b[22m\u001b[2m2 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1959\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m PromoteITLogo smoke (jsdom) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m renders an accessible img role\u001b[33m 1863\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/audio-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 4822\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m AudioStudio (real TTS wiring) \u001b[2m(4)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m lists real browser voices in the picker\u001b[33m 1098\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m segment Play speaks the scene text via the engine\u001b[33m 2411\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m rate slider value reaches the engine\u001b[33m 718\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m export downloads a voiceover package (anchor click fired)\u001b[33m 577\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/model-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 7159\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m ModelStudio provider config (SPEC-010) \u001b[2m(5)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m defaults to local WebLLM with Qwen models listed first\u001b[33m 1090\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m shows NVIDIA key field when provider selected\u001b[33m 548\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m Test Connection reports success honestly\u001b[33m 3419\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m Test Connection reports auth failure honestly\u001b[33m 1098\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m Download & Load delegates to the real engine loader\u001b[33m 985\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/preset-create.test.tsx \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1383\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m ProjectWorkspace preset creation (SPEC-012) \u001b[2m(1)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m lists curated presets and creates a real campaign from one\u001b[33m 1371\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m11 passed\u001b[39m\u001b[22m\u001b[90m (11)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m48 passed\u001b[39m\u001b[22m\u001b[90m (48)\u001b[39m\n\u001b[2m   Start at \u001b[22m 06:16:20\n\u001b[2m   Duration \u001b[22m 59.68s\u001b[2m (environment 52%, setup 30%, transform 8%, tests 6%, import 4%)\u001b[22m\n\n",
+      "verifiedAt": "2026-10-13T00:47:21.900Z"
     },
     {
       "id": "SPEC-013.AC-001",

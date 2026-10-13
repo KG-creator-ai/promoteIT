@@ -4,6 +4,8 @@ import { usePageTitle } from '../../hooks/usePageTitle';
 import { GlassCard } from '../ui/GlassCard';
 import { exportCampaignZip } from '../../lib/zipExporter';
 import { ImportProjectModal } from './ImportProjectModal';
+import { CAMPAIGN_PRESETS } from '../../data/campaignPresets';
+import { presetToCampaignData } from '../../lib/presetAdapter';
 import {
   FolderOpen, Plus, Trash2, Copy, Play, Calendar, Layers,
   FileText, Pencil, Check, X, Download, Upload, PackageOpen, Sparkles
@@ -23,6 +25,8 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
   const [editTitle, setEditTitle] = useState('');
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const [exportingId, setExportingId] = useState<string | null>(null);
+  const [presetId, setPresetId] = useState<string>(CAMPAIGN_PRESETS[0]?.id || '');
+  const [presetError, setPresetError] = useState<string | null>(null);
 
   const handleCreate = async () => {
     if (!newTitle.trim()) return;
@@ -31,6 +35,32 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
     setNewIndustry('');
     setIsCreating(false);
     onNavigate('wizard');
+  };
+
+  // SPEC-012: curated presets become real, playable campaigns (no dead content).
+  const handleCreateFromPreset = async () => {
+    const preset = CAMPAIGN_PRESETS.find(p => p.id === presetId);
+    if (!preset) {
+      setPresetError('Select a preset first.');
+      return;
+    }
+    setPresetError(null);
+    try {
+      const id = await createNewCampaign(preset.title, preset.region || undefined);
+      const data = presetToCampaignData(preset);
+      await updateCampaign(id, {
+        industry: preset.targetAudience || undefined,
+        sceneGraph: data.sceneGraph,
+        resourceLibrary: data.resourceLibrary,
+        videoPrompts: data.videoPrompts,
+        status: 'scripting',
+      });
+      setActiveCampaignId(id);
+      setIsCreating(false);
+      onNavigate('script');
+    } catch {
+      setPresetError('Could not create the preset campaign — storage may be full.');
+    }
   };
 
   const handleDuplicate = async (campaign: typeof allCampaigns[number]) => {
@@ -158,6 +188,23 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
           <div className="flex justify-end gap-2 mt-4">
             <button onClick={() => { setIsCreating(false); setNewTitle(''); setNewIndustry(''); }} className="px-4 py-2 min-h-[44px] rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Cancel</button>
             <button onClick={handleCreate} disabled={!newTitle.trim()} className="px-4 py-2 min-h-[44px] rounded-xl text-sm font-semibold bg-primary text-white hover:bg-primary/90 disabled:opacity-50 transition-colors">Create & Start Wizard</button>
+          </div>
+          <div className="mt-6 pt-4 border-t border-slate-200 dark:border-white/10 space-y-3">
+            <label htmlFor="preset-picker" className="text-sm font-semibold text-slate-700 dark:text-slate-300">Or start from a curated preset (instant scenes + imagery)</label>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <select
+                id="preset-picker"
+                value={presetId}
+                onChange={e => setPresetId(e.target.value)}
+                className="flex-1 bg-slate-100 dark:bg-slate-800/50 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl px-4 py-2.5 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                {CAMPAIGN_PRESETS.map(p => (
+                  <option key={p.id} value={p.id}>{p.title} — {p.region}</option>
+                ))}
+              </select>
+              <button onClick={handleCreateFromPreset} className="px-4 py-2 min-h-[44px] rounded-xl text-sm font-semibold bg-emerald-600 text-white hover:bg-emerald-500 transition-colors">Create from Preset</button>
+            </div>
+            {presetError && <p role="alert" className="text-sm text-rose-600 dark:text-rose-400">{presetError}</p>}
           </div>
         </GlassCard>
       )}

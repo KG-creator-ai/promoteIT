@@ -15,6 +15,8 @@ const RESOURCE_TYPE_META: Record<AVResourceRef['type'], { icon: typeof FileText;
   tts_audio:       { icon: Mic,       color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',   label: 'TTS Audio' },
   video_prompt:    { icon: Video,     color: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20',       label: 'Video Prompt' },
   timeline_render: { icon: Layers,    color: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20',      label: 'Timeline Render' },
+  image_asset:     { icon: FileImage, color: 'bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20',      label: 'Image Asset' },
+  video_asset:     { icon: Video,     color: 'bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20', label: 'Video Asset' },
 };
 
 export function ResourceStitcher() {

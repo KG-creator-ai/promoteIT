@@ -36,7 +36,7 @@ and certifies L1–L4.
 | 9 | SPEC-009 | VideoRenderer consolidation + webm-with-audio export | 3 | SPEC-008 | DONE (3/3 verified) |
 | 10 | SPEC-010 | Multi-provider AI (Gemini/OpenRouter/NVIDIA) + Qwen default | 3 | — | DONE (3/3 verified) |
 | 11 | SPEC-011 | E2E harness + L3 artifacts | 2 | SPEC-008–010 | DONE (2/2 verified, 8/8 legs) |
-| 12 | SPEC-012 | Orphan/honesty sweep (incl. real ModelStudio downloads) | 2 | SPEC-008–010 | open |
+| 12 | SPEC-012 | Orphan/honesty sweep (incl. real ModelStudio downloads) | 2 | SPEC-008–010 | DONE (2/2 verified) |
 | 13 | SPEC-013 | CERTIFICATION.md + v1.1.0 | 3 | SPEC-008–012 | open until release |
 
 ## Out of scope for v1.0.0 (non-goals)

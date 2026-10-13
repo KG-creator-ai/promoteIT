@@ -32,7 +32,7 @@ export interface AVCut {
 // ──────────────────────────────────────────────
 export interface AVResourceRef {
   id: string;
-  type: 'pdf_brief' | 'ocr_extract' | 'raw_script' | 'tts_audio' | 'video_prompt' | 'timeline_render';
+  type: 'pdf_brief' | 'ocr_extract' | 'raw_script' | 'tts_audio' | 'video_prompt' | 'timeline_render' | 'image_asset' | 'video_asset';
   title: string;
   mimeType: string;
   blobOrTextRef?: string;

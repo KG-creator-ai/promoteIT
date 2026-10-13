@@ -24,3 +24,9 @@
   evidence commands assert the real artifacts when present and exit 0 with an
   explicit `E2E-ARTIFACTS-ABSENT` note otherwise. The committed `manifest.json`
   + `CERTIFICATION.md` carry the L2 record; binaries stay gitignored.
+- D12 Orphan verdicts 2026-10-13: audioEngine → wired into AudioStudio (SPEC-008);
+  videoRenderer → wired into AVVideoPlayer (SPEC-009); campaignPresets →
+  wired into ProjectWorkspace preset picker (SPEC-012); archival → wired into
+  System Health OPFS snapshot card (SPEC-012); SutraCopilot barrel DELETED
+  (name still re-exported from SutraAssistant); assetLibrary DELETED
+  (inventory superseded by campaignPresets direct media imports — single source).

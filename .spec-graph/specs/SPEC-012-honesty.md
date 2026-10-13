@@ -13,8 +13,8 @@ has a working handler (ModelStudio's fake download progress becomes the real
 - Refactoring working modules for style; touching wizard/player state machines.
 
 ## Acceptance Criteria
-- [ ] AC-001 (SPEC-012.AC-001): orphan scan over `src/` reports zero zero-importer modules (test/config excluded; deletions recorded in DECISIONS.md) — verified by: `node .spec-graph/ops/orphan-scan.mjs` (new, zero-dep) exiting 0
-- [ ] AC-002 (SPEC-012.AC-002): ModelStudio Download & Load calls the real engine init with live progress; no simulated timers or fake sizes remain in settings/audio views — verified by: `grep` for `setInterval` progress simulators == 0 in both views + `tsc`
+- [x] AC-001 (SPEC-012.AC-001): orphan scan over `src/` reports zero zero-importer modules (test/config excluded; deletions recorded in DECISIONS.md) — verified by: `node .spec-graph/ops/orphan-scan.mjs` (new, zero-dep) exiting 0
+- [x] AC-002 (SPEC-012.AC-002): ModelStudio Download & Load calls the real engine init with live progress; no simulated timers or fake sizes remain in settings/audio views — verified by: `grep` for `setInterval` progress simulators == 0 in both views + `tsc`
 
 ## Graph atoms
 | Atom | Kind | Verifies |

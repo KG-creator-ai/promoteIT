@@ -146,18 +146,21 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     return sceneTimeline.length - 1;
   }, [sceneTimeline]);
 
-  // SPEC-009: renderer Scene list (image resolution from linked image resources)
+  // SPEC-009: renderer Scene list (image/video resolution from linked resources)
   const rendererScenes: Scene[] = useMemo(() => {
     return sceneTimeline.map((entry, i) => {
       let imageSrc = '';
+      let videoSrc: string | undefined;
       for (const rid of entry.scene.linkedResourceIds || []) {
         const res = resources.find(r => r.id === rid);
-        if (res && (res.mimeType || '').startsWith('image/') && res.blobOrTextRef) {
-          imageSrc = res.blobOrTextRef;
-          break;
-        }
+        if (!res?.blobOrTextRef) continue;
+        const mime = res.mimeType || '';
+        if (!imageSrc && (mime.startsWith('image/') || res.type === 'image_asset')) imageSrc = res.blobOrTextRef;
+        if (!videoSrc && (mime.startsWith('video/') || res.type === 'video_asset')) videoSrc = res.blobOrTextRef;
       }
-      return sceneToRendererScene(entry.scene, i, entry.start, entry.end, imageSrc);
+      const s = sceneToRendererScene(entry.scene, i, entry.start, entry.end, imageSrc);
+      if (videoSrc) { s.videoSrc = videoSrc; s.mediaType = 'video'; }
+      return s;
     });
   }, [sceneTimeline, resources]);
 
