@@ -1,0 +1,12 @@
+{
+  "persona": "releaser",
+  "phase": "PHASE-08",
+  "verdict": "approve",
+  "rationale": "Secrets posture clean (keys local-only, scans green); v1.1.0 release authorized pending final CI green.",
+  "evidence": [
+    "graph 34/36",
+    "e2e 8/8 x2",
+    "CI 38333812883 success"
+  ],
+  "ts": "2026-10-13T01:30:00Z"
+}

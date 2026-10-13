@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-13T01:40:40.328Z",
+  "updatedAt": "2026-10-13T01:54:42.683Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -118,96 +118,56 @@
       "kind": "spec_atom",
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
-      "status": "waived",
-      "title": "SPEC-001-tests AC-003",
-      "waiver": {
-        "by": [
-          "po",
-          "releaser"
-        ],
-        "reason": "setup.ts changed after CI pin 38224612161; re-verify on next green CI run, then un-waive (D14)",
-        "ts": "2026-10-13T01:40:40.327Z"
-      }
+      "status": "verified",
+      "title": "SPEC-001-tests AC-003"
     },
     {
       "id": "SPEC-001.AC-003.task",
       "kind": "task",
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
-      "status": "waived",
+      "status": "verified",
       "dependsOn": [
         "SPEC-001.AC-003"
-      ],
-      "waiver": {
-        "by": [
-          "po",
-          "releaser"
-        ],
-        "reason": "setup.ts changed after CI pin 38224612161; re-verify on next green CI run, then un-waive (D14)",
-        "ts": "2026-10-13T01:40:40.328Z"
-      }
+      ]
     },
     {
       "id": "SPEC-001.AC-003.code",
       "kind": "code",
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
-      "status": "waived",
+      "status": "verified",
       "paths": [
         "vitest.config.ts",
         "tests/setup.ts"
-      ],
-      "waiver": {
-        "by": [
-          "po",
-          "releaser"
-        ],
-        "reason": "setup.ts changed after CI pin 38224612161; re-verify on next green CI run, then un-waive (D14)",
-        "ts": "2026-10-13T01:40:40.328Z"
-      }
+      ]
     },
     {
       "id": "SPEC-001.AC-003.test",
       "kind": "test",
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
-      "status": "waived",
+      "status": "verified",
       "paths": [
         "tests/component/logo.test.tsx"
       ],
-      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38224612161')); assert d['conclusion']=='success' and d['head_sha'].startswith('78a6dc3'), d; print('CI-OK pinned 38224612161')\"",
-      "waiver": {
-        "by": [
-          "po",
-          "releaser"
-        ],
-        "reason": "setup.ts changed after CI pin 38224612161; re-verify on next green CI run, then un-waive (D14)",
-        "ts": "2026-10-13T01:40:40.328Z"
-      }
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38333812883')); assert d['conclusion']=='success', d; print('CI-OK pinned 38333812883')\""
     },
     {
       "id": "SPEC-001.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-001-tests",
       "ac": "AC-003",
-      "status": "waived",
-      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38224612161')); assert d['conclusion']=='success' and d['head_sha'].startswith('78a6dc3'), d; print('CI-OK pinned 38224612161')\"",
+      "status": "verified",
+      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38333812883')); assert d['conclusion']=='success', d; print('CI-OK pinned 38333812883')\"",
       "exit": 0,
       "hashes": {
         "tests/component/logo.test.tsx": "63ecd8553d8f8698",
         "vitest.config.ts": "2f4db697fb5f3dbc",
-        "tests/setup.ts": "91a3c8962a0edcb9"
+        "tests/setup.ts": "86cc0cdb0cb69bbc"
       },
-      "log": "CI-OK pinned 38224612161\n",
-      "verifiedAt": "2026-10-12T08:49:55.691Z",
-      "waiver": {
-        "by": [
-          "po",
-          "releaser"
-        ],
-        "reason": "setup.ts changed after CI pin 38224612161; re-verify on next green CI run, then un-waive (D14)",
-        "ts": "2026-10-13T01:40:40.328Z"
-      }
+      "log": "CI-OK pinned 38333812883\n",
+      "verifiedAt": "2026-10-13T01:51:13.638Z"
     },
     {
       "id": "SPEC-002.AC-001",
@@ -1813,7 +1773,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-013",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-013 AC-001"
     },
     {
@@ -1821,7 +1781,7 @@
       "kind": "task",
       "spec": "SPEC-013",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-013.AC-001"
       ]
@@ -1831,28 +1791,33 @@
       "kind": "code",
       "spec": "SPEC-013",
       "ac": "AC-001",
-      "status": "open",
-      "paths": []
+      "status": "verified",
+      "paths": [
+        "CERTIFICATION.md"
+      ]
     },
     {
       "id": "SPEC-013.AC-001.test",
       "kind": "test",
       "spec": "SPEC-013",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "python3 -c \"t=open('CERTIFICATION.md').read(); assert all(k in t for k in ['L1','L2','L3','L4','14_export_preview.webm','manifest.json']); print('CERT-OK')\""
     },
     {
       "id": "SPEC-013.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-013",
       "ac": "AC-001",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "python3 -c \"t=open('CERTIFICATION.md').read(); assert all(k in t for k in ['L1','L2','L3','L4','14_export_preview.webm','manifest.json']); print('CERT-OK')\"",
+      "exit": 0,
+      "hashes": {
+        "CERTIFICATION.md": "744184daa588ac80"
+      },
+      "log": "CERT-OK\n",
+      "verifiedAt": "2026-10-13T01:54:42.682Z"
     },
     {
       "id": "SPEC-013.AC-002",
