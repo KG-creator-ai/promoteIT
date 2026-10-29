@@ -27,17 +27,41 @@ async function getArchiveDir(): Promise<FileSystemDirectoryHandle> {
 }
 
 // ──────────────────────────────────────────────
-// Export Campaigns to .promoteit Bundle
+// Pure bundle seam (SPEC-015.AC-004) — browser-free build/parse/validate,
+// so backup/restore integrity is unit-testable in node.
 // ──────────────────────────────────────────────
-export async function exportArchive(campaigns: any[]): Promise<void> {
-  const dir = await getArchiveDir();
-  const bundle: ArchiveBundle = {
+export function buildArchiveBundle(campaigns: any[]): ArchiveBundle {
+  return {
     version: BUNDLE_VERSION,
     format: 'promoteit',
     exportedAt: Date.now(),
     campaignCount: campaigns.length,
     payload: JSON.stringify(campaigns, null, 2),
   };
+}
+
+export function parseArchiveBundle(text: string): ArchiveBundle {
+  const bundle: ArchiveBundle = JSON.parse(text);
+  if (bundle.format !== 'promoteit') {
+    throw new Error('Invalid archive format. Expected .promoteit bundle.');
+  }
+  if (bundle.version > BUNDLE_VERSION) {
+    throw new Error(`Archive version ${bundle.version} is not supported by this version.`);
+  }
+  const rows = JSON.parse(bundle.payload);
+  if (!Array.isArray(rows)) throw new Error('Archive payload is not a campaign array.');
+  if (rows.length !== bundle.campaignCount) {
+    throw new Error(`Archive count mismatch: header ${bundle.campaignCount} vs payload ${rows.length}.`);
+  }
+  return bundle;
+}
+
+// ──────────────────────────────────────────────
+// Export Campaigns to .promoteit Bundle
+// ──────────────────────────────────────────────
+export async function exportArchive(campaigns: any[]): Promise<void> {
+  const dir = await getArchiveDir();
+  const bundle = buildArchiveBundle(campaigns);
 
   const filename = `backup-${new Date().toISOString().slice(0, 10)}.promoteit`;
   const fileHandle = await dir.getFileHandle(filename, { create: true });
@@ -63,16 +87,7 @@ export async function exportArchive(campaigns: any[]): Promise<void> {
 export async function importFromFileHandle(fileHandle: FileSystemFileHandle): Promise<ArchiveBundle> {
   const file = await fileHandle.getFile();
   const text = await file.text();
-  const bundle: ArchiveBundle = JSON.parse(text);
-
-  if (bundle.format !== 'promoteit') {
-    throw new Error('Invalid archive format. Expected .promoteit bundle.');
-  }
-  if (bundle.version > BUNDLE_VERSION) {
-    throw new Error(`Archive version ${bundle.version} is not supported by this version.`);
-  }
-
-  return bundle;
+  return parseArchiveBundle(text);
 }
 
 // ──────────────────────────────────────────────

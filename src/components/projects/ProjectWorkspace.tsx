@@ -174,7 +174,7 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
       {/* Create form */}
       {isCreating && (
         <GlassCard className="p-6">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4">Create New Campaign</h3>
+          <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4">Create New Campaign</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <label htmlFor="new-campaign-title" className="text-sm font-semibold text-slate-700 dark:text-slate-300">Campaign Title *</label>
@@ -241,7 +241,7 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
                   )}
                 </div>
 
-                {!isEditing && <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-2 line-clamp-2">{campaign.title}</h3>}
+                {!isEditing && <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-2 line-clamp-2">{campaign.title}</h2>}
                 {campaign.industry && !isEditing && <span className="text-xs text-slate-500 dark:text-slate-400 mb-3">{campaign.industry}</span>}
 
                 {!isEditing && (
@@ -286,7 +286,7 @@ export function ProjectWorkspace({ onNavigate }: ProjectWorkspaceProps) {
       {!isCreating && allCampaigns.length === 0 && (
         <div className="text-center py-20">
           <FolderOpen className="w-16 h-16 mx-auto mb-4 text-slate-300 dark:text-slate-600" />
-          <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-2">No campaigns yet</h3>
+          <h2 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-2">No campaigns yet</h2>
           <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 max-w-sm mx-auto">
             Create your first campaign or import a project archive to get started.
           </p>

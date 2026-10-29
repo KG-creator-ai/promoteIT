@@ -29,13 +29,12 @@ describe('schema v3.1.0 domains (SPEC-014.AC-001)', () => {
     expect(dom('SPEC-012')).toEqual(['resilience']);
   });
 
-  it('parseSpecACs reads the - Domains: line (via plain node)', () => {
+  it('parseSpecACs reads the - Domains: line (via plain node probe script)', () => {
     const probe = (file: string) =>
       JSON.parse(
-        execSync(
-          `node --input-type=module -e "import('${path.resolve(__dirname, '../../.spec-graph/ops/spec-parse.mjs').replace(/\\/g, '/')}').then(m=>console.log(JSON.stringify(m.parseSpecACs('${file.replace(/\\/g, '/')}'))))"`,
-          { encoding: 'utf8' },
-        ),
+        execSync(`node "${path.resolve(__dirname, '../../scripts/spec-parse-probe.mjs')}" "${file}"`, {
+          encoding: 'utf8',
+        }),
       );
     const real = probe(path.resolve(__dirname, '../../.spec-graph/specs/SPEC-010-providers.md'));
     expect(real.id).toBe('SPEC-010-providers');

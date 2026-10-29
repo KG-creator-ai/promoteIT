@@ -12,7 +12,10 @@
   "gates": {
     "typecheck": "./node_modules/.bin/tsc --noEmit",
     "test": "./node_modules/.bin/vitest run",
+    "sast": "node scripts/sast.mjs",
+    "dep-audit": "node scripts/dep-audit.mjs",
     "build": "./node_modules/.bin/vite build",
+    "budget": "node scripts/budget.mjs",
     "audit": "node scripts/visual-audit.wsl.mjs"
   },
   "paths": {

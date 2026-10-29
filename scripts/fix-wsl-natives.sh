@@ -15,4 +15,4 @@ tar -xzf "$TMPD/rollup.tgz" -C node_modules/@rollup/rollup-linux-x64-gnu --strip
 tar -xzf "$TMPD/esbuild.tgz" -C node_modules/@esbuild/linux-x64 --strip-components=1
 rm -rf "$TMPD"
 echo "Linux natives installed for rollup@$ROLLUP_VER esbuild@$ESBUILD_VER"
-node ./node_modules/vitest/vitest.mjs run --reporter=basic 2>&1 | tail -4
+node ./node_modules/vitest/vitest.mjs run tests/unit/no-mocks.test.ts 2>&1 | tail -4

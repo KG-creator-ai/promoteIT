@@ -51,3 +51,11 @@
   Honest equivalent = authenticated headless probing (CSP/headers via served
   preview, auth-gate abuse paths, console PII-leak scan) + threat-model doc.
   Never claim pentest coverage; redteam blocks overclaims.
+- D18 Supply-chain refresh (Phase 09, 2026-10-13): advisory DB drift surfaced 8
+  new highs/crits mid-phase (dompurify ×5 now critical, vite dev-server ×5
+  high, all fixed in-lockfile via `npm audit fix`: vite 6.4.5, dompurify
+  3.4.17). `vite` removed from `dependencies` (build tool was mislisted as
+  prod dep; kept in devDependencies). dep-audit.mjs switched to FULL audit
+  (dev tooling included) with the D9 allowlist EMPTIED (all 3 resolved —
+  stale permits hide regressions) and a single new permit: GHSA-gcqx-w48m-w2h4
+  (deepmerge low, dev/build chain, fix = breaking vite-plugin-pwa downgrade).

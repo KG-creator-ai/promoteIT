@@ -39,9 +39,12 @@ function secretScan() {
 
 run('typecheck', profile.gates.typecheck, { timeout: 300000 });
 run('test', profile.gates.test, { timeout: 600000 });
+run('sast', profile.gates.sast, { timeout: 120000 });
+run('dep-audit', profile.gates['dep-audit'], { timeout: 400000 });
 secretScan();
 if (FULL) {
   run('build', profile.gates.build, { timeout: 600000 });
+  run('budget', profile.gates.budget, { timeout: 120000 });
   if (profile.gates.audit && process.env.RUN_AUDIT === '1') run('visual-audit', profile.gates.audit, { timeout: 600000 });
   else results.push({ name: 'visual-audit', status: 'skip', reason: 'set RUN_AUDIT=1 with dev server + Chrome to include' });
 }
