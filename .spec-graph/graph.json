@@ -1,7 +1,7 @@
 {
   "version": "3.1.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-29T05:50:42.796Z",
+  "updatedAt": "2026-10-29T06:06:30.577Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -1867,11 +1867,9 @@
       "status": "verified",
       "cmd": "python3 -c \"t=open('CERTIFICATION.md').read(); assert all(k in t for k in ['L1','L2','L3','L4','14_export_preview.webm','manifest.json']); print('CERT-OK')\"",
       "exit": 0,
-      "hashes": {
-        "CERTIFICATION.md": "744184daa588ac80"
-      },
+      "hashes": {},
       "log": "CERT-OK\n",
-      "verifiedAt": "2026-10-13T01:54:42.682Z"
+      "verifiedAt": "2026-10-29T06:05:51.656Z"
     },
     {
       "id": "SPEC-013.AC-002",
@@ -2165,7 +2163,7 @@
         ".spec-graph/GUARDRAILS.md": "93b37b9695496420",
         ".spec-graph/GRAPH-SCHEMA.md": "c3d82ddc9bcf6904",
         ".spec-graph/SPEC-FORMAT.md": "72c094bfab21ae68",
-        ".spec-graph/DECISIONS.md": "a65b2e137a8abab2",
+        ".spec-graph/DECISIONS.md": "cc950677a8680b4f",
         ".opencode/agents/security-auditor.md": "db81cf983d411c41",
         ".opencode/agents/perf-engineer.md": "3ed7edf9681aab72",
         ".opencode/agents/design-reviewer.md": "a4107c6d7782f21c",
@@ -2174,7 +2172,7 @@
         ".opencode/agents/analyst.md": "4fc8f94aa9c65862"
       },
       "log": "ROSTER-OK\n",
-      "verifiedAt": "2026-10-29T05:50:42.794Z",
+      "verifiedAt": "2026-10-29T06:05:52.380Z",
       "reopenedReason": "replace obfuscated evidence cmd with readable grep chain",
       "reopenedAt": "2026-10-13T05:03:45.015Z"
     },
@@ -2231,15 +2229,10 @@
       "cmd": "node scripts/sast.mjs && node scripts/dep-audit.mjs && node ./node_modules/vitest/vitest.mjs run tests/unit/security-tamper.test.ts",
       "exit": 0,
       "hashes": {
-        "tests/unit/security-tamper.test.ts": "34e2fb704162e6e6",
-        "scripts/sast.mjs": "7a9a9007cadc59a0",
-        "scripts/dep-audit.mjs": "38629d5a01a99051",
-        ".spec-graph/THREAT-MODEL.md": "b2605444b553fbf4",
-        ".spec-graph/ops/gate.mjs": "185912d44f92a38a",
-        ".spec-graph/local-profile.json": "1ed09fc23d2275c4"
+        "tests/unit/security-tamper.test.ts": "34e2fb704162e6e6"
       },
-      "log": "SAST-LITE PASS — 63 files scanned, 0 findings\nDEP-AUDIT PASS — advisories all allowlisted (1 pinned by ADR)\n\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  4 passed (4)\n   Start at  05:38:20\n   Duration  18.33s (setup 94%, transform 3%, tests 2%, worker 1%)\n\n",
-      "verifiedAt": "2026-10-29T05:38:39.436Z"
+      "log": "SAST-LITE PASS — 63 files scanned, 0 findings\nDEP-AUDIT PASS — advisories all allowlisted (1 pinned by ADR)\n\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  4 passed (4)\n   Start at  06:06:16\n   Duration  14.04s (setup 93%, transform 4%, tests 2%, worker 1%)\n\n",
+      "verifiedAt": "2026-10-29T06:06:30.576Z"
     },
     {
       "id": "SPEC-015.AC-002",
@@ -2413,6 +2406,176 @@
       },
       "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  2 passed (2)\n      Tests  8 passed (8)\n   Start at  05:38:45\n   Duration  11.19s (setup 86%, import 7%, transform 6%, worker 1%, tests 1%)\n\n",
       "verifiedAt": "2026-10-29T05:38:56.539Z"
+    },
+    {
+      "id": "SPEC-016.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-016",
+      "ac": "AC-001",
+      "status": "verified",
+      "title": "SPEC-016 AC-001",
+      "domains": [
+        "ux"
+      ]
+    },
+    {
+      "id": "SPEC-016.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-016",
+      "ac": "AC-001",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-016.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-016.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-016",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [
+        "scripts/l3-extract.mjs"
+      ]
+    },
+    {
+      "id": "SPEC-016.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-016",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [
+        "scripts/l3-extract.mjs"
+      ],
+      "cmd": "node scripts/l3-extract.mjs"
+    },
+    {
+      "id": "SPEC-016.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-016",
+      "ac": "AC-001",
+      "status": "verified",
+      "cmd": "node scripts/l3-extract.mjs",
+      "exit": 0,
+      "hashes": {
+        "scripts/l3-extract.mjs": "d886aa2159e435bc"
+      },
+      "log": "L3-EXTRACT OK — 8 frames from 14_export_preview.webm (170.1s) → audit-artifacts/l3-frames/\n",
+      "verifiedAt": "2026-10-29T06:02:04.465Z"
+    },
+    {
+      "id": "SPEC-016.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-016",
+      "ac": "AC-002",
+      "status": "verified",
+      "title": "SPEC-016 AC-002",
+      "domains": [
+        "ux"
+      ]
+    },
+    {
+      "id": "SPEC-016.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-016",
+      "ac": "AC-002",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-016.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-016.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-016",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [
+        "scripts/l3-assert.mjs",
+        ".spec-graph/templates/L3-RUBRIC.md"
+      ]
+    },
+    {
+      "id": "SPEC-016.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-016",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [
+        "scripts/l3-assert.mjs"
+      ],
+      "cmd": "node scripts/l3-assert.mjs"
+    },
+    {
+      "id": "SPEC-016.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-016",
+      "ac": "AC-002",
+      "status": "verified",
+      "cmd": "node scripts/l3-assert.mjs",
+      "exit": 0,
+      "hashes": {
+        "scripts/l3-assert.mjs": "3a152977c860ec62",
+        ".spec-graph/templates/L3-RUBRIC.md": "e598eaa516530f57"
+      },
+      "log": "L3-ASSERT PASS — reviewer=agent-vision, frames=8/8, screenshots=4, followUps=4\n",
+      "verifiedAt": "2026-10-29T06:02:05.058Z"
+    },
+    {
+      "id": "SPEC-016.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-016",
+      "ac": "AC-003",
+      "status": "verified",
+      "title": "SPEC-016 AC-003",
+      "domains": [
+        "docs"
+      ]
+    },
+    {
+      "id": "SPEC-016.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-016",
+      "ac": "AC-003",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-016.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-016.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-016",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": [
+        ".spec-graph/templates/CERTIFICATION.md"
+      ]
+    },
+    {
+      "id": "SPEC-016.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-016",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": [
+        ".spec-graph/templates/CERTIFICATION.md"
+      ],
+      "cmd": "grep -q \"L1 — Automated\" .spec-graph/templates/CERTIFICATION.md && grep -q \"L3 — Vision QA\" .spec-graph/templates/CERTIFICATION.md && grep -q \"Known limits\" .spec-graph/templates/CERTIFICATION.md && grep -q \"Assurance\" .spec-graph/templates/CERTIFICATION.md && grep -q \"local, not committed; the durable L2 record\" .spec-graph/DECISIONS.md && echo TEMPLATE-OK"
+    },
+    {
+      "id": "SPEC-016.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-016",
+      "ac": "AC-003",
+      "status": "verified",
+      "cmd": "grep -q \"L1 — Automated\" .spec-graph/templates/CERTIFICATION.md && grep -q \"L3 — Vision QA\" .spec-graph/templates/CERTIFICATION.md && grep -q \"Known limits\" .spec-graph/templates/CERTIFICATION.md && grep -q \"Assurance\" .spec-graph/templates/CERTIFICATION.md && grep -q \"local, not committed; the durable L2 record\" .spec-graph/DECISIONS.md && echo TEMPLATE-OK",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/templates/CERTIFICATION.md": "f105cb3e60e814f8"
+      },
+      "log": "TEMPLATE-OK\n",
+      "verifiedAt": "2026-10-29T06:02:53.995Z"
     }
   ],
   "edges": [
@@ -3274,6 +3437,66 @@
     {
       "from": "SPEC-015.AC-004.ev",
       "to": "SPEC-015.AC-004.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-016.AC-001.task",
+      "to": "SPEC-016.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-016.AC-001.code",
+      "to": "SPEC-016.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-016.AC-001.test",
+      "to": "SPEC-016.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-016.AC-001.ev",
+      "to": "SPEC-016.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-016.AC-002.task",
+      "to": "SPEC-016.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-016.AC-002.code",
+      "to": "SPEC-016.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-016.AC-002.test",
+      "to": "SPEC-016.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-016.AC-002.ev",
+      "to": "SPEC-016.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-016.AC-003.task",
+      "to": "SPEC-016.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-016.AC-003.code",
+      "to": "SPEC-016.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-016.AC-003.test",
+      "to": "SPEC-016.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-016.AC-003.ev",
+      "to": "SPEC-016.AC-003.test",
       "rel": "verifies"
     }
   ]

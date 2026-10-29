@@ -14,7 +14,7 @@ recorded artifacts; L4 is provider-proven. Anything not proven says so.
 
 Harness: `scripts/e2e-av.mjs` (local dev server + Windows Chrome). Latest run:
 **8/8 legs green, 0 page errors, 0 console errors.** Artifacts in
-`audit-artifacts/` (gitignored; `manifest.json` committed as the L2 record).
+`audit-artifacts/` (fully gitignored; local `manifest.json` is a working copy — this document carries the durable L2 record).
 
 | Leg | Proof |
 |---|---|

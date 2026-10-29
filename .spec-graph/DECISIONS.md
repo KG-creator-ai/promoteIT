@@ -21,9 +21,11 @@
   change to hash-tracked code/test paths auto-reopens them for a fresh pinned run.
 - D11 L2-evidence rule (mirror of D10): headless-Chrome artifacts (audit-artifacts/)
   exist only where Windows Chrome + dev server run — never in CI checkouts. E2E
-  evidence commands assert the real artifacts when present and exit 0 with an
-  explicit `E2E-ARTIFACTS-ABSENT` note otherwise. The committed `manifest.json`
-  + `CERTIFICATION.md` carry the L2 record; binaries stay gitignored.
+  evidence commands assert the real artifacts when present and exit 0 with
+  an explicit `E2E-ARTIFACTS-ABSENT` note otherwise. Correction (SPEC-016,
+  2026-10-29): `audit-artifacts/` is fully gitignored — `manifest.json` is
+  local, not committed; the durable L2 record is `CERTIFICATION.md` (which
+  quotes the manifest's key results). Binaries stay gitignored.
 - D13 No self-referential evidence: an evidence command must not invoke the
   auditor (claim-audit) itself — nested audits inherit unrelated open atoms and
   can never stably pass. SPEC-007.AC-003 evidence is `report.mjs` (which runs
@@ -51,7 +53,7 @@
   Honest equivalent = authenticated headless probing (CSP/headers via served
   preview, auth-gate abuse paths, console PII-leak scan) + threat-model doc.
   Never claim pentest coverage; redteam blocks overclaims.
-- D18 Supply-chain refresh (Phase 09, 2026-10-13): advisory DB drift surfaced 8
+- D18 Supply-chain refresh (Phase 09, 2026-10-29): advisory DB drift surfaced 8
   new highs/crits mid-phase (dompurify ×5 now critical, vite dev-server ×5
   high, all fixed in-lockfile via `npm audit fix`: vite 6.4.5, dompurify
   3.4.17). `vite` removed from `dependencies` (build tool was mislisted as

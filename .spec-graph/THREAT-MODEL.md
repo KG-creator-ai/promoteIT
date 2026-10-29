@@ -2,7 +2,7 @@
 
 Zero-backend PWA: there is no server to pentest (D17). This document is the
 honest equivalent — assets, actors, vectors, mitigations, residuals. Reviewed
-per release by security-auditor. Last updated: 2026-10-13.
+per release by security-auditor. Last updated: 2026-10-29.
 
 ## Assets (value order)
 1. **Provider API keys** — `localStorage promote_it_gemini_key`, `VITE_*` build
