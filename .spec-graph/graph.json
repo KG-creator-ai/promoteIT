@@ -1,7 +1,7 @@
 {
   "version": "3.1.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-29T08:54:04.928Z",
+  "updatedAt": "2026-10-29T09:30:28.110Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -2734,6 +2734,106 @@
       },
       "log": "clean-room fixture: /tmp/spec-graph-cleanroom-5yfG0L\nCLEANROOM-PASS — init + graph init + status OK (nodes=5, atoms=0/1)\n",
       "verifiedAt": "2026-10-29T08:36:30.528Z"
+    },
+    {
+      "id": "SPEC-018.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-018",
+      "ac": "AC-001",
+      "status": "verified",
+      "title": "SPEC-018 AC-001",
+      "domains": [
+        "docs"
+      ]
+    },
+    {
+      "id": "SPEC-018.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-018",
+      "ac": "AC-001",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-018.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-018.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-018",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-018.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-018",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node scripts/discovery-to-roadmap.mjs --check && grep -q \"Source type\" .spec-graph/templates/DISCOVERY.md && grep -q \"Paraphrase\" .spec-graph/templates/DISCOVERY.md && grep -q \"no invented quotes\" .spec-graph/templates/DISCOVERY.md && grep -q \"hypothesis\" .spec-graph/templates/DISCOVERY.md && echo FORMAT-OK"
+    },
+    {
+      "id": "SPEC-018.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-018",
+      "ac": "AC-001",
+      "status": "verified",
+      "cmd": "node scripts/discovery-to-roadmap.mjs --check && grep -q \"Source type\" .spec-graph/templates/DISCOVERY.md && grep -q \"Paraphrase\" .spec-graph/templates/DISCOVERY.md && grep -q \"no invented quotes\" .spec-graph/templates/DISCOVERY.md && grep -q \"hypothesis\" .spec-graph/templates/DISCOVERY.md && echo FORMAT-OK",
+      "exit": 0,
+      "hashes": {},
+      "log": "DISCOVERY-OK — 6 candidate(s) match .spec-graph/DISCOVERY.md\nFORMAT-OK\n",
+      "verifiedAt": "2026-10-29T09:30:27.282Z"
+    },
+    {
+      "id": "SPEC-018.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-018",
+      "ac": "AC-002",
+      "status": "verified",
+      "title": "SPEC-018 AC-002",
+      "domains": [
+        "docs"
+      ]
+    },
+    {
+      "id": "SPEC-018.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-018",
+      "ac": "AC-002",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-018.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-018.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-018",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-018.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-018",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node scripts/discovery-to-roadmap.mjs --apply >/dev/null && b=$(sha256sum .spec-graph/ROADMAP.md | cut -d\" \" -f1) && node scripts/discovery-to-roadmap.mjs --apply >/dev/null && a=$(sha256sum .spec-graph/ROADMAP.md | cut -d\" \" -f1) && [ \"$b\" = \"$a\" ] && node scripts/discovery-to-roadmap.mjs --check && echo IDEMPOTENT-OK"
+    },
+    {
+      "id": "SPEC-018.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-018",
+      "ac": "AC-002",
+      "status": "verified",
+      "cmd": "node scripts/discovery-to-roadmap.mjs --apply >/dev/null && b=$(sha256sum .spec-graph/ROADMAP.md | cut -d\" \" -f1) && node scripts/discovery-to-roadmap.mjs --apply >/dev/null && a=$(sha256sum .spec-graph/ROADMAP.md | cut -d\" \" -f1) && [ \"$b\" = \"$a\" ] && node scripts/discovery-to-roadmap.mjs --check && echo IDEMPOTENT-OK",
+      "exit": 0,
+      "hashes": {},
+      "log": "DISCOVERY-OK — 6 candidate(s) match .spec-graph/DISCOVERY.md\nIDEMPOTENT-OK\n",
+      "verifiedAt": "2026-10-29T09:30:28.110Z"
     }
   ],
   "edges": [
@@ -3715,6 +3815,46 @@
     {
       "from": "SPEC-017.AC-003.ev",
       "to": "SPEC-017.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-018.AC-001.task",
+      "to": "SPEC-018.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-018.AC-001.code",
+      "to": "SPEC-018.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-018.AC-001.test",
+      "to": "SPEC-018.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-018.AC-001.ev",
+      "to": "SPEC-018.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-018.AC-002.task",
+      "to": "SPEC-018.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-018.AC-002.code",
+      "to": "SPEC-018.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-018.AC-002.test",
+      "to": "SPEC-018.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-018.AC-002.ev",
+      "to": "SPEC-018.AC-002.test",
       "rel": "verifies"
     }
   ]
