@@ -2,9 +2,11 @@
 
 Bespoke hybrid framework: **Graph Engineering loop harness + SDLC phase gates + CI/CD + multi-persona consent + anti-hallucination controls.**
 
+Framework version: **1.0.0** (single source: `.spec-graph/VERSION` — distinct from any product release tag).
+
 ## Quickstart (any repo)
 
-1. Copy `.spec-graph/` + `opencode.json` into repo root.
+1. Copy `.spec-graph/` + `.opencode/` (persona agents) + `opencode.json` into repo root.
 2. `node .spec-graph/ops/init.mjs` — detects toolchain, writes `.spec-graph/local-profile.json`.
 3. Author roadmap: `.spec-graph/templates/ROADMAP.md` → `.spec-graph/ROADMAP.md`, specs in `.spec-graph/specs/*.md`.
 4. `node .spec-graph/ops/graph.mjs init` — builds traceability graph from specs.

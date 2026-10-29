@@ -10,7 +10,7 @@
 ## Hard stops (never; escalate instead)
 - No server/backend code in zero-backend repos; no new runtime deps without architect verdict.
 - Never commit `.env*`, secrets, keys, tokens; never log secret values. Secret-scan is a release gate.
-- No force-push, no history rewrite, no deleting user data/artifacts (media/, .antigravity/, samples/).
+- No force-push, no history rewrite, no deleting user data/artifacts (project data dirs — declare them in `AGENTS.md`; the framework never deletes repo content).
 - No claiming AI output/behavior without a working provider path; keep honest statuses.
 - No UI/auth-gate selector changes that break the headless audit (or update the audit script in the same atom).
 - No `v1.0.0-prod`-style release tags and no GitHub Releases without phase-07 verdicts + green CI.

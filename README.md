@@ -39,5 +39,7 @@ Windows Chrome; clears the AuthModal gate automatically).
 ## How this repo is built (SPEC-GRAPH)
 
 Autonomous spec-driven delivery: `.spec-graph/` (process, personas, living
-traceability graph, executable gates) + `opencode.json` (persona agents).
+traceability graph, executable gates) + `.opencode/agents/` (12 persona agent
+definitions) + `opencode.json` (agent wiring). Framework version: `1.0.0`
+(`.spec-graph/VERSION`).
 Start with `AGENTS.md`, then `.spec-graph/README.md` and `.spec-graph/ROADMAP.md`.

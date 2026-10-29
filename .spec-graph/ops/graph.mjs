@@ -55,6 +55,47 @@ function init() {
   console.log(`graph init: ${g.nodes.length} nodes from ${files.length} specs`);
 }
 
+function addSpec(specId) {
+  const specsDir = path.join(sg, 'specs');
+  if (!fs.existsSync(specsDir)) { console.error('no specs dir'); process.exit(1); }
+  const file = fs.readdirSync(specsDir).filter(f => f.endsWith('.md'))
+    .map(f => path.join(specsDir, f))
+    .find(f => path.basename(f, '.md') === specId || path.basename(f, '.md').split('-').slice(0, 2).join('-') === specId);
+  if (!file) { console.error(`unknown spec ${specId}`); process.exit(1); }
+  const g = load();
+  const parsed = parseSpecACs(file);
+  const id = path.basename(file, '.md').split('-').slice(0, 2).join('-');
+  const { acs, domains } = parsed;
+  if (!acs.length) { console.error(`no ACs parsed in ${file}`); process.exit(1); }
+  const have = new Set(g.nodes.map(n => n.id));
+  let added = 0;
+  for (const { ac, atom } of acs) {
+    const nodes = [
+      { id: atom, kind: 'spec_atom', spec: id, ac, status: 'open', title: `${id} ${ac}`, domains },
+      { id: atom + '.task', kind: 'task', spec: id, ac, status: 'open', dependsOn: [atom] },
+      { id: atom + '.code', kind: 'code', spec: id, ac, status: 'open', paths: [] },
+      { id: atom + '.test', kind: 'test', spec: id, ac, status: 'open', paths: [], cmd: '' },
+      { id: atom + '.ev', kind: 'evidence', spec: id, ac, status: 'open', cmd: '', exit: null, hashes: {}, log: '' },
+    ];
+    for (const n of nodes) {
+      if (have.has(n.id)) continue;
+      g.nodes.push(n); have.add(n.id); added++;
+    }
+    const edges = [
+      { from: atom + '.task', to: atom, rel: 'derives_from' },
+      { from: atom + '.code', to: atom + '.task', rel: 'implements' },
+      { from: atom + '.test', to: atom, rel: 'covers' },
+      { from: atom + '.ev', to: atom + '.test', rel: 'verifies' },
+    ];
+    for (const e of edges) {
+      if (g.edges.some(x => x.from === e.from && x.to === e.to && x.rel === e.rel)) continue;
+      g.edges.push(e);
+    }
+  }
+  save(g);
+  console.log(`add-spec ${id}: ${acs.length} ACs, ${added} nodes added (${g.nodes.length} total)`);
+}
+
 function status() {
   const g = load();
   const by = {};
@@ -118,6 +159,7 @@ const invokedDirectly = process.argv[1] && path.basename(process.argv[1]) === 'g
 if (invokedDirectly) {
   const [, , cmd, ...rest] = process.argv;
   if (cmd === 'init') init();
+  else if (cmd === 'add-spec') addSpec(rest[0]);
   else if (cmd === 'status') status();
   else if (cmd === 'open') open();
   else if (cmd === 'verify') {
@@ -126,5 +168,5 @@ if (invokedDirectly) {
     verify(rest[0], ci >= 0 ? rest[ci + 1] : '', pi >= 0 ? rest[pi + 1].split(',') : []);
   }
   else if (cmd === 'reopen') reopen(rest[0], rest.slice(rest.indexOf('--reason') + 1).join(' ') || 'manual');
-  else { console.error('usage: init|status|open|verify <atom> --cmd "<cmd>" [--paths a,b]|reopen <atom> --reason ...'); process.exit(2); }
+  else { console.error('usage: init|add-spec <SPEC-ID>|status|open|verify <atom> --cmd "<cmd>" [--paths a,b]|reopen <atom> --reason ...'); process.exit(2); }
 }

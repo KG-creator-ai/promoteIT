@@ -52,7 +52,7 @@ export kit, and a discovery loop.
 | 14 | SPEC-014 | Tiered persona roster (12) + domains schema + conditional quorum | 3 | — | DONE (3/3 verified) |
 | 15 | SPEC-015 | Assurance tooling: SAST/dep-audit/budget/axe/resilience in gate+CI | 4 | SPEC-014 | DONE (4/4 verified) |
 | 16 | SPEC-016 | Vision-L3 protocol (frame extraction + rubric + verdict JSON) | 3 | — | DONE (3/3 verified) |
-| 17 | SPEC-017 | Export kit (quickstart fix, GUARDRAILS template, version stamp, clean-room self-test) | 3 | SPEC-014–016 | open |
+| 17 | SPEC-017 | Export kit (quickstart fix, GUARDRAILS template, version stamp, clean-room self-test) | 3 | SPEC-014–016 | DONE (3/3 verified) |
 | 18 | SPEC-018 | Discovery loop (competitive scan + VOC intake + roadmap atoms) | 2 | — | open |
 | 19 | SPEC-019 | CERTIFICATION.md refresh + v1.2.0 | 3 | SPEC-014–018 | open |
 

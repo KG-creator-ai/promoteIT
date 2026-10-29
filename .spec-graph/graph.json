@@ -1,7 +1,7 @@
 {
   "version": "3.1.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-29T06:06:30.577Z",
+  "updatedAt": "2026-10-29T08:54:04.928Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -701,11 +701,10 @@
       "cmd": "grep -q VITE_GEMINI_API_KEY README.md && grep -q 'npm test' README.md && ! grep -q 'env.local' README.md && echo README-OK",
       "exit": 0,
       "hashes": {
-        "tests/unit/pwa-assets.test.ts": "16f3c72fac23dfc3",
-        "README.md": "048d3b8a6cf36346"
+        "tests/unit/pwa-assets.test.ts": "16f3c72fac23dfc3"
       },
       "log": "README-OK\n",
-      "verifiedAt": "2026-10-12T08:06:15.202Z"
+      "verifiedAt": "2026-10-29T08:54:04.451Z"
     },
     {
       "id": "SPEC-005.AC-002",
@@ -2160,7 +2159,7 @@
       "hashes": {
         ".spec-graph/PERSONAS.md": "6d0ed8751d81f40f",
         ".spec-graph/PROCESS.md": "00e6dfbb0f09d858",
-        ".spec-graph/GUARDRAILS.md": "93b37b9695496420",
+        ".spec-graph/GUARDRAILS.md": "47f6258a9846938c",
         ".spec-graph/GRAPH-SCHEMA.md": "c3d82ddc9bcf6904",
         ".spec-graph/SPEC-FORMAT.md": "72c094bfab21ae68",
         ".spec-graph/DECISIONS.md": "cc950677a8680b4f",
@@ -2172,7 +2171,7 @@
         ".opencode/agents/analyst.md": "4fc8f94aa9c65862"
       },
       "log": "ROSTER-OK\n",
-      "verifiedAt": "2026-10-29T06:05:52.380Z",
+      "verifiedAt": "2026-10-29T08:54:04.927Z",
       "reopenedReason": "replace obfuscated evidence cmd with readable grep chain",
       "reopenedAt": "2026-10-13T05:03:45.015Z"
     },
@@ -2576,6 +2575,165 @@
       },
       "log": "TEMPLATE-OK\n",
       "verifiedAt": "2026-10-29T06:02:53.995Z"
+    },
+    {
+      "id": "SPEC-017.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-017",
+      "ac": "AC-001",
+      "status": "verified",
+      "title": "SPEC-017 AC-001",
+      "domains": [
+        "docs"
+      ]
+    },
+    {
+      "id": "SPEC-017.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-017",
+      "ac": "AC-001",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-017.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-017.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-017",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-017.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-017",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [],
+      "cmd": "grep -q \"\\.opencode/\" .spec-graph/README.md && grep -q \"\\.opencode/agents/\" README.md && echo QUICKSTART-OK"
+    },
+    {
+      "id": "SPEC-017.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-017",
+      "ac": "AC-001",
+      "status": "verified",
+      "cmd": "grep -q \"\\.opencode/\" .spec-graph/README.md && grep -q \"\\.opencode/agents/\" README.md && echo QUICKSTART-OK",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/README.md": "b3a9a2df92497586",
+        "README.md": "450b090f4aa0a9ee"
+      },
+      "log": "QUICKSTART-OK\n",
+      "verifiedAt": "2026-10-29T08:36:27.276Z"
+    },
+    {
+      "id": "SPEC-017.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-017",
+      "ac": "AC-002",
+      "status": "verified",
+      "title": "SPEC-017 AC-002",
+      "domains": [
+        "docs"
+      ]
+    },
+    {
+      "id": "SPEC-017.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-017",
+      "ac": "AC-002",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-017.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-017.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-017",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-017.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-017",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [],
+      "cmd": "v=$(cat .spec-graph/VERSION); grep -q \"$v\" .spec-graph/README.md && ! grep -qE \"media/|\\.antigravity/|samples/|cloud-sync|Promote-IT\" .spec-graph/GUARDRAILS.md && echo VERSION-OK"
+    },
+    {
+      "id": "SPEC-017.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-017",
+      "ac": "AC-002",
+      "status": "verified",
+      "cmd": "v=$(cat .spec-graph/VERSION); grep -q \"$v\" .spec-graph/README.md && ! grep -qE \"media/|\\.antigravity/|samples/|cloud-sync|Promote-IT\" .spec-graph/GUARDRAILS.md && echo VERSION-OK",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/VERSION": "59854984853104df",
+        ".spec-graph/README.md": "b3a9a2df92497586",
+        ".spec-graph/GUARDRAILS.md": "47f6258a9846938c"
+      },
+      "log": "VERSION-OK\n",
+      "verifiedAt": "2026-10-29T08:36:27.680Z"
+    },
+    {
+      "id": "SPEC-017.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-017",
+      "ac": "AC-003",
+      "status": "verified",
+      "title": "SPEC-017 AC-003",
+      "domains": [
+        "docs"
+      ]
+    },
+    {
+      "id": "SPEC-017.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-017",
+      "ac": "AC-003",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-017.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-017.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-017",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-017.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-017",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node scripts/export-kit.mjs"
+    },
+    {
+      "id": "SPEC-017.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-017",
+      "ac": "AC-003",
+      "status": "verified",
+      "cmd": "node scripts/export-kit.mjs",
+      "exit": 0,
+      "hashes": {
+        "scripts/export-kit.mjs": "98450f2e4ac16421"
+      },
+      "log": "clean-room fixture: /tmp/spec-graph-cleanroom-5yfG0L\nCLEANROOM-PASS — init + graph init + status OK (nodes=5, atoms=0/1)\n",
+      "verifiedAt": "2026-10-29T08:36:30.528Z"
     }
   ],
   "edges": [
@@ -3497,6 +3655,66 @@
     {
       "from": "SPEC-016.AC-003.ev",
       "to": "SPEC-016.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-017.AC-001.task",
+      "to": "SPEC-017.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-017.AC-001.code",
+      "to": "SPEC-017.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-017.AC-001.test",
+      "to": "SPEC-017.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-017.AC-001.ev",
+      "to": "SPEC-017.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-017.AC-002.task",
+      "to": "SPEC-017.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-017.AC-002.code",
+      "to": "SPEC-017.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-017.AC-002.test",
+      "to": "SPEC-017.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-017.AC-002.ev",
+      "to": "SPEC-017.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-017.AC-003.task",
+      "to": "SPEC-017.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-017.AC-003.code",
+      "to": "SPEC-017.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-017.AC-003.test",
+      "to": "SPEC-017.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-017.AC-003.ev",
+      "to": "SPEC-017.AC-003.test",
       "rel": "verifies"
     }
   ]
