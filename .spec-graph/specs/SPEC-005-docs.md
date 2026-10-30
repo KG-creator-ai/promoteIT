@@ -1,6 +1,7 @@
 # SPEC-005: Accurate README/docs
 - Status: draft
 - Phase: 01
+- Domains: docs
 - Owner-persona: po
 
 ## Goal

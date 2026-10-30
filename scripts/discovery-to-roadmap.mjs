@@ -53,13 +53,15 @@ function parseDiscovery() {
     const date = field('Date');
     const impact = field('Impact');
     const proposed = field('Proposed');
+    const promoted = field('Promoted');
     const observation = field('Observation') || field('Paraphrase');
     if (!SOURCE_TYPES.includes(sourceType)) fail(`${id}: invalid Source type "${sourceType}" (allowed: ${SOURCE_TYPES.join(', ')})`);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '')) fail(`${id}: missing or invalid Date (YYYY-MM-DD)`);
     if (!IMPACTS.includes(impact)) fail(`${id}: invalid Impact "${impact}" (allowed: ${IMPACTS.join(', ')})`);
     if (!observation) fail(`${id}: missing Observation/Paraphrase line`);
     if (!proposed) fail(`${id}: missing Proposed line`);
-    findings.push({ id, title, sourceType, date, impact, proposed });
+    if (promoted && !/^SPEC-\d{3}$/.test(promoted)) fail(`${id}: invalid Promoted "${promoted}" (expected SPEC-NNN)`);
+    findings.push({ id, title, sourceType, date, impact, proposed, promoted });
   }
   if (!findings.length) fail('no findings parsed (expected "### D-001 — title" blocks)');
   const seen = new Set();
@@ -81,7 +83,8 @@ function renderSection(findings) {
     '| --- | --- | --- | --- | --- | --- |',
   ];
   for (const f of findings) {
-    const cells = [f.id, f.title, f.sourceType, f.impact, f.proposed, 'candidate'].map((c) => String(c).replace(/\|/g, '\\|'));
+    const state = f.promoted ? `promoted (${f.promoted})` : 'candidate';
+    const cells = [f.id, f.title, f.sourceType, f.impact, f.proposed, state].map((c) => String(c).replace(/\|/g, '\\|'));
     lines.push(`| ${cells.join(' | ')} |`);
   }
   return lines.join('\n') + '\n';

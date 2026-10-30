@@ -1,6 +1,7 @@
 # SPEC-003: CI workflows + pre-push gate
 - Status: in_progress
 - Phase: 01
+- Domains: security
 - Owner-persona: po
 
 ## Goal

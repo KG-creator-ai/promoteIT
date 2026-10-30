@@ -1,6 +1,7 @@
 # SPEC-001: Test suite runs green locally + CI
 - Status: in_progress
 - Phase: 01
+- Domains: security
 - Owner-persona: po
 
 ## Goal

@@ -56,6 +56,10 @@ export function parseArchiveBundle(text: string): ArchiveBundle {
   return bundle;
 }
 
+export function buildArchiveFilename(now: Date = new Date()): string {
+  return `backup-${now.toISOString().replace(/[:.]/g, '-').slice(0, 23)}.promoteit`;
+}
+
 // ──────────────────────────────────────────────
 // Export Campaigns to .promoteit Bundle
 // ──────────────────────────────────────────────
@@ -63,7 +67,7 @@ export async function exportArchive(campaigns: any[]): Promise<void> {
   const dir = await getArchiveDir();
   const bundle = buildArchiveBundle(campaigns);
 
-  const filename = `backup-${new Date().toISOString().slice(0, 10)}.promoteit`;
+  const filename = buildArchiveFilename();
   const fileHandle = await dir.getFileHandle(filename, { create: true });
   const writable = await fileHandle.createWritable();
   await writable.write(JSON.stringify(bundle, null, 2));
@@ -104,7 +108,8 @@ export async function listLocalArchives(): Promise<string[]> {
       }
     }
     return files.sort().reverse();
-  } catch {
+  } catch (err) {
+    console.warn('[archival] listing local archives failed', err);
     return [];
   }
 }

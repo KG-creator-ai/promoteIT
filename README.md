@@ -30,7 +30,7 @@ in `.env` is invisible to the app. Never commit `.env*`; never log keys.
 npm run lint   # tsc --noEmit (only check; no ESLint)
 npm test       # Vitest (unit in node env; jsdom component tests need Node ≥ 22)
 npm run build  # production build + PWA precache (~3 min)
-npm run gate   # typecheck + tests + secret-scan (SPEC-GRAPH local gate)
+npm run gate   # typecheck + tests + SAST + dep-audit + secret-scan (SPEC-GRAPH local gate)
 ```
 
 Headless UI audit: `node scripts/visual-audit.wsl.mjs` (needs dev server +

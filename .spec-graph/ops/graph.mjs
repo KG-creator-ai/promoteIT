@@ -124,7 +124,10 @@ function verify(atomId, cmd, extraPaths) {
   if (!ev) { console.error(`unknown atom ${atomId}`); process.exit(1); }
   const evNode = ev.kind === 'evidence' ? ev : g.nodes.find(n => n.id === atomId + '.ev');
   const testNode = g.nodes.find(n => n.id === atomId + '.test' || (atomId.endsWith('.test') && n.id === atomId));
-  const paths = [...new Set([...(testNode?.paths || []), ...(extraPaths || [])])];
+  // Freshness tracking is a union: previously tracked paths are never dropped
+  // by a re-verify that omits --paths (dropping them would silently stop
+  // re-opening the atom when a tracked file changes).
+  const paths = [...new Set([...(testNode?.paths || []), ...(extraPaths || []), ...Object.keys(evNode.hashes || {})])];
   let exit = 0, out = '';
   try { out = execSync(cmd, { cwd: root, stdio: 'pipe', timeout: 600000 }).toString().slice(-4000); }
   catch (e) { exit = e.status ?? 1; out = ((e.stdout || '') + '' + (e.stderr || '')).slice(-4000); }

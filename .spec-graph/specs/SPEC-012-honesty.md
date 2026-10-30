@@ -1,6 +1,7 @@
 # SPEC-012: Orphan & honesty sweep (wire-or-delete)
 - Status: draft
 - Phase: 08
+- Domains: resilience
 - Owner-persona: po
 
 ## Goal

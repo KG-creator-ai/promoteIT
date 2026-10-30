@@ -2,7 +2,7 @@
 - Status: done
 - Phase: 09
 - Owner-persona: analyst
-- Domains: docs
+- Domains: docs, discovery
 
 ## Goal
 Close the discovery gap: the framework had no repeatable way to capture

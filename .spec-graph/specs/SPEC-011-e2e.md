@@ -1,6 +1,7 @@
 # SPEC-011: E2E functional certification harness
 - Status: draft
 - Phase: 08
+- Domains: ux
 - Owner-persona: po
 
 ## Goal

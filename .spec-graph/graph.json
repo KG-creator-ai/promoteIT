@@ -1,7 +1,7 @@
 {
   "version": "3.1.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-29T09:30:28.110Z",
+  "updatedAt": "2026-10-30T13:45:13.500Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -10,7 +10,9 @@
       "ac": "AC-001",
       "status": "verified",
       "title": "SPEC-001-tests AC-001",
-      "domains": []
+      "domains": [
+        "security"
+      ]
     },
     {
       "id": "SPEC-001.AC-001.task",
@@ -68,7 +70,9 @@
       "ac": "AC-002",
       "status": "verified",
       "title": "SPEC-001-tests AC-002",
-      "domains": []
+      "domains": [
+        "security"
+      ]
     },
     {
       "id": "SPEC-001.AC-002.task",
@@ -122,7 +126,9 @@
       "ac": "AC-003",
       "status": "verified",
       "title": "SPEC-001-tests AC-003",
-      "domains": []
+      "domains": [
+        "security"
+      ]
     },
     {
       "id": "SPEC-001.AC-003.task",
@@ -179,7 +185,9 @@
       "ac": "AC-001",
       "status": "verified",
       "title": "SPEC-002-scripts AC-001",
-      "domains": []
+      "domains": [
+        "docs"
+      ]
     },
     {
       "id": "SPEC-002.AC-001.task",
@@ -229,7 +237,9 @@
       "ac": "AC-002",
       "status": "verified",
       "title": "SPEC-002-scripts AC-002",
-      "domains": []
+      "domains": [
+        "docs"
+      ]
     },
     {
       "id": "SPEC-002.AC-002.task",
@@ -279,7 +289,9 @@
       "ac": "AC-003",
       "status": "verified",
       "title": "SPEC-002-scripts AC-003",
-      "domains": []
+      "domains": [
+        "docs"
+      ]
     },
     {
       "id": "SPEC-002.AC-003.task",
@@ -330,7 +342,9 @@
       "ac": "AC-001",
       "status": "verified",
       "title": "SPEC-003-ci AC-001",
-      "domains": []
+      "domains": [
+        "security"
+      ]
     },
     {
       "id": "SPEC-003.AC-001.task",
@@ -384,7 +398,9 @@
       "ac": "AC-002",
       "status": "verified",
       "title": "SPEC-003-ci AC-002",
-      "domains": []
+      "domains": [
+        "security"
+      ]
     },
     {
       "id": "SPEC-003.AC-002.task",
@@ -434,7 +450,9 @@
       "ac": "AC-003",
       "status": "verified",
       "title": "SPEC-003-ci AC-003",
-      "domains": []
+      "domains": [
+        "security"
+      ]
     },
     {
       "id": "SPEC-003.AC-003.task",
@@ -486,7 +504,9 @@
       "ac": "AC-001",
       "status": "verified",
       "title": "SPEC-004-pwa-assets AC-001",
-      "domains": []
+      "domains": [
+        "ux"
+      ]
     },
     {
       "id": "SPEC-004.AC-001.task",
@@ -545,7 +565,9 @@
       "ac": "AC-002",
       "status": "verified",
       "title": "SPEC-004-pwa-assets AC-002",
-      "domains": []
+      "domains": [
+        "ux"
+      ]
     },
     {
       "id": "SPEC-004.AC-002.task",
@@ -602,7 +624,9 @@
       "ac": "AC-003",
       "status": "verified",
       "title": "SPEC-004-pwa-assets AC-003",
-      "domains": []
+      "domains": [
+        "ux"
+      ]
     },
     {
       "id": "SPEC-004.AC-003.task",
@@ -701,10 +725,12 @@
       "cmd": "grep -q VITE_GEMINI_API_KEY README.md && grep -q 'npm test' README.md && ! grep -q 'env.local' README.md && echo README-OK",
       "exit": 0,
       "hashes": {
-        "tests/unit/pwa-assets.test.ts": "16f3c72fac23dfc3"
+        "tests/unit/pwa-assets.test.ts": "16f3c72fac23dfc3",
+        ".spec-graph/specs/SPEC-005-docs.md": "a62d8b8f1d4eee79",
+        "README.md": "44164f9347fd3e01"
       },
       "log": "README-OK\n",
-      "verifiedAt": "2026-10-29T08:54:04.451Z"
+      "verifiedAt": "2026-10-30T11:17:25.685Z"
     },
     {
       "id": "SPEC-005.AC-002",
@@ -769,7 +795,9 @@
       "ac": "AC-001",
       "status": "verified",
       "title": "SPEC-006-harness AC-001",
-      "domains": []
+      "domains": [
+        "docs"
+      ]
     },
     {
       "id": "SPEC-006.AC-001.task",
@@ -823,7 +851,9 @@
       "ac": "AC-002",
       "status": "verified",
       "title": "SPEC-006-harness AC-002",
-      "domains": []
+      "domains": [
+        "docs"
+      ]
     },
     {
       "id": "SPEC-006.AC-002.task",
@@ -875,7 +905,9 @@
       "ac": "AC-003",
       "status": "verified",
       "title": "SPEC-006-harness AC-003",
-      "domains": []
+      "domains": [
+        "docs"
+      ]
     },
     {
       "id": "SPEC-006.AC-003.task",
@@ -925,7 +957,9 @@
       "ac": "AC-001",
       "status": "verified",
       "title": "SPEC-007-release AC-001",
-      "domains": []
+      "domains": [
+        "security"
+      ]
     },
     {
       "id": "SPEC-007.AC-001.task",
@@ -973,7 +1007,9 @@
       "ac": "AC-002",
       "status": "verified",
       "title": "SPEC-007-release AC-002",
-      "domains": []
+      "domains": [
+        "security"
+      ]
     },
     {
       "id": "SPEC-007.AC-002.task",
@@ -1021,7 +1057,9 @@
       "ac": "AC-003",
       "status": "verified",
       "title": "SPEC-007-release AC-003",
-      "domains": []
+      "domains": [
+        "security"
+      ]
     },
     {
       "id": "SPEC-007.AC-003.task",
@@ -1827,7 +1865,9 @@
       "ac": "AC-001",
       "status": "verified",
       "title": "SPEC-013 AC-001",
-      "domains": []
+      "domains": [
+        "docs"
+      ]
     },
     {
       "id": "SPEC-013.AC-001.task",
@@ -1877,7 +1917,9 @@
       "ac": "AC-002",
       "status": "verified",
       "title": "SPEC-013 AC-002",
-      "domains": []
+      "domains": [
+        "docs"
+      ]
     },
     {
       "id": "SPEC-013.AC-002.task",
@@ -1925,7 +1967,9 @@
       "ac": "AC-003",
       "status": "verified",
       "title": "SPEC-013 AC-003",
-      "domains": []
+      "domains": [
+        "docs"
+      ]
     },
     {
       "id": "SPEC-013.AC-003.task",
@@ -1973,7 +2017,9 @@
       "ac": "AC-001",
       "status": "verified",
       "title": "SPEC-014 AC-001",
-      "domains": []
+      "domains": [
+        "docs"
+      ]
     },
     {
       "id": "SPEC-014.AC-001.task",
@@ -2006,7 +2052,7 @@
       "paths": [
         "tests/unit/quorum.test.ts"
       ],
-      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/quorum.test.ts"
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/quorum.test.ts tests/unit/spec-parse.test.ts"
     },
     {
       "id": "SPEC-014.AC-001.ev",
@@ -2014,13 +2060,16 @@
       "spec": "SPEC-014",
       "ac": "AC-001",
       "status": "verified",
-      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/quorum.test.ts",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/quorum.test.ts tests/unit/spec-parse.test.ts",
       "exit": 0,
       "hashes": {
-        "tests/unit/quorum.test.ts": "049cd15425ae4ca0"
+        "tests/unit/quorum.test.ts": "bb64e5647096b11a",
+        ".spec-graph/ops/spec-parse.mjs": "3e640578f5bd63b1",
+        "tests/unit/spec-parse.test.ts": "dedb3b96468d5d06",
+        "scripts/spec-parse-probe.mjs": "1874c5e17dc2c3c7"
       },
-      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  8 passed (8)\n   Start at  05:45:27\n   Duration  14.70s (setup 80%, tests 16%, transform 3%, worker 1%)\n\n",
-      "verifiedAt": "2026-10-29T05:45:42.319Z"
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  2 passed (2)\n      Tests  12 passed (12)\n   Start at  22:13:47\n   Duration  10.01s (setup 74%, tests 19%, transform 5%, import 1%, worker 1%)\n\n",
+      "verifiedAt": "2026-10-29T22:13:57.611Z"
     },
     {
       "id": "SPEC-014.AC-002",
@@ -2029,7 +2078,9 @@
       "ac": "AC-002",
       "status": "verified",
       "title": "SPEC-014 AC-002",
-      "domains": []
+      "domains": [
+        "docs"
+      ]
     },
     {
       "id": "SPEC-014.AC-002.task",
@@ -2073,10 +2124,12 @@
       "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/quorum.test.ts -t \"tiered quorum\" && grep -q \"quorum missing approve\" .spec-graph/ops/claim-audit.mjs && echo QUORUM-WIRED",
       "exit": 0,
       "hashes": {
-        "tests/unit/quorum.test.ts": "049cd15425ae4ca0"
+        "tests/unit/quorum.test.ts": "bb64e5647096b11a",
+        ".spec-graph/ops/quorum.mjs": "06e52499cb23a816",
+        ".spec-graph/ops/claim-audit.mjs": "bf2e441db4ca0028"
       },
-      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  5 passed | 3 skipped (8)\n   Start at  05:49:33\n   Duration  14.97s (setup 85%, tests 11%, transform 3%, worker 1%)\n\nQUORUM-WIRED\n",
-      "verifiedAt": "2026-10-29T05:49:48.614Z"
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  5 passed | 3 skipped (8)\n   Start at  22:43:34\n   Duration  11.30s (setup 86%, tests 10%, transform 3%, worker 1%)\n\nQUORUM-WIRED\n",
+      "verifiedAt": "2026-10-29T22:43:45.503Z"
     },
     {
       "id": "SPEC-014.AC-003",
@@ -2085,7 +2138,9 @@
       "ac": "AC-003",
       "status": "verified",
       "title": "SPEC-014 AC-003",
-      "domains": [],
+      "domains": [
+        "docs"
+      ],
       "reopenedReason": "replace obfuscated evidence cmd with readable grep chain",
       "reopenedAt": "2026-10-13T05:03:45.014Z"
     },
@@ -2183,7 +2238,10 @@
       "status": "verified",
       "title": "SPEC-015 AC-001",
       "domains": [
-        "security"
+        "security",
+        "perf",
+        "ux",
+        "resilience"
       ]
     },
     {
@@ -2241,7 +2299,10 @@
       "status": "verified",
       "title": "SPEC-015 AC-002",
       "domains": [
-        "perf"
+        "security",
+        "perf",
+        "ux",
+        "resilience"
       ]
     },
     {
@@ -2283,11 +2344,11 @@
       "cmd": "npm run build && node scripts/budget.mjs",
       "exit": 0,
       "hashes": {
-        "scripts/budget.mjs": "0645a3a744323850",
-        ".spec-graph/budgets.json": "da384f20f7626586"
+        ".spec-graph/budgets.json": "4fbca77d823094a1",
+        "scripts/budget.mjs": "0645a3a744323850"
       },
-      "log": "sets/pdfWorker-CDFqgEk2.js                                     \u001b[39m\u001b[1m\u001b[2m   482.30 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/legacy_arka_kirloskar_brand_outro-BDZQ9jxa.jpg            \u001b[39m\u001b[1m\u001b[2m   725.80 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/legacy_crisil_icra_aaa_rating-DJAueVF4.jpg                \u001b[39m\u001b[1m\u001b[2m   782.18 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/heritage_02_kanchipuram_silk_handloom-CLJW8D5f.jpg        \u001b[39m\u001b[1m\u001b[2m   801.13 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/product_wheels_highway_freight_logistics-Utt8uANr.jpg     \u001b[39m\u001b[1m\u001b[2m   825.43 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/heritage_04_kanyakumari_monument_coastline-DBdM4Ra7.jpg   \u001b[39m\u001b[1m\u001b[2m   923.41 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/product_wheels_tirupur_fleet_distribution-DzV1LEmA.jpg    \u001b[39m\u001b[1m\u001b[2m   945.83 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/legacy_tamilnadu_future_333_vision-CViddG6W.jpg           \u001b[39m\u001b[1m\u001b[2m   955.60 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/heritage_01_chennai_central-BOouO6HP.jpg                  \u001b[39m\u001b[1m\u001b[2m   971.72 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/sbl_msme_retail_workshop-DnxgiSpH.jpg                     \u001b[39m\u001b[1m\u001b[2m   976.78 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/heritage_03_chennai_omr_tech_corridor-DjR7pGCd.jpg        \u001b[39m\u001b[1m\u001b[2m 1,113.54 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/pdf.worker.min-Dswkl-cV.mjs                               \u001b[39m\u001b[1m\u001b[2m 1,265.41 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/stlap_tambaram_branch_customer_advisory-Do4tcxnQ.jpg      \u001b[39m\u001b[1m\u001b[2m 1,678.37 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/stlap_tambaram_branch_consultation_lounge-BI-CB17c.jpg    \u001b[39m\u001b[1m\u001b[2m 1,681.66 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/stlap_tambaram_branch_entrance-BZ0PfhF6.jpg               \u001b[39m\u001b[1m\u001b[2m 1,722.35 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/stlap_tambaram_branch_operations-B5kXmp6q.jpg             \u001b[39m\u001b[1m\u001b[2m 1,732.75 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/stlap_tambaram_branch_reception-Bhw818d0.jpg              \u001b[39m\u001b[1m\u001b[2m 1,734.50 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/sbl_credit_committee_meeting-qUXwWaaa.jpg                 \u001b[39m\u001b[1m\u001b[2m 3,417.08 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/sbl_branch_strategy_deliberation-X5ypyrVa.jpg             \u001b[39m\u001b[1m\u001b[2m 3,748.62 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/product_wheels_cuddalore_field_disbursement-BVUtsoWe.jpg  \u001b[39m\u001b[1m\u001b[2m 3,863.41 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/product_wheels_connector_partner_meet-CU-cIRHs.jpg        \u001b[39m\u001b[1m\u001b[2m 4,418.47 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/arka_investor_Intro_Kirloskar-thQakVZI.mp4                \u001b[39m\u001b[1m\u001b[2m18,182.20 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[35massets/index-D2UeljYH.css                                        \u001b[39m\u001b[1m\u001b[2m   117.88 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    17.23 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/purify.es-CAi2OJFm.js                                     \u001b[39m\u001b[1m\u001b[2m    30.47 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    11.73 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/index.es-oDNp_g5k.js                                      \u001b[39m\u001b[1m\u001b[2m   159.72 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    53.54 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/html2canvas.esm-QH1iLAAe.js                               \u001b[39m\u001b[1m\u001b[2m   202.38 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    48.04 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/index-DBaUCQ3L.js                                         \u001b[39m\u001b[1m\u001b[33m 7,172.53 kB\u001b[39m\u001b[22m\u001b[2m │ gzip: 2,491.38 kB\u001b[22m\n\u001b[32m✓ built in 34.23s\u001b[39m\n\nPWA v1.3.0\nmode      generateSW\nprecache  20 entries (8001.40 KiB)\nfiles generated\n  dist/sw.js\n  dist/workbox-835c8c05.js\nok html2canvas html2canvas.esm-QH1iLAAe.js: 202379B / 210000B\nok main chunk index-DBaUCQ3L.js: 7172534B / 7400000B\nok tesseract es index.es-oDNp_g5k.js: 159715B / 165000B\nok ocr worker ocrWorker-Cu1Wi4WU.js: 15963B / 18000B\nok pdf worker pdfWorker-CDFqgEk2.js: 482297B / 500000B\nok dompurify es purify.es-CAi2OJFm.js: 30469B / 32000B\nok total JS: 8063357B / 8300000B\nBUDGET PASS\n",
-      "verifiedAt": "2026-10-29T05:40:36.745Z"
+      "log": "sets/pdfWorker-CDFqgEk2.js                                     \u001b[39m\u001b[1m\u001b[2m   482.30 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/legacy_arka_kirloskar_brand_outro-BDZQ9jxa.jpg            \u001b[39m\u001b[1m\u001b[2m   725.80 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/legacy_crisil_icra_aaa_rating-DJAueVF4.jpg                \u001b[39m\u001b[1m\u001b[2m   782.18 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/heritage_02_kanchipuram_silk_handloom-CLJW8D5f.jpg        \u001b[39m\u001b[1m\u001b[2m   801.13 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/product_wheels_highway_freight_logistics-Utt8uANr.jpg     \u001b[39m\u001b[1m\u001b[2m   825.43 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/heritage_04_kanyakumari_monument_coastline-DBdM4Ra7.jpg   \u001b[39m\u001b[1m\u001b[2m   923.41 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/product_wheels_tirupur_fleet_distribution-DzV1LEmA.jpg    \u001b[39m\u001b[1m\u001b[2m   945.83 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/legacy_tamilnadu_future_333_vision-CViddG6W.jpg           \u001b[39m\u001b[1m\u001b[2m   955.60 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/heritage_01_chennai_central-BOouO6HP.jpg                  \u001b[39m\u001b[1m\u001b[2m   971.72 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/sbl_msme_retail_workshop-DnxgiSpH.jpg                     \u001b[39m\u001b[1m\u001b[2m   976.78 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/heritage_03_chennai_omr_tech_corridor-DjR7pGCd.jpg        \u001b[39m\u001b[1m\u001b[2m 1,113.54 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/pdf.worker.min-Dswkl-cV.mjs                               \u001b[39m\u001b[1m\u001b[2m 1,265.41 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/stlap_tambaram_branch_customer_advisory-Do4tcxnQ.jpg      \u001b[39m\u001b[1m\u001b[2m 1,678.37 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/stlap_tambaram_branch_consultation_lounge-BI-CB17c.jpg    \u001b[39m\u001b[1m\u001b[2m 1,681.66 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/stlap_tambaram_branch_entrance-BZ0PfhF6.jpg               \u001b[39m\u001b[1m\u001b[2m 1,722.35 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/stlap_tambaram_branch_operations-B5kXmp6q.jpg             \u001b[39m\u001b[1m\u001b[2m 1,732.75 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/stlap_tambaram_branch_reception-Bhw818d0.jpg              \u001b[39m\u001b[1m\u001b[2m 1,734.50 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/sbl_credit_committee_meeting-qUXwWaaa.jpg                 \u001b[39m\u001b[1m\u001b[2m 3,417.08 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/sbl_branch_strategy_deliberation-X5ypyrVa.jpg             \u001b[39m\u001b[1m\u001b[2m 3,748.62 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/product_wheels_cuddalore_field_disbursement-BVUtsoWe.jpg  \u001b[39m\u001b[1m\u001b[2m 3,863.41 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/product_wheels_connector_partner_meet-CU-cIRHs.jpg        \u001b[39m\u001b[1m\u001b[2m 4,418.47 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[32massets/arka_investor_Intro_Kirloskar-thQakVZI.mp4                \u001b[39m\u001b[1m\u001b[2m18,182.20 kB\u001b[22m\u001b[1m\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[35massets/index-D2UeljYH.css                                        \u001b[39m\u001b[1m\u001b[2m   117.88 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    17.23 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/purify.es-CAi2OJFm.js                                     \u001b[39m\u001b[1m\u001b[2m    30.47 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    11.73 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/index.es-BMxQkYWG.js                                      \u001b[39m\u001b[1m\u001b[2m   159.72 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    53.54 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/html2canvas.esm-QH1iLAAe.js                               \u001b[39m\u001b[1m\u001b[2m   202.38 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:    48.04 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/index-P1mMUrLB.js                                         \u001b[39m\u001b[1m\u001b[33m 7,173.27 kB\u001b[39m\u001b[22m\u001b[2m │ gzip: 2,491.68 kB\u001b[22m\n\u001b[32m✓ built in 33.63s\u001b[39m\n\nPWA v1.3.0\nmode      generateSW\nprecache  20 entries (8002.12 KiB)\nfiles generated\n  dist/sw.js\n  dist/workbox-835c8c05.js\nok html2canvas html2canvas.esm-QH1iLAAe.js: 202379B / 210000B\nok main chunk index-P1mMUrLB.js: 7173266B / 7400000B\nok tesseract es index.es-BMxQkYWG.js: 159715B / 165000B\nok ocr worker ocrWorker-Cu1Wi4WU.js: 15963B / 18000B\nok pdf worker pdfWorker-CDFqgEk2.js: 482297B / 500000B\nok dompurify es purify.es-CAi2OJFm.js: 30469B / 32000B\nok total JS: 8064089B / 8300000B\nBUDGET PASS\n",
+      "verifiedAt": "2026-10-30T09:23:50.793Z"
     },
     {
       "id": "SPEC-015.AC-003",
@@ -2297,7 +2358,10 @@
       "status": "verified",
       "title": "SPEC-015 AC-003",
       "domains": [
-        "ux"
+        "security",
+        "perf",
+        "ux",
+        "resilience"
       ]
     },
     {
@@ -2353,6 +2417,9 @@
       "status": "verified",
       "title": "SPEC-015 AC-004",
       "domains": [
+        "security",
+        "perf",
+        "ux",
         "resilience"
       ]
     },
@@ -2387,7 +2454,7 @@
         "tests/unit/migration.test.ts",
         "tests/unit/archival.test.ts"
       ],
-      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/migration.test.ts tests/unit/archival.test.ts"
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/migration.test.ts tests/unit/archival.test.ts tests/unit/import-resilience.test.ts tests/component/import-modal.test.tsx"
     },
     {
       "id": "SPEC-015.AC-004.ev",
@@ -2395,16 +2462,21 @@
       "spec": "SPEC-015",
       "ac": "AC-004",
       "status": "verified",
-      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/migration.test.ts tests/unit/archival.test.ts",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/migration.test.ts tests/unit/archival.test.ts tests/unit/import-resilience.test.ts tests/component/import-modal.test.tsx",
       "exit": 0,
       "hashes": {
         "tests/unit/migration.test.ts": "ca123d9a0a096908",
         "tests/unit/archival.test.ts": "1d26cbead7be4bba",
-        "src/lib/archival.ts": "855af6aeaeaa4a02",
-        "src/db/db.ts": "a6c513779cbde839"
+        "tests/unit/import-resilience.test.ts": "f696c28a68b16aad",
+        "tests/component/import-modal.test.tsx": "d922d3e7ee4cb5a3",
+        "src/lib/archival.ts": "f271bdc84c00d743",
+        "src/db/db.ts": "a6c513779cbde839",
+        "src/lib/zipImporter.ts": "cd3eb99c10a02bbd",
+        "src/components/projects/ImportProjectModal.tsx": "6c01e9df99f62d21",
+        "src/components/system/StorageQuotaIndicator.tsx": "475915bde22df8f7"
       },
-      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  2 passed (2)\n      Tests  8 passed (8)\n   Start at  05:38:45\n   Duration  11.19s (setup 86%, import 7%, transform 6%, worker 1%, tests 1%)\n\n",
-      "verifiedAt": "2026-10-29T05:38:56.539Z"
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  3 passed (3)\n      Tests  11 passed (11)\n   Start at  09:23:56\n   Duration  17.36s (setup 68%, import 18%, transform 12%, tests 1%, worker 1%)\n\n",
+      "verifiedAt": "2026-10-30T09:24:14.171Z"
     },
     {
       "id": "SPEC-016.AC-001",
@@ -2414,7 +2486,8 @@
       "status": "verified",
       "title": "SPEC-016 AC-001",
       "domains": [
-        "ux"
+        "ux",
+        "docs"
       ]
     },
     {
@@ -2470,7 +2543,8 @@
       "status": "verified",
       "title": "SPEC-016 AC-002",
       "domains": [
-        "ux"
+        "ux",
+        "docs"
       ]
     },
     {
@@ -2528,6 +2602,7 @@
       "status": "verified",
       "title": "SPEC-016 AC-003",
       "domains": [
+        "ux",
         "docs"
       ]
     },
@@ -2623,11 +2698,11 @@
       "cmd": "grep -q \"\\.opencode/\" .spec-graph/README.md && grep -q \"\\.opencode/agents/\" README.md && echo QUICKSTART-OK",
       "exit": 0,
       "hashes": {
-        ".spec-graph/README.md": "b3a9a2df92497586",
-        "README.md": "450b090f4aa0a9ee"
+        ".spec-graph/README.md": "07826949a6482dd6",
+        "README.md": "44164f9347fd3e01"
       },
       "log": "QUICKSTART-OK\n",
-      "verifiedAt": "2026-10-29T08:36:27.276Z"
+      "verifiedAt": "2026-10-30T11:17:25.104Z"
     },
     {
       "id": "SPEC-017.AC-002",
@@ -2676,12 +2751,12 @@
       "cmd": "v=$(cat .spec-graph/VERSION); grep -q \"$v\" .spec-graph/README.md && ! grep -qE \"media/|\\.antigravity/|samples/|cloud-sync|Promote-IT\" .spec-graph/GUARDRAILS.md && echo VERSION-OK",
       "exit": 0,
       "hashes": {
-        ".spec-graph/VERSION": "59854984853104df",
-        ".spec-graph/README.md": "b3a9a2df92497586",
-        ".spec-graph/GUARDRAILS.md": "47f6258a9846938c"
+        ".spec-graph/README.md": "07826949a6482dd6",
+        ".spec-graph/GUARDRAILS.md": "47f6258a9846938c",
+        ".spec-graph/VERSION": "59854984853104df"
       },
       "log": "VERSION-OK\n",
-      "verifiedAt": "2026-10-29T08:36:27.680Z"
+      "verifiedAt": "2026-10-30T11:19:01.234Z"
     },
     {
       "id": "SPEC-017.AC-003",
@@ -2743,7 +2818,8 @@
       "status": "verified",
       "title": "SPEC-018 AC-001",
       "domains": [
-        "docs"
+        "docs",
+        "discovery"
       ]
     },
     {
@@ -2781,9 +2857,12 @@
       "status": "verified",
       "cmd": "node scripts/discovery-to-roadmap.mjs --check && grep -q \"Source type\" .spec-graph/templates/DISCOVERY.md && grep -q \"Paraphrase\" .spec-graph/templates/DISCOVERY.md && grep -q \"no invented quotes\" .spec-graph/templates/DISCOVERY.md && grep -q \"hypothesis\" .spec-graph/templates/DISCOVERY.md && echo FORMAT-OK",
       "exit": 0,
-      "hashes": {},
-      "log": "DISCOVERY-OK — 6 candidate(s) match .spec-graph/DISCOVERY.md\nFORMAT-OK\n",
-      "verifiedAt": "2026-10-29T09:30:27.282Z"
+      "hashes": {
+        ".spec-graph/templates/DISCOVERY.md": "e458b979f012f383",
+        ".spec-graph/DISCOVERY.md": "4a6765e3595f4837"
+      },
+      "log": "DISCOVERY-OK — 12 candidate(s) match .spec-graph/DISCOVERY.md\nFORMAT-OK\n",
+      "verifiedAt": "2026-10-30T04:33:16.874Z"
     },
     {
       "id": "SPEC-018.AC-002",
@@ -2793,7 +2872,8 @@
       "status": "verified",
       "title": "SPEC-018 AC-002",
       "domains": [
-        "docs"
+        "docs",
+        "discovery"
       ]
     },
     {
@@ -2831,9 +2911,172 @@
       "status": "verified",
       "cmd": "node scripts/discovery-to-roadmap.mjs --apply >/dev/null && b=$(sha256sum .spec-graph/ROADMAP.md | cut -d\" \" -f1) && node scripts/discovery-to-roadmap.mjs --apply >/dev/null && a=$(sha256sum .spec-graph/ROADMAP.md | cut -d\" \" -f1) && [ \"$b\" = \"$a\" ] && node scripts/discovery-to-roadmap.mjs --check && echo IDEMPOTENT-OK",
       "exit": 0,
+      "hashes": {
+        "scripts/discovery-to-roadmap.mjs": "f71fc2988240fbc5",
+        ".spec-graph/ROADMAP.md": "9056ce19f7ca4f0b",
+        ".spec-graph/DISCOVERY.md": "4a6765e3595f4837"
+      },
+      "log": "DISCOVERY-OK — 12 candidate(s) match .spec-graph/DISCOVERY.md\nIDEMPOTENT-OK\n",
+      "verifiedAt": "2026-10-30T13:45:13.497Z"
+    },
+    {
+      "id": "SPEC-019.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-019",
+      "ac": "AC-001",
+      "status": "verified",
+      "title": "SPEC-019 AC-001",
+      "domains": [
+        "docs",
+        "security"
+      ]
+    },
+    {
+      "id": "SPEC-019.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-019",
+      "ac": "AC-001",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-019.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-019.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-019",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-019.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-019",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [],
+      "cmd": "grep -q \"v1.2.0\" CERTIFICATION.md && grep -q \"Automated gates: PASS\" CERTIFICATION.md && grep -q \"Headless functional E2E\" CERTIFICATION.md && grep -q \"Vision QA: PASS\" CERTIFICATION.md && grep -q \"Provider-backed generation: PASS\" CERTIFICATION.md && grep -q \"Assurance (Phase 09)\" CERTIFICATION.md && grep -q \"Artifact index\" CERTIFICATION.md && grep -q \"Known limits\" CERTIFICATION.md && grep -q \"agent-vision\" CERTIFICATION.md && grep -q \"98a3983c3fe11485\" CERTIFICATION.md && grep -q \"durable L2 record\" CERTIFICATION.md && grep -q \"SAST\" CERTIFICATION.md && grep -q \"dep-audit\" CERTIFICATION.md && grep -q \"bundle budget\" CERTIFICATION.md && grep -q \"axe-core\" CERTIFICATION.md && grep -q \"GHSA-gcqx-w48m-w2h4\" CERTIFICATION.md && echo CERT-OK"
+    },
+    {
+      "id": "SPEC-019.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-019",
+      "ac": "AC-001",
+      "status": "verified",
+      "cmd": "grep -q \"v1.2.0\" CERTIFICATION.md && grep -q \"Automated gates: PASS\" CERTIFICATION.md && grep -q \"Headless functional E2E\" CERTIFICATION.md && grep -q \"Vision QA: PASS\" CERTIFICATION.md && grep -q \"Provider-backed generation: PASS\" CERTIFICATION.md && grep -q \"Assurance (Phase 09)\" CERTIFICATION.md && grep -q \"Artifact index\" CERTIFICATION.md && grep -q \"Known limits\" CERTIFICATION.md && grep -q \"agent-vision\" CERTIFICATION.md && grep -q \"98a3983c3fe11485\" CERTIFICATION.md && grep -q \"durable L2 record\" CERTIFICATION.md && grep -q \"SAST\" CERTIFICATION.md && grep -q \"dep-audit\" CERTIFICATION.md && grep -q \"bundle budget\" CERTIFICATION.md && grep -q \"axe-core\" CERTIFICATION.md && grep -q \"GHSA-gcqx-w48m-w2h4\" CERTIFICATION.md && echo CERT-OK",
+      "exit": 0,
+      "hashes": {
+        "CERTIFICATION.md": "8332b74c121e81bf",
+        ".spec-graph/templates/CERTIFICATION.md": "f105cb3e60e814f8",
+        "tests/unit/certification-claims.test.ts": "32a0824459984f31"
+      },
+      "log": "CERT-OK\n",
+      "verifiedAt": "2026-10-30T09:24:14.743Z"
+    },
+    {
+      "id": "SPEC-019.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-019",
+      "ac": "AC-002",
+      "status": "verified",
+      "title": "SPEC-019 AC-002",
+      "domains": [
+        "docs",
+        "security"
+      ]
+    },
+    {
+      "id": "SPEC-019.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-019",
+      "ac": "AC-002",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-019.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-019.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-019",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-019.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-019",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node .spec-graph/ops/quorum.mjs --phase 09 --specs SPEC-014,SPEC-015,SPEC-016,SPEC-017,SPEC-018,SPEC-019"
+    },
+    {
+      "id": "SPEC-019.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-019",
+      "ac": "AC-002",
+      "status": "verified",
+      "cmd": "node .spec-graph/ops/quorum.mjs --phase 09 --specs SPEC-014,SPEC-015,SPEC-016,SPEC-017,SPEC-018,SPEC-019",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/ops/quorum.mjs": "06e52499cb23a816",
+        ".spec-graph/ops/claim-audit.mjs": "bf2e441db4ca0028"
+      },
+      "log": "{\n  \"verdict\": \"PASS\",\n  \"phase\": \"09\",\n  \"specs\": [\n    \"SPEC-014\",\n    \"SPEC-015\",\n    \"SPEC-016\",\n    \"SPEC-017\",\n    \"SPEC-018\",\n    \"SPEC-019\"\n  ],\n  \"domains\": [\n    \"docs\",\n    \"security\",\n    \"perf\",\n    \"ux\",\n    \"resilience\",\n    \"discovery\"\n  ],\n  \"required\": [\n    \"po\",\n    \"architect\",\n    \"builder\",\n    \"qa\",\n    \"redteam\",\n    \"releaser\",\n    \"docs-reviewer\",\n    \"security-auditor\",\n    \"perf-engineer\",\n    \"design-reviewer\",\n    \"resilience-engineer\",\n    \"analyst\"\n  ],\n  \"present\": {\n    \"po\": \"approve\",\n    \"architect\": \"approve\",\n    \"builder\": \"approve\",\n    \"qa\": \"approve\",\n    \"redteam\": \"approve\",\n    \"releaser\": \"approve\",\n    \"docs-reviewer\": \"approve\",\n    \"security-auditor\": \"approve\",\n    \"perf-engineer\": \"approve\",\n    \"design-reviewer\": \"approve\",\n    \"resilience-engineer\": \"approve\",\n    \"analyst\": \"approve\"\n  },\n  \"missing\": [],\n  \"nonApprove\": []\n}\n",
+      "verifiedAt": "2026-10-30T13:36:23.924Z"
+    },
+    {
+      "id": "SPEC-019.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-019",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-019 AC-003",
+      "domains": [
+        "docs",
+        "security"
+      ]
+    },
+    {
+      "id": "SPEC-019.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-019",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-019.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-019.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-019",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-019.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-019",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-019.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-019",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
       "hashes": {},
-      "log": "DISCOVERY-OK — 6 candidate(s) match .spec-graph/DISCOVERY.md\nIDEMPOTENT-OK\n",
-      "verifiedAt": "2026-10-29T09:30:28.110Z"
+      "log": ""
     }
   ],
   "edges": [
@@ -3855,6 +4098,66 @@
     {
       "from": "SPEC-018.AC-002.ev",
       "to": "SPEC-018.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-019.AC-001.task",
+      "to": "SPEC-019.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-019.AC-001.code",
+      "to": "SPEC-019.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-019.AC-001.test",
+      "to": "SPEC-019.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-019.AC-001.ev",
+      "to": "SPEC-019.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-019.AC-002.task",
+      "to": "SPEC-019.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-019.AC-002.code",
+      "to": "SPEC-019.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-019.AC-002.test",
+      "to": "SPEC-019.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-019.AC-002.ev",
+      "to": "SPEC-019.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-019.AC-003.task",
+      "to": "SPEC-019.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-019.AC-003.code",
+      "to": "SPEC-019.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-019.AC-003.test",
+      "to": "SPEC-019.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-019.AC-003.ev",
+      "to": "SPEC-019.AC-003.test",
       "rel": "verifies"
     }
   ]

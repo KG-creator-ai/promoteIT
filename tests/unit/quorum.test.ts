@@ -39,7 +39,7 @@ describe('schema v3.1.0 domains (SPEC-014.AC-001)', () => {
     const real = probe(path.resolve(__dirname, '../../.spec-graph/specs/SPEC-010-providers.md'));
     expect(real.id).toBe('SPEC-010-providers');
     expect(real.acs.length).toBe(3);
-    expect(real.domains).toEqual([]);
+    expect(real.domains).toEqual(['security']);
     const tmp = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'spec-')), 'SPEC-9.md');
     fs.writeFileSync(tmp, '# SPEC-9\n- Domains: security, perf\n\n- [ ] AC-001 (SPEC-9.AC-001): x — verified by: y\n');
     expect(probe(tmp).domains).toEqual(['security', 'perf']);
@@ -70,12 +70,13 @@ describe('tiered quorum (SPEC-014)', () => {
   beforeEach(() => { dir = fs.mkdtempSync(path.join(os.tmpdir(), 'quorum-')); });
   afterEach(() => { fs.rmSync(dir, { recursive: true, force: true }); });
 
-  it('AC-001: core-only specs pass on core6 approve', () => {
+  it('AC-001: a spec id without domain metadata passes on core6 approve', () => {
     CORE.forEach((p) => writeVerdict(p));
-    const r = run('SPEC-014');
+    const r = run('SPEC-000'); // no atoms => no domains => core6 only (backward compat)
     expect(r.exit).toBe(0);
     expect(r.json.verdict).toBe('PASS');
     expect(r.json.domains).toEqual([]);
+    expect(r.json.required).toEqual(CORE);
   });
 
   it('AC-002: domain specs require their auditors (missing => FAIL)', () => {

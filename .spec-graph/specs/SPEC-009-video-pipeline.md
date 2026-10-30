@@ -1,6 +1,7 @@
 # SPEC-009: Video pipeline consolidation (VideoRenderer gets a consumer)
 - Status: draft
 - Phase: 08
+- Domains: ux, perf
 - Owner-persona: po
 
 ## Goal

@@ -1,6 +1,7 @@
 # SPEC-010: Multi-provider AI (Gemini / OpenRouter / NVIDIA NIM) + Qwen default
 - Status: draft
 - Phase: 08
+- Domains: security
 - Owner-persona: po
 
 ## Goal

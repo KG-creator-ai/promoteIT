@@ -1,12 +1,42 @@
 {
-  "_note": "Bundle ratchet (SPEC-015.AC-002). Caps = measured 2026-10-13 + ~3% headroom. Any growth needs an explicit bump in this file (visible decision, perf-engineer verdict). Patterns match hashed vite filenames.",
+  "_note": "Bundle ratchet (SPEC-015.AC-002). Caps = measured 2026-10-29 + ~3% headroom. Any growth needs an explicit bump in this file (visible decision, perf-engineer verdict). Patterns match hashed vite filenames.",
   "js": [
-    { "pattern": "^index-[A-Za-z0-9_-]+\\.js$", "label": "main chunk", "maxBytes": 7400000, "measured": 7172239 },
-    { "pattern": "^pdfWorker-[A-Za-z0-9_-]+\\.js$", "label": "pdf worker", "maxBytes": 500000, "measured": 482297 },
-    { "pattern": "^html2canvas\\.esm-[A-Za-z0-9_-]+\\.js$", "label": "html2canvas", "maxBytes": 210000, "measured": 202379 },
-    { "pattern": "^index\\.es-[A-Za-z0-9_-]+\\.js$", "label": "tesseract es", "maxBytes": 165000, "measured": 159715 },
-    { "pattern": "^purify\\.es-[A-Za-z0-9_-]+\\.js$", "label": "dompurify es", "maxBytes": 32000, "measured": 29049 },
-    { "pattern": "^ocrWorker-[A-Za-z0-9_-]+\\.js$", "label": "ocr worker", "maxBytes": 18000, "measured": 15963 }
+    {
+      "pattern": "^index-[A-Za-z0-9_-]+\\.js$",
+      "label": "main chunk",
+      "maxBytes": 7400000,
+      "measured": 7173266
+    },
+    {
+      "pattern": "^pdfWorker-[A-Za-z0-9_-]+\\.js$",
+      "label": "pdf worker",
+      "maxBytes": 500000,
+      "measured": 482297
+    },
+    {
+      "pattern": "^html2canvas\\.esm-[A-Za-z0-9_-]+\\.js$",
+      "label": "html2canvas",
+      "maxBytes": 210000,
+      "measured": 202379
+    },
+    {
+      "pattern": "^index\\.es-[A-Za-z0-9_-]+\\.js$",
+      "label": "tesseract es",
+      "maxBytes": 165000,
+      "measured": 159715
+    },
+    {
+      "pattern": "^purify\\.es-[A-Za-z0-9_-]+\\.js$",
+      "label": "dompurify es",
+      "maxBytes": 32000,
+      "measured": 30469
+    },
+    {
+      "pattern": "^ocrWorker-[A-Za-z0-9_-]+\\.js$",
+      "label": "ocr worker",
+      "maxBytes": 18000,
+      "measured": 15963
+    }
   ],
   "totalJsMaxBytes": 8300000,
   "unlistedJsWarnBytes": 10000

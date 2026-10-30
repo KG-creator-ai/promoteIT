@@ -67,7 +67,8 @@ export function StorageQuotaIndicator() {
       await exportArchive(campaigns);
       setArchives(await listLocalArchives());
       setArchiveMsg(`Snapshot saved (${campaigns.length} campaigns) to OPFS + download.`);
-    } catch {
+    } catch (err) {
+      console.warn('[storage] snapshot failed', err);
       setArchiveMsg('Snapshot unavailable — this browser lacks Origin Private File System support.');
     } finally {
       setArchiving(false);
@@ -87,7 +88,8 @@ export function StorageQuotaIndicator() {
       if (!Array.isArray(rows)) throw new Error('bad bundle');
       await db.campaigns.bulkPut(rows);
       setArchiveMsg(`Restored ${rows.length} campaigns from snapshot.`);
-    } catch {
+    } catch (err) {
+      console.warn('[storage] restore failed', err);
       setArchiveMsg('Restore failed — pick a valid .promoteit snapshot (Chrome/Edge file picker).');
     } finally {
       setArchiving(false);

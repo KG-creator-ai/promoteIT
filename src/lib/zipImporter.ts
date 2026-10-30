@@ -24,13 +24,81 @@ export interface ImportResult {
   title: string;
   sceneCount: number;
   resourceCount: number;
+  skippedCount: number;
+}
+
+async function readZipContents(zip: JSZip, manifest: ZipManifest): Promise<{ resourceLibrary: AVResourceRef[]; videoPrompts: VideoPrompt[]; skippedCount: number }> {
+  const resourceLibrary: AVResourceRef[] = [];
+  const videoPrompts: VideoPrompt[] = [...(manifest.videoPrompts || [])];
+  let skippedCount = 0;
+
+  const resourcesFolder = zip.folder('resources');
+  if (resourcesFolder) {
+    for (const [filename, zipEntry] of Object.entries(resourcesFolder.files)) {
+      if (zipEntry.dir || !filename.startsWith('resources/') || !filename.endsWith('.json')) continue;
+      try {
+        const content = await zipEntry.async('text');
+        resourceLibrary.push(JSON.parse(content));
+      } catch {
+        skippedCount += 1;
+      }
+    }
+  }
+
+  const audioFolder = zip.folder('audio');
+  if (audioFolder) {
+    for (const [filename, zipEntry] of Object.entries(audioFolder.files)) {
+      if (zipEntry.dir || !filename.startsWith('audio/')) continue;
+      try {
+        const content = await zipEntry.async('text');
+        resourceLibrary.push({
+          id: `audio-${filename.replace(/\.[^.]+$/, '')}`,
+          type: 'tts_audio',
+          title: filename,
+          mimeType: 'text/plain',
+          blobOrTextRef: content,
+          metadata: { source: 'zip-import' },
+          createdAt: Date.now(),
+        });
+      } catch {
+        skippedCount += 1;
+      }
+    }
+  }
+
+  const promptsFolder = zip.folder('prompts');
+  if (promptsFolder) {
+    for (const [filename, zipEntry] of Object.entries(promptsFolder.files)) {
+      if (zipEntry.dir || !filename.startsWith('prompts/') || !filename.endsWith('.json')) continue;
+      try {
+        const content = await zipEntry.async('text');
+        const prompt: VideoPrompt = JSON.parse(content);
+        if (!videoPrompts.find(p => p.id === prompt.id)) {
+          videoPrompts.push(prompt);
+        }
+      } catch {
+        skippedCount += 1;
+      }
+    }
+  }
+
+  return { resourceLibrary, videoPrompts, skippedCount };
+}
+
+export async function countSkippedEntries(file: File): Promise<number> {
+  const buffer = await file.arrayBuffer();
+  const zip = await JSZip.loadAsync(buffer);
+  const manifestFile = zip.file('manifest.json');
+  if (!manifestFile) return 0;
+  const manifest: ZipManifest = JSON.parse(await manifestFile.async('text'));
+  const { skippedCount } = await readZipContents(zip, manifest);
+  return skippedCount;
 }
 
 export async function importCampaignZip(file: File): Promise<ImportResult> {
   const buffer = await file.arrayBuffer();
   const zip = await JSZip.loadAsync(buffer);
 
-  // ── Read manifest ──
   const manifestFile = zip.file('manifest.json');
   if (!manifestFile) {
     throw new Error('Invalid archive: missing manifest.json');
@@ -41,62 +109,7 @@ export async function importCampaignZip(file: File): Promise<ImportResult> {
     throw new Error('Invalid archive format. Expected promoteit-zip.');
   }
 
-  // ── Read resources ──
-  const resourceLibrary: AVResourceRef[] = [];
-  const resourcesFolder = zip.folder('resources');
-  if (resourcesFolder) {
-    for (const [filename, zipEntry] of Object.entries(resourcesFolder.files)) {
-      if (zipEntry.dir || !filename.endsWith('.json')) continue;
-      try {
-        const content = await zipEntry.async('text');
-        const res: AVResourceRef = JSON.parse(content);
-        resourceLibrary.push(res);
-      } catch {
-        // skip malformed resource files
-      }
-    }
-  }
-
-  // ── Read audio files as text references ──
-  const audioFolder = zip.folder('audio');
-  if (audioFolder) {
-    for (const [filename, zipEntry] of Object.entries(audioFolder.files)) {
-      if (zipEntry.dir) continue;
-      try {
-        const content = await zipEntry.async('text');
-        const resId = `audio-${filename.replace(/\.[^.]+$/, '')}`;
-        resourceLibrary.push({
-          id: resId,
-          type: 'tts_audio',
-          title: filename,
-          mimeType: 'text/plain',
-          blobOrTextRef: content,
-          metadata: { source: 'zip-import' },
-          createdAt: Date.now(),
-        });
-      } catch {
-        // skip
-      }
-    }
-  }
-
-  // ── Read prompts ──
-  const videoPrompts: VideoPrompt[] = manifest.videoPrompts || [];
-  const promptsFolder = zip.folder('prompts');
-  if (promptsFolder) {
-    for (const [filename, zipEntry] of Object.entries(promptsFolder.files)) {
-      if (zipEntry.dir || !filename.endsWith('.json')) continue;
-      try {
-        const content = await zipEntry.async('text');
-        const prompt: VideoPrompt = JSON.parse(content);
-        if (!videoPrompts.find(p => p.id === prompt.id)) {
-          videoPrompts.push(prompt);
-        }
-      } catch {
-        // skip
-      }
-    }
-  }
+  const { resourceLibrary, videoPrompts, skippedCount } = await readZipContents(zip, manifest);
 
   // ── Create new campaign in IndexedDB ──
   const newId = crypto.randomUUID();
@@ -121,5 +134,6 @@ export async function importCampaignZip(file: File): Promise<ImportResult> {
     title: campaign.title,
     sceneCount: campaign.sceneGraph?.length || 0,
     resourceCount: resourceLibrary.length,
+    skippedCount,
   };
 }

@@ -2,7 +2,7 @@
 - Status: done
 - Phase: 09
 - Owner-persona: architect
-- Domains:
+- Domains: docs
 
 ## Goal
 Expand the roster from 6 to 12 personas (6 core + 5 conditional domain
@@ -18,9 +18,13 @@ approval. Fixes the PROCESS.md inconsistency (phases 02/06 already demand a
 
 ## Acceptance Criteria
 - [x] AC-001 (SPEC-014.AC-001): schema v3.1.0 carries optional `domains` on
-  spec_atom nodes; `graph.mjs init` parses `- Domains:` from spec files;
-  existing 36 atoms backfilled (005→docs, 008→ux, 009→ux+perf, 010→security,
-  011→ux, 012→resilience) — verified by: `node .spec-graph/ops/graph.mjs status` + domains unit test
+  spec_atom nodes; `graph.mjs init` parses `- Domains:` from spec files; every
+  spec file declares exactly one `- Domains:` line and the ledger's spec_atom
+  domains equal what the files parse to, so `init` reproduces the ledger
+  (005→docs, 008→ux, 009→ux+perf, 010→security, 011→ux, 012→resilience,
+  001/003/007→security, 002/006/013/014→docs, 004→ux) — verified by:
+  `node .spec-graph/ops/graph.mjs status` + `tests/unit/spec-parse.test.ts`
+  (empty-value regression + ledger-vs-files agreement)
 - [x] AC-002 (SPEC-014.AC-002): `quorum.mjs` resolves required verdict set
   (core6 + domain-mapped personas) and FAILs on missing/non-approve/block;
   wired into claim-audit check #6; old phases without `specs` in verdicts
@@ -47,6 +51,6 @@ approval. Fixes the PROCESS.md inconsistency (phases 02/06 already demand a
 - Builder cannot self-approve (unchanged).
 
 ## Evidence hooks
-- `node ./node_modules/vitest/vitest.mjs run tests/unit/quorum.test.ts` for AC-001/002
+- `node ./node_modules/vitest/vitest.mjs run tests/unit/quorum.test.ts tests/unit/spec-parse.test.ts` for AC-001/002
 - `node .spec-graph/ops/claim-audit.mjs` for AC-002 (quorum check live)
 - presence/link check for AC-003

@@ -1,6 +1,7 @@
 # SPEC-007: Release mechanics to v1.0.0
 - Status: draft
 - Phase: 01
+- Domains: security
 - Owner-persona: po
 
 ## Goal

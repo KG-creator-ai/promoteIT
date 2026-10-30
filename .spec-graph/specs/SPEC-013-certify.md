@@ -1,6 +1,7 @@
 # SPEC-013: Certification report & v1.1.0
 - Status: draft
 - Phase: 08
+- Domains: docs
 - Owner-persona: po
 
 ## Goal

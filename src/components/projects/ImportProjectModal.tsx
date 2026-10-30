@@ -26,7 +26,7 @@ export function ImportProjectModal({ isOpen, onClose, onImportComplete }: Import
     try {
       const importResult = await importCampaignZip(file);
       setResult(importResult);
-      onImportComplete(importResult);
+      if (importResult.skippedCount === 0) onImportComplete(importResult);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Import failed.');
     } finally {
@@ -92,8 +92,17 @@ export function ImportProjectModal({ isOpen, onClose, onImportComplete }: Import
               <p className="text-sm text-slate-500 dark:text-slate-400">
                 "{result.title}" — {result.sceneCount} scenes, {result.resourceCount} resources
               </p>
+              {result.skippedCount > 0 && (
+                <p className="mt-2 text-sm text-amber-600 dark:text-amber-400">
+                  {result.skippedCount} malformed {result.skippedCount === 1 ? 'entry was' : 'entries were'} skipped —
+                  the campaign was imported without them.
+                </p>
+              )}
               <button
-                onClick={onClose}
+                onClick={() => {
+                  onImportComplete(result);
+                  onClose();
+                }}
                 className="mt-6 px-6 py-2.5 min-h-[44px] bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 transition-colors"
               >
                 Open Imported Campaign

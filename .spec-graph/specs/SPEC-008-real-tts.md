@@ -1,6 +1,7 @@
 # SPEC-008: AudioStudio becomes real TTS (zero-backend)
 - Status: draft
 - Phase: 08
+- Domains: ux
 - Owner-persona: po
 
 ## Goal

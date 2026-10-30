@@ -5,8 +5,9 @@ Web Workers (PDF/OCR), WebGPU WebLLM, Web Speech TTS, Workbox PWA.
 
 ## Commands — npm scripts use node-direct form (works in WSL + CI)
 
-- `npm` on PATH is Windows (Scoop) npm.exe and `node_modules/.bin` has POSIX shims only
-  (zero `.cmd` files). Scripts were rewritten to `node ./node_modules/<pkg>/bin/...` form,
+- `npm` on PATH is Windows (Scoop) npm.exe; `node_modules/.bin` holds POSIX shims
+  plus Windows `.cmd`/`.ps1` copies when installed from Windows npm — never call
+  a shim directly. Scripts were rewritten to `node ./node_modules/<pkg>/bin/...` form,
   so `npm run lint|test|build|dev` now works from WSL **and** in CI. From the repo root:
   - Typecheck (the only check — there is no ESLint): `npm run lint` (currently clean;
     `scripts/` is excluded from tsconfig).
@@ -14,7 +15,7 @@ Web Workers (PDF/OCR), WebGPU WebLLM, Web Speech TTS, Workbox PWA.
     Node ≥22, see vitest.config.ts; CI pins Node 22).
   - Build: `npm run build` (~3 min, ~7 MB JS chunk + PWA precache; chunk-size warning expected).
   - Dev server: `npm run dev` → `http://localhost:3000`.
-  - Full local gate: `npm run gate` (typecheck + tests + secret-scan).
+  - Full local gate: `npm run gate` (typecheck + tests + SAST + dep-audit + secret-scan; `gate.mjs --full` adds build + budget).
 - WSL native-binary trap: Windows npm installs only **win32** rollup/esbuild natives, so
   Vitest fails under WSL's Linux node until Linux natives are added. Fix (re-run after
   any `npm install` that prunes them): `bash scripts/fix-wsl-natives.sh`. CI unaffected.
@@ -36,8 +37,8 @@ Web Workers (PDF/OCR), WebGPU WebLLM, Web Speech TTS, Workbox PWA.
 ## Env keys (client-side only)
 
 - Browser reads only **`VITE_GEMINI_API_KEY`** (Vite exposes just `VITE_*`). The bare
-  `GEMINI_API_KEY` currently sitting in `.env`, and the README's `.env.local` instructions,
-  are invisible to the app.
+  `GEMINI_API_KEY` currently sitting in `.env` is invisible to the app (the README
+  documents the `VITE_GEMINI_API_KEY` path only).
 - Runtime resolution in `useWebLLM`: explicit arg → `localStorage promote_it_gemini_key`
   (saved via Settings → Model Studio) → `VITE_GEMINI_API_KEY`.
 - Never commit `.env*` (gitignored); never log keys. Remote fallback is a direct
@@ -81,5 +82,5 @@ Web Workers (PDF/OCR), WebGPU WebLLM, Web Speech TTS, Workbox PWA.
   AuthModal/AVArtVark/MasterScriptTable). `role="dialog"` popovers need `aria-label` + Esc close.
 - `dist/` is gitignored/untracked; `scripts/cloud-sync.sh` runs `tsc` + `vite build` then
   commits with a fixed message and pushes to `origin main` (the `origin` remote exists:
-  KG-Strategist/promoteIT). `README.md`, `ARCHITECTURE_AUDIT.md`, and `DIAGNOSTIC_REPORT.md`
-  are stale snapshots (pre-v3 schema) — trust the code over them.
+  KG-Strategist/promoteIT). `ARCHITECTURE_AUDIT.md` and `DIAGNOSTIC_REPORT.md`
+  are stale snapshots (pre-v3 schema) — trust the code over them. `README.md` is current.

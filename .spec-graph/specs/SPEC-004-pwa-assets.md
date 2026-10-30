@@ -1,6 +1,7 @@
 # SPEC-004: Real PWA assets (icons per manifest, og-image)
 - Status: draft
 - Phase: 01
+- Domains: ux
 - Owner-persona: po
 
 ## Goal

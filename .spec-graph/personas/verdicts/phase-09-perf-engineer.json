@@ -1,0 +1,26 @@
+{
+  "persona": "perf-engineer",
+  "phase": "PHASE-09",
+  "verdict": "approve",
+  "rationale": "All six budgeted chunks and the 8,063,357 B total sit under their UNCHANGED ratchet caps (BUDGET PASS), and live bytes match budgets.json 'measured' and the CERTIFICATION.md bundle paragraph exactly, so there is no budget regression and no certification mismatch. The Phase-09 delta is bounded and disclosed (+1,715 B total JS = +0.021%: dompurify 3.4.15→3.4.17 patch bump in the refreshed lockfile = +1,420 B, archival.ts/heading seam = +295 B main chunk), no worker/VRAM/effect-loop or startup path changed, no maxBytes was raised, and the ratchet demonstrably fails on growth via gate.mjs --full in CI.",
+  "evidence": [
+    "node scripts/budget.mjs → exit 0, 'BUDGET PASS': ok main chunk index-DBaUCQ3L.js 7172534B/7400000B · ok pdf worker pdfWorker-CDFqgEk2.js 482297B/500000B · ok html2canvas html2canvas.esm-QH1iLAAe.js 202379B/210000B · ok tesseract es index.es-oDNp_g5k.js 159715B/165000B · ok dompurify es purify.es-CAi2OJFm.js 30469B/32000B · ok ocr worker ocrWorker-Cu1Wi4WU.js 15963B/18000B · ok total JS: 8063357B/8300000B",
+    "ls -l dist/assets/*.js → live 7172534 index-DBaUCQ3L.js, 482297 pdfWorker-CDFqgEk2.js, 202379 html2canvas.esm-QH1iLAAe.js, 159715 index.es-oDNp_g5k.js, 30469 purify.es-CAi2OJFm.js, 15963 ocrWorker-Cu1Wi4WU.js (sum 8063357B) — byte-identical to .spec-graph/budgets.json 'measured' (7172534/482297/202379/159715/30469/15963) and to CERTIFICATION.md:103-107 (7,172,534 / 482,297 / 202,379 / 159,715 / 30,469 / 15,963 / total 8,063,357 B under the 8,300,000 B cap): no mismatch",
+    "git diff HEAD~3 -- .spec-graph/budgets.json → only 'measured' moved (main chunk 7172239→7172534, dompurify es 29049→30469) plus the _note date 2026-10-13→2026-10-29; every maxBytes byte-identical (7400000/500000/210000/165000/32000/18000), totalJsMaxBytes 8300000 and unlistedJsWarnBytes 10000 unchanged — caps NOT silently raised",
+    "git diff --stat v1.1.0..HEAD -- src/ → 2 files: src/components/projects/ProjectWorkspace.tsx 6 ++-- (axe h3→h2 heading fix) and src/lib/archival.ts 43 +++-- (pure buildArchiveBundle/parseArchiveBundle seam); git diff --stat v1.1.0..HEAD -- src/workers/ src/hooks/ → empty (no worker/VRAM/effect-loop path touched; startup path src/main.tsx→App.tsx untouched); package.json diff v1.1.0..HEAD → vite moved OUT of 'dependencies' into 'devDependencies', axe-core + fake-indexeddb are devDeps only → no new runtime dep, no runtime bundle weight added by Phase-09 tooling",
+    "git diff v1.1.0..HEAD -- package-lock.json → dompurify 3.4.15→3.4.17 (root cause of purify.es +1420B) and vite 6.2.x→6.4.5 (build tool, not bundled); total JS moved 8061642B→8063357B = +1715B (+0.021%), every chunk still inside its unchanged cap (main chunk +295B, headroom 227466B; dompurify headroom 1531B)",
+    "npm run lint → 'node ./node_modules/typescript/bin/tsc --noEmit' → exit 0, no diagnostics",
+    "sandboxed negative test (copies under /tmp/opencode/budget-negtest, dist symlinked, repo untouched) with main-chunk cap lowered to 7000000 → node scripts/budget.mjs → exit 1, 'BUDGET FAIL — 2 problem(s): - OVER BUDGET main chunk index-DBaUCQ3L.js: 7172534B > 7000000B - TOTAL JS 8063357B > 1000000B' — ratchet genuinely fails on growth",
+    "grep -n budget .spec-graph/ops/gate.mjs → line 47 run('budget', profile.gates.budget, {timeout:120000}) inside the FULL branch, immediately after line 46 build; .github/workflows/ci.yml step 'SPEC-GRAPH gate chain: node .spec-graph/ops/gate.mjs --full'; sandbox run against the COMMITTED HEAD budgets.json → 'BUDGET PASS' exit 0 (caps identical), so the CI/release path enforces the same caps",
+    "find dist -name '*.js' → unbudgeted PWA runtime JS outside the ratchet (budget.mjs scans dist/assets/*.js only): dist/workbox-835c8c05.js 21863B + dist/sw.js 2382B + dist/registerSW.js 134B = 24379B (0.30% of the 8063357B budgeted total) — pre-existing scope gap from the PWA plugin, no Phase-09 growth, non-blocking follow-up for the next ratchet bump"
+  ],
+  "specs": [
+    "SPEC-014",
+    "SPEC-015",
+    "SPEC-016",
+    "SPEC-017",
+    "SPEC-018",
+    "SPEC-019"
+  ],
+  "ts": "2026-10-29T00:05:34Z"
+}

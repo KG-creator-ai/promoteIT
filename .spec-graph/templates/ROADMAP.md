@@ -1,7 +1,9 @@
 # Roadmap — <Project> to v1.0.0
 
 - Status: draft → baselined (human sign-off #1) → executing → released
-- DoD: 0 open atoms ∧ gate.mjs green ∧ 6/6 persona approvals at every phase ∧ CI green ∧ tag + Release.
+- DoD: 0 open atoms ∧ gate.mjs green ∧ tiered quorum approvals at every phase
+  (core6 always + the domain auditors the phase's `domains` map to + the
+  discovery analyst on discovery phases) ∧ CI green ∧ tag + Release.
 
 ## Ordered specs
 | # | Spec | Goal (1 line) | ACs | Depends |

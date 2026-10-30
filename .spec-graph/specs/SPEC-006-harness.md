@@ -1,6 +1,7 @@
 # SPEC-006: SPEC-GRAPH harness functional
 - Status: in_progress
 - Phase: 01
+- Domains: docs
 - Owner-persona: po
 
 ## Goal

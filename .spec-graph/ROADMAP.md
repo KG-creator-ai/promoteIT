@@ -1,8 +1,11 @@
-# Roadmap — promote-IT AV Studio to v1.0.0
+# Roadmap — promote-IT AV Studio
 
-- Status: RELEASED v1.0.0 (2026-10-12)
-- DoD: 0 open atoms ∧ `gate.mjs` PASS ∧ `claim-audit.mjs` PASS ∧ 6/6 persona approvals
-  at every phase ∧ CI green on `creator-ai` remote ∧ tag `v1.0.0` + GitHub Release.
+- Status: **v1.2.0 release in flight** (v1.0.0 shipped 2026-10-12, v1.1.0
+  shipped 2026-10-13; Phase 09 targets v1.2.0).
+- DoD: 0 open atoms ∧ `gate.mjs` PASS ∧ `claim-audit.mjs` PASS ∧ tiered
+  quorum approvals for every phase (core6 always + domain auditors for the
+  phase's `domains` + analyst on discovery phases) ∧ CI green on the
+  `creator-ai` remote ∧ tag `v1.x.y` + GitHub Release.
 - Remote: release pushes go to `creator-ai` (https://github.com/KG-creator-ai/promoteIT.git).
   `origin` (KG-Strategist) left untouched until release phase releaser verdict.
 
@@ -54,7 +57,7 @@ export kit, and a discovery loop.
 | 16 | SPEC-016 | Vision-L3 protocol (frame extraction + rubric + verdict JSON) | 3 | — | DONE (3/3 verified) |
 | 17 | SPEC-017 | Export kit (quickstart fix, GUARDRAILS template, version stamp, clean-room self-test) | 3 | SPEC-014–016 | DONE (3/3 verified) |
 | 18 | SPEC-018 | Discovery loop (competitive scan + VOC intake + roadmap atoms) | 2 | — | DONE (2/2 verified) |
-| 19 | SPEC-019 | CERTIFICATION.md refresh + v1.2.0 | 3 | SPEC-014–018 | open |
+| 19 | SPEC-019 | CERTIFICATION.md refresh + v1.2.0 | 3 | SPEC-014–018 | IN PROGRESS (2/3 — release publication pending) |
 
 ## Out of scope for v1.0.0 (non-goals)
 - New product features beyond gap closure; SLM/Attempt-2 work (BLOCKED, see
@@ -66,9 +69,15 @@ export kit, and a discovery loop.
 
 | Id | Finding | Source type | Impact | Proposed action | State |
 | --- | --- | --- | --- | --- | --- |
-| D-001 | Persona roster named approvers that did not exist | internal-observation | high | Tiered quorum — core6 plus conditional domain auditors, wired to spec-level `domains` metadata (SPEC-014). | candidate |
-| D-002 | Release gates asserted trust instead of testing it | internal-observation | high | Evidence-backed assurance scanners (SAST, dep-audit, budget ratchet, axe-core a11y) promoted into the gate chain and CI (SPEC-015). | candidate |
-| D-003 | L3 visual QA was ad-hoc eyeballing | internal-observation | medium | Protocolize L3 — even-frame extraction, binding rubric, populated verdict JSON validated against the artifact hash (SPEC-016). | candidate |
-| D-004 | Export kit would silently drop every persona | internal-observation | medium | Complete the quickstart, parameterize repo-specific guardrails, stamp a framework version, and add a clean-room self-test (SPEC-017). | candidate |
-| V-001 | "Let the framework drive, don't ask for every step" | user-feedback | high | Keep the loop autonomous — evidence-gated rather than approval-gated, with hard stops from GUARDRAILS unchanged. | candidate |
-| V-002 | "Certification must not overstate what was produced" | internal-observation | high | Refresh `CERTIFICATION.md` from the template, carrying the L1–L4 verdicts, L3-vision reviewer findings, assurance results and known limits (SPEC-019). | candidate |
+| D-001 | Persona roster named approvers that did not exist | internal-observation | high | Tiered quorum — core6 plus conditional domain auditors, wired to spec-level `domains` metadata (SPEC-014). | promoted (SPEC-014) |
+| D-002 | Release gates asserted trust instead of testing it | internal-observation | high | Evidence-backed assurance scanners (SAST, dep-audit, budget ratchet, axe-core a11y) promoted into the gate chain and CI (SPEC-015). | promoted (SPEC-015) |
+| D-003 | L3 visual QA was ad-hoc eyeballing | internal-observation | medium | Protocolize L3 — even-frame extraction, binding rubric, populated verdict JSON validated against the artifact hash (SPEC-016). | promoted (SPEC-016) |
+| D-004 | Export kit would silently drop every persona | internal-observation | medium | Complete the quickstart, parameterize repo-specific guardrails, stamp a framework version, and add a clean-room self-test (SPEC-017). | promoted (SPEC-017) |
+| D-005 | No Content-Security-Policy is configured | internal-observation | medium | Add a CSP (meta or header) compatible with the Vite build, the Web Workers and blob/data URLs, then assert it in the headless probe. | candidate |
+| D-006 | PIN hashing is a single unsalted SHA-256 | internal-observation | medium | Move the PIN path to PBKDF2 with a per-vault salt and add attempt throttling; migrate existing PIN hashes on unlock. | candidate |
+| D-007 | No console secret/PII-leak scanner in the headless harness | internal-observation | medium | Scan captured console/page output for key-shaped strings (`ghp_`, `AIza`, `sk-`, `Bearer `) and fail the leg when a hit appears — never printing the matched value. | candidate |
+| D-008 | Google Fonts is loaded from a third-party origin | internal-observation | medium | Self-host the two font families (bundle the woff2 files and serve them locally, keeping the `font-display: swap` behaviour) or drop the remote fonts for the system stack, then re-verify the visual pass. | candidate |
+| D-009 | Restored campaigns are not schema-validated row by row | internal-observation | medium | Validate each restored row against the campaign schema before `bulkPut` and reject the snapshot with a per-row reason; while validating, also require imported resources to be JSON objects (the zip importer accepts any valid JSON value today). | candidate |
+| D-010 | No lockfile-diff review step | internal-observation | low | Generate a lockfile diff summary at release time (added/removed/ updated packages + advisory deltas) and attach it to the release report. | candidate |
+| V-001 | "Let the framework drive, don't ask for every step" | user-feedback | high | Keep the loop autonomous — evidence-gated rather than approval-gated, with hard stops from GUARDRAILS unchanged. | promoted (SPEC-019) |
+| V-002 | "Certification must not overstate what was produced" | internal-observation | high | Refresh `CERTIFICATION.md` from the template, carrying the L1–L4 verdicts, L3-vision reviewer findings, assurance results and known limits (SPEC-019). | promoted (SPEC-019) |

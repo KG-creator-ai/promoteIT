@@ -1,6 +1,7 @@
 # SPEC-002: npm scripts work in WSL + CI
 - Status: in_progress
 - Phase: 01
+- Domains: docs
 - Owner-persona: po
 
 ## Goal
