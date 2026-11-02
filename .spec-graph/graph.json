@@ -1,7 +1,7 @@
 {
   "version": "3.1.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-10-30T13:45:13.500Z",
+  "updatedAt": "2026-11-02T03:05:41.642Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -114,10 +114,10 @@
       "cmd": "bash scripts/fix-wsl-natives.sh",
       "exit": 0,
       "hashes": {
-        "scripts/fix-wsl-natives.sh": "5d1315cc940f569a"
+        "scripts/fix-wsl-natives.sh": "10b9a97c9c0b3f5b"
       },
-      "log": "Linux natives installed for rollup@4.63.1 esbuild@0.25.12\n      Tests  1 passed (1)\n   Start at  05:44:00\n   Duration  11.70s (setup 96%, transform 3%, worker 1%, import 1%)\n\n",
-      "verifiedAt": "2026-10-29T05:44:12.404Z"
+      "log": "Linux natives installed for rollup@4.63.1 esbuild@0.25.12 lightningcss@1.32.0 oxide@4.3.3\n      Tests  1 passed (1)\n   Start at  03:05:10\n   Duration  30.83s (setup 94%, transform 4%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T03:05:41.640Z"
     },
     {
       "id": "SPEC-001.AC-003",
@@ -2967,12 +2967,12 @@
       "cmd": "grep -q \"v1.2.0\" CERTIFICATION.md && grep -q \"Automated gates: PASS\" CERTIFICATION.md && grep -q \"Headless functional E2E\" CERTIFICATION.md && grep -q \"Vision QA: PASS\" CERTIFICATION.md && grep -q \"Provider-backed generation: PASS\" CERTIFICATION.md && grep -q \"Assurance (Phase 09)\" CERTIFICATION.md && grep -q \"Artifact index\" CERTIFICATION.md && grep -q \"Known limits\" CERTIFICATION.md && grep -q \"agent-vision\" CERTIFICATION.md && grep -q \"98a3983c3fe11485\" CERTIFICATION.md && grep -q \"durable L2 record\" CERTIFICATION.md && grep -q \"SAST\" CERTIFICATION.md && grep -q \"dep-audit\" CERTIFICATION.md && grep -q \"bundle budget\" CERTIFICATION.md && grep -q \"axe-core\" CERTIFICATION.md && grep -q \"GHSA-gcqx-w48m-w2h4\" CERTIFICATION.md && echo CERT-OK",
       "exit": 0,
       "hashes": {
-        "CERTIFICATION.md": "8332b74c121e81bf",
+        "CERTIFICATION.md": "9297fb491aede2de",
         ".spec-graph/templates/CERTIFICATION.md": "f105cb3e60e814f8",
-        "tests/unit/certification-claims.test.ts": "32a0824459984f31"
+        "tests/unit/certification-claims.test.ts": "a95990c3b9085c11"
       },
       "log": "CERT-OK\n",
-      "verifiedAt": "2026-10-30T09:24:14.743Z"
+      "verifiedAt": "2026-11-02T02:12:22.959Z"
     },
     {
       "id": "SPEC-019.AC-002",

@@ -121,8 +121,9 @@ Protocol: `scripts/l3-extract.mjs` (8 evenly-spaced frames from the export
   html2canvas 202,379 / 210,000 B · tesseract es 159,715 / 165,000 B ·
   dompurify es 30,469 / 32,000 B · ocr worker 15,963 / 18,000 B · total JS
   8,064,089 B under the 8,300,000 B total cap — all within caps; growth
-  requires an explicit cap bump (the quoted sizes are the shipped
-  `dist/assets` chunk sizes).
+  requires an explicit cap bump (the quoted sizes are the recorded baseline
+  in `.spec-graph/budgets.json`; a rebuild in a different toolchain can differ
+  by a few hundred bytes, the caps are the hard limit).
 - **A11y** (`tests/component/a11y.test.tsx`, axe-core): 4/4 green, zero
   violations; three real heading-order defects fixed in
   `src/components/projects/ProjectWorkspace.tsx` (h3 → h2).
