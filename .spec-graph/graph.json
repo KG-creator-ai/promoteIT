@@ -1,7 +1,7 @@
 {
-  "version": "3.1.0",
+  "version": "3.2.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-11-02T03:53:34.449Z",
+  "updatedAt": "2026-11-02T14:16:25.274Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -172,11 +172,11 @@
       "exit": 0,
       "hashes": {
         "tests/component/logo.test.tsx": "63ecd8553d8f8698",
-        "vitest.config.ts": "2f4db697fb5f3dbc",
+        "vitest.config.ts": "af5d0cee2841354e",
         "tests/setup.ts": "86cc0cdb0cb69bbc"
       },
       "log": "CI-OK pinned 38333812883\n",
-      "verifiedAt": "2026-10-13T01:51:13.638Z"
+      "verifiedAt": "2026-11-02T09:12:19.545Z"
     },
     {
       "id": "SPEC-002.AC-001",
@@ -1153,11 +1153,11 @@
       "exit": 0,
       "hashes": {
         "tests/component/audio-studio.test.tsx": "357f4ace75276e66",
-        "src/components/audio/AudioStudio.tsx": "7b52ae6f69d7b7ee",
-        "src/services/audioEngine.ts": "ede5762883e6ece3"
+        "src/components/audio/AudioStudio.tsx": "34a1f7ff4cf688ab",
+        "src/services/audioEngine.ts": "99f6e37bf1d408e4"
       },
-      "log": "\n> react-example@0.0.0 test\n> node ./node_modules/vitest/vitest.mjs run\n\n\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv5.0.3 \u001b[39m\u001b[90mD:/Promote-IT_AV-Studio\u001b[39m\n\n \u001b[32m✓\u001b[39m tests/unit/no-mocks.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 9\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/pwa-assets.test.ts \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 24\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/storage.test.ts \u001b[2m(\u001b[22m\u001b[2m3 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 8\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/security.test.ts \u001b[2m(\u001b[22m\u001b[2m7 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 293\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/logo.test.tsx \u001b[2m(\u001b[22m\u001b[2m2 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 438\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m PromoteITLogo smoke (jsdom) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m renders an accessible img role\u001b[33m 412\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/audio-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1309\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m AudioStudio (real TTS wiring) \u001b[2m(4)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m segment Play speaks the scene text via the engine\u001b[33m 626\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m6 passed\u001b[39m\u001b[22m\u001b[90m (6)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m22 passed\u001b[39m\u001b[22m\u001b[90m (22)\u001b[39m\n\u001b[2m   Start at \u001b[22m 14:56:20\n\u001b[2m   Duration \u001b[22m 10.84s\u001b[2m (environment 54%, setup 27%, tests 9%, transform 7%, import 2%, worker 1%)\u001b[22m\n\n",
-      "verifiedAt": "2026-10-12T09:26:31.202Z"
+      "log": "uality domain requires the creative-director persona\u001b[33m 2123\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m claim-audit rejects a spec file that declares an unmapped domain\u001b[33m 844\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/logo.test.tsx \u001b[2m(\u001b[22m\u001b[2m2 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 594\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m PromoteITLogo smoke (jsdom) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m renders an accessible img role\u001b[33m 561\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/import-modal.test.tsx \u001b[2m(\u001b[22m\u001b[2m3 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 390\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/audio-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1012\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m AudioStudio (real TTS wiring) \u001b[2m(4)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m segment Play speaks the scene text via the engine\u001b[33m 425\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/model-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1509\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m ModelStudio provider config (SPEC-010) \u001b[2m(5)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m Test Connection reports success honestly\u001b[33m 696\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/preset-create.test.tsx \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 490\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m ProjectWorkspace preset creation (SPEC-012) \u001b[2m(1)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m lists curated presets and creates a real campaign from one\u001b[33m 486\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/a11y.test.tsx \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1567\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m axe accessibility gate (SPEC-015.AC-003) \u001b[2m(4)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m ProjectWorkspace empty state has zero axe violations\u001b[33m 519\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m ProjectWorkspace create-form open has zero axe violations\u001b[33m 402\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m AudioStudio has zero axe violations\u001b[33m 356\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/decision-gate.test.ts \u001b[2m(\u001b[22m\u001b[2m14 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 42067\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m decision gate interception (SPEC-023.AC-002) \u001b[2m(5)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m an unknown atom is blocked with structured feedback\u001b[33m 3444\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m a missing evidence command is blocked (no prose-only AC)\u001b[33m 3502\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m a missing evidence path is blocked\u001b[33m 3450\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m a legitimate verification is allowed\u001b[33m 2827\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m graph.mjs verify refuses to mark an atom verified when a policy blocks\u001b[33m 1941\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m premature-termination detection (SPEC-023.AC-003) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m declaring done while atoms are open is blocked\u001b[33m 905\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m declaring done is allowed once every atom is verified\u001b[33m 970\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m bounded revision (SPEC-023.AC-005) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m the third consecutive block for the same target requires an escalation card\u001b[33m 8121\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m blocks for different targets are counted independently\u001b[33m 5540\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m optional probabilistic layer (SPEC-023.AC-006) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m without a provider key the judgment is recorded as unverified, never as a pass\u001b[33m 5038\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m the decision record is append-only and contains the judgment status\u001b[33m 5586\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m24 passed\u001b[39m\u001b[22m\u001b[90m (24)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m129 passed\u001b[39m\u001b[22m\u001b[90m (129)\u001b[39m\n\u001b[2m   Start at \u001b[22m 19:08:53\n\u001b[2m   Duration \u001b[22m 44.92s\u001b[2m (environment 36%, tests 35%, setup 20%, transform 5%, import 3%)\u001b[22m\n\n\u001b[2m    Isolate \u001b[22m \u001b[33m24 workers spawned\u001b[39m\u001b[2m · ~3.66s startup each (spawn + environment, per file)\u001b[22m\n\u001b[2m            \u001b[22m \u001b[2mat least ~4.32s faster with \u001b[22m\u001b[33misolate: false\u001b[39m\u001b[2m — reuses workers across files instead of one per file\u001b[22m\n\n",
+      "verifiedAt": "2026-11-02T13:39:39.194Z"
     },
     {
       "id": "SPEC-008.AC-002",
@@ -1212,10 +1212,10 @@
       "exit": 0,
       "hashes": {
         "tests/component/audio-studio.test.tsx": "357f4ace75276e66",
-        "src/components/audio/AudioStudio.tsx": "7b52ae6f69d7b7ee"
+        "src/components/audio/AudioStudio.tsx": "34a1f7ff4cf688ab"
       },
-      "log": "\n> react-example@0.0.0 test\n> node ./node_modules/vitest/vitest.mjs run\n\n\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv5.0.3 \u001b[39m\u001b[90mD:/Promote-IT_AV-Studio\u001b[39m\n\n \u001b[32m✓\u001b[39m tests/unit/no-mocks.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 8\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/pwa-assets.test.ts \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 26\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/storage.test.ts \u001b[2m(\u001b[22m\u001b[2m3 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 7\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/security.test.ts \u001b[2m(\u001b[22m\u001b[2m7 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 218\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/logo.test.tsx \u001b[2m(\u001b[22m\u001b[2m2 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 474\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m PromoteITLogo smoke (jsdom) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m renders an accessible img role\u001b[33m 438\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/audio-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1185\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m AudioStudio (real TTS wiring) \u001b[2m(4)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m lists real browser voices in the picker\u001b[33m 330\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m segment Play speaks the scene text via the engine\u001b[33m 567\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m6 passed\u001b[39m\u001b[22m\u001b[90m (6)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m22 passed\u001b[39m\u001b[22m\u001b[90m (22)\u001b[39m\n\u001b[2m   Start at \u001b[22m 14:57:33\n\u001b[2m   Duration \u001b[22m 9.99s\u001b[2m (environment 50%, setup 31%, tests 9%, transform 7%, import 2%)\u001b[22m\n\n",
-      "verifiedAt": "2026-10-12T09:27:44.138Z"
+      "log": "tsx \u001b[2m(\u001b[22m\u001b[2m3 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 519\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m import result surfaces skipped entries \u001b[2m(3)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m keeps the modal open and shows the skipped count when entries were dropped\u001b[33m 359\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/audio-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1253\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m AudioStudio (real TTS wiring) \u001b[2m(4)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m lists real browser voices in the picker\u001b[33m 351\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m segment Play speaks the scene text via the engine\u001b[33m 596\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/dbg.test.ts \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 5\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/model-studio.test.tsx \u001b[2m(\u001b[22m\u001b[2m5 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1799\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m ModelStudio provider config (SPEC-010) \u001b[2m(5)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m defaults to local WebLLM with Qwen models listed first\u001b[33m 333\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m Test Connection reports success honestly\u001b[33m 881\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/preset-create.test.tsx \u001b[2m(\u001b[22m\u001b[2m1 test\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 552\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m ProjectWorkspace preset creation (SPEC-012) \u001b[2m(1)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m lists curated presets and creates a real campaign from one\u001b[33m 545\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/component/a11y.test.tsx \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1610\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m axe accessibility gate (SPEC-015.AC-003) \u001b[2m(4)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m ProjectWorkspace empty state has zero axe violations\u001b[33m 578\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m ProjectWorkspace create-form open has zero axe violations\u001b[33m 370\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m AudioStudio has zero axe violations\u001b[33m 381\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m tests/unit/decision-gate.test.ts \u001b[2m(\u001b[22m\u001b[2m14 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 39747\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m decision gate interception (SPEC-023.AC-002) \u001b[2m(5)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m an unknown atom is blocked with structured feedback\u001b[33m 3406\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m a missing evidence command is blocked (no prose-only AC)\u001b[33m 3308\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m a missing evidence path is blocked\u001b[33m 3373\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m a legitimate verification is allowed\u001b[33m 2760\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m graph.mjs verify refuses to mark an atom verified when a policy blocks\u001b[33m 2213\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m premature-termination detection (SPEC-023.AC-003) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m declaring done while atoms are open is blocked\u001b[33m 979\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m declaring done is allowed once every atom is verified\u001b[33m 919\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m bounded revision (SPEC-023.AC-005) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m the third consecutive block for the same target requires an escalation card\u001b[33m 7553\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m blocks for different targets are counted independently\u001b[33m 4855\u001b[2mms\u001b[22m\u001b[39m\n   \u001b[32m✓\u001b[39m optional probabilistic layer (SPEC-023.AC-006) \u001b[2m(2)\u001b[22m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m without a provider key the judgment is recorded as unverified, never as a pass\u001b[33m 4293\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m the decision record is append-only and contains the judgment status\u001b[33m 5368\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m24 passed\u001b[39m\u001b[22m\u001b[90m (24)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m129 passed\u001b[39m\u001b[22m\u001b[90m (129)\u001b[39m\n\u001b[2m   Start at \u001b[22m 19:09:48\n\u001b[2m   Duration \u001b[22m 42.54s\u001b[2m (tests 36%, environment 33%, setup 21%, transform 5%, import 4%)\u001b[22m\n\n\u001b[2m    Isolate \u001b[22m \u001b[33m24 workers spawned\u001b[39m\u001b[2m · ~3.28s startup each (spawn + environment, per file)\u001b[22m\n\u001b[2m            \u001b[22m \u001b[2mat least ~3.88s faster with \u001b[22m\u001b[33misolate: false\u001b[39m\u001b[2m — reuses workers across files instead of one per file\u001b[22m\n\n",
+      "verifiedAt": "2026-11-02T13:40:31.459Z"
     },
     {
       "id": "SPEC-008.AC-003",
@@ -1269,10 +1269,10 @@
       "exit": 0,
       "hashes": {
         "tests/unit/no-mocks.test.ts": "2018dcfd576d4d9d",
-        "src/components/audio/AudioStudio.tsx": "7b52ae6f69d7b7ee"
+        "src/components/audio/AudioStudio.tsx": "34a1f7ff4cf688ab"
       },
-      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  1 passed (1)\n   Start at  09:27:48\n   Duration  11.50s (setup 96%, transform 3%, worker 1%)\n\n",
-      "verifiedAt": "2026-10-12T09:27:59.819Z"
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  1 passed (1)\n   Start at  13:27:02\n   Duration  13.90s (setup 96%, transform 2%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T13:27:16.284Z"
     },
     {
       "id": "SPEC-009.AC-001",
@@ -1328,13 +1328,13 @@
       "exit": 0,
       "hashes": {
         "tests/unit/scene-adapter.test.ts": "5aec8567bd8004f2",
-        "src/components/studio/AVVideoPlayer.tsx": "c04aaa29f69852cd",
+        "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132",
         "src/services/videoRenderer.ts": "468201642c754ce9",
         "scripts/e2e-av.mjs": "6936df2f07c641ca",
         "scripts/e2e-assert.mjs": "ddc9553818737079"
       },
       "log": "E2E-LEG-OK player-renders — canvasBytes=593738 clock=00:00->00:06\n",
-      "verifiedAt": "2026-10-13T00:55:18.838Z"
+      "verifiedAt": "2026-11-02T13:27:17.543Z"
     },
     {
       "id": "SPEC-009.AC-002",
@@ -1389,11 +1389,11 @@
       "exit": 0,
       "hashes": {
         "scripts/e2e-av.mjs": "6936df2f07c641ca",
-        "src/components/studio/AVVideoPlayer.tsx": "c04aaa29f69852cd",
+        "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132",
         "scripts/e2e-assert.mjs": "ddc9553818737079"
       },
       "log": "WEBM-AV-OK bytes=4096366 video=true audio=true\n",
-      "verifiedAt": "2026-10-13T00:55:21.397Z"
+      "verifiedAt": "2026-11-02T13:27:18.839Z"
     },
     {
       "id": "SPEC-009.AC-003",
@@ -1448,10 +1448,10 @@
       "exit": 0,
       "hashes": {
         "scripts/e2e-av.mjs": "6936df2f07c641ca",
-        "src/components/studio/AVVideoPlayer.tsx": "c04aaa29f69852cd"
+        "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132"
       },
       "log": "NO-PAGE-ERRORS-OK\n",
-      "verifiedAt": "2026-10-13T00:55:23.602Z"
+      "verifiedAt": "2026-11-02T13:27:20.084Z"
     },
     {
       "id": "SPEC-010.AC-001",
@@ -2063,13 +2063,13 @@
       "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/quorum.test.ts tests/unit/spec-parse.test.ts",
       "exit": 0,
       "hashes": {
-        "tests/unit/quorum.test.ts": "bb64e5647096b11a",
+        "tests/unit/quorum.test.ts": "c0c38991ffa26769",
         ".spec-graph/ops/spec-parse.mjs": "3e640578f5bd63b1",
         "tests/unit/spec-parse.test.ts": "dedb3b96468d5d06",
         "scripts/spec-parse-probe.mjs": "1874c5e17dc2c3c7"
       },
-      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  2 passed (2)\n      Tests  12 passed (12)\n   Start at  22:13:47\n   Duration  10.01s (setup 74%, tests 19%, transform 5%, import 1%, worker 1%)\n\n",
-      "verifiedAt": "2026-10-29T22:13:57.611Z"
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  2 passed (2)\n      Tests  15 passed (15)\n   Start at  09:12:33\n   Duration  22.11s (setup 62%, tests 32%, transform 5%, worker 1%, import 1%)\n\n",
+      "verifiedAt": "2026-11-02T09:12:55.326Z"
     },
     {
       "id": "SPEC-014.AC-002",
@@ -2124,12 +2124,12 @@
       "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/quorum.test.ts -t \"tiered quorum\" && grep -q \"quorum missing approve\" .spec-graph/ops/claim-audit.mjs && echo QUORUM-WIRED",
       "exit": 0,
       "hashes": {
-        "tests/unit/quorum.test.ts": "bb64e5647096b11a",
-        ".spec-graph/ops/quorum.mjs": "06e52499cb23a816",
-        ".spec-graph/ops/claim-audit.mjs": "bf2e441db4ca0028"
+        "tests/unit/quorum.test.ts": "c0c38991ffa26769",
+        ".spec-graph/ops/quorum.mjs": "7ac1670464be0c8e",
+        ".spec-graph/ops/claim-audit.mjs": "296e56a27aae4d91"
       },
-      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  5 passed | 3 skipped (8)\n   Start at  22:43:34\n   Duration  11.30s (setup 86%, tests 10%, transform 3%, worker 1%)\n\nQUORUM-WIRED\n",
-      "verifiedAt": "2026-10-29T22:43:45.503Z"
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  5 passed | 6 skipped (11)\n   Start at  09:13:04\n   Duration  36.77s (setup 80%, tests 16%, transform 3%, worker 1%, import 1%)\n\nQUORUM-WIRED\n",
+      "verifiedAt": "2026-11-02T09:13:42.295Z"
     },
     {
       "id": "SPEC-014.AC-003",
@@ -2199,7 +2199,7 @@
         ".opencode/agents/docs-reviewer.md",
         ".opencode/agents/analyst.md"
       ],
-      "cmd": "test $(ls .opencode/agents/*.md | wc -l) -ge 12 && grep -q security-auditor .opencode/agents/security-auditor.md && grep -q \"Tier 2\" .spec-graph/PERSONAS.md && grep -q \"DOMAIN_MAP\" .spec-graph/ops/quorum.mjs && grep -q \"Security-Auditor\" .spec-graph/PROCESS.md && grep -q \"3.1.0\" .spec-graph/GRAPH-SCHEMA.md && grep -q \"D17\" .spec-graph/DECISIONS.md && echo ROSTER-OK",
+      "cmd": "test $(ls .opencode/agents/*.md | wc -l) -ge 13 && grep -q security-auditor .opencode/agents/security-auditor.md && grep -q creative-director .opencode/agents/creative-director.md && grep -q \"Tier 2\" .spec-graph/PERSONAS.md && grep -q \"DOMAIN_MAP\" .spec-graph/ops/quorum.mjs && grep -q \"Security-Auditor\" .spec-graph/PROCESS.md && grep -q \"$(node -e \"console.log(require('./.spec-graph/graph.json').version)\")\" .spec-graph/GRAPH-SCHEMA.md && grep -q \"D17\" .spec-graph/DECISIONS.md && echo ROSTER-OK",
       "reopenedReason": "replace obfuscated evidence cmd with readable grep chain",
       "reopenedAt": "2026-10-13T05:03:45.015Z"
     },
@@ -2209,15 +2209,15 @@
       "spec": "SPEC-014",
       "ac": "AC-003",
       "status": "verified",
-      "cmd": "test $(ls .opencode/agents/*.md | wc -l) -ge 12 && grep -q security-auditor .opencode/agents/security-auditor.md && grep -q \"Tier 2\" .spec-graph/PERSONAS.md && grep -q \"DOMAIN_MAP\" .spec-graph/ops/quorum.mjs && grep -q \"Security-Auditor\" .spec-graph/PROCESS.md && grep -q \"3.1.0\" .spec-graph/GRAPH-SCHEMA.md && grep -q \"D17\" .spec-graph/DECISIONS.md && echo ROSTER-OK",
+      "cmd": "test $(ls .opencode/agents/*.md | wc -l) -ge 13 && grep -q security-auditor .opencode/agents/security-auditor.md && grep -q creative-director .opencode/agents/creative-director.md && grep -q \"Tier 2\" .spec-graph/PERSONAS.md && grep -q \"DOMAIN_MAP\" .spec-graph/ops/quorum.mjs && grep -q \"Security-Auditor\" .spec-graph/PROCESS.md && grep -q \"$(node -e \"console.log(require('./.spec-graph/graph.json').version)\")\" .spec-graph/GRAPH-SCHEMA.md && grep -q \"D17\" .spec-graph/DECISIONS.md && echo ROSTER-OK",
       "exit": 0,
       "hashes": {
-        ".spec-graph/PERSONAS.md": "6d0ed8751d81f40f",
+        ".spec-graph/PERSONAS.md": "92e41a066e8d9798",
         ".spec-graph/PROCESS.md": "00e6dfbb0f09d858",
         ".spec-graph/GUARDRAILS.md": "47f6258a9846938c",
-        ".spec-graph/GRAPH-SCHEMA.md": "c3d82ddc9bcf6904",
-        ".spec-graph/SPEC-FORMAT.md": "72c094bfab21ae68",
-        ".spec-graph/DECISIONS.md": "cc950677a8680b4f",
+        ".spec-graph/GRAPH-SCHEMA.md": "e6291256806d7659",
+        ".spec-graph/SPEC-FORMAT.md": "7a21588479477652",
+        ".spec-graph/DECISIONS.md": "b6be46db2659c2b0",
         ".opencode/agents/security-auditor.md": "db81cf983d411c41",
         ".opencode/agents/perf-engineer.md": "3ed7edf9681aab72",
         ".opencode/agents/design-reviewer.md": "a4107c6d7782f21c",
@@ -2226,7 +2226,7 @@
         ".opencode/agents/analyst.md": "4fc8f94aa9c65862"
       },
       "log": "ROSTER-OK\n",
-      "verifiedAt": "2026-10-29T08:54:04.927Z",
+      "verifiedAt": "2026-11-02T07:17:29.055Z",
       "reopenedReason": "replace obfuscated evidence cmd with readable grep chain",
       "reopenedAt": "2026-10-13T05:03:45.015Z"
     },
@@ -2859,10 +2859,10 @@
       "exit": 0,
       "hashes": {
         ".spec-graph/templates/DISCOVERY.md": "e458b979f012f383",
-        ".spec-graph/DISCOVERY.md": "4a6765e3595f4837"
+        ".spec-graph/DISCOVERY.md": "6fe449af2459af7d"
       },
-      "log": "DISCOVERY-OK — 12 candidate(s) match .spec-graph/DISCOVERY.md\nFORMAT-OK\n",
-      "verifiedAt": "2026-10-30T04:33:16.874Z"
+      "log": "DISCOVERY-OK — 18 candidate(s) match .spec-graph/DISCOVERY.md\nFORMAT-OK\n",
+      "verifiedAt": "2026-11-02T06:19:48.930Z"
     },
     {
       "id": "SPEC-018.AC-002",
@@ -2901,7 +2901,7 @@
       "ac": "AC-002",
       "status": "verified",
       "paths": [],
-      "cmd": "node scripts/discovery-to-roadmap.mjs --apply >/dev/null && b=$(sha256sum .spec-graph/ROADMAP.md | cut -d\" \" -f1) && node scripts/discovery-to-roadmap.mjs --apply >/dev/null && a=$(sha256sum .spec-graph/ROADMAP.md | cut -d\" \" -f1) && [ \"$b\" = \"$a\" ] && node scripts/discovery-to-roadmap.mjs --check && echo IDEMPOTENT-OK"
+      "cmd": "node scripts/discovery-to-roadmap.mjs --apply >/dev/null && b=$(sha256sum .spec-graph/ROADMAP.md | cut -d' ' -f1) && node scripts/discovery-to-roadmap.mjs --apply >/dev/null && a=$(sha256sum .spec-graph/ROADMAP.md | cut -d' ' -f1) && [ \"$b\" = \"$a\" ] && node scripts/discovery-to-roadmap.mjs --check && echo IDEMPOTENT-OK"
     },
     {
       "id": "SPEC-018.AC-002.ev",
@@ -2909,15 +2909,15 @@
       "spec": "SPEC-018",
       "ac": "AC-002",
       "status": "verified",
-      "cmd": "node scripts/discovery-to-roadmap.mjs --apply >/dev/null && b=$(sha256sum .spec-graph/ROADMAP.md | cut -d\" \" -f1) && node scripts/discovery-to-roadmap.mjs --apply >/dev/null && a=$(sha256sum .spec-graph/ROADMAP.md | cut -d\" \" -f1) && [ \"$b\" = \"$a\" ] && node scripts/discovery-to-roadmap.mjs --check && echo IDEMPOTENT-OK",
+      "cmd": "node scripts/discovery-to-roadmap.mjs --apply >/dev/null && b=$(sha256sum .spec-graph/ROADMAP.md | cut -d' ' -f1) && node scripts/discovery-to-roadmap.mjs --apply >/dev/null && a=$(sha256sum .spec-graph/ROADMAP.md | cut -d' ' -f1) && [ \"$b\" = \"$a\" ] && node scripts/discovery-to-roadmap.mjs --check && echo IDEMPOTENT-OK",
       "exit": 0,
       "hashes": {
         "scripts/discovery-to-roadmap.mjs": "f71fc2988240fbc5",
-        ".spec-graph/ROADMAP.md": "ce6e8a2efb14bf1d",
-        ".spec-graph/DISCOVERY.md": "4a6765e3595f4837"
+        ".spec-graph/ROADMAP.md": "c97e4fd180e7a56f",
+        ".spec-graph/DISCOVERY.md": "6fe449af2459af7d"
       },
-      "log": "DISCOVERY-OK — 12 candidate(s) match .spec-graph/DISCOVERY.md\nIDEMPOTENT-OK\n",
-      "verifiedAt": "2026-11-02T03:53:10.100Z"
+      "log": "DISCOVERY-OK — 18 candidate(s) match .spec-graph/DISCOVERY.md\nIDEMPOTENT-OK\n",
+      "verifiedAt": "2026-11-02T13:29:49.822Z"
     },
     {
       "id": "SPEC-019.AC-001",
@@ -2967,12 +2967,12 @@
       "cmd": "grep -q \"v1.2.0\" CERTIFICATION.md && grep -q \"Automated gates: PASS\" CERTIFICATION.md && grep -q \"Headless functional E2E\" CERTIFICATION.md && grep -q \"Vision QA: PASS\" CERTIFICATION.md && grep -q \"Provider-backed generation: PASS\" CERTIFICATION.md && grep -q \"Assurance (Phase 09)\" CERTIFICATION.md && grep -q \"Artifact index\" CERTIFICATION.md && grep -q \"Known limits\" CERTIFICATION.md && grep -q \"agent-vision\" CERTIFICATION.md && grep -q \"98a3983c3fe11485\" CERTIFICATION.md && grep -q \"durable L2 record\" CERTIFICATION.md && grep -q \"SAST\" CERTIFICATION.md && grep -q \"dep-audit\" CERTIFICATION.md && grep -q \"bundle budget\" CERTIFICATION.md && grep -q \"axe-core\" CERTIFICATION.md && grep -q \"GHSA-gcqx-w48m-w2h4\" CERTIFICATION.md && echo CERT-OK",
       "exit": 0,
       "hashes": {
-        "CERTIFICATION.md": "9297fb491aede2de",
+        "CERTIFICATION.md": "48af1b36a65d7aa9",
         ".spec-graph/templates/CERTIFICATION.md": "f105cb3e60e814f8",
-        "tests/unit/certification-claims.test.ts": "a95990c3b9085c11"
+        "tests/unit/certification-claims.test.ts": "db67548155f8bebc"
       },
       "log": "CERT-OK\n",
-      "verifiedAt": "2026-11-02T02:12:22.959Z"
+      "verifiedAt": "2026-11-02T13:45:16.489Z"
     },
     {
       "id": "SPEC-019.AC-002",
@@ -3022,11 +3022,11 @@
       "cmd": "node .spec-graph/ops/quorum.mjs --phase 09 --specs SPEC-014,SPEC-015,SPEC-016,SPEC-017,SPEC-018,SPEC-019",
       "exit": 0,
       "hashes": {
-        ".spec-graph/ops/quorum.mjs": "06e52499cb23a816",
-        ".spec-graph/ops/claim-audit.mjs": "bf2e441db4ca0028"
+        ".spec-graph/ops/quorum.mjs": "7ac1670464be0c8e",
+        ".spec-graph/ops/claim-audit.mjs": "296e56a27aae4d91"
       },
-      "log": "{\n  \"verdict\": \"PASS\",\n  \"phase\": \"09\",\n  \"specs\": [\n    \"SPEC-014\",\n    \"SPEC-015\",\n    \"SPEC-016\",\n    \"SPEC-017\",\n    \"SPEC-018\",\n    \"SPEC-019\"\n  ],\n  \"domains\": [\n    \"docs\",\n    \"security\",\n    \"perf\",\n    \"ux\",\n    \"resilience\",\n    \"discovery\"\n  ],\n  \"required\": [\n    \"po\",\n    \"architect\",\n    \"builder\",\n    \"qa\",\n    \"redteam\",\n    \"releaser\",\n    \"docs-reviewer\",\n    \"security-auditor\",\n    \"perf-engineer\",\n    \"design-reviewer\",\n    \"resilience-engineer\",\n    \"analyst\"\n  ],\n  \"present\": {\n    \"po\": \"approve\",\n    \"architect\": \"approve\",\n    \"builder\": \"approve\",\n    \"qa\": \"approve\",\n    \"redteam\": \"approve\",\n    \"releaser\": \"approve\",\n    \"docs-reviewer\": \"approve\",\n    \"security-auditor\": \"approve\",\n    \"perf-engineer\": \"approve\",\n    \"design-reviewer\": \"approve\",\n    \"resilience-engineer\": \"approve\",\n    \"analyst\": \"approve\"\n  },\n  \"missing\": [],\n  \"nonApprove\": []\n}\n",
-      "verifiedAt": "2026-10-30T13:36:23.924Z"
+      "log": "{\n  \"verdict\": \"PASS\",\n  \"phase\": \"09\",\n  \"specs\": [\n    \"SPEC-014\",\n    \"SPEC-015\",\n    \"SPEC-016\",\n    \"SPEC-017\",\n    \"SPEC-018\",\n    \"SPEC-019\"\n  ],\n  \"domains\": [\n    \"docs\",\n    \"security\",\n    \"perf\",\n    \"ux\",\n    \"resilience\",\n    \"discovery\"\n  ],\n  \"unknown\": [],\n  \"required\": [\n    \"po\",\n    \"architect\",\n    \"builder\",\n    \"qa\",\n    \"redteam\",\n    \"releaser\",\n    \"docs-reviewer\",\n    \"security-auditor\",\n    \"perf-engineer\",\n    \"design-reviewer\",\n    \"resilience-engineer\",\n    \"analyst\"\n  ],\n  \"present\": {\n    \"po\": \"approve\",\n    \"architect\": \"approve\",\n    \"builder\": \"approve\",\n    \"qa\": \"approve\",\n    \"redteam\": \"approve\",\n    \"releaser\": \"approve\",\n    \"docs-reviewer\": \"approve\",\n    \"security-auditor\": \"approve\",\n    \"perf-engineer\": \"approve\",\n    \"design-reviewer\": \"approve\",\n    \"resilience-engineer\": \"approve\",\n    \"analyst\": \"approve\"\n  },\n  \"missing\": [],\n  \"nonApprove\": []\n}\n",
+      "verifiedAt": "2026-11-02T13:32:17.571Z"
     },
     {
       "id": "SPEC-019.AC-003",
@@ -3080,6 +3080,1521 @@
       },
       "log": "RELEASE-UNVERIFIED — could not query the GitHub release (spawnSync gh ENOENT)\nRELEASE-PASS — v1.2.0 @ a24d05d5 verified (tag + report; release not queried)\nRELEASE-ASSETS-OK ['CERTIFICATION.md', 'promote-it-v1.2.0.zip', 'RELEASE-REPORT-v1.2.0.md']\n",
       "verifiedAt": "2026-11-02T03:53:34.448Z"
+    },
+    {
+      "id": "SPEC-020.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-020",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-020 AC-001",
+      "domains": [
+        "resilience",
+        "ux",
+        "discovery"
+      ],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.236Z"
+    },
+    {
+      "id": "SPEC-020.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-020",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-020.AC-001"
+      ],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.237Z"
+    },
+    {
+      "id": "SPEC-020.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-020",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.237Z"
+    },
+    {
+      "id": "SPEC-020.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-020",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts",
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.237Z"
+    },
+    {
+      "id": "SPEC-020.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-020",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts",
+      "exit": 0,
+      "hashes": {
+        "src/services/audioEngine.ts": "99f6e37bf1d408e4",
+        "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132",
+        "src/lib/avExport.ts": "555b663c0f5be285",
+        "src/lib/audioMetrics.ts": "0d4232778b3d5e46",
+        "tests/unit/av-export-audio.test.ts": "64031812ea9be428"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  13:48:26\n   Duration  14.68s (setup 92%, transform 6%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T13:48:41.534Z",
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.237Z"
+    },
+    {
+      "id": "SPEC-020.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-020",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-020 AC-002",
+      "domains": [
+        "resilience",
+        "ux",
+        "discovery"
+      ],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.520Z"
+    },
+    {
+      "id": "SPEC-020.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-020",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-020.AC-002"
+      ],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.520Z"
+    },
+    {
+      "id": "SPEC-020.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-020",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.520Z"
+    },
+    {
+      "id": "SPEC-020.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-020",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts",
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.520Z"
+    },
+    {
+      "id": "SPEC-020.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-020",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts",
+      "exit": 0,
+      "hashes": {
+        "src/lib/avExport.ts": "555b663c0f5be285",
+        "src/components/audio/AudioStudio.tsx": "34a1f7ff4cf688ab",
+        "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132",
+        "tests/unit/av-export-audio.test.ts": "64031812ea9be428"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  13:51:12\n   Duration  13.53s (setup 94%, transform 5%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T13:51:25.839Z",
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.520Z"
+    },
+    {
+      "id": "SPEC-020.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-020",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-020 AC-003",
+      "domains": [
+        "resilience",
+        "ux",
+        "discovery"
+      ],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.915Z"
+    },
+    {
+      "id": "SPEC-020.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-020",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-020.AC-003"
+      ],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.915Z"
+    },
+    {
+      "id": "SPEC-020.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-020",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.915Z"
+    },
+    {
+      "id": "SPEC-020.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-020",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": "node scripts/dead-surface.mjs",
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.915Z"
+    },
+    {
+      "id": "SPEC-020.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-020",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "node scripts/dead-surface.mjs",
+      "exit": 0,
+      "hashes": {
+        "scripts/dead-surface.mjs": "5e567bb9193093f3",
+        "src/services/audioEngine.ts": "99f6e37bf1d408e4",
+        "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132"
+      },
+      "log": "DEAD-SURFACE PASS — no unused public methods or callbacks in 2 target(s)\n",
+      "verifiedAt": "2026-11-02T13:51:32.057Z",
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:24.915Z"
+    },
+    {
+      "id": "SPEC-020.AC-004",
+      "kind": "spec_atom",
+      "spec": "SPEC-020",
+      "ac": "AC-004",
+      "status": "open",
+      "title": "SPEC-020 AC-004",
+      "domains": [
+        "resilience",
+        "ux",
+        "discovery"
+      ],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:25.274Z"
+    },
+    {
+      "id": "SPEC-020.AC-004.task",
+      "kind": "task",
+      "spec": "SPEC-020",
+      "ac": "AC-004",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-020.AC-004"
+      ],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:25.274Z"
+    },
+    {
+      "id": "SPEC-020.AC-004.code",
+      "kind": "code",
+      "spec": "SPEC-020",
+      "ac": "AC-004",
+      "status": "open",
+      "paths": [],
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:25.274Z"
+    },
+    {
+      "id": "SPEC-020.AC-004.test",
+      "kind": "test",
+      "spec": "SPEC-020",
+      "ac": "AC-004",
+      "status": "open",
+      "paths": [],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-fallback.test.ts",
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:25.274Z"
+    },
+    {
+      "id": "SPEC-020.AC-004.ev",
+      "kind": "evidence",
+      "spec": "SPEC-020",
+      "ac": "AC-004",
+      "status": "open",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-fallback.test.ts",
+      "exit": 0,
+      "hashes": {
+        "src/lib/avExport.ts": "555b663c0f5be285",
+        "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132",
+        "tests/unit/av-export-fallback.test.ts": "ca91395f4ce8a0c2"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  4 passed (4)\n   Start at  13:54:04\n   Duration  13.17s (setup 96%, transform 3%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T13:54:17.867Z",
+      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
+      "reopenedAt": "2026-11-02T14:16:25.274Z"
+    },
+    {
+      "id": "SPEC-021.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-021",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-021 AC-001",
+      "domains": [
+        "perf",
+        "resilience"
+      ]
+    },
+    {
+      "id": "SPEC-021.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-021",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-021.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-021.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-021",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-021.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-021",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-021.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-021",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-021.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-021",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-021 AC-002",
+      "domains": [
+        "perf",
+        "resilience"
+      ]
+    },
+    {
+      "id": "SPEC-021.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-021",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-021.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-021.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-021",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-021.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-021",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-021.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-021",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-021.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-021",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-021 AC-003",
+      "domains": [
+        "perf",
+        "resilience"
+      ]
+    },
+    {
+      "id": "SPEC-021.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-021",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-021.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-021.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-021",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-021.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-021",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-021.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-021",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-021.AC-004",
+      "kind": "spec_atom",
+      "spec": "SPEC-021",
+      "ac": "AC-004",
+      "status": "open",
+      "title": "SPEC-021 AC-004",
+      "domains": [
+        "perf",
+        "resilience"
+      ]
+    },
+    {
+      "id": "SPEC-021.AC-004.task",
+      "kind": "task",
+      "spec": "SPEC-021",
+      "ac": "AC-004",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-021.AC-004"
+      ]
+    },
+    {
+      "id": "SPEC-021.AC-004.code",
+      "kind": "code",
+      "spec": "SPEC-021",
+      "ac": "AC-004",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-021.AC-004.test",
+      "kind": "test",
+      "spec": "SPEC-021",
+      "ac": "AC-004",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-021.AC-004.ev",
+      "kind": "evidence",
+      "spec": "SPEC-021",
+      "ac": "AC-004",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-022.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-022",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-022 AC-001",
+      "domains": [
+        "ux",
+        "docs",
+        "discovery"
+      ]
+    },
+    {
+      "id": "SPEC-022.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-022",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-022.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-022.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-022",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-022.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-022",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-022.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-022",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-022.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-022",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-022 AC-002",
+      "domains": [
+        "ux",
+        "docs",
+        "discovery"
+      ]
+    },
+    {
+      "id": "SPEC-022.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-022",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-022.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-022.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-022",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-022.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-022",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-022.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-022",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-022.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-022",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-022 AC-003",
+      "domains": [
+        "ux",
+        "docs",
+        "discovery"
+      ]
+    },
+    {
+      "id": "SPEC-022.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-022",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-022.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-022.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-022",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-022.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-022",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-022.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-022",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-022.AC-004",
+      "kind": "spec_atom",
+      "spec": "SPEC-022",
+      "ac": "AC-004",
+      "status": "open",
+      "title": "SPEC-022 AC-004",
+      "domains": [
+        "ux",
+        "docs",
+        "discovery"
+      ]
+    },
+    {
+      "id": "SPEC-022.AC-004.task",
+      "kind": "task",
+      "spec": "SPEC-022",
+      "ac": "AC-004",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-022.AC-004"
+      ]
+    },
+    {
+      "id": "SPEC-022.AC-004.code",
+      "kind": "code",
+      "spec": "SPEC-022",
+      "ac": "AC-004",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-022.AC-004.test",
+      "kind": "test",
+      "spec": "SPEC-022",
+      "ac": "AC-004",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-022.AC-004.ev",
+      "kind": "evidence",
+      "spec": "SPEC-022",
+      "ac": "AC-004",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-022.AC-005",
+      "kind": "spec_atom",
+      "spec": "SPEC-022",
+      "ac": "AC-005",
+      "status": "open",
+      "title": "SPEC-022 AC-005",
+      "domains": [
+        "ux",
+        "docs",
+        "discovery"
+      ]
+    },
+    {
+      "id": "SPEC-022.AC-005.task",
+      "kind": "task",
+      "spec": "SPEC-022",
+      "ac": "AC-005",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-022.AC-005"
+      ]
+    },
+    {
+      "id": "SPEC-022.AC-005.code",
+      "kind": "code",
+      "spec": "SPEC-022",
+      "ac": "AC-005",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-022.AC-005.test",
+      "kind": "test",
+      "spec": "SPEC-022",
+      "ac": "AC-005",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-022.AC-005.ev",
+      "kind": "evidence",
+      "spec": "SPEC-022",
+      "ac": "AC-005",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-023.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-023",
+      "ac": "AC-001",
+      "status": "verified",
+      "title": "SPEC-023 AC-001",
+      "domains": [
+        "security",
+        "resilience",
+        "discovery"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-023",
+      "ac": "AC-001",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-023.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-023",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-023.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-023",
+      "ac": "AC-001",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/decision-gate.test.ts -t \"policy registry\""
+    },
+    {
+      "id": "SPEC-023.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-023",
+      "ac": "AC-001",
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/decision-gate.test.ts -t \"policy registry\"",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/policies/policies.json": "a18189aa6fd5300d",
+        ".spec-graph/ops/decision-gate.mjs": "f31a9df93f9e4028"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  3 passed | 11 skipped (14)\n   Start at  09:16:35\n   Duration  21.59s (setup 93%, transform 4%, tests 1%, worker 1%, import 1%)\n\n",
+      "verifiedAt": "2026-11-02T09:16:57.474Z"
+    },
+    {
+      "id": "SPEC-023.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-023",
+      "ac": "AC-002",
+      "status": "verified",
+      "title": "SPEC-023 AC-002",
+      "domains": [
+        "security",
+        "resilience",
+        "discovery"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-023",
+      "ac": "AC-002",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-023.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-023",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-023.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-023",
+      "ac": "AC-002",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/decision-gate.test.ts -t \"interception\""
+    },
+    {
+      "id": "SPEC-023.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-023",
+      "ac": "AC-002",
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/decision-gate.test.ts -t \"interception\"",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/ops/decision-gate.mjs": "f31a9df93f9e4028",
+        ".spec-graph/ops/graph.mjs": "43cf237e0fa6d18b"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  5 passed | 9 skipped (14)\n   Start at  09:17:06\n   Duration  27.51s (setup 80%, tests 15%, transform 3%, worker 2%)\n\n",
+      "verifiedAt": "2026-11-02T09:17:34.134Z"
+    },
+    {
+      "id": "SPEC-023.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-023",
+      "ac": "AC-003",
+      "status": "verified",
+      "title": "SPEC-023 AC-003",
+      "domains": [
+        "security",
+        "resilience",
+        "discovery"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-023",
+      "ac": "AC-003",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-023.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-023",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-023.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-023",
+      "ac": "AC-003",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/decision-gate.test.ts -t \"premature-termination\""
+    },
+    {
+      "id": "SPEC-023.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-023",
+      "ac": "AC-003",
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/decision-gate.test.ts -t \"premature-termination\"",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/ops/decision-gate.mjs": "f31a9df93f9e4028",
+        ".spec-graph/ops/quorum.mjs": "7ac1670464be0c8e"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  2 passed | 12 skipped (14)\n   Start at  09:17:46\n   Duration  24.53s (setup 90%, tests 5%, transform 3%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T09:18:11.231Z"
+    },
+    {
+      "id": "SPEC-023.AC-004",
+      "kind": "spec_atom",
+      "spec": "SPEC-023",
+      "ac": "AC-004",
+      "status": "verified",
+      "title": "SPEC-023 AC-004",
+      "domains": [
+        "security",
+        "resilience",
+        "discovery"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-004.task",
+      "kind": "task",
+      "spec": "SPEC-023",
+      "ac": "AC-004",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-023.AC-004"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-004.code",
+      "kind": "code",
+      "spec": "SPEC-023",
+      "ac": "AC-004",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-023.AC-004.test",
+      "kind": "test",
+      "spec": "SPEC-023",
+      "ac": "AC-004",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/quorum.test.ts -t \"fail-closed domains\""
+    },
+    {
+      "id": "SPEC-023.AC-004.ev",
+      "kind": "evidence",
+      "spec": "SPEC-023",
+      "ac": "AC-004",
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/quorum.test.ts -t \"fail-closed domains\"",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/ops/quorum.mjs": "7ac1670464be0c8e",
+        ".spec-graph/ops/claim-audit.mjs": "296e56a27aae4d91",
+        "tests/unit/quorum.test.ts": "c0c38991ffa26769"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  3 passed | 8 skipped (11)\n   Start at  09:18:21\n   Duration  29.24s (setup 85%, tests 9%, transform 4%, import 1%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T09:18:51.178Z"
+    },
+    {
+      "id": "SPEC-023.AC-005",
+      "kind": "spec_atom",
+      "spec": "SPEC-023",
+      "ac": "AC-005",
+      "status": "verified",
+      "title": "SPEC-023 AC-005",
+      "domains": [
+        "security",
+        "resilience",
+        "discovery"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-005.task",
+      "kind": "task",
+      "spec": "SPEC-023",
+      "ac": "AC-005",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-023.AC-005"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-005.code",
+      "kind": "code",
+      "spec": "SPEC-023",
+      "ac": "AC-005",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-023.AC-005.test",
+      "kind": "test",
+      "spec": "SPEC-023",
+      "ac": "AC-005",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/decision-gate.test.ts -t 'bounded revision'"
+    },
+    {
+      "id": "SPEC-023.AC-005.ev",
+      "kind": "evidence",
+      "spec": "SPEC-023",
+      "ac": "AC-005",
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/decision-gate.test.ts -t 'bounded revision'",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/ops/decision-gate.mjs": "f31a9df93f9e4028",
+        "tests/unit/decision-gate.test.ts": "8e8a7882a83b511e"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  2 passed | 12 skipped (14)\n   Start at  13:32:25\n   Duration  19.93s (setup 87%, tests 9%, transform 3%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T13:32:45.045Z"
+    },
+    {
+      "id": "SPEC-023.AC-006",
+      "kind": "spec_atom",
+      "spec": "SPEC-023",
+      "ac": "AC-006",
+      "status": "verified",
+      "title": "SPEC-023 AC-006",
+      "domains": [
+        "security",
+        "resilience",
+        "discovery"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-006.task",
+      "kind": "task",
+      "spec": "SPEC-023",
+      "ac": "AC-006",
+      "status": "verified",
+      "dependsOn": [
+        "SPEC-023.AC-006"
+      ]
+    },
+    {
+      "id": "SPEC-023.AC-006.code",
+      "kind": "code",
+      "spec": "SPEC-023",
+      "ac": "AC-006",
+      "status": "verified",
+      "paths": []
+    },
+    {
+      "id": "SPEC-023.AC-006.test",
+      "kind": "test",
+      "spec": "SPEC-023",
+      "ac": "AC-006",
+      "status": "verified",
+      "paths": [],
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/decision-gate.test.ts -t 'probabilistic layer'"
+    },
+    {
+      "id": "SPEC-023.AC-006.ev",
+      "kind": "evidence",
+      "spec": "SPEC-023",
+      "ac": "AC-006",
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/decision-gate.test.ts -t 'probabilistic layer'",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/ops/decision-gate.mjs": "f31a9df93f9e4028",
+        "tests/unit/decision-gate.test.ts": "8e8a7882a83b511e"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  2 passed | 12 skipped (14)\n   Start at  13:32:52\n   Duration  17.68s (setup 84%, tests 11%, transform 4%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T13:33:09.754Z"
+    },
+    {
+      "id": "SPEC-024.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-024",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-024 AC-001",
+      "domains": [
+        "security",
+        "resilience",
+        "docs",
+        "ux"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-024",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-024.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-024",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-024.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-024",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-024.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-024",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-024.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-024",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-024 AC-002",
+      "domains": [
+        "security",
+        "resilience",
+        "docs",
+        "ux"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-024",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-024.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-024",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-024.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-024",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-024.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-024",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-024.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-024",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-024 AC-003",
+      "domains": [
+        "security",
+        "resilience",
+        "docs",
+        "ux"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-024",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-024.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-024",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-024.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-024",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-024.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-024",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-024.AC-004",
+      "kind": "spec_atom",
+      "spec": "SPEC-024",
+      "ac": "AC-004",
+      "status": "open",
+      "title": "SPEC-024 AC-004",
+      "domains": [
+        "security",
+        "resilience",
+        "docs",
+        "ux"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-004.task",
+      "kind": "task",
+      "spec": "SPEC-024",
+      "ac": "AC-004",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-024.AC-004"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-004.code",
+      "kind": "code",
+      "spec": "SPEC-024",
+      "ac": "AC-004",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-024.AC-004.test",
+      "kind": "test",
+      "spec": "SPEC-024",
+      "ac": "AC-004",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-024.AC-004.ev",
+      "kind": "evidence",
+      "spec": "SPEC-024",
+      "ac": "AC-004",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-024.AC-005",
+      "kind": "spec_atom",
+      "spec": "SPEC-024",
+      "ac": "AC-005",
+      "status": "open",
+      "title": "SPEC-024 AC-005",
+      "domains": [
+        "security",
+        "resilience",
+        "docs",
+        "ux"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-005.task",
+      "kind": "task",
+      "spec": "SPEC-024",
+      "ac": "AC-005",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-024.AC-005"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-005.code",
+      "kind": "code",
+      "spec": "SPEC-024",
+      "ac": "AC-005",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-024.AC-005.test",
+      "kind": "test",
+      "spec": "SPEC-024",
+      "ac": "AC-005",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-024.AC-005.ev",
+      "kind": "evidence",
+      "spec": "SPEC-024",
+      "ac": "AC-005",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-024.AC-006",
+      "kind": "spec_atom",
+      "spec": "SPEC-024",
+      "ac": "AC-006",
+      "status": "open",
+      "title": "SPEC-024 AC-006",
+      "domains": [
+        "security",
+        "resilience",
+        "docs",
+        "ux"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-006.task",
+      "kind": "task",
+      "spec": "SPEC-024",
+      "ac": "AC-006",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-024.AC-006"
+      ]
+    },
+    {
+      "id": "SPEC-024.AC-006.code",
+      "kind": "code",
+      "spec": "SPEC-024",
+      "ac": "AC-006",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-024.AC-006.test",
+      "kind": "test",
+      "spec": "SPEC-024",
+      "ac": "AC-006",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-024.AC-006.ev",
+      "kind": "evidence",
+      "spec": "SPEC-024",
+      "ac": "AC-006",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-025.AC-001",
+      "kind": "spec_atom",
+      "spec": "SPEC-025",
+      "ac": "AC-001",
+      "status": "open",
+      "title": "SPEC-025 AC-001",
+      "domains": [
+        "docs",
+        "security"
+      ]
+    },
+    {
+      "id": "SPEC-025.AC-001.task",
+      "kind": "task",
+      "spec": "SPEC-025",
+      "ac": "AC-001",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-025.AC-001"
+      ]
+    },
+    {
+      "id": "SPEC-025.AC-001.code",
+      "kind": "code",
+      "spec": "SPEC-025",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-025.AC-001.test",
+      "kind": "test",
+      "spec": "SPEC-025",
+      "ac": "AC-001",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-025.AC-001.ev",
+      "kind": "evidence",
+      "spec": "SPEC-025",
+      "ac": "AC-001",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-025.AC-002",
+      "kind": "spec_atom",
+      "spec": "SPEC-025",
+      "ac": "AC-002",
+      "status": "open",
+      "title": "SPEC-025 AC-002",
+      "domains": [
+        "docs",
+        "security"
+      ]
+    },
+    {
+      "id": "SPEC-025.AC-002.task",
+      "kind": "task",
+      "spec": "SPEC-025",
+      "ac": "AC-002",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-025.AC-002"
+      ]
+    },
+    {
+      "id": "SPEC-025.AC-002.code",
+      "kind": "code",
+      "spec": "SPEC-025",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-025.AC-002.test",
+      "kind": "test",
+      "spec": "SPEC-025",
+      "ac": "AC-002",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-025.AC-002.ev",
+      "kind": "evidence",
+      "spec": "SPEC-025",
+      "ac": "AC-002",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
+    },
+    {
+      "id": "SPEC-025.AC-003",
+      "kind": "spec_atom",
+      "spec": "SPEC-025",
+      "ac": "AC-003",
+      "status": "open",
+      "title": "SPEC-025 AC-003",
+      "domains": [
+        "docs",
+        "security"
+      ]
+    },
+    {
+      "id": "SPEC-025.AC-003.task",
+      "kind": "task",
+      "spec": "SPEC-025",
+      "ac": "AC-003",
+      "status": "open",
+      "dependsOn": [
+        "SPEC-025.AC-003"
+      ]
+    },
+    {
+      "id": "SPEC-025.AC-003.code",
+      "kind": "code",
+      "spec": "SPEC-025",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": []
+    },
+    {
+      "id": "SPEC-025.AC-003.test",
+      "kind": "test",
+      "spec": "SPEC-025",
+      "ac": "AC-003",
+      "status": "open",
+      "paths": [],
+      "cmd": ""
+    },
+    {
+      "id": "SPEC-025.AC-003.ev",
+      "kind": "evidence",
+      "spec": "SPEC-025",
+      "ac": "AC-003",
+      "status": "open",
+      "cmd": "",
+      "exit": null,
+      "hashes": {},
+      "log": ""
     }
   ],
   "edges": [
@@ -4161,6 +5676,566 @@
     {
       "from": "SPEC-019.AC-003.ev",
       "to": "SPEC-019.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-020.AC-001.task",
+      "to": "SPEC-020.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-020.AC-001.code",
+      "to": "SPEC-020.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-020.AC-001.test",
+      "to": "SPEC-020.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-020.AC-001.ev",
+      "to": "SPEC-020.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-020.AC-002.task",
+      "to": "SPEC-020.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-020.AC-002.code",
+      "to": "SPEC-020.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-020.AC-002.test",
+      "to": "SPEC-020.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-020.AC-002.ev",
+      "to": "SPEC-020.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-020.AC-003.task",
+      "to": "SPEC-020.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-020.AC-003.code",
+      "to": "SPEC-020.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-020.AC-003.test",
+      "to": "SPEC-020.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-020.AC-003.ev",
+      "to": "SPEC-020.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-020.AC-004.task",
+      "to": "SPEC-020.AC-004",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-020.AC-004.code",
+      "to": "SPEC-020.AC-004.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-020.AC-004.test",
+      "to": "SPEC-020.AC-004",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-020.AC-004.ev",
+      "to": "SPEC-020.AC-004.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-021.AC-001.task",
+      "to": "SPEC-021.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-021.AC-001.code",
+      "to": "SPEC-021.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-021.AC-001.test",
+      "to": "SPEC-021.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-021.AC-001.ev",
+      "to": "SPEC-021.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-021.AC-002.task",
+      "to": "SPEC-021.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-021.AC-002.code",
+      "to": "SPEC-021.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-021.AC-002.test",
+      "to": "SPEC-021.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-021.AC-002.ev",
+      "to": "SPEC-021.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-021.AC-003.task",
+      "to": "SPEC-021.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-021.AC-003.code",
+      "to": "SPEC-021.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-021.AC-003.test",
+      "to": "SPEC-021.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-021.AC-003.ev",
+      "to": "SPEC-021.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-021.AC-004.task",
+      "to": "SPEC-021.AC-004",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-021.AC-004.code",
+      "to": "SPEC-021.AC-004.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-021.AC-004.test",
+      "to": "SPEC-021.AC-004",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-021.AC-004.ev",
+      "to": "SPEC-021.AC-004.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-022.AC-001.task",
+      "to": "SPEC-022.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-022.AC-001.code",
+      "to": "SPEC-022.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-022.AC-001.test",
+      "to": "SPEC-022.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-022.AC-001.ev",
+      "to": "SPEC-022.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-022.AC-002.task",
+      "to": "SPEC-022.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-022.AC-002.code",
+      "to": "SPEC-022.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-022.AC-002.test",
+      "to": "SPEC-022.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-022.AC-002.ev",
+      "to": "SPEC-022.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-022.AC-003.task",
+      "to": "SPEC-022.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-022.AC-003.code",
+      "to": "SPEC-022.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-022.AC-003.test",
+      "to": "SPEC-022.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-022.AC-003.ev",
+      "to": "SPEC-022.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-022.AC-004.task",
+      "to": "SPEC-022.AC-004",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-022.AC-004.code",
+      "to": "SPEC-022.AC-004.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-022.AC-004.test",
+      "to": "SPEC-022.AC-004",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-022.AC-004.ev",
+      "to": "SPEC-022.AC-004.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-022.AC-005.task",
+      "to": "SPEC-022.AC-005",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-022.AC-005.code",
+      "to": "SPEC-022.AC-005.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-022.AC-005.test",
+      "to": "SPEC-022.AC-005",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-022.AC-005.ev",
+      "to": "SPEC-022.AC-005.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-023.AC-001.task",
+      "to": "SPEC-023.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-023.AC-001.code",
+      "to": "SPEC-023.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-023.AC-001.test",
+      "to": "SPEC-023.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-023.AC-001.ev",
+      "to": "SPEC-023.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-023.AC-002.task",
+      "to": "SPEC-023.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-023.AC-002.code",
+      "to": "SPEC-023.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-023.AC-002.test",
+      "to": "SPEC-023.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-023.AC-002.ev",
+      "to": "SPEC-023.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-023.AC-003.task",
+      "to": "SPEC-023.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-023.AC-003.code",
+      "to": "SPEC-023.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-023.AC-003.test",
+      "to": "SPEC-023.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-023.AC-003.ev",
+      "to": "SPEC-023.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-023.AC-004.task",
+      "to": "SPEC-023.AC-004",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-023.AC-004.code",
+      "to": "SPEC-023.AC-004.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-023.AC-004.test",
+      "to": "SPEC-023.AC-004",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-023.AC-004.ev",
+      "to": "SPEC-023.AC-004.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-023.AC-005.task",
+      "to": "SPEC-023.AC-005",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-023.AC-005.code",
+      "to": "SPEC-023.AC-005.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-023.AC-005.test",
+      "to": "SPEC-023.AC-005",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-023.AC-005.ev",
+      "to": "SPEC-023.AC-005.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-023.AC-006.task",
+      "to": "SPEC-023.AC-006",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-023.AC-006.code",
+      "to": "SPEC-023.AC-006.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-023.AC-006.test",
+      "to": "SPEC-023.AC-006",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-023.AC-006.ev",
+      "to": "SPEC-023.AC-006.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-024.AC-001.task",
+      "to": "SPEC-024.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-024.AC-001.code",
+      "to": "SPEC-024.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-024.AC-001.test",
+      "to": "SPEC-024.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-024.AC-001.ev",
+      "to": "SPEC-024.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-024.AC-002.task",
+      "to": "SPEC-024.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-024.AC-002.code",
+      "to": "SPEC-024.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-024.AC-002.test",
+      "to": "SPEC-024.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-024.AC-002.ev",
+      "to": "SPEC-024.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-024.AC-003.task",
+      "to": "SPEC-024.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-024.AC-003.code",
+      "to": "SPEC-024.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-024.AC-003.test",
+      "to": "SPEC-024.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-024.AC-003.ev",
+      "to": "SPEC-024.AC-003.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-024.AC-004.task",
+      "to": "SPEC-024.AC-004",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-024.AC-004.code",
+      "to": "SPEC-024.AC-004.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-024.AC-004.test",
+      "to": "SPEC-024.AC-004",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-024.AC-004.ev",
+      "to": "SPEC-024.AC-004.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-024.AC-005.task",
+      "to": "SPEC-024.AC-005",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-024.AC-005.code",
+      "to": "SPEC-024.AC-005.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-024.AC-005.test",
+      "to": "SPEC-024.AC-005",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-024.AC-005.ev",
+      "to": "SPEC-024.AC-005.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-024.AC-006.task",
+      "to": "SPEC-024.AC-006",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-024.AC-006.code",
+      "to": "SPEC-024.AC-006.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-024.AC-006.test",
+      "to": "SPEC-024.AC-006",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-024.AC-006.ev",
+      "to": "SPEC-024.AC-006.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-025.AC-001.task",
+      "to": "SPEC-025.AC-001",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-025.AC-001.code",
+      "to": "SPEC-025.AC-001.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-025.AC-001.test",
+      "to": "SPEC-025.AC-001",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-025.AC-001.ev",
+      "to": "SPEC-025.AC-001.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-025.AC-002.task",
+      "to": "SPEC-025.AC-002",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-025.AC-002.code",
+      "to": "SPEC-025.AC-002.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-025.AC-002.test",
+      "to": "SPEC-025.AC-002",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-025.AC-002.ev",
+      "to": "SPEC-025.AC-002.test",
+      "rel": "verifies"
+    },
+    {
+      "from": "SPEC-025.AC-003.task",
+      "to": "SPEC-025.AC-003",
+      "rel": "derives_from"
+    },
+    {
+      "from": "SPEC-025.AC-003.code",
+      "to": "SPEC-025.AC-003.task",
+      "rel": "implements"
+    },
+    {
+      "from": "SPEC-025.AC-003.test",
+      "to": "SPEC-025.AC-003",
+      "rel": "covers"
+    },
+    {
+      "from": "SPEC-025.AC-003.ev",
+      "to": "SPEC-025.AC-003.test",
       "rel": "verifies"
     }
   ]

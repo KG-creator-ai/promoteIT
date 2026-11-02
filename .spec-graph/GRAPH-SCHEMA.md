@@ -1,12 +1,14 @@
-# Graph Schema v3.1 (`graph.json`)
+# Graph Schema v3.2 (`graph.json`)
 
 Single source of truth. Machine-editable via `ops/graph.mjs`; humans read via `status`.
-v3.1 adds optional `domains` on spec_atom nodes (SPEC-014 tiered quorum);
-v3.0 graphs load unchanged (missing `domains` ≡ `[]`).
+v3.2 adds the `av-quality` domain (Phase 10: audio/video quality auditor) and
+makes unmapped domains fail closed (D21). v3.1 adds optional `domains` on
+spec_atom nodes (SPEC-014 tiered quorum); v3.0 graphs load unchanged (missing
+`domains` ≡ `[]`).
 
 ```json
 {
-  "version": "3.1.0",
+  "version": "3.2.0",
   "project": "<name>",
   "updatedAt": "<ISO>",
   "nodes": [
@@ -26,7 +28,7 @@ v3.0 graphs load unchanged (missing `domains` ≡ `[]`).
 ```
 
 - `kind`: spec_atom|task|code|test|evidence|defect.
-- `domains` (spec_atom only, optional): subset of security|perf|ux|resilience|docs|discovery. Parsed by `graph.mjs init` from the spec's `- Domains:` line; drives tiered quorum (`ops/quorum.mjs`, PERSONAS.md).
+- `domains` (spec_atom only, optional): subset of security|perf|ux|resilience|docs|discovery|av-quality. Parsed by `graph.mjs init` from the spec's `- Domains:` line; drives tiered quorum (`ops/quorum.mjs`, PERSONAS.md). An unmapped value **fails closed** — the quorum resolver and claim-audit report it as an error instead of dropping the auditor (D21).
 - `status`: open|in_progress|verified|blocked|waived (waived needs releaser+po rationale).
 - `evidence` node: records cmd, exit code, output sha, file hashes at capture, timestamp.
 - **Freshness rule**: verify/re-verify recomputes hashes of linked code/test paths; mismatch with stored hashes ⇒ auto-reopen to `open` with reason `stale-evidence`.

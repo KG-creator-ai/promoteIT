@@ -9,7 +9,7 @@ Every spec lives at `.spec-graph/specs/<SPEC-ID>.md` (e.g. `SPEC-001-tests.md`).
 - Status: draft
 - Phase: 01
 - Owner-persona: po
-- Domains: security (optional; subset of security|perf|ux|resilience|docs|discovery — declares which Tier-2 auditors must vote; parsed by `graph.mjs init`)
+- Domains: security (optional; subset of security|perf|ux|resilience|docs|discovery|av-quality — declares which Tier-2 auditors must vote; parsed by `graph.mjs init`; every value must map to a persona or the quorum fails closed — D21)
 
 ## Goal
 <1–3 sentences. What user-visible outcome.>

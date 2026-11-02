@@ -153,6 +153,108 @@
   verdicts, L3-vision reviewer findings, assurance results and known limits
   (SPEC-019).
 
+## Competitive Scan — Phase 10 (2026-11-02)
+
+### D-011 — The exported webm carries a silent audio track
+- Source type: internal-observation
+- Date: 2026-11-02
+- Promoted: SPEC-020
+- Observation: `audioEngine.startContinuousBgm()` / `startAct1Audio()` are defined
+  (`src/services/audioEngine.ts:478-530`) but never called from any current
+  `src/` file, so the Web Audio bus returned by `getAudioStream()` has no
+  source. `AVVideoPlayer.tsx:381-382` muxes that bus into the export, and the
+  resulting webm therefore carries an `A_OPUS`/`A_VORBIS` track descriptor with
+  no signal. Separately, Chrome's `speechSynthesis` output is not routable into
+  a `MediaStreamAudioDestinationNode`, so the spoken voiceover can never reach
+  the file either.
+- Impact: high
+- Proposed: Start the audio bed for real during playback/export, route mute and
+  volume to the real gain nodes, add a client-side narration path (tab capture →
+  `<audio>` element → `captureStream()` → mux) and label the export with what
+  it actually contains.
+
+### D-012 — Dead audio surface: unused producers and inert controls
+- Source type: internal-observation
+- Date: 2026-11-02
+- Promoted: SPEC-020
+- Observation: `AVVideoPlayer.playTone` (`:320`) and
+  `VideoRenderer.syncVideoPlayback` (`src/services/videoRenderer.ts:41`) are
+  defined but never called; the player's mute toggle and volume slider mutate
+  React state only and never touch a `GainNode` (`:527-539`). The module-level
+  orphan scan (SPEC-012) cannot see method-level deadness, so these survived
+  the Phase-08 sweep.
+- Impact: medium
+- Proposed: Wire or delete each dead member, and extend the orphan scan to
+  method-level dead surface so a second sweep can catch the next one.
+
+### D-013 — Unknown domains are silently ignored, so a required auditor can never be required
+- Source type: internal-observation
+- Date: 2026-11-02
+- Promoted: SPEC-023
+- Observation: `ops/quorum.mjs:29-33` maps a phase's `domains` to personas
+  through `DOMAIN_MAP` and *ignores* any domain string that is not in the map
+  ("spec lint (po) owns validity"). A spec that declares a domain with no
+  mapping therefore produces a required set that silently omits its auditor —
+  the mirror image of D-001 (a roster that named approvers which did not
+  exist), and a vacuous-quorum hole in the other direction.
+- Impact: high
+- Proposed: Fail closed — an unmapped domain must make the quorum resolver and
+  claim-audit fail with a named error, and a lint must reject unknown domain
+  strings in spec files.
+
+### D-014 — The certification ladder has no rung that asserts content
+- Source type: internal-observation
+- Date: 2026-11-02
+- Promoted: SPEC-022
+- Observation: L1 proves gates green, L2 proves a function ran, L3 proves the
+  pixels look right, L4 proves a provider wrote text — but nothing asserts that
+  the audio is audible or intelligible, that the narration matches the script,
+  or that picture and sound agree. The L3 rubric (`.spec-graph/templates/L3-RUBRIC.md`)
+  is entirely visual (F1–F4 frames, S1–S4 screenshots, H1–H3 honesty): its only
+  audio mention is "S3 Audio Studio", a screenshot of the controls. The E2E
+  audio leg asserts only that `speechSynthesis.speak` was called
+  (`scripts/e2e-av.mjs:281`), and the export's audio check is a codec-descriptor
+  byte sniff (`:358`) — proof that a track exists, not that it carries signal.
+- Impact: high
+- Proposed: Add a machine-fact layer (levels, clipping, silence, A/V drift,
+  scene correspondence) and a human-review layer with an explicit reviewer
+  taxonomy, and expose the achieved level as a new certification rung.
+
+## Voice of the Customer — Phase 10 (2026-11-02)
+
+### V-003 — "Test the audio and video output as a real human"
+- Source type: user-feedback
+- Date: 2026-11-02
+- Promoted: SPEC-022
+- Paraphrase: The project owner directed that the framework must evaluate the
+  product's audio and video output the way a person would — listening and
+  watching, not only asserting that a function fired — and selected a combined
+  model in which a persona reviews the full set while the owner personally
+  spot-checks a short sample (recorded as a human verdict distinct from the
+  persona's).
+- Impact: high
+- Proposed: Build a human-grade AV review protocol — audio and video rubric
+  criteria, a reviewer taxonomy that never lets a persona verdict read as a
+  human one, and a compact review package the owner can judge in minutes.
+
+### V-004 — "Think before you act: our autonomous framework should gate its own actions"
+- Source type: user-feedback
+- Date: 2026-11-02
+- Promoted: SPEC-023
+- Paraphrase: The project owner cited IBM Research's published paper "Think
+  Before You Act: Decision Gate for LLM Agents" (arXiv 2610.38620) — which
+  intercepts selected agent actions before execution, compiles domain policies
+  into executable state checks plus structured questions judged by a
+  prefill-only decision model, and catches invalid actions and premature task
+  termination — and asked whether the autonomous development framework could
+  adapt it, granting autonomy to act on the answer.
+- Impact: high
+- Proposed: Add a decision gate to the harness: a policy registry compiled from
+  GUARDRAILS and DECISIONS into executable checks, interception at the
+  verification and release choke points, structured feedback with bounded
+  revision, a premature-termination detector, and an optional probabilistic
+  judgment layer that degrades honestly when no provider is available.
+
 ## Candidate hygiene
 - A finding becomes a roadmap candidate only after it clears the format above.
 - Findings stay candidates until a spec author promotes them into a spec;

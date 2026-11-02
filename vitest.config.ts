@@ -13,6 +13,11 @@ export default defineConfig({
     environment: 'node',
     setupFiles: ['./tests/setup.ts'],
     include: JSDOM_OK ? ['tests/**/*.test.{ts,tsx}'] : ['tests/unit/**/*.test.{ts,tsx}'],
+    // Several suites exercise the real harness CLIs as node subprocesses
+    // (quorum/decision-gate/graph) — a cold node start plus git probes takes
+    // longer than vitest's 5s default and flakes under parallel load.
+    testTimeout: 30000,
+    hookTimeout: 30000,
   },
   resolve: {
     alias: {

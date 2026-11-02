@@ -5,9 +5,10 @@ import path from 'path';
 import crypto from 'crypto';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
-import { requiredFor, CORE } from './quorum.mjs';
+import { requiredFor, CORE, DOMAIN_MAP } from './quorum.mjs';
+import { parseSpecACs } from './spec-parse.mjs';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const root = process.env.SPEC_GRAPH_ROOT || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const GRAPH = path.join(root, '.spec-graph/graph.json');
 const problems = [];
 const sha = (s) => crypto.createHash('sha256').update(s).digest('hex').slice(0, 16);
@@ -63,13 +64,27 @@ if (fs.existsSync(vd)) {
       else if (v.verdict === 'request_changes') problems.push(`${file}: request_changes unresolved`);
     }
     const specs = [...new Set(vs.flatMap(({ v }) => v.specs || []))];
-    const { required } = requiredFor(g, specs);
+    const { required, unknown } = requiredFor(g, specs);
+    for (const d of unknown) problems.push(`phase-${ph}: unmapped domain "${d}" — no persona is required for it (add it to ops/quorum.mjs DOMAIN_MAP)`);
     const have = new Set(vs.filter(({ v }) => v.verdict === 'approve').map(({ v }) => v.persona));
     for (const p of required) {
       if (!have.has(p)) problems.push(`phase-${ph}: quorum missing approve from ${p} (specs: ${specs.join(',') || 'core-only'})`);
     }
     for (const p of CORE) {
       if (!vs.some(({ v }) => v.persona === p)) problems.push(`phase-${ph}: core verdict missing: ${p}`);
+    }
+  }
+}
+
+// 7. Spec domain lint (D21): every `- Domains:` value must map to a persona.
+//    An unmapped domain would make its auditor silently optional (D-013).
+{
+  const specsDir = path.join(root, '.spec-graph/specs');
+  const files = fs.existsSync(specsDir) ? fs.readdirSync(specsDir).filter(f => f.endsWith('.md')) : [];
+  for (const f of files) {
+    const { domains } = parseSpecACs(path.join(specsDir, f));
+    for (const d of domains) {
+      if (!DOMAIN_MAP[d]) problems.push(`${f}: unmapped domain "${d}" — no persona is mapped to it (ops/quorum.mjs DOMAIN_MAP)`);
     }
   }
 }

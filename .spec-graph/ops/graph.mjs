@@ -12,8 +12,9 @@ import crypto from 'crypto';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { parseSpecACs } from './spec-parse.mjs';
+import { evaluate } from './decision-gate.mjs';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const root = process.env.SPEC_GRAPH_ROOT || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const sg = path.join(root, '.spec-graph');
 const GRAPH = path.join(sg, 'graph.json');
 
@@ -168,7 +169,16 @@ if (invokedDirectly) {
   else if (cmd === 'verify') {
     const ci = rest.indexOf('--cmd');
     const pi = rest.indexOf('--paths');
-    verify(rest[0], ci >= 0 ? rest[ci + 1] : '', pi >= 0 ? rest[pi + 1].split(',') : []);
+    const evidenceCmd = ci >= 0 ? rest[ci + 1] : '';
+    const evidencePaths = pi >= 0 ? rest[pi + 1].split(',') : [];
+    // Decision gate (SPEC-023, D19): policies are evaluated BEFORE the
+    // evidence command runs — a blocked action never becomes "verified".
+    const gate = await evaluate({ action: 'verify', target: rest[0], cmd: evidenceCmd, paths: evidencePaths });
+    if (gate.verdict === 'block') {
+      console.log(JSON.stringify(gate, null, 2));
+      process.exit(1);
+    }
+    verify(rest[0], evidenceCmd, evidencePaths);
   }
   else if (cmd === 'reopen') reopen(rest[0], rest.slice(rest.indexOf('--reason') + 1).join(' ') || 'manual');
   else { console.error('usage: init|add-spec <SPEC-ID>|status|open|verify <atom> --cmd "<cmd>" [--paths a,b]|reopen <atom> --reason ...'); process.exit(2); }

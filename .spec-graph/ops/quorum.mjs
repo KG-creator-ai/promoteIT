@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const root = process.env.SPEC_GRAPH_ROOT || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 export const CORE = ['po', 'architect', 'builder', 'qa', 'redteam', 'releaser'];
 export const DOMAIN_MAP = {
   security: 'security-auditor',
@@ -16,6 +16,7 @@ export const DOMAIN_MAP = {
   resilience: 'resilience-engineer',
   docs: 'docs-reviewer',
   discovery: 'analyst',
+  'av-quality': 'creative-director',
 };
 
 export function requiredFor(graph, specs) {
@@ -26,12 +27,15 @@ export function requiredFor(graph, specs) {
     }
   }
   const req = [...CORE];
+  const unknown = [];
   for (const d of domains) {
     const p = DOMAIN_MAP[d];
-    if (p && !req.includes(p)) req.push(p);
-    // unknown domain strings are ignored here; spec lint (po) owns validity
+    // Fail closed (D21): an unmapped domain must never silently drop its
+    // auditor — that is a vacuous quorum. It is reported as an error.
+    if (!p) { unknown.push(d); continue; }
+    if (!req.includes(p)) req.push(p);
   }
-  return { required: req, domains: [...domains] };
+  return { required: req, domains: [...domains], unknown };
 }
 
 function arg(name) {
@@ -42,7 +46,7 @@ function arg(name) {
 // Test seam: allow require() invocation without argv side effects.
 export function check({ phase, specs, verdictsDir }) {
   const g = JSON.parse(fs.readFileSync(path.join(root, '.spec-graph/graph.json'), 'utf8'));
-  const { required, domains } = requiredFor(g, specs);
+  const { required, domains, unknown } = requiredFor(g, specs);
   const present = {};
   const missing = [];
   const nonApprove = [];
@@ -55,8 +59,8 @@ export function check({ phase, specs, verdictsDir }) {
       if (v.verdict !== 'approve') nonApprove.push(`${p}=${v.verdict}`);
     } catch { nonApprove.push(`${p}=unparsable`); }
   }
-  const ok = missing.length === 0 && nonApprove.length === 0;
-  return { verdict: ok ? 'PASS' : 'FAIL', phase, specs, domains, required, present, missing, nonApprove };
+  const ok = missing.length === 0 && nonApprove.length === 0 && unknown.length === 0;
+  return { verdict: ok ? 'PASS' : 'FAIL', phase, specs, domains, unknown, required, present, missing, nonApprove };
 }
 
 const invokedDirectly = process.argv[1] && path.basename(process.argv[1]) === 'quorum.mjs';

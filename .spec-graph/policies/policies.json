@@ -1,0 +1,126 @@
+{
+  "version": "1.0.0",
+  "source": "GUARDRAILS.md + DECISIONS.md + PROCESS.md + PERSONAS.md + spec constraints",
+  "note": "Every policy must cite the rule it enforces. Unknown check types fail the gate (fail-closed).",
+  "policies": [
+    {
+      "id": "DG-001",
+      "actions": ["verify", "commit", "push", "tag", "release"],
+      "severity": "block",
+      "source": "GUARDRAILS.md — never commit .env*, secrets, keys, tokens",
+      "description": "No real environment file, private key or credential file may be tracked.",
+      "check": { "type": "no_secret_files_tracked", "allow": [".env.example"] }
+    },
+    {
+      "id": "DG-002",
+      "actions": ["verify"],
+      "severity": "block",
+      "source": "GRAPH-SCHEMA.md — the ledger is the single source of truth",
+      "description": "The atom being verified must exist in the ledger.",
+      "check": { "type": "atom_exists" }
+    },
+    {
+      "id": "DG-003",
+      "actions": ["verify"],
+      "severity": "block",
+      "source": "SPEC-FORMAT.md — every AC must have ≥1 executable evidence hook",
+      "description": "An evidence command must be supplied.",
+      "check": { "type": "cmd_present" }
+    },
+    {
+      "id": "DG-004",
+      "actions": ["verify"],
+      "severity": "block",
+      "source": "QA mandate — evidence must reference files that exist",
+      "description": "Every tracked evidence path must exist on disk.",
+      "check": { "type": "evidence_paths_exist" }
+    },
+    {
+      "id": "DG-005",
+      "actions": ["verify", "release"],
+      "severity": "block",
+      "source": "D21 — unmapped domains fail closed (D-013)",
+      "description": "Every domain declared by the atom's spec must map to a persona.",
+      "check": { "type": "domain_mapped" }
+    },
+    {
+      "id": "DG-006",
+      "actions": ["verify", "release"],
+      "severity": "block",
+      "source": "D10 — a workflow run may never cite its own success",
+      "description": "An evidence command must not cite the current HEAD commit (self-reference).",
+      "check": { "type": "no_self_citing_ci" }
+    },
+    {
+      "id": "DG-007",
+      "actions": ["verify", "push", "tag", "release"],
+      "severity": "block",
+      "source": "GUARDRAILS.md — no force-push, no history rewrite",
+      "description": "A force-push may never be part of a gated action.",
+      "check": { "type": "no_force_push" }
+    },
+    {
+      "id": "DG-008",
+      "actions": ["verify", "commit", "push", "release"],
+      "severity": "block",
+      "source": "D1 + architect mandate — no new runtime deps without an ADR",
+      "description": "A newly added runtime dependency must be named in DECISIONS.md.",
+      "check": { "type": "runtime_dep_requires_adr" }
+    },
+    {
+      "id": "DG-010",
+      "actions": ["done", "release"],
+      "severity": "block",
+      "source": "PROCESS.md DoD — 0 open atoms",
+      "description": "No atom may remain open when completion or release is declared.",
+      "check": { "type": "no_open_atoms" }
+    },
+    {
+      "id": "DG-011",
+      "actions": ["done", "release"],
+      "severity": "block",
+      "source": "PERSONAS.md advance rule — zero block, zero unresolved request_changes among required personas",
+      "description": "The tiered quorum for the phase must be complete and approving.",
+      "check": { "type": "quorum_complete" }
+    },
+    {
+      "id": "DG-012",
+      "actions": ["done", "release"],
+      "severity": "block",
+      "source": "QA mandate — stale evidence re-opens the affected atom",
+      "description": "No evidence node may be stale.",
+      "check": { "type": "evidence_fresh" }
+    },
+    {
+      "id": "DG-013",
+      "actions": ["release"],
+      "severity": "block",
+      "source": "V-002 — certification must not overstate what was produced",
+      "description": "The certification's claims must re-derive from the ledger and the artifacts.",
+      "check": { "type": "cert_claims_match_ledger" }
+    },
+    {
+      "id": "DG-014",
+      "actions": ["release"],
+      "severity": "block",
+      "source": "PROCESS.md 05 VERIFY — gate.mjs exit 0",
+      "description": "The gate chain must be green.",
+      "check": { "type": "gate_green" }
+    },
+    {
+      "id": "DG-015",
+      "actions": ["tag", "release"],
+      "severity": "block",
+      "source": "GUARDRAILS.md — release tags are v1.x.y, never v1.0.0-prod-style",
+      "description": "A release tag must match vMAJOR.MINOR.PATCH.",
+      "check": { "type": "tag_format" }
+    }
+  ],
+  "judgment": {
+    "enabled": true,
+    "actions": ["release"],
+    "model": "gemini-2.0-flash",
+    "minConfidence": 0.75,
+    "question": "Does this release's declared scope exceed the evidence recorded for it? Answer with JSON only: {\"verdict\":\"pass\"|\"fail\",\"confidence\":0..1,\"reasons\":[\"...\"]}."
+  }
+}

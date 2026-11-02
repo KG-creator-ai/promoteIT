@@ -61,3 +61,34 @@
   (dev tooling included) with the D9 allowlist EMPTIED (all 3 resolved —
   stale permits hide regressions) and a single new permit: GHSA-gcqx-w48m-w2h4
   (deepmerge low, dev/build chain, fix = breaking vite-plugin-pwa downgrade).
+- D19 Decision Gate (Phase 10, 2026-11-02): the harness intercepts its own
+  consequential actions before execution, adopting IBM Research's JevAct
+  (arXiv 2610.38620): domain policies compiled into executable state checks,
+  structured feedback, bounded revision (3 blocks → escalation card), and
+  premature-termination detection. Model-agnostic and zero-backend — a Node CLI
+  in `.spec-graph/ops/decision-gate.mjs`, no agent/tool changes. Interception
+  points: `graph.mjs verify` (the only path to "verified") and the release
+  path. The probabilistic judgment layer is OPTIONAL: without a provider key the
+  decision record says `unverified-probabilistic` — the gate never reports a
+  probabilistic pass it did not obtain.
+- D20 L5 + reviewer taxonomy (Phase 10, 2026-11-02): the certification gains an
+  **L5 — Human-grade AV** rung next to L1–L4. Machine facts (levels, clipping,
+  silence, A/V drift, scene correspondence) and human/proxy judgements stay
+  separate and are never fused into one score. Every AV verdict declares
+  `reviewerKind ∈ {human, agent-proxy}`; a persona verdict is always
+  `agent-proxy`, and an L5 claim without a human attestation is a false claim.
+  The owner's spot-check is optional and non-blocking — when absent, the
+  achieved level is recorded honestly, never inflated.
+- D21 Fail-closed domains (Phase 10, 2026-11-02): `ops/quorum.mjs` used to
+  IGNORE a `- Domains:` value with no persona mapping, so the auditor for that
+  domain was silently never required — the mirror of D-001 and a vacuous-quorum
+  hole. Unknown domains now make quorum + claim-audit FAIL with a named error,
+  and a spec-domain lint rejects them at source. New domain `av-quality` maps
+  to the new `creative-director` persona (Tier 2, 13 personas total).
+- D22 Phase-10 discovery intake (2026-11-02): D-011 (silent export — the Web
+  Audio bed is never started and Web Speech cannot be muxed), D-012 (dead audio
+  surface: unused producers, inert mute/volume), D-013 (unmapped domains
+  silently ignored), D-014 (no certification rung asserts content) plus owner
+  VOC V-003 ("test the audio and video output as a real human") and V-004
+  ("think before you act — gate our own actions") were logged in
+  `.spec-graph/DISCOVERY.md` and promoted into SPEC-020…SPEC-023.

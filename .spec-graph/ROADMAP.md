@@ -1,7 +1,8 @@
 # Roadmap — promote-IT AV Studio
 
-- Status: **v1.2.0 release in flight** (v1.0.0 shipped 2026-10-12, v1.1.0
-  shipped 2026-10-13; Phase 09 targets v1.2.0).
+- Status: **v1.2.0 shipped** (v1.0.0 on 2026-10-12, v1.1.0 on 2026-10-13,
+  v1.2.0 on 2026-11-02 — tag + GitHub Release, 54/54 atoms); Phase 10
+  targets v1.3.0.
 - DoD: 0 open atoms ∧ `gate.mjs` PASS ∧ `claim-audit.mjs` PASS ∧ tiered
   quorum approvals for every phase (core6 always + domain auditors for the
   phase's `domains` + analyst on discovery phases) ∧ CI green on the
@@ -59,6 +60,29 @@ export kit, and a discovery loop.
 | 18 | SPEC-018 | Discovery loop (competitive scan + VOC intake + roadmap atoms) | 2 | — | DONE (2/2 verified) |
 | 19 | SPEC-019 | CERTIFICATION.md refresh + v1.2.0 | 3 | SPEC-014–018 | DONE — v1.2.0 released (54/54 atoms) |
 
+## Phase 10 — "Real AV + Decision Gate" → v1.3.0 (user-approved 2026-11-02)
+
+GOAT finding: v1.2.0 certified the *framework*, not the product's output. The
+exported webm carries a **silent** audio track (the Web Audio bed is never
+started; Chrome's speech output cannot be muxed), the L3 rubric has **no audio
+criteria**, the E2E "audio" leg only proves `speechSynthesis.speak` fired, and
+the L1–L4 ladder has no rung that asserts content. Owner direction: judge the
+audio/video output *as a real human*, and adapt IBM Research's "Think Before
+You Act: Decision Gate for LLM Agents" (arXiv 2610.38620) into the harness.
+
+| # | Spec | Goal | ACs | Depends | State |
+|---|---|---|---|---|---|
+| 20 | SPEC-020 | AV truthfulness: real audio in the export, honest export labels, dead-surface sweep | 4 | — | open |
+| 21 | SPEC-021 | AV measurement harness: audio metrics, stream facts, A/V drift, scene correspondence | 4 | SPEC-020 | open |
+| 22 | SPEC-022 | L3-AV human review protocol: rubric v2, reviewer taxonomy, review package, L5 rung | 5 | SPEC-021 | open |
+| 23 | SPEC-023 | Decision Gate (JevAct): policy registry, pre-action interception, premature-termination detector | 6 | — | DONE (6/6 verified) |
+| 24 | SPEC-024 | Discovery promotion D-005…D-010: CSP, PBKDF2 PIN, leak scanner, self-host fonts, row validation, lockfile diff | 6 | — | open |
+| 25 | SPEC-025 | CERTIFICATION.md refresh (L1–L5) + v1.3.0 | 3 | SPEC-020–024 | open |
+
+Phase-10 quorum: core6 + security-auditor + perf-engineer + design-reviewer +
+resilience-engineer + docs-reviewer + analyst (discovery) + **creative-director**
+(`av-quality`) = 13.
+
 ## Out of scope for v1.0.0 (non-goals)
 - New product features beyond gap closure; SLM/Attempt-2 work (BLOCKED, see
   ATTEMPT-2-ASSESSMENT.md); server/backend of any kind (zero-backend constraint).
@@ -79,5 +103,11 @@ export kit, and a discovery loop.
 | D-008 | Google Fonts is loaded from a third-party origin | internal-observation | medium | Self-host the two font families (bundle the woff2 files and serve them locally, keeping the `font-display: swap` behaviour) or drop the remote fonts for the system stack, then re-verify the visual pass. | candidate |
 | D-009 | Restored campaigns are not schema-validated row by row | internal-observation | medium | Validate each restored row against the campaign schema before `bulkPut` and reject the snapshot with a per-row reason; while validating, also require imported resources to be JSON objects (the zip importer accepts any valid JSON value today). | candidate |
 | D-010 | No lockfile-diff review step | internal-observation | low | Generate a lockfile diff summary at release time (added/removed/ updated packages + advisory deltas) and attach it to the release report. | candidate |
+| D-011 | The exported webm carries a silent audio track | internal-observation | high | Start the audio bed for real during playback/export, route mute and volume to the real gain nodes, add a client-side narration path (tab capture → `<audio>` element → `captureStream()` → mux) and label the export with what it actually contains. | promoted (SPEC-020) |
+| D-012 | Dead audio surface: unused producers and inert controls | internal-observation | medium | Wire or delete each dead member, and extend the orphan scan to method-level dead surface so a second sweep can catch the next one. | promoted (SPEC-020) |
+| D-013 | Unknown domains are silently ignored, so a required auditor can never be required | internal-observation | high | Fail closed — an unmapped domain must make the quorum resolver and claim-audit fail with a named error, and a lint must reject unknown domain strings in spec files. | promoted (SPEC-023) |
+| D-014 | The certification ladder has no rung that asserts content | internal-observation | high | Add a machine-fact layer (levels, clipping, silence, A/V drift, scene correspondence) and a human-review layer with an explicit reviewer taxonomy, and expose the achieved level as a new certification rung. | promoted (SPEC-022) |
 | V-001 | "Let the framework drive, don't ask for every step" | user-feedback | high | Keep the loop autonomous — evidence-gated rather than approval-gated, with hard stops from GUARDRAILS unchanged. | promoted (SPEC-019) |
 | V-002 | "Certification must not overstate what was produced" | internal-observation | high | Refresh `CERTIFICATION.md` from the template, carrying the L1–L4 verdicts, L3-vision reviewer findings, assurance results and known limits (SPEC-019). | promoted (SPEC-019) |
+| V-003 | "Test the audio and video output as a real human" | user-feedback | high | Build a human-grade AV review protocol — audio and video rubric criteria, a reviewer taxonomy that never lets a persona verdict read as a human one, and a compact review package the owner can judge in minutes. | promoted (SPEC-022) |
+| V-004 | "Think before you act: our autonomous framework should gate its own actions" | user-feedback | high | Add a decision gate to the harness: a policy registry compiled from GUARDRAILS and DECISIONS into executable checks, interception at the verification and release choke points, structured feedback with bounded revision, a premature-termination detector, and an optional probabilistic judgment layer that degrades honestly when no provider is available. | promoted (SPEC-023) |
