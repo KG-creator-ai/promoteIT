@@ -1,3 +1,4 @@
+import { buildVoiceoverEdl } from '../../lib/avExport';
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Play, Square, Volume2, Settings2, Download, Waves, Layers, Mic, AlertTriangle } from 'lucide-react';
 import { GlassCard } from '../ui/GlassCard';
@@ -92,7 +93,7 @@ export function AudioStudio() {
 
   const stopAll = useCallback(() => {
     masterCancelRef.current = true;
-    audioEngine.stopVoiceover();
+    audioEngine.stopAll();
     setMasterPlaying(false);
   }, []);
 
@@ -115,16 +116,28 @@ export function AudioStudio() {
     step(0);
   }, [speaking.isSpeaking, scenes.length, campaign, speakScene, stopAll]);
 
+  // SPEC-020.AC-003: the engine's scene-speech-end hook is wired — a finished
+  // narration is marked in the segment map.
+  const [spokenScenes, setSpokenScenes] = useState<number[]>([]);
+  useEffect(() => {
+    audioEngine.setOnSceneSpeechEndListener((idx: number) => {
+      setSpokenScenes(prev => (prev.includes(idx) ? prev : [...prev, idx]));
+    });
+    return () => audioEngine.setOnSceneSpeechEndListener(() => {});
+  }, []);
+
   // Deterministic segment map (text-length scaled) — real data, never random.
   const maxLen = Math.max(1, ...scenes.map(s => (s.voiceoverText || '').length));
 
   const downloadEDL = () => {
-    const edl = {
+    // SPEC-020.AC-002: the package states what is and is not in the file.
+    const edl = buildVoiceoverEdl({
       campaign: campaign?.title || 'untitled',
       exportedAt: new Date().toISOString(),
       voiceURI: voiceURI || 'system-default',
       rate,
       volume: volume / 100,
+      contents: audioEngine.getExportContents(),
       segments: scenes.map((s, idx) => ({
         sceneIndex: idx,
         actName: s.actName,
@@ -133,7 +146,7 @@ export function AudioStudio() {
         voiceoverText: s.voiceoverText,
         phoneticGuide: s.phoneticGuide || audioEngine.phoneticallyTranscribe(s.voiceoverText || ''),
       })),
-    };
+    });
     const blob = new Blob([JSON.stringify(edl, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -174,7 +187,10 @@ export function AudioStudio() {
         URL.revokeObjectURL(url);
         stream.getTracks().forEach(t => t.stop());
         setIsRecording(false);
-        setStatusMsg('Narration recording saved.');
+        // SPEC-020.AC-001: keep the narration so the next video export can
+        // mux it (client-side, no server).
+        audioEngine.setNarrationTrack(blob);
+        setStatusMsg('Narration recording saved — it will be included in the next video export (this session only).');
       };
       recorderRef.current = recorder;
       recorder.start();
@@ -242,7 +258,7 @@ export function AudioStudio() {
               <div
                 key={s.id || i}
                 title={`${s.actName}: ${s.voiceoverText?.slice(0, 60) || ''}`}
-                className={`flex-1 rounded-t-full transition-all duration-300 ${speaking.sceneIndex === i && speaking.isSpeaking ? 'bg-emerald-500' : 'bg-primary opacity-60'}`}
+                className={`flex-1 rounded-t-full transition-all duration-300 ${speaking.sceneIndex === i && speaking.isSpeaking ? 'bg-emerald-500' : spokenScenes.includes(i) ? 'bg-emerald-500/70' : 'bg-primary opacity-60'}`}
                 style={{ height: `${Math.max(8, ((s.voiceoverText || '').length / maxLen) * 100)}%` }}
               />
             ))}

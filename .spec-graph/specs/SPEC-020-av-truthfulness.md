@@ -1,5 +1,5 @@
 # SPEC-020: AV truthfulness — real audio in the export, honest labels
-- Status: draft
+- Status: done
 - Phase: 10
 - Owner-persona: builder
 - Domains: resilience, ux, discovery
@@ -17,21 +17,21 @@ inert React state (D-011, D-012).
 - Never claim the browser speech voiceover is inside the exported file.
 
 ## Acceptance Criteria
-- [ ] AC-001 (SPEC-020.AC-001): the export muxes an **audible** track — the
+- [x] AC-001 (SPEC-020.AC-001): the export muxes an **audible** track — the
   recorded webm's audio decodes to a peak above the silence floor and a silence
   ratio below the ceiling (measured by the SPEC-021 analyser), and the audio
   bed is started for the export window so the muxed bus carries signal —
   verified by: `node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts`
-- [ ] AC-002 (SPEC-020.AC-002): the export **states its contents** — the
+- [x] AC-002 (SPEC-020.AC-002): the export **states its contents** — the
   voiceover EDL JSON and the export UI name the included tracks (audio bed /
   recorded narration / subtitles) and state that the browser speech voiceover is
   included only when a narration track was recorded — verified by:
   `node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts`
-- [ ] AC-003 (SPEC-020.AC-003): **no dead audio surface** — every public method
+- [x] AC-003 (SPEC-020.AC-003): **no dead audio surface** — every public method
   of `audioEngine` and every local callback of `AVVideoPlayer` is either called
   from `src/` or removed, and a method-level dead-surface scan fails on any
   unused public method — verified by: `node scripts/dead-surface.mjs`
-- [ ] AC-004 (SPEC-020.AC-004): *(redteam)* the failure path — no tab-capture
+- [x] AC-004 (SPEC-020.AC-004): *(redteam)* the failure path — no tab-capture
   permission and no bed — still exports a playable file and labels it
   `video + subtitles only (no audio)` instead of claiming audio —
   verified by: `node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-fallback.test.ts`

@@ -1,7 +1,7 @@
 {
   "version": "3.2.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-11-02T14:16:25.274Z",
+  "updatedAt": "2026-11-02T13:54:17.868Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -3086,55 +3086,47 @@
       "kind": "spec_atom",
       "spec": "SPEC-020",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-020 AC-001",
       "domains": [
         "resilience",
         "ux",
         "discovery"
-      ],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.236Z"
+      ]
     },
     {
       "id": "SPEC-020.AC-001.task",
       "kind": "task",
       "spec": "SPEC-020",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-020.AC-001"
-      ],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.237Z"
+      ]
     },
     {
       "id": "SPEC-020.AC-001.code",
       "kind": "code",
       "spec": "SPEC-020",
       "ac": "AC-001",
-      "status": "open",
-      "paths": [],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.237Z"
+      "status": "verified",
+      "paths": []
     },
     {
       "id": "SPEC-020.AC-001.test",
       "kind": "test",
       "spec": "SPEC-020",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts",
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.237Z"
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts"
     },
     {
       "id": "SPEC-020.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-020",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts",
       "exit": 0,
       "hashes": {
@@ -3145,64 +3137,54 @@
         "tests/unit/av-export-audio.test.ts": "64031812ea9be428"
       },
       "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  13:48:26\n   Duration  14.68s (setup 92%, transform 6%, worker 1%)\n\n",
-      "verifiedAt": "2026-11-02T13:48:41.534Z",
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.237Z"
+      "verifiedAt": "2026-11-02T13:48:41.534Z"
     },
     {
       "id": "SPEC-020.AC-002",
       "kind": "spec_atom",
       "spec": "SPEC-020",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-020 AC-002",
       "domains": [
         "resilience",
         "ux",
         "discovery"
-      ],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.520Z"
+      ]
     },
     {
       "id": "SPEC-020.AC-002.task",
       "kind": "task",
       "spec": "SPEC-020",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-020.AC-002"
-      ],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.520Z"
+      ]
     },
     {
       "id": "SPEC-020.AC-002.code",
       "kind": "code",
       "spec": "SPEC-020",
       "ac": "AC-002",
-      "status": "open",
-      "paths": [],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.520Z"
+      "status": "verified",
+      "paths": []
     },
     {
       "id": "SPEC-020.AC-002.test",
       "kind": "test",
       "spec": "SPEC-020",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts",
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.520Z"
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts"
     },
     {
       "id": "SPEC-020.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-020",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-audio.test.ts",
       "exit": 0,
       "hashes": {
@@ -3212,64 +3194,54 @@
         "tests/unit/av-export-audio.test.ts": "64031812ea9be428"
       },
       "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  13:51:12\n   Duration  13.53s (setup 94%, transform 5%, worker 1%)\n\n",
-      "verifiedAt": "2026-11-02T13:51:25.839Z",
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.520Z"
+      "verifiedAt": "2026-11-02T13:51:25.839Z"
     },
     {
       "id": "SPEC-020.AC-003",
       "kind": "spec_atom",
       "spec": "SPEC-020",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-020 AC-003",
       "domains": [
         "resilience",
         "ux",
         "discovery"
-      ],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.915Z"
+      ]
     },
     {
       "id": "SPEC-020.AC-003.task",
       "kind": "task",
       "spec": "SPEC-020",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-020.AC-003"
-      ],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.915Z"
+      ]
     },
     {
       "id": "SPEC-020.AC-003.code",
       "kind": "code",
       "spec": "SPEC-020",
       "ac": "AC-003",
-      "status": "open",
-      "paths": [],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.915Z"
+      "status": "verified",
+      "paths": []
     },
     {
       "id": "SPEC-020.AC-003.test",
       "kind": "test",
       "spec": "SPEC-020",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": "node scripts/dead-surface.mjs",
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.915Z"
+      "cmd": "node scripts/dead-surface.mjs"
     },
     {
       "id": "SPEC-020.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-020",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "cmd": "node scripts/dead-surface.mjs",
       "exit": 0,
       "hashes": {
@@ -3278,64 +3250,54 @@
         "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132"
       },
       "log": "DEAD-SURFACE PASS — no unused public methods or callbacks in 2 target(s)\n",
-      "verifiedAt": "2026-11-02T13:51:32.057Z",
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:24.915Z"
+      "verifiedAt": "2026-11-02T13:51:32.057Z"
     },
     {
       "id": "SPEC-020.AC-004",
       "kind": "spec_atom",
       "spec": "SPEC-020",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-020 AC-004",
       "domains": [
         "resilience",
         "ux",
         "discovery"
-      ],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:25.274Z"
+      ]
     },
     {
       "id": "SPEC-020.AC-004.task",
       "kind": "task",
       "spec": "SPEC-020",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-020.AC-004"
-      ],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:25.274Z"
+      ]
     },
     {
       "id": "SPEC-020.AC-004.code",
       "kind": "code",
       "spec": "SPEC-020",
       "ac": "AC-004",
-      "status": "open",
-      "paths": [],
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:25.274Z"
+      "status": "verified",
+      "paths": []
     },
     {
       "id": "SPEC-020.AC-004.test",
       "kind": "test",
       "spec": "SPEC-020",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-fallback.test.ts",
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:25.274Z"
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-fallback.test.ts"
     },
     {
       "id": "SPEC-020.AC-004.ev",
       "kind": "evidence",
       "spec": "SPEC-020",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-export-fallback.test.ts",
       "exit": 0,
       "hashes": {
@@ -3344,9 +3306,7 @@
         "tests/unit/av-export-fallback.test.ts": "ca91395f4ce8a0c2"
       },
       "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  4 passed (4)\n   Start at  13:54:04\n   Duration  13.17s (setup 96%, transform 3%, worker 1%)\n\n",
-      "verifiedAt": "2026-11-02T13:54:17.867Z",
-      "reopenedReason": "split Phase-10 commit: SPEC-020 lands in its own commit",
-      "reopenedAt": "2026-11-02T14:16:25.274Z"
+      "verifiedAt": "2026-11-02T13:54:17.867Z"
     },
     {
       "id": "SPEC-021.AC-001",

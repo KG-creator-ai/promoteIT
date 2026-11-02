@@ -20,11 +20,14 @@ recorded 2026-10-29; L2/L4 artifacts recorded 2026-10-13)
   **SAST** 0 findings / 63 files · **dep-audit** all advisories allowlisted ·
   **bundle budget** within ratchet caps · **claim-audit** PASS ·
   **orphan-scan** zero.
-- Graph ledger: **51/51 atoms verified** excluding SPEC-019 — whose three
-  atoms are the release steps themselves (AC-001 certification refresh, AC-002
-  quorum aggregation, AC-003 release publication). Every other atom is
-  verified, **0 stale** evidence nodes, and 0 open atoms outside SPEC-019
-  (`.spec-graph/graph.json`, 270 nodes).
+- Graph ledger (this release scope): **51/51 atoms verified** in the Phase-09
+  release scope, excluding SPEC-019 — whose three atoms are the release steps
+  themselves (AC-001 certification refresh, AC-002 quorum aggregation, AC-003
+  release publication). Every other atom of that scope is verified, with
+  **0 stale** evidence nodes and **0 open** atoms in the Phase-09 release scope.
+  The live ledger (`.spec-graph/graph.json`, 410 nodes) now also carries the
+  Phase-10 atoms; Phase 10 is in flight and supersedes this record with the
+  v1.3.0 certification (SPEC-025).
   A later edit that invalidates any of this re-opens the affected atoms
   automatically — the claim is machine-checked by
   `tests/unit/certification-claims.test.ts`.

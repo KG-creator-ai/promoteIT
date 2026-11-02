@@ -10,6 +10,8 @@
  * - MediaStream destination for direct video recording
  */
 
+import { buildExportContents, type ExportContents } from '../lib/avExport';
+
 export const INDIAN_PHONETIC_DICTIONARY: Record<string, string> = {
   'Vanakkam': 'Vah-nuh-kkum',
   'Tamil Nadu': 'Thuh-mil Nah-doo',
@@ -45,15 +47,8 @@ class AudioEngine {
   private currentUtteranceId: number = 0;
   private speakingListener: ((status: { isSpeaking: boolean; currentText: string; sceneIndex: number }) => void) | null = null;
   private onSceneSpeechEndListener: ((sceneIndex: number) => void) | null = null;
-
-  public isSceneCurrentlySpeaking(sceneIndex: number): boolean {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return false;
-    return window.speechSynthesis.speaking && this.activeSpeakingSceneIndex === sceneIndex;
-  }
-
-  public getActiveSpeakingSceneIndex(): number {
-    return this.activeSpeakingSceneIndex;
-  }
+  private narrationBlob: Blob | null = null;
+  private narrationUrl: string | null = null;
 
   constructor() {
     this.refreshVoices();
@@ -70,10 +65,6 @@ class AudioEngine {
 
   public setOnSceneSpeechEndListener(cb: ((sceneIndex: number) => void) | null) {
     this.onSceneSpeechEndListener = cb;
-  }
-
-  public isVoiceSpeaking(): boolean {
-    return typeof window !== 'undefined' && 'speechSynthesis' in window && window.speechSynthesis.speaking;
   }
 
   public refreshVoices(): SpeechSynthesisVoice[] {
@@ -419,15 +410,6 @@ class AudioEngine {
     setTimeout(startSpeech, 30);
   }
 
-  public testVoice(
-    sampleText = 'Vanakkam Tamil Nadu! A land where centuries of rich heritage seamlessly weave with unstoppable modern ambition. Arka Fincap welcomes you.',
-    pitch = 0.84,
-    rate = 0.88,
-    preferredVoiceURI?: string
-  ) {
-    this.playVoiceover(sampleText, pitch, rate, preferredVoiceURI);
-  }
-
   public init() {
     if (this.ctx) return;
     const AudioCtxClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
@@ -452,6 +434,31 @@ class AudioEngine {
     return this.streamDest?.stream.getAudioTracks()[0] || null;
   }
 
+  public setMasterVolume(volume: number) {
+    if (this.masterGain && this.ctx) {
+      this.masterGain.gain.setTargetAtTime(Math.max(0, Math.min(1, volume)), this.ctx.currentTime, 0.05);
+    }
+  }
+
+  public setNarrationTrack(blob: Blob | null) {
+    if (this.narrationUrl) URL.revokeObjectURL(this.narrationUrl);
+    this.narrationUrl = blob ? URL.createObjectURL(blob) : null;
+    this.narrationBlob = blob;
+  }
+
+  public getNarrationTrack(): { blob: Blob; url: string } | null {
+    return this.narrationBlob && this.narrationUrl ? { blob: this.narrationBlob, url: this.narrationUrl } : null;
+  }
+
+  /**
+   * What the exported file actually contains — the export must never imply the
+   * browser speech voiceover is inside the file (Chrome cannot route it into
+   * the MediaRecorder graph).
+   */
+  public getExportContents(): ExportContents {
+    return buildExportContents({ audioBed: this.bgmEnabled, narration: !!this.narrationBlob });
+  }
+
   public setBgmVolume(volume: number) {
     if (this.bgmGain && this.ctx) {
       this.bgmGain.gain.setTargetAtTime(Math.max(0, Math.min(1, volume)), this.ctx.currentTime, 0.05);
@@ -470,13 +477,6 @@ class AudioEngine {
     if (this.bgmGain && this.ctx) {
       this.bgmGain.gain.setTargetAtTime(enabled ? 0.7 : 0, this.ctx.currentTime, 0.05);
     }
-  }
-
-  /**
-   * Continuous, Gapless BGM synthesis spanning the entire video (Acts 1 through 6)
-   */
-  public startAct1Audio(startTimeOffset: number = 0, totalDuration: number = 105) {
-    this.startContinuousBgm(startTimeOffset, totalDuration);
   }
 
   public startContinuousBgm(startTimeOffset: number = 0, totalDuration: number = 105) {

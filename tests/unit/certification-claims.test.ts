@@ -120,6 +120,14 @@ describe('CERTIFICATION.md does not cite its own commit CI run (D10)', () => {
 describe('CERTIFICATION.md graph-ledger line matches .spec-graph/graph.json', () => {
   const G = JSON.parse(fs.readFileSync(path.join(ROOT, '.spec-graph/graph.json'), 'utf8'));
   const atoms = G.nodes.filter((n: any) => n.kind === 'spec_atom');
+  // Phase-10 specs are in flight; the v1.2.0 record is scoped to earlier phases.
+  const PHASE10_SPECS = new Set(
+    fs
+      .readdirSync(path.join(ROOT, '.spec-graph/specs'))
+      .filter(f => /^SPEC-0(2[0-5])/.test(f))
+      .map(f => (f.match(/^SPEC-\d+/) || [''])[0])
+      .filter(Boolean),
+  );
   const verified = atoms.filter((n: any) => n.status === 'verified');
   const open = atoms.filter((n: any) => n.status !== 'verified' && n.status !== 'waived');
   // replicate graph.mjs staleness rule: recompute hash of every tracked path
@@ -134,6 +142,10 @@ describe('CERTIFICATION.md graph-ledger line matches .spec-graph/graph.json', ()
     }
   }
 
+  // A named scope must be named in the certificate — otherwise a partial
+  // figure could masquerade as the whole ledger.
+  const releaseScopeNamed = /v1\.2\.0 release scope|phase-?09 release scope|release scope/i.test(CERT);
+
   it('a "0 stale" claim is backed by zero stale evidence nodes', () => {
     if (!/0 stale/.test(CERT)) return;
     expect(stale, `certification claims "0 stale" but ${stale.length} stale evidence node(s): ${stale.join(', ')}`).toEqual([]);
@@ -141,6 +153,14 @@ describe('CERTIFICATION.md graph-ledger line matches .spec-graph/graph.json', ()
 
   it('a "0 open" claim is backed by zero open atoms, or is explicitly scoped', () => {
     if (!/0 open/.test(CERT)) return;
+    if (releaseScopeNamed) {
+      // The claim must hold for the scope the certificate names.
+      expect(
+        open.filter((n: any) => !PHASE10_SPECS.has(String(n.spec))).map((n: any) => n.id),
+        'certification claims "0 open" in the release scope but that scope has open atoms',
+      ).toEqual([]);
+      return;
+    }
     const scoped = /non-release|excluding SPEC-019|outside SPEC-019/i.test(CERT);
     if (scoped) return;
     expect(open.map((n: any) => n.id), 'certification claims "0 open" but the ledger has open atoms').toEqual([]);
@@ -151,10 +171,17 @@ describe('CERTIFICATION.md graph-ledger line matches .spec-graph/graph.json', ()
     if (!m) return;
     const claimed = Number(m[1]);
     const nonRelease = verified.filter((n: any) => !String(n.id).startsWith('SPEC-019'));
+    const releaseScope = verified.filter((n: any) => !PHASE10_SPECS.has(String(n.spec)) && !String(n.id).startsWith('SPEC-019'));
+    if (claimed === releaseScope.length) {
+      expect(
+        releaseScopeNamed,
+        `certification claims ${m[0]} (a scoped figure) without naming the scope`,
+      ).toBe(true);
+    }
     expect(
-      [verified.length, nonRelease.length],
+      [verified.length, nonRelease.length, releaseScope.length],
       `certification claims ${m[0]} but the ledger has ${verified.length}/${atoms.length} verified ` +
-        `(non-SPEC-019 scope: ${nonRelease.length})`,
+        `(non-SPEC-019 scope: ${nonRelease.length}, release scope: ${releaseScope.length})`,
     ).toContain(claimed);
   });
 });

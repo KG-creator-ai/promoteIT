@@ -1,3 +1,4 @@
+import { attachExportRecorder, resolveExportAudio, startBedSafely } from '../../lib/avExport';
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useCampaignContext } from '../../context/CampaignContext';
 import { GlassCard } from '../ui/GlassCard';
@@ -107,12 +108,13 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rendererRef = useRef<VideoRenderer | null>(null);
   const animFrameRef = useRef<number>(0);
-  const audioCtxRef = useRef<AudioContext | null>(null);
   const startTimeRef = useRef<number>(0);
   // Live playback mirror for interval-driven flows (export): avoids stale
   // `state` closures — the recorder must stop exactly at the real end.
   const liveRef = useRef({ time: 0, playing: false });
   const [showShotEditor, setShowShotEditor] = useState(false);
+  // SPEC-020.AC-002: the export states what the file actually contains.
+  const [exportLabel, setExportLabel] = useState<string | null>(null);
   const [editingScene, setEditingScene] = useState<AVSceneNode | null>(null);
 
   const [state, setState] = useState<PlaybackState>({
@@ -290,6 +292,9 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     }
 
     startTimeRef.current = performance.now() - state.currentTime * 1000;
+    // SPEC-020: the audio bed is a real signal source — it plays during
+    // preview and is muted/unmuted through the real gain nodes.
+    audioEngine.startContinuousBgm(state.currentTime, totalDuration);
 
     const tick = (now: number) => {
       const elapsed = (now - startTimeRef.current) / 1000;
@@ -308,31 +313,17 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     };
 
     animFrameRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(animFrameRef.current);
+    return () => {
+      cancelAnimationFrame(animFrameRef.current);
+      audioEngine.stopBgmOnly();
+    };
   }, [state.isPlaying, totalDuration, getCurrentSceneIndex]);
 
   // Canvas draw on state change
   useEffect(() => {
     drawFrame(state.currentTime);
-  }, [state.currentTime, drawFrame]);
-
-  // Audio: generate simple tones for BGM cues
-  const playTone = useCallback((freq: number, duration: number) => {
-    if (!audioCtxRef.current) {
-      audioCtxRef.current = new AudioContext();
-    }
-    const ctx = audioCtxRef.current;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.frequency.value = freq;
-    osc.type = 'sine';
-    gain.gain.setValueAtTime(state.volume * 0.3, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + duration);
-  }, [state.volume]);
+    rendererRef.current?.syncVideoPlayback(state.currentTime, state.isPlaying, rendererScenes);
+  }, [state.currentTime, state.isPlaying, drawFrame, rendererScenes]);
 
   const togglePlay = () => {
     if (state.currentTime >= totalDuration) {
@@ -376,27 +367,54 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const stream = canvas.captureStream(30);
-    // SPEC-009: mix the BGM bus so the export carries real audio.
+    // SPEC-020.AC-001: start the real audio bed so the muxed bus carries
+    // signal — an export without it is a silent file.
+    const contents = audioEngine.getExportContents();
+    if (contents.audioBed) startBedSafely(audioEngine, 0, totalDuration);
+    let busTrack: MediaStreamTrack | null = null;
     try {
-      const audioTrack = audioEngine.getAudioStream();
-      if (audioTrack) stream.addTrack(audioTrack);
+      busTrack = audioEngine.getAudioStream();
     } catch {
       // Audio bus unavailable — video-only export still proceeds.
     }
+    // SPEC-020.AC-001: a recorded narration track is muxed client-side.
+    const narration = audioEngine.getNarrationTrack();
+    let narrationEl: HTMLAudioElement | null = null;
+    let narrationTrack: MediaStreamTrack | null = null;
+    if (narration) {
+      try {
+        narrationEl = document.createElement('audio');
+        narrationEl.src = narration.url;
+        narrationEl.preload = 'auto';
+        const narrStream = (narrationEl as HTMLAudioElement & { captureStream?: () => MediaStream }).captureStream?.();
+        if (!narrStream) throw new Error('captureStream unavailable');
+        narrationTrack = narrStream.getAudioTracks()[0] || null;
+        void narrationEl.play().catch(() => { /* autoplay guard — the bed still carries audio */ });
+      } catch {
+        narrationEl = null;
+        narrationTrack = null;
+      }
+    }
+    // AC-004: a file without audio is still a playable file.
+    const selection = resolveExportAudio({ busTrack, narrationTrack });
+    for (const track of selection.tracks) stream.addTrack(track);
     const mimeType = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm']
       .find(m => { try { return MediaRecorder.isTypeSupported(m); } catch { return false; } }) || '';
     const recorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
-    const chunks: Blob[] = [];
-    recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
-    recorder.onstop = () => {
-      const blob = new Blob(chunks, { type: 'video/webm' });
+    const { done } = attachExportRecorder(recorder, 'video/webm');
+    done.then(blob => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = `${activeCampaign?.title || 'AV'}_Preview.webm`;
       a.click();
       URL.revokeObjectURL(url);
-    };
+      try { audioEngine.stopBgmOnly(); } catch { /* already stopped */ }
+      narrationEl?.pause();
+      // SPEC-020.AC-002: state exactly what the file contains.
+      const included = audioEngine.getExportContents();
+      setExportLabel(included.label);
+    });
 
     // Record full playback — driven by the live ref (never a stale closure).
     seekTo(0);
@@ -461,6 +479,11 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
             <span className="hidden sm:inline">Export .webm</span>
           </button>
         </div>
+        {exportLabel && (
+          <p className="text-xs text-slate-500 dark:text-slate-400" data-testid="export-contents">
+            Last export contains: {exportLabel}. The browser speech voiceover is not part of the file.
+          </p>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -524,7 +547,17 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
                     {formatSeconds(state.currentTime)} / {formatSeconds(totalDuration)}
                   </span>
                   <div className="flex items-center gap-2">
-                    <button onClick={() => setState(prev => ({ ...prev, muted: !prev.muted }))} className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-500 hover:text-primary rounded-lg transition-colors" aria-label={state.muted ? 'Unmute' : 'Mute'}>
+                    <button
+                      onClick={() => setState(prev => {
+                        const muted = !prev.muted;
+                        audioEngine.setBgmEnabled(!muted);
+                        audioEngine.setVoiceoverEnabled(!muted);
+                        audioEngine.setMasterVolume(muted ? 0 : prev.volume);
+                        return { ...prev, muted };
+                      })}
+                      className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-500 hover:text-primary rounded-lg transition-colors"
+                      aria-label={state.muted ? 'Unmute' : 'Mute'}
+                    >
                       {state.muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                     </button>
                     <input
@@ -533,7 +566,13 @@ export function AVVideoPlayer({ onNavigate }: AVVideoPlayerProps) {
                       max={1}
                       step={0.05}
                       value={state.muted ? 0 : state.volume}
-                      onChange={e => setState(prev => ({ ...prev, volume: Number(e.target.value), muted: false }))}
+                      onChange={e => setState(prev => {
+                        const volume = Number(e.target.value);
+                        audioEngine.setMasterVolume(volume);
+                        audioEngine.setBgmEnabled(volume > 0);
+                        audioEngine.setVoiceoverEnabled(volume > 0);
+                        return { ...prev, volume, muted: false };
+                      })}
                       className="w-20 accent-primary"
                       aria-label="Volume"
                     />
