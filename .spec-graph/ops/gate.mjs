@@ -22,7 +22,13 @@ function run(name, cmd, opts = {}) {
 
 function secretScan() {
   // Release-gate secret scan: tracked files must not contain live secrets.
-  const out = execSync('git ls-files | head -500', { cwd: root }).toString().trim().split('\n').filter(Boolean);
+  // Portable across WSL/POSIX and Windows shells: no shell pipeline.
+  const out = execSync('git ls-files', { cwd: root, maxBuffer: 64 * 1024 * 1024 })
+    .toString()
+    .trim()
+    .split('\n')
+    .filter(Boolean)
+    .slice(0, 500);
   const pats = [/sk-[A-Za-z0-9]{10,}/, /AIza[0-9A-Za-z_-]{20,}/, /-----BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY-----/, /xox[bap]-/, /ghp_[A-Za-z0-9]{20,}/];
   const hits = [];
   for (const f of out) {

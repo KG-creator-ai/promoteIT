@@ -1,7 +1,7 @@
 {
   "version": "3.2.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-11-02T13:54:17.868Z",
+  "updatedAt": "2026-11-02T14:59:47.502Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -2913,11 +2913,11 @@
       "exit": 0,
       "hashes": {
         "scripts/discovery-to-roadmap.mjs": "f71fc2988240fbc5",
-        ".spec-graph/ROADMAP.md": "c97e4fd180e7a56f",
+        ".spec-graph/ROADMAP.md": "58150fa5a0ee41b3",
         ".spec-graph/DISCOVERY.md": "6fe449af2459af7d"
       },
       "log": "DISCOVERY-OK — 18 candidate(s) match .spec-graph/DISCOVERY.md\nIDEMPOTENT-OK\n",
-      "verifiedAt": "2026-11-02T13:29:49.822Z"
+      "verifiedAt": "2026-11-02T14:59:47.502Z"
     },
     {
       "id": "SPEC-019.AC-001",

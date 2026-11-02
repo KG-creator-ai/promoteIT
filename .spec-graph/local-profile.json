@@ -10,11 +10,11 @@
     "dexie": true
   },
   "gates": {
-    "typecheck": "./node_modules/.bin/tsc --noEmit",
-    "test": "./node_modules/.bin/vitest run",
+    "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit",
+    "test": "node ./node_modules/vitest/vitest.mjs run",
     "sast": "node scripts/sast.mjs",
     "dep-audit": "node scripts/dep-audit.mjs",
-    "build": "./node_modules/.bin/vite build",
+    "build": "node ./node_modules/vite/bin/vite.js build",
     "budget": "node scripts/budget.mjs",
     "audit": "node scripts/visual-audit.wsl.mjs"
   },

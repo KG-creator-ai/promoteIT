@@ -11,7 +11,18 @@ const hasBin = (n) => fs.existsSync(path.join(root, 'node_modules/.bin', n)) || 
 const hasDep = (d) => Boolean((pkg.dependencies && pkg.dependencies[d]) || (pkg.devDependencies && pkg.devDependencies[d]));
 const hasFile = (p) => fs.existsSync(path.join(root, p));
 
-const bin = (name, fallback) => hasBin(name) ? `./node_modules/.bin/${name}` : fallback;
+// Shell-agnostic command builders: a POSIX shim path (`./node_modules/.bin/x`)
+// fails under Windows cmd.exe, so prefer the package's own entry point when it
+// exists and fall back to the shim only as a last resort.
+const bin = (name, fallback) => {
+  const entry = {
+    tsc: 'node_modules/typescript/bin/tsc',
+    vitest: 'node_modules/vitest/vitest.mjs',
+    vite: 'node_modules/vite/bin/vite.js',
+  }[name];
+  if (entry && hasFile(entry)) return `node ./${entry}`;
+  return hasBin(name) ? `./node_modules/.bin/${name}` : fallback;
+};
 
 // Per AGENTS.md: npm on PATH may be Windows-only while shims are POSIX — prefer direct binaries.
 const profile = {
