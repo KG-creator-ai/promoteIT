@@ -3,10 +3,10 @@
 - **Tag**: `v1.2.0` — created from the release commit immediately after this
   report is committed and CI is green; `scripts/release-assert.mjs` verifies
   the tag, this report and the published assets together.
-- **CERTIFICATION.md sha256 (prefix)**: `8332b74c121e81bf`
-- **Pinned CI run**: the successful run that validated the certified tree is
-  recorded in the certification-pin commit — D10: a commit never cites the CI
-  run it triggers itself, so the ID lands one commit after the run it proves.
+- **CERTIFICATION.md sha256 (prefix)**: `9297fb491aede2de`
+- **Pinned CI run**: GitHub Actions run **41382738041** on commit `f131507`
+  (conclusion: success, 2026-10-30). D10: this report and the certification
+  cite a run from a *prior* commit — never the run this pin commit triggers.
 - **Release remote**: `creator-ai` → `https://github.com/KG-creator-ai/promoteIT.git`
   (`origin` left untouched, per the release policy recorded in the roadmap).
 - **Framework**: SPEC-GRAPH 1.0.0 (`.spec-graph/VERSION`); product release
@@ -31,8 +31,11 @@ Framework assurance, not new product surface. Six specs, all Phase 09:
   subset — jsdom component tests need Node ≥22; CI pins Node 22) · SAST ·
   dep-audit · secret-scan — PASS.
 - Claim-audit (anti-hallucination, 6 checks incl. tiered quorum) — PASS.
-- Ledger: every atom verified; evidence hashes re-checked (a doc edit re-opens
-  the affected atom automatically).
+- Ledger: 53/54 atoms verified at this commit — the only open atom is
+  SPEC-019.AC-003 (the release publication itself), which
+  `scripts/release-assert.mjs` verifies immediately after the tag and assets
+  land; the ledger then closes at 54/54. Evidence hashes re-checked (a doc
+  edit re-opens the affected atom automatically).
 - Tiered quorum: core6 + security-auditor + perf-engineer + design-reviewer +
   resilience-engineer + docs-reviewer + analyst — all approve Phase 09.
 - L3 vision review: 8 frames + 4 screenshots, hash-bound to the export
