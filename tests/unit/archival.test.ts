@@ -2,9 +2,30 @@ import { describe, it, expect } from 'vitest';
 import { buildArchiveBundle, parseArchiveBundle } from '../../src/lib/archival';
 
 // SPEC-015.AC-004: backup/restore integrity (threat model T2).
+// Schema-valid v4 rows: SPEC-024.AC-005 validates restored rows row by row,
+// so the fixture must be a row the app could actually have written.
 const ROWS = [
-  { id: 'c1', title: 'One', sceneGraph: [{ id: 's1' }] },
-  { id: 'c2', title: 'Two', sceneGraph: [] },
+  {
+    id: 'c1',
+    title: 'One',
+    status: 'draft',
+    createdAt: 1,
+    updatedAt: 2,
+    sceneGraph: [
+      {
+        id: 's1',
+        sceneIndex: 0,
+        actName: 'Act 1',
+        timeStart: '00:00',
+        timeEnd: '00:10',
+        visualDescription: 'Dawn',
+        cameraMovement: 'Static',
+        voiceoverText: 'Vanakkam',
+        linkedResourceIds: [],
+      },
+    ],
+  },
+  { id: 'c2', title: 'Two', status: 'draft', createdAt: 3, updatedAt: 4, sceneGraph: [] },
 ];
 
 describe('archive bundle round-trip', () => {

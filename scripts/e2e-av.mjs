@@ -7,6 +7,7 @@ import puppeteer from 'puppeteer-core';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { scanForLeaks, redactLeaks } from './lib/leak-scan.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ARTIFACTS_DIR = process.env.E2E_DIR || path.join(__dirname, '..', 'audit-artifacts');
@@ -77,9 +78,24 @@ async function run() {
   const page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
   const consoleErrors = [];
+  const consoleAll = [];
   const pageErrors = [];
-  page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.text().slice(0, 300)); });
-  page.on('pageerror', err => pageErrors.push(String(err).slice(0, 300)));
+  // Every console message is scanned for key-shaped strings; the captured
+  // text is redacted before it is stored or printed (D-007).
+  page.on('console', msg => {
+    const text = String(msg.text() || '').slice(0, 300);
+    consoleAll.push(text);
+    if (msg.type() === 'error') consoleErrors.push(redactLeaks(text));
+  });
+  page.on('pageerror', err => pageErrors.push(redactLeaks(String(err).slice(0, 300))));
+
+  // CSP violations are collected before any navigation (D-005).
+  await page.evaluateOnNewDocument(() => {
+    document.addEventListener('securitypolicyviolation', e => {
+      window.__cspViolations = window.__cspViolations || [];
+      window.__cspViolations.push(`${e.violatedDirective}:${e.blockedURI}`);
+    });
+  });
 
   const cdp = await page.createCDPSession();
   await cdp.send('Page.setDownloadBehavior', { behavior: 'allow', downloadPath: toWinPath(DOWNLOAD_DIR) });
@@ -87,6 +103,18 @@ async function run() {
   await page.goto(BASE_URL, { waitUntil: 'domcontentloaded', timeout: 30000 });
   await sleep(3000);
   await page.evaluate(defineReactHelpers);
+
+  // ── LEG: Content-Security-Policy present and not violated (D-005) ──
+  const cspPresent = await page.evaluate(
+    () => !!document.querySelector('meta[http-equiv="Content-Security-Policy" i]'),
+  );
+  leg('csp-present', cspPresent, cspPresent ? 'meta policy found' : 'no CSP meta in the served document');
+  const cspViolations = await page.evaluate(() => window.__cspViolations || []);
+  leg(
+    'csp-no-violations',
+    cspViolations.length === 0,
+    cspViolations.length ? `${cspViolations.length} violation(s): ${cspViolations.slice(0, 3).join(' | ')}` : 'no policy violations',
+  );
 
   // ── LEG 0: auth ──
   const user = { username: 'e2e_av', email: 'e2e@promoteit.local', password: 'TestPass123!', pin: '123456' };
@@ -374,6 +402,14 @@ async function run() {
   if (edl[0]) fs.copyFileSync(path.join(DOWNLOAD_DIR, edl[0]), path.join(ARTIFACTS_DIR, '15_voiceover_EDL.json'));
   leg('export-edl', edl.length > 0, `file=${edl[0] || 'none'}`);
 
+  // ── LEG: secret-leak scan (D-007) ──
+  const leakScan = scanForLeaks([...consoleAll, ...pageErrors]);
+  leg(
+    'secret-leak-scan',
+    leakScan.clean,
+    leakScan.clean ? 'no key-shaped strings in console/page output' : `${leakScan.total} leak-shaped string(s): ${leakScan.hits.map(h => `${h.id}x${h.count}`).join(', ')} (values redacted)`,
+  );
+
   // ── manifest ──
   const artifacts = fs.readdirSync(ARTIFACTS_DIR)
     .filter(f => f !== 'manifest.json')
@@ -384,11 +420,16 @@ async function run() {
     artifacts,
     consoleErrors: consoleErrors.slice(0, 20),
     pageErrors: pageErrors.slice(0, 20),
+    leakScan: { clean: leakScan.clean, hits: leakScan.hits, total: leakScan.total },
   };
   fs.writeFileSync(path.join(ARTIFACTS_DIR, 'manifest.json'), JSON.stringify(manifest, null, 2));
   console.log(`\nE2E legs: ${legs.filter(l => l.ok).length}/${legs.length} green. pageErrors=${pageErrors.length} consoleErrors=${consoleErrors.length}`);
   if (pageErrors.length > 0) {
     console.log('PAGE ERRORS:', pageErrors.slice(0, 5));
+    process.exitCode = 1;
+  }
+  if (!leakScan.clean) {
+    console.log('SECRET LEAK DETECTED (values redacted):', leakScan.hits.map(h => `${h.id}x${h.count}`).join(', '));
     process.exitCode = 1;
   }
   await browser.close();

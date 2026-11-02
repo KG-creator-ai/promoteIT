@@ -38,7 +38,13 @@ async function readZipContents(zip: JSZip, manifest: ZipManifest): Promise<{ res
       if (zipEntry.dir || !filename.startsWith('resources/') || !filename.endsWith('.json')) continue;
       try {
         const content = await zipEntry.async('text');
-        resourceLibrary.push(JSON.parse(content));
+        const parsed = JSON.parse(content);
+        // D-009: an imported resource must be a JSON object, not any JSON value.
+        if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
+          skippedCount += 1;
+          continue;
+        }
+        resourceLibrary.push(parsed);
       } catch {
         skippedCount += 1;
       }

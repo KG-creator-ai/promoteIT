@@ -37,10 +37,15 @@
     <meta name="twitter:title" content="promote-IT | Client-Side AI Studio" />
     <meta name="twitter:description" content="Generate 6-Act scripts, WASM voiceovers, and AI video prompts locally." />
 
-    <!-- Fonts: High-Legibility Variable System & Local Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Content-Security-Policy (D-005) — compatible with the Vite build, the Web
+         Workers, blob:/data: media and the model/provider origins the app talks to.
+         'wasm-unsafe-eval' is required by the WebLLM WASM runtime. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob: data:; connect-src 'self' blob: data: https://generativelanguage.googleapis.com https://openrouter.ai https://integrate.api.nvidia.com https://huggingface.co https://hf.co https://cdn-lfs.huggingface.co https://cdn-lfs-us-1.hf.co https://transfer.xethub.hf.co; worker-src 'self' blob:; frame-src 'self' blob:; manifest-src 'self'"
+    />
+    <!-- Fonts: system stack only — no third-party font origin is contacted (D-008) -->
+    <link rel="preconnect" href="/" />
   </head>
   <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen antialiased selection:bg-primary/20 selection:text-primary transition-colors duration-300">
     <div id="root"></div>

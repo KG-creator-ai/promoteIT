@@ -69,17 +69,79 @@ export async function verifyPassword(password: string, salt: string, expectedHas
 }
 
 // ──────────────────────────────────────────────
-// PIN Hashing (SHA-256)
+// PIN Hashing (PBKDF2, per-vault salt — D-006)
 // ──────────────────────────────────────────────
-export async function hashPin(pin: string): Promise<string> {
-  const encoded = new TextEncoder().encode(pin);
-  const hash = await crypto.subtle.digest('SHA-256', encoded);
-  return hexEncode(hash);
+// The stored value is self-describing:
+//   pbkdf2$<iterations>$<saltHex>$<hashHex>
+// Legacy single unsalted SHA-256 digests (64 hex chars) are still accepted for
+// verification and are migrated to PBKDF2 on the next successful unlock.
+export const PIN_KDF_PREFIX = 'pbkdf2';
+export const PIN_KDF_ITERATIONS = PBKDF2_ITERATIONS;
+
+export async function hashPin(pin: string, salt?: Uint8Array): Promise<string> {
+  const saltBytes = salt ?? crypto.getRandomValues(new Uint8Array(SALT_LENGTH));
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(pin),
+    'PBKDF2',
+    false,
+    ['deriveBits']
+  );
+  const derivedBits = await crypto.subtle.deriveBits(
+    { name: 'PBKDF2', salt: saltBytes, iterations: PIN_KDF_ITERATIONS, hash: 'SHA-256' },
+    keyMaterial,
+    256
+  );
+  return `${PIN_KDF_PREFIX}$${PIN_KDF_ITERATIONS}$${hexEncode(saltBytes)}$${hexEncode(derivedBits)}`;
+}
+
+export function isLegacyPinHash(stored: string): boolean {
+  return /^[0-9a-f]{64}$/i.test(String(stored || ''));
+}
+
+export function isPbkdf2PinHash(stored: string): boolean {
+  return String(stored || '').startsWith(`${PIN_KDF_PREFIX}$`);
+}
+
+/**
+ * Verify a PIN against a stored hash.
+ * `legacy` is true when the stored value was an unsalted SHA-256 digest — the
+ * caller then migrates it to PBKDF2.
+ */
+export async function verifyPinDetailed(
+  pin: string,
+  stored: string,
+): Promise<{ valid: boolean; legacy: boolean }> {
+  const value = String(stored || '');
+  if (isPbkdf2PinHash(value)) {
+    const [, iterationsRaw, saltHex, hashHex] = value.split('$');
+    const iterations = Number(iterationsRaw) || PIN_KDF_ITERATIONS;
+    const saltBytes = hexDecode(saltHex);
+    const keyMaterial = await crypto.subtle.importKey(
+      'raw',
+      new TextEncoder().encode(pin),
+      'PBKDF2',
+      false,
+      ['deriveBits']
+    );
+    const derivedBits = await crypto.subtle.deriveBits(
+      { name: 'PBKDF2', salt: saltBytes, iterations, hash: 'SHA-256' },
+      keyMaterial,
+      256
+    );
+    return { valid: hexEncode(derivedBits) === hashHex, legacy: false };
+  }
+  if (isLegacyPinHash(value)) {
+    const encoded = new TextEncoder().encode(pin);
+    const hash = await crypto.subtle.digest('SHA-256', encoded);
+    return { valid: hexEncode(hash) === value.toLowerCase(), legacy: true };
+  }
+  return { valid: false, legacy: false };
 }
 
 export async function verifyPin(pin: string, expectedHash: string): Promise<boolean> {
-  const hash = await hashPin(pin);
-  return hash === expectedHash;
+  const { valid } = await verifyPinDetailed(pin, expectedHash);
+  return valid;
 }
 
 // ──────────────────────────────────────────────

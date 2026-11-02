@@ -1,7 +1,7 @@
 {
   "version": "3.2.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-11-02T20:12:18.141Z",
+  "updatedAt": "2026-11-02T21:54:51.035Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -612,10 +612,10 @@
       "hashes": {
         "tests/unit/pwa-assets.test.ts": "16f3c72fac23dfc3",
         "public/og-image.png": "99b79750b2a4f53c",
-        "index.html": "6ac6a56e9319b673"
+        "index.html": "037a8060685dc6dd"
       },
       "log": "OG-OK 1200 630\n",
-      "verifiedAt": "2026-10-12T08:04:51.179Z"
+      "verifiedAt": "2026-11-02T21:30:58.284Z"
     },
     {
       "id": "SPEC-004.AC-003",
@@ -1330,11 +1330,11 @@
         "tests/unit/scene-adapter.test.ts": "5aec8567bd8004f2",
         "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132",
         "src/services/videoRenderer.ts": "468201642c754ce9",
-        "scripts/e2e-av.mjs": "6936df2f07c641ca",
+        "scripts/e2e-av.mjs": "435b5e7758f94b10",
         "scripts/e2e-assert.mjs": "ddc9553818737079"
       },
       "log": "E2E-LEG-OK player-renders — canvasBytes=593738 clock=00:00->00:06\n",
-      "verifiedAt": "2026-11-02T13:27:17.543Z"
+      "verifiedAt": "2026-11-02T21:32:22.448Z"
     },
     {
       "id": "SPEC-009.AC-002",
@@ -1388,12 +1388,12 @@
       "cmd": "node scripts/e2e-assert.mjs webm",
       "exit": 0,
       "hashes": {
-        "scripts/e2e-av.mjs": "6936df2f07c641ca",
+        "scripts/e2e-av.mjs": "435b5e7758f94b10",
         "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132",
         "scripts/e2e-assert.mjs": "ddc9553818737079"
       },
       "log": "WEBM-AV-OK bytes=4096366 video=true audio=true\n",
-      "verifiedAt": "2026-11-02T13:27:18.839Z"
+      "verifiedAt": "2026-11-02T21:32:24.028Z"
     },
     {
       "id": "SPEC-009.AC-003",
@@ -1447,11 +1447,11 @@
       "cmd": "node scripts/e2e-assert.mjs no-page-errors",
       "exit": 0,
       "hashes": {
-        "scripts/e2e-av.mjs": "6936df2f07c641ca",
+        "scripts/e2e-av.mjs": "435b5e7758f94b10",
         "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132"
       },
       "log": "NO-PAGE-ERRORS-OK\n",
-      "verifiedAt": "2026-11-02T13:27:20.084Z"
+      "verifiedAt": "2026-11-02T21:32:25.408Z"
     },
     {
       "id": "SPEC-010.AC-001",
@@ -1622,12 +1622,12 @@
       "cmd": "node scripts/e2e-assert.mjs leg wizard-generate",
       "exit": 0,
       "hashes": {
-        "scripts/e2e-av.mjs": "6936df2f07c641ca",
+        "scripts/e2e-av.mjs": "435b5e7758f94b10",
         "src/lib/providers.ts": "f91cb1e2d0838f2f",
         "scripts/e2e-assert.mjs": "ddc9553818737079"
       },
       "log": "E2E-LEG-OK wizard-generate — scenes=6\n",
-      "verifiedAt": "2026-10-13T00:17:25.344Z"
+      "verifiedAt": "2026-11-02T21:32:26.565Z"
     },
     {
       "id": "SPEC-011.AC-001",
@@ -1680,11 +1680,11 @@
       "cmd": "node scripts/e2e-assert.mjs manifest",
       "exit": 0,
       "hashes": {
-        "scripts/e2e-av.mjs": "6936df2f07c641ca",
+        "scripts/e2e-av.mjs": "435b5e7758f94b10",
         "scripts/e2e-assert.mjs": "ddc9553818737079"
       },
       "log": "MANIFEST-OK artifacts=7 legs=8/8\n",
-      "verifiedAt": "2026-10-13T00:17:26.454Z"
+      "verifiedAt": "2026-11-02T21:32:28.190Z"
     },
     {
       "id": "SPEC-011.AC-002",
@@ -1735,10 +1735,10 @@
       "cmd": "node scripts/e2e-assert.mjs manifest",
       "exit": 0,
       "hashes": {
-        "scripts/e2e-av.mjs": "6936df2f07c641ca"
+        "scripts/e2e-av.mjs": "435b5e7758f94b10"
       },
       "log": "MANIFEST-OK artifacts=7 legs=8/8\n",
-      "verifiedAt": "2026-10-13T00:17:27.765Z"
+      "verifiedAt": "2026-11-02T21:32:29.609Z"
     },
     {
       "id": "SPEC-012.AC-001",
@@ -2465,18 +2465,18 @@
       "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/migration.test.ts tests/unit/archival.test.ts tests/unit/import-resilience.test.ts tests/component/import-modal.test.tsx",
       "exit": 0,
       "hashes": {
-        "tests/unit/migration.test.ts": "ca123d9a0a096908",
-        "tests/unit/archival.test.ts": "1d26cbead7be4bba",
+        "tests/unit/migration.test.ts": "526f519f9ec7af39",
+        "tests/unit/archival.test.ts": "6e98d8342a979848",
         "tests/unit/import-resilience.test.ts": "f696c28a68b16aad",
         "tests/component/import-modal.test.tsx": "d922d3e7ee4cb5a3",
-        "src/lib/archival.ts": "f271bdc84c00d743",
+        "src/lib/archival.ts": "e5703fcbaf79f9a1",
         "src/db/db.ts": "a6c513779cbde839",
-        "src/lib/zipImporter.ts": "cd3eb99c10a02bbd",
+        "src/lib/zipImporter.ts": "99ec65066fe16461",
         "src/components/projects/ImportProjectModal.tsx": "6c01e9df99f62d21",
         "src/components/system/StorageQuotaIndicator.tsx": "475915bde22df8f7"
       },
-      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  3 passed (3)\n      Tests  11 passed (11)\n   Start at  09:23:56\n   Duration  17.36s (setup 68%, import 18%, transform 12%, tests 1%, worker 1%)\n\n",
-      "verifiedAt": "2026-10-30T09:24:14.171Z"
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  3 passed (3)\n      Tests  19 passed (19)\n   Start at  21:30:46\n   Duration  10.59s (setup 76%, import 15%, transform 7%, tests 2%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T21:30:57.220Z"
     },
     {
       "id": "SPEC-016.AC-001",
@@ -2913,11 +2913,11 @@
       "exit": 0,
       "hashes": {
         "scripts/discovery-to-roadmap.mjs": "f71fc2988240fbc5",
-        ".spec-graph/ROADMAP.md": "448efae28cf5ddc3",
+        ".spec-graph/ROADMAP.md": "e000140c9592d346",
         ".spec-graph/DISCOVERY.md": "6fe449af2459af7d"
       },
       "log": "DISCOVERY-OK — 18 candidate(s) match .spec-graph/DISCOVERY.md\nIDEMPOTENT-OK\n",
-      "verifiedAt": "2026-11-02T20:12:18.141Z"
+      "verifiedAt": "2026-11-02T21:54:51.034Z"
     },
     {
       "id": "SPEC-019.AC-001",
@@ -4144,7 +4144,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-024",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-024 AC-001",
       "domains": [
         "security",
@@ -4158,7 +4158,7 @@
       "kind": "task",
       "spec": "SPEC-024",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-024.AC-001"
       ]
@@ -4168,7 +4168,7 @@
       "kind": "code",
       "spec": "SPEC-024",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -4176,27 +4176,32 @@
       "kind": "test",
       "spec": "SPEC-024",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/security-csp.test.ts"
     },
     {
       "id": "SPEC-024.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-024",
       "ac": "AC-001",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/security-csp.test.ts",
+      "exit": 0,
+      "hashes": {
+        "index.html": "037a8060685dc6dd",
+        "scripts/e2e-av.mjs": "435b5e7758f94b10",
+        "tests/unit/security-csp.test.ts": "b1e08a845298c5bd"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  8 passed (8)\n   Start at  21:34:10\n   Duration  12.16s (setup 95%, transform 4%, worker 1%, import 1%)\n\n",
+      "verifiedAt": "2026-11-02T21:34:22.873Z"
     },
     {
       "id": "SPEC-024.AC-002",
       "kind": "spec_atom",
       "spec": "SPEC-024",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-024 AC-002",
       "domains": [
         "security",
@@ -4210,7 +4215,7 @@
       "kind": "task",
       "spec": "SPEC-024",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-024.AC-002"
       ]
@@ -4220,7 +4225,7 @@
       "kind": "code",
       "spec": "SPEC-024",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -4228,27 +4233,33 @@
       "kind": "test",
       "spec": "SPEC-024",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/security-pin.test.ts"
     },
     {
       "id": "SPEC-024.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-024",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/security-pin.test.ts",
+      "exit": 0,
+      "hashes": {
+        "src/lib/security.ts": "89916342aec41a16",
+        "src/lib/pinThrottle.ts": "8480e4244aa516d2",
+        "src/context/AuthContext.tsx": "b161f928b7d818df",
+        "tests/unit/security-pin.test.ts": "fd85736ac9381a0a"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  8 passed (8)\n   Start at  21:34:27\n   Duration  16.82s (setup 90%, transform 8%, worker 1%, tests 1%)\n\n",
+      "verifiedAt": "2026-11-02T21:34:44.411Z"
     },
     {
       "id": "SPEC-024.AC-003",
       "kind": "spec_atom",
       "spec": "SPEC-024",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-024 AC-003",
       "domains": [
         "security",
@@ -4262,7 +4273,7 @@
       "kind": "task",
       "spec": "SPEC-024",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-024.AC-003"
       ]
@@ -4272,7 +4283,7 @@
       "kind": "code",
       "spec": "SPEC-024",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -4280,27 +4291,32 @@
       "kind": "test",
       "spec": "SPEC-024",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/e2e-leak-scan.test.ts"
     },
     {
       "id": "SPEC-024.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-024",
       "ac": "AC-003",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/e2e-leak-scan.test.ts",
+      "exit": 0,
+      "hashes": {
+        "scripts/lib/leak-scan.mjs": "e38579bdc81ead37",
+        "scripts/e2e-av.mjs": "435b5e7758f94b10",
+        "tests/unit/e2e-leak-scan.test.ts": "8f971067da06f8d0"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  6 passed (6)\n   Start at  21:34:49\n   Duration  12.40s (setup 95%, transform 4%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T21:35:02.060Z"
     },
     {
       "id": "SPEC-024.AC-004",
       "kind": "spec_atom",
       "spec": "SPEC-024",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-024 AC-004",
       "domains": [
         "security",
@@ -4314,7 +4330,7 @@
       "kind": "task",
       "spec": "SPEC-024",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-024.AC-004"
       ]
@@ -4324,7 +4340,7 @@
       "kind": "code",
       "spec": "SPEC-024",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -4332,27 +4348,32 @@
       "kind": "test",
       "spec": "SPEC-024",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/security-fonts.test.ts"
     },
     {
       "id": "SPEC-024.AC-004.ev",
       "kind": "evidence",
       "spec": "SPEC-024",
       "ac": "AC-004",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/security-fonts.test.ts",
+      "exit": 0,
+      "hashes": {
+        "index.html": "037a8060685dc6dd",
+        "src/index.css": "d9524fb6ceed9604",
+        "tests/unit/security-fonts.test.ts": "2eca0ce906c76a66"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  4 passed (4)\n   Start at  21:36:22\n   Duration  13.28s (setup 87%, tests 9%, transform 3%, worker 2%)\n\n",
+      "verifiedAt": "2026-11-02T21:36:36.286Z"
     },
     {
       "id": "SPEC-024.AC-005",
       "kind": "spec_atom",
       "spec": "SPEC-024",
       "ac": "AC-005",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-024 AC-005",
       "domains": [
         "security",
@@ -4366,7 +4387,7 @@
       "kind": "task",
       "spec": "SPEC-024",
       "ac": "AC-005",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-024.AC-005"
       ]
@@ -4376,7 +4397,7 @@
       "kind": "code",
       "spec": "SPEC-024",
       "ac": "AC-005",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -4384,27 +4405,33 @@
       "kind": "test",
       "spec": "SPEC-024",
       "ac": "AC-005",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/migration.test.ts"
     },
     {
       "id": "SPEC-024.AC-005.ev",
       "kind": "evidence",
       "spec": "SPEC-024",
       "ac": "AC-005",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/migration.test.ts",
+      "exit": 0,
+      "hashes": {
+        "src/lib/archival.ts": "e5703fcbaf79f9a1",
+        "src/lib/zipImporter.ts": "99ec65066fe16461",
+        "tests/unit/migration.test.ts": "526f519f9ec7af39",
+        "tests/unit/archival.test.ts": "6e98d8342a979848"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  10 passed (10)\n   Start at  21:36:41\n   Duration  14.98s (setup 87%, import 7%, transform 5%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T21:36:56.582Z"
     },
     {
       "id": "SPEC-024.AC-006",
       "kind": "spec_atom",
       "spec": "SPEC-024",
       "ac": "AC-006",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-024 AC-006",
       "domains": [
         "security",
@@ -4418,7 +4445,7 @@
       "kind": "task",
       "spec": "SPEC-024",
       "ac": "AC-006",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-024.AC-006"
       ]
@@ -4428,7 +4455,7 @@
       "kind": "code",
       "spec": "SPEC-024",
       "ac": "AC-006",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -4436,20 +4463,25 @@
       "kind": "test",
       "spec": "SPEC-024",
       "ac": "AC-006",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/lockfile-diff.test.ts"
     },
     {
       "id": "SPEC-024.AC-006.ev",
       "kind": "evidence",
       "spec": "SPEC-024",
       "ac": "AC-006",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/lockfile-diff.test.ts",
+      "exit": 0,
+      "hashes": {
+        "scripts/lockfile-diff.mjs": "52f7ee5c5bc58dbb",
+        ".spec-graph/ops/report.mjs": "949d3533afeb2d5c",
+        "tests/unit/lockfile-diff.test.ts": "c5d49304b3039c91"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  4 passed (4)\n   Start at  21:37:02\n   Duration  12.85s (setup 95%, transform 3%, tests 1%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T21:37:14.922Z"
     },
     {
       "id": "SPEC-025.AC-001",

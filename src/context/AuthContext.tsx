@@ -1,8 +1,9 @@
+import { clearPinFailures, pinThrottleState, recordPinFailure } from '../lib/pinThrottle';
 import React, { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 import { db, type UserProfile } from '../db/db';
 import {
   hashPassword, verifyPassword,
-  hashPin, verifyPin,
+  hashPin, verifyPinDetailed,
   generateVaultKey, wrapVaultKey, unwrapVaultKey,
 } from '../lib/security';
 import { isWebAuthnSupported, registerPasskey, authenticateWithPasskey } from '../lib/webauthn';
@@ -137,8 +138,41 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const passwordValid = await verifyPassword(password, profile.passwordSalt, profile.passwordHash);
       if (!passwordValid) return false;
 
-      const pinValid = await verifyPin(pin, profile.pinHash);
-      if (!pinValid) return false;
+      // D-006: throttled PIN attempts — a cooldown, never a permanent lockout.
+      const throttle = pinThrottleState(profile.id);
+      if (throttle.throttled) {
+        pushNotification(
+          'Too Many Attempts',
+          `Wait ${Math.ceil(throttle.remainingMs / 1000)}s before the next PIN attempt.`,
+          { type: 'warning', category: 'auth' },
+          'login-throttled',
+        );
+        return false;
+      }
+
+      const pinResult = await verifyPinDetailed(pin, profile.pinHash);
+      if (!pinResult.valid) {
+        const state = recordPinFailure(profile.id);
+        if (state.cooldownUntil > 0) {
+          pushNotification(
+            'Too Many Attempts',
+            `Too many failed PIN attempts — wait ${Math.ceil((state.cooldownUntil - Date.now()) / 1000)}s.`,
+            { type: 'warning', category: 'auth' },
+            'login-throttled',
+          );
+        }
+        return false;
+      }
+      clearPinFailures(profile.id);
+
+      // D-006: migrate a legacy unsalted SHA-256 PIN hash on unlock.
+      if (pinResult.legacy) {
+        try {
+          await db.userProfiles.update(profile.id, { pinHash: await hashPin(pin) });
+        } catch {
+          // A failed migration must never block the unlock.
+        }
+      }
 
       const unwrappedKey = await unwrapVaultKey(profile.encryptedVaultKey, password, profile.passwordSalt);
       setVaultKey(unwrappedKey);
@@ -195,8 +229,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
         // Login with existing demo credentials
         const passwordValid = await verifyPassword(demoPassword, existing.passwordSalt, existing.passwordHash);
         if (passwordValid) {
-          const pinValid = await verifyPin(demoPin, existing.pinHash);
-          if (pinValid) {
+          const throttle = pinThrottleState(existing.id);
+          const pinResult = throttle.throttled
+            ? { valid: false, legacy: false }
+            : await verifyPinDetailed(demoPin, existing.pinHash);
+          if (pinResult.valid) {
+            clearPinFailures(existing.id);
+            if (pinResult.legacy) {
+              try {
+                await db.userProfiles.update(existing.id, { pinHash: await hashPin(demoPin) });
+              } catch {
+                // ignore
+              }
+            }
             const unwrappedKey = await unwrapVaultKey(existing.encryptedVaultKey, demoPassword, existing.passwordSalt);
             setVaultKey(unwrappedKey);
             setCurrentUser(existing);

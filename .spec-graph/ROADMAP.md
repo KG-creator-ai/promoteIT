@@ -76,7 +76,7 @@ You Act: Decision Gate for LLM Agents" (arXiv 2610.38620) into the harness.
 | 21 | SPEC-021 | AV measurement harness: audio metrics, stream facts, A/V drift, scene correspondence | 4 | SPEC-020 | DONE (4/4 verified) |
 | 22 | SPEC-022 | L3-AV human review protocol: rubric v2, reviewer taxonomy, review package, L5 rung | 5 | SPEC-021 | DONE (5/5 verified) |
 | 23 | SPEC-023 | Decision Gate (JevAct): policy registry, pre-action interception, premature-termination detector | 6 | — | DONE (6/6 verified) |
-| 24 | SPEC-024 | Discovery promotion D-005…D-010: CSP, PBKDF2 PIN, leak scanner, self-host fonts, row validation, lockfile diff | 6 | — | open |
+| 24 | SPEC-024 | Discovery promotion D-005…D-010: CSP, PBKDF2 PIN, leak scanner, self-host fonts, row validation, lockfile diff | 6 | — | DONE (6/6 verified) |
 | 25 | SPEC-025 | CERTIFICATION.md refresh (L1–L5) + v1.3.0 | 3 | SPEC-020–024 | open |
 
 Phase-10 quorum: core6 + security-auditor + perf-engineer + design-reviewer +

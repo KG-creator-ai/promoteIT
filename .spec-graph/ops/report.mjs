@@ -4,6 +4,7 @@ import path from 'path';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { requiredFor } from './quorum.mjs';
+import { diffLockfiles, renderMarkdown } from '../../scripts/lockfile-diff.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const phase = process.argv[2] || 'PHASE-0X';
@@ -30,6 +31,17 @@ try { execSync('node .spec-graph/ops/gate.mjs', { cwd: root, stdio: 'pipe', time
 let audit = 'UNKNOWN';
 try { execSync('node .spec-graph/ops/claim-audit.mjs', { cwd: root, stdio: 'pipe', timeout: 300000 }); audit = 'PASS'; } catch { audit = 'FAIL'; }
 
+// Dependency delta since the last release (D-010) — attached to the report.
+let lockfileDiff = '';
+try {
+  const base = execSync('git describe --tags --abbrev=0', { cwd: root, encoding: 'utf8', stdio: 'pipe' }).trim();
+  const baseText = execSync(`git show ${base}:package-lock.json`, { cwd: root, encoding: 'utf8', stdio: 'pipe' });
+  const currentText = fs.readFileSync(path.join(root, 'package-lock.json'), 'utf8');
+  lockfileDiff = '\n' + renderMarkdown(diffLockfiles(baseText, currentText, base));
+} catch {
+  lockfileDiff = '\n## Dependency delta (lockfile diff)\n\nLOCKFILE-DIFF-ABSENT — no base tag to diff against.\n';
+}
+
 console.log(`# SPEC-GRAPH Report — ${phase}
 - Date: ${new Date().toISOString()}
 - Graph: ${done}/${atoms.length} atoms verified (${atoms.length ? Math.round(100 * done / atoms.length) : 0}%)
@@ -43,4 +55,5 @@ console.log(`# SPEC-GRAPH Report — ${phase}
 - [${audit === 'PASS' ? 'x' : ' '}] claim-audit.mjs PASS
 - [${quorumOk ? 'x' : ' '}] tiered quorum approvals recorded for ${phase}${missingApprovers.length ? ` (missing: ${missingApprovers.join(', ')})` : ''}
 ${phase === 'PHASE-01' ? '\n## HUMAN SIGN-OFF #1 REQUESTED\nReview .spec-graph/ROADMAP.md + specs/*.md. Reply APPROVED or list changes.\n' : ''}
+${lockfileDiff}
 `);
