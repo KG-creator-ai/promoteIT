@@ -1,0 +1,96 @@
+{
+  "version": 2,
+  "id": "L3-AV",
+  "title": "L3-AV rubric — audio and video judged like a person",
+  "artifactBinding": {
+    "kind": "sha256-prefix",
+    "length": 16,
+    "field": "sourceHash",
+    "rule": "A verdict may only certify the artifact whose sha256 prefix it carries; a changed artifact re-opens the review."
+  },
+  "reviewerKinds": ["human", "agent-proxy"],
+  "levels": {
+    "human-verified": "A human attested the review (humanAttestation is mandatory).",
+    "agent-proxy": "An agent persona reviewed it — never presented as a human review.",
+    "machine-only": "Only machine facts exist; no person (or persona) reviewed the output."
+  },
+  "audio": [
+    {
+      "id": "A1",
+      "title": "Audible",
+      "passCriterion": "The exported track carries a real signal: decoded peak >= 0.01 and silence ratio <= 0.9, and the reviewer hears sound in every judged clip.",
+      "machineFact": "audio.peak, audio.silenceRatio",
+      "humanJudgement": "Does anything actually come out of the speakers?"
+    },
+    {
+      "id": "A2",
+      "title": "No clipping",
+      "passCriterion": "Clipped sample ratio <= 0.01 and no audible distortion in the judged clips.",
+      "machineFact": "audio.clippingRatio",
+      "humanJudgement": "Does the sound distort or crackle?"
+    },
+    {
+      "id": "A3",
+      "title": "Correct voice and language",
+      "passCriterion": "The spoken voice is the intended language and voice (Tamil, Indian male preferred), or the absence of speech is explicitly stated as a known limit.",
+      "machineFact": "stream.channels, stream.sampleRate",
+      "humanJudgement": "Is the voice the right language and persona?"
+    },
+    {
+      "id": "A4",
+      "title": "Intelligible and matches the script",
+      "passCriterion": "Every judged segment is intelligible and its spoken words match the EDL script for that scene.",
+      "machineFact": "none (judgement only)",
+      "humanJudgement": "Can you understand it, and does it say what the script says?"
+    },
+    {
+      "id": "A5",
+      "title": "No dead air",
+      "passCriterion": "No unexplained silence longer than 2s outside the scripted pauses; gaps are listed as follow-ups.",
+      "machineFact": "audio.silenceRatio",
+      "humanJudgement": "Are there awkward silent stretches?"
+    },
+    {
+      "id": "A6",
+      "title": "In sync with picture",
+      "passCriterion": "The narration for scene N starts within +/- 1.5s of scene N's picture start, and the A/V drift stays within one frame of the container duration.",
+      "machineFact": "av.driftSec, av.toleranceSec",
+      "humanJudgement": "Does the voice land with the right scene?"
+    }
+  ],
+  "video": [
+    {
+      "id": "V1",
+      "title": "Rendered",
+      "passCriterion": "Frames are non-black and non-placeholder; the scene content is visible.",
+      "machineFact": "video.blackFrameCount, video.blackFrameRatio",
+      "humanJudgement": "Is there actual picture, or a placeholder?"
+    },
+    {
+      "id": "V2",
+      "title": "Legible",
+      "passCriterion": "Overlays and subtitles are readable at 1280px with no clipping or overlap.",
+      "machineFact": "none (judgement only)",
+      "humanJudgement": "Can you read the text without it running off?"
+    },
+    {
+      "id": "V3",
+      "title": "Scene correspondence",
+      "passCriterion": "The content shown in each clip matches the scene graph for that time window.",
+      "machineFact": "streams.video.durationSec",
+      "humanJudgement": "Does the picture match the scene it claims to show?"
+    },
+    {
+      "id": "V4",
+      "title": "Continuity",
+      "passCriterion": "Neighbouring clips show a coherent progression; no act is skipped or repeated.",
+      "machineFact": "video.freezeFrameCount",
+      "humanJudgement": "Does the story move forward?"
+    }
+  ],
+  "coverageRule": {
+    "minimumRatio": 0.75,
+    "rule": "At least 75% of the packaged clips must carry a verdict; the rest must be listed as follow-ups."
+  },
+  "verdictLevels": ["pass", "fail", "note"]
+}

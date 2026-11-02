@@ -1,7 +1,7 @@
 {
   "version": "3.2.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-11-02T17:54:29.219Z",
+  "updatedAt": "2026-11-02T20:12:18.141Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -2913,11 +2913,11 @@
       "exit": 0,
       "hashes": {
         "scripts/discovery-to-roadmap.mjs": "f71fc2988240fbc5",
-        ".spec-graph/ROADMAP.md": "32582824236636ca",
+        ".spec-graph/ROADMAP.md": "448efae28cf5ddc3",
         ".spec-graph/DISCOVERY.md": "6fe449af2459af7d"
       },
       "log": "DISCOVERY-OK — 18 candidate(s) match .spec-graph/DISCOVERY.md\nIDEMPOTENT-OK\n",
-      "verifiedAt": "2026-11-02T17:54:29.218Z"
+      "verifiedAt": "2026-11-02T20:12:18.141Z"
     },
     {
       "id": "SPEC-019.AC-001",
@@ -2967,12 +2967,12 @@
       "cmd": "grep -q \"v1.2.0\" CERTIFICATION.md && grep -q \"Automated gates: PASS\" CERTIFICATION.md && grep -q \"Headless functional E2E\" CERTIFICATION.md && grep -q \"Vision QA: PASS\" CERTIFICATION.md && grep -q \"Provider-backed generation: PASS\" CERTIFICATION.md && grep -q \"Assurance (Phase 09)\" CERTIFICATION.md && grep -q \"Artifact index\" CERTIFICATION.md && grep -q \"Known limits\" CERTIFICATION.md && grep -q \"agent-vision\" CERTIFICATION.md && grep -q \"98a3983c3fe11485\" CERTIFICATION.md && grep -q \"durable L2 record\" CERTIFICATION.md && grep -q \"SAST\" CERTIFICATION.md && grep -q \"dep-audit\" CERTIFICATION.md && grep -q \"bundle budget\" CERTIFICATION.md && grep -q \"axe-core\" CERTIFICATION.md && grep -q \"GHSA-gcqx-w48m-w2h4\" CERTIFICATION.md && echo CERT-OK",
       "exit": 0,
       "hashes": {
-        "CERTIFICATION.md": "48af1b36a65d7aa9",
+        "CERTIFICATION.md": "7ec7b9bd6a8238b9",
         ".spec-graph/templates/CERTIFICATION.md": "f105cb3e60e814f8",
         "tests/unit/certification-claims.test.ts": "db67548155f8bebc"
       },
       "log": "CERT-OK\n",
-      "verifiedAt": "2026-11-02T13:45:16.489Z"
+      "verifiedAt": "2026-11-02T20:12:16.155Z"
     },
     {
       "id": "SPEC-019.AC-002",
@@ -3534,7 +3534,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-022",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-022 AC-001",
       "domains": [
         "ux",
@@ -3547,7 +3547,7 @@
       "kind": "task",
       "spec": "SPEC-022",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-022.AC-001"
       ]
@@ -3557,7 +3557,7 @@
       "kind": "code",
       "spec": "SPEC-022",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -3565,27 +3565,32 @@
       "kind": "test",
       "spec": "SPEC-022",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/l3-av-rubric.test.ts"
     },
     {
       "id": "SPEC-022.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-022",
       "ac": "AC-001",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/l3-av-rubric.test.ts",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/l3-av-rubric.json": "cad33a2b44b15513",
+        ".spec-graph/templates/L3-AV-RUBRIC.md": "97f78bce82ae0e87",
+        "tests/unit/l3-av-rubric.test.ts": "69d97eb397425958"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  20:07:58\n   Duration  12.89s (setup 95%, transform 4%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T20:08:11.609Z"
     },
     {
       "id": "SPEC-022.AC-002",
       "kind": "spec_atom",
       "spec": "SPEC-022",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-022 AC-002",
       "domains": [
         "ux",
@@ -3598,7 +3603,7 @@
       "kind": "task",
       "spec": "SPEC-022",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-022.AC-002"
       ]
@@ -3608,7 +3613,7 @@
       "kind": "code",
       "spec": "SPEC-022",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -3616,27 +3621,32 @@
       "kind": "test",
       "spec": "SPEC-022",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/l3-av-verdict.test.ts"
     },
     {
       "id": "SPEC-022.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-022",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/l3-av-verdict.test.ts",
+      "exit": 0,
+      "hashes": {
+        "scripts/lib/l3-av-schema.mjs": "928f5fff66fac256",
+        "scripts/l3-av-assert.mjs": "f742a6008ed8020b",
+        "tests/unit/l3-av-verdict.test.ts": "5bf0f647f9cdcdde"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  12 passed (12)\n   Start at  20:08:16\n   Duration  13.34s (setup 87%, tests 8%, transform 4%, worker 1%, import 1%)\n\n",
+      "verifiedAt": "2026-11-02T20:08:29.986Z"
     },
     {
       "id": "SPEC-022.AC-003",
       "kind": "spec_atom",
       "spec": "SPEC-022",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-022 AC-003",
       "domains": [
         "ux",
@@ -3649,7 +3659,7 @@
       "kind": "task",
       "spec": "SPEC-022",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-022.AC-003"
       ]
@@ -3659,7 +3669,7 @@
       "kind": "code",
       "spec": "SPEC-022",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -3667,27 +3677,32 @@
       "kind": "test",
       "spec": "SPEC-022",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/l3-av-package.test.ts"
     },
     {
       "id": "SPEC-022.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-022",
       "ac": "AC-003",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/l3-av-package.test.ts",
+      "exit": 0,
+      "hashes": {
+        "scripts/l3-av-package.mjs": "b6f7802f6eac3ec3",
+        "scripts/lib/l3-av-schema.mjs": "928f5fff66fac256",
+        "tests/unit/l3-av-package.test.ts": "425e668d1223261b"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  4 passed (4)\n   Start at  20:09:57\n   Duration  16.43s (setup 73%, tests 23%, transform 3%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T20:10:13.803Z"
     },
     {
       "id": "SPEC-022.AC-004",
       "kind": "spec_atom",
       "spec": "SPEC-022",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-022 AC-004",
       "domains": [
         "ux",
@@ -3700,7 +3715,7 @@
       "kind": "task",
       "spec": "SPEC-022",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-022.AC-004"
       ]
@@ -3710,7 +3725,7 @@
       "kind": "code",
       "spec": "SPEC-022",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -3718,27 +3733,32 @@
       "kind": "test",
       "spec": "SPEC-022",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/l3-av-rubric.test.ts"
     },
     {
       "id": "SPEC-022.AC-004.ev",
       "kind": "evidence",
       "spec": "SPEC-022",
       "ac": "AC-004",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/l3-av-rubric.test.ts",
+      "exit": 0,
+      "hashes": {
+        ".spec-graph/l3-av-rubric.json": "cad33a2b44b15513",
+        "CERTIFICATION.md": "7ec7b9bd6a8238b9",
+        "tests/unit/l3-av-rubric.test.ts": "69d97eb397425958"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  20:10:18\n   Duration  12.56s (setup 94%, transform 4%, worker 1%, import 1%)\n\n",
+      "verifiedAt": "2026-11-02T20:10:31.477Z"
     },
     {
       "id": "SPEC-022.AC-005",
       "kind": "spec_atom",
       "spec": "SPEC-022",
       "ac": "AC-005",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-022 AC-005",
       "domains": [
         "ux",
@@ -3751,7 +3771,7 @@
       "kind": "task",
       "spec": "SPEC-022",
       "ac": "AC-005",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-022.AC-005"
       ]
@@ -3761,7 +3781,7 @@
       "kind": "code",
       "spec": "SPEC-022",
       "ac": "AC-005",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -3769,20 +3789,24 @@
       "kind": "test",
       "spec": "SPEC-022",
       "ac": "AC-005",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/l3-av-verdict.test.ts"
     },
     {
       "id": "SPEC-022.AC-005.ev",
       "kind": "evidence",
       "spec": "SPEC-022",
       "ac": "AC-005",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/l3-av-verdict.test.ts",
+      "exit": 0,
+      "hashes": {
+        "scripts/lib/l3-av-schema.mjs": "928f5fff66fac256",
+        "tests/unit/l3-av-verdict.test.ts": "5bf0f647f9cdcdde"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  12 passed (12)\n   Start at  20:10:37\n   Duration  14.38s (setup 89%, tests 6%, transform 4%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T20:10:51.551Z"
     },
     {
       "id": "SPEC-023.AC-001",
