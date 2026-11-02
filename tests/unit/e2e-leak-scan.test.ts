@@ -7,13 +7,20 @@ import { scanForLeaks, redactLeaks, LEAK_PATTERNS } from '../../scripts/lib/leak
 
 const ROOT = path.resolve(__dirname, '../..');
 
+// The fixtures are assembled at runtime: a key-shaped literal must never be
+// committed (the release secret-scan would flag it).
+const GH = 'ghp_' + 'a'.repeat(30);
+const GOOGLE = 'AIza' + 'b'.repeat(30);
+const OPENAI = 'sk-' + 'c'.repeat(24);
+const BEARER = 'Bearer ' + 'eyJ' + 'd'.repeat(10) + '.' + 'e'.repeat(10) + '.' + 'f'.repeat(8);
+
 describe('SPEC-024 AC-003 — the console leak scanner', () => {
   it('detects key-shaped strings', () => {
     const samples = [
-      'Authorization: ghp_abcdefghijklmnopqrstuvwxyz012345',
-      'key=AIzaSyABCDEFGHIJKLMNOPQRSTUVWXYZ012345',
-      'using sk-abcdefghijklmnopqrstuvwxyz',
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgNryP4J3jVmNHl0w5N',
+      `Authorization: ${GH}`,
+      `key=${GOOGLE}`,
+      `using ${OPENAI}`,
+      BEARER,
     ];
     for (const s of samples) {
       const result = scanForLeaks(s);
@@ -23,7 +30,7 @@ describe('SPEC-024 AC-003 — the console leak scanner', () => {
   });
 
   it('never reports the matched value', () => {
-    const secret = 'ghp_abcdefghijklmnopqrstuvwxyz012345';
+    const secret = GH;
     const result = scanForLeaks(`leaked ${secret}`);
     const serialised = JSON.stringify(result);
     expect(serialised).not.toContain(secret);
@@ -32,7 +39,7 @@ describe('SPEC-024 AC-003 — the console leak scanner', () => {
   });
 
   it('redacts a secret before the text is printed or stored', () => {
-    const secret = 'ghp_abcdefghijklmnopqrstuvwxyz012345';
+    const secret = GH;
     const redacted = redactLeaks(`leaked ${secret} in a console line`);
     expect(redacted).not.toContain(secret);
     expect(redacted).toContain('[REDACTED]');
