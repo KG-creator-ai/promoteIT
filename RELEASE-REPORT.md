@@ -1,8 +1,14 @@
 # Release Report — v1.2.0 (Phase 09, "10/10 Framework")
 
-- **Tag**: `v1.2.0` — created from the release commit immediately after this
-  report is committed and CI is green; `scripts/release-assert.mjs` verifies
-  the tag, this report and the published assets together.
+- **Tag**: `v1.2.0` (annotated) at commit `a24d05d` (the certification-pin
+  commit) — pushed to the release remote; GitHub Release published at
+  <https://github.com/KG-creator-ai/promoteIT/releases/tag/v1.2.0> with
+  `CERTIFICATION.md`, `RELEASE-REPORT-v1.2.0.md` and `promote-it-v1.2.0.zip`
+  (the CI-built `dist/`, packaged by `.github/workflows/release.yml` which
+  re-ran lint + test + build on the tag tree first).
+  `scripts/release-assert.mjs` asserts tag + report (+ release assets when
+  `gh` is available); the asset list is additionally checked unauthenticated
+  against the GitHub API.
 - **CERTIFICATION.md sha256 (prefix)**: `9297fb491aede2de`
 - **Pinned CI run**: GitHub Actions run **41382738041** on commit `f131507`
   (conclusion: success, 2026-10-30). D10: this report and the certification
@@ -31,11 +37,10 @@ Framework assurance, not new product surface. Six specs, all Phase 09:
   subset — jsdom component tests need Node ≥22; CI pins Node 22) · SAST ·
   dep-audit · secret-scan — PASS.
 - Claim-audit (anti-hallucination, 6 checks incl. tiered quorum) — PASS.
-- Ledger: 53/54 atoms verified at this commit — the only open atom is
-  SPEC-019.AC-003 (the release publication itself), which
-  `scripts/release-assert.mjs` verifies immediately after the tag and assets
-  land; the ledger then closes at 54/54. Evidence hashes re-checked (a doc
-  edit re-opens the affected atom automatically).
+- Ledger: **54/54 atoms verified, 0 stale, 0 open** — SPEC-019.AC-003 closed
+  by `scripts/release-assert.mjs` chained with the unauthenticated release-
+  asset assertion. Evidence hashes re-checked (a doc edit re-opens the
+  affected atom automatically).
 - Tiered quorum: core6 + security-auditor + perf-engineer + design-reviewer +
   resilience-engineer + docs-reviewer + analyst — all approve Phase 09.
 - L3 vision review: 8 frames + 4 screenshots, hash-bound to the export

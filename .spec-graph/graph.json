@@ -1,7 +1,7 @@
 {
   "version": "3.1.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-11-02T03:05:41.642Z",
+  "updatedAt": "2026-11-02T03:53:34.449Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -2913,11 +2913,11 @@
       "exit": 0,
       "hashes": {
         "scripts/discovery-to-roadmap.mjs": "f71fc2988240fbc5",
-        ".spec-graph/ROADMAP.md": "9056ce19f7ca4f0b",
+        ".spec-graph/ROADMAP.md": "ce6e8a2efb14bf1d",
         ".spec-graph/DISCOVERY.md": "4a6765e3595f4837"
       },
       "log": "DISCOVERY-OK — 12 candidate(s) match .spec-graph/DISCOVERY.md\nIDEMPOTENT-OK\n",
-      "verifiedAt": "2026-10-30T13:45:13.497Z"
+      "verifiedAt": "2026-11-02T03:53:10.100Z"
     },
     {
       "id": "SPEC-019.AC-001",
@@ -3033,7 +3033,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-019",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-019 AC-003",
       "domains": [
         "docs",
@@ -3045,7 +3045,7 @@
       "kind": "task",
       "spec": "SPEC-019",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-019.AC-003"
       ]
@@ -3055,7 +3055,7 @@
       "kind": "code",
       "spec": "SPEC-019",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -3063,20 +3063,23 @@
       "kind": "test",
       "spec": "SPEC-019",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node scripts/release-assert.mjs && curl -sf https://api.github.com/repos/KG-creator-ai/promoteIT/releases/tags/v1.2.0 | python3 -c \"import json,sys; a=[x[\\\"name\\\"] for x in json.load(sys.stdin)[\\\"assets\\\"]]; assert \\\"CERTIFICATION.md\\\" in a and any(n.endswith(\\\".zip\\\") for n in a), a; print(\\\"RELEASE-ASSETS-OK\\\", a)\""
     },
     {
       "id": "SPEC-019.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-019",
       "ac": "AC-003",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node scripts/release-assert.mjs && curl -sf https://api.github.com/repos/KG-creator-ai/promoteIT/releases/tags/v1.2.0 | python3 -c \"import json,sys; a=[x[\\\"name\\\"] for x in json.load(sys.stdin)[\\\"assets\\\"]]; assert \\\"CERTIFICATION.md\\\" in a and any(n.endswith(\\\".zip\\\") for n in a), a; print(\\\"RELEASE-ASSETS-OK\\\", a)\"",
+      "exit": 0,
+      "hashes": {
+        "scripts/release-assert.mjs": "e5bd54072cddbaf9"
+      },
+      "log": "RELEASE-UNVERIFIED — could not query the GitHub release (spawnSync gh ENOENT)\nRELEASE-PASS — v1.2.0 @ a24d05d5 verified (tag + report; release not queried)\nRELEASE-ASSETS-OK ['CERTIFICATION.md', 'promote-it-v1.2.0.zip', 'RELEASE-REPORT-v1.2.0.md']\n",
+      "verifiedAt": "2026-11-02T03:53:34.448Z"
     }
   ],
   "edges": [

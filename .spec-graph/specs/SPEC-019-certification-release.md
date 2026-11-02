@@ -1,5 +1,5 @@
 # SPEC-019: CERTIFICATION.md refresh + v1.2.0 release
-- Status: in_progress
+- Status: done
 - Phase: 09
 - Owner-persona: releaser
 - Domains: docs, security
@@ -35,12 +35,14 @@ asset, and a release report.
   `node .spec-graph/ops/quorum.mjs --phase 09 --specs SPEC-014,SPEC-015,SPEC-016,SPEC-017,SPEC-018,SPEC-019`
   exits 0 (the gate's claim-audit runs the same quorum rule; D13 keeps the
   auditor out of evidence commands) — verified by: quorum CLI
-- [ ] AC-003 (SPEC-019.AC-003): v1.2.0 released — annotated tag `v1.2.0`
+- [x] AC-003 (SPEC-019.AC-003): v1.2.0 released — annotated tag `v1.2.0`
   pushed to the release remote, GitHub Release published with `CERTIFICATION.md`
   attached, and `RELEASE-REPORT.md` written (tag, commit, release URL,
   certification hash, scope + honest limits) — verified by:
-  `node scripts/release-assert.mjs` (asserts when the release exists; prints
-  `RELEASE-ABSENT` exit 0 in checkouts without it, D11-style)
+  `node scripts/release-assert.mjs` (asserts tag + report; prints
+  `RELEASE-ABSENT` exit 0 in checkouts without it, D11-style) chained with an
+  unauthenticated API check that the published release carries
+  `CERTIFICATION.md` + a `.zip` asset
 
 ## Graph atoms
 | Atom | Kind | Verifies |
@@ -64,4 +66,7 @@ asset, and a release report.
 ## Evidence hooks
 - grep chain over `CERTIFICATION.md` for AC-001
 - `node .spec-graph/ops/quorum.mjs --phase 09 --specs ...` + `claim-audit.mjs` for AC-002
-- `node scripts/release-assert.mjs` for AC-003
+- `node scripts/release-assert.mjs` + GitHub API asset assertion for AC-003
+  (the API check needs no credentials; `gh` is unavailable locally, so
+  release-assert itself reports `RELEASE-UNVERIFIED`-then-`RELEASE-PASS` for
+  tag+report — D11-honest)

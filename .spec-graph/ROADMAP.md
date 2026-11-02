@@ -57,7 +57,7 @@ export kit, and a discovery loop.
 | 16 | SPEC-016 | Vision-L3 protocol (frame extraction + rubric + verdict JSON) | 3 | — | DONE (3/3 verified) |
 | 17 | SPEC-017 | Export kit (quickstart fix, GUARDRAILS template, version stamp, clean-room self-test) | 3 | SPEC-014–016 | DONE (3/3 verified) |
 | 18 | SPEC-018 | Discovery loop (competitive scan + VOC intake + roadmap atoms) | 2 | — | DONE (2/2 verified) |
-| 19 | SPEC-019 | CERTIFICATION.md refresh + v1.2.0 | 3 | SPEC-014–018 | IN PROGRESS (2/3 — release publication pending) |
+| 19 | SPEC-019 | CERTIFICATION.md refresh + v1.2.0 | 3 | SPEC-014–018 | DONE — v1.2.0 released (54/54 atoms) |
 
 ## Out of scope for v1.0.0 (non-goals)
 - New product features beyond gap closure; SLM/Attempt-2 work (BLOCKED, see
