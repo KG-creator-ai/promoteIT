@@ -1,7 +1,7 @@
 {
   "version": "3.2.0",
   "project": "Promote-IT_AV-Studio",
-  "updatedAt": "2026-11-02T14:59:47.502Z",
+  "updatedAt": "2026-11-02T17:54:29.219Z",
   "nodes": [
     {
       "id": "SPEC-001.AC-001",
@@ -385,11 +385,11 @@
       "cmd": "python3 -c \"import yaml,sys; [yaml.safe_load(open(f)) for f in ['.github/workflows/ci.yml','.github/workflows/release.yml']]; print('YAML-OK')\"",
       "exit": 0,
       "hashes": {
-        ".github/workflows/ci.yml": "b895d9ce2dde9d43",
+        ".github/workflows/ci.yml": "01ab5c562fc1fcb9",
         ".github/workflows/release.yml": "fb008aac12952f8e"
       },
       "log": "YAML-OK\n",
-      "verifiedAt": "2026-10-12T07:59:46.981Z"
+      "verifiedAt": "2026-11-02T17:16:09.512Z"
     },
     {
       "id": "SPEC-003.AC-002",
@@ -427,7 +427,7 @@
       "ac": "AC-002",
       "status": "verified",
       "paths": [],
-      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38224612161')); assert d['conclusion']=='success' and d['head_sha'].startswith('78a6dc3'), d; print('CI-OK pinned 38224612161')\""
+      "cmd": "curl -sSf --max-time 90 --retry 5 --retry-all-errors https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38224612161 | python3 -c \"import json,sys; d=json.load(sys.stdin); assert d['conclusion']=='success' and d['head_sha'].startswith('78a6dc3'), d; print('CI-OK pinned 38224612161')\""
     },
     {
       "id": "SPEC-003.AC-002.ev",
@@ -435,13 +435,13 @@
       "spec": "SPEC-003-ci",
       "ac": "AC-002",
       "status": "verified",
-      "cmd": "python3 -c \"import json,urllib.request; d=json.load(urllib.request.urlopen('https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38224612161')); assert d['conclusion']=='success' and d['head_sha'].startswith('78a6dc3'), d; print('CI-OK pinned 38224612161')\"",
+      "cmd": "curl -sSf --max-time 90 --retry 5 --retry-all-errors https://api.github.com/repos/KG-creator-ai/promoteIT/actions/runs/38224612161 | python3 -c \"import json,sys; d=json.load(sys.stdin); assert d['conclusion']=='success' and d['head_sha'].startswith('78a6dc3'), d; print('CI-OK pinned 38224612161')\"",
       "exit": 0,
       "hashes": {
-        ".github/workflows/ci.yml": "b895d9ce2dde9d43"
+        ".github/workflows/ci.yml": "01ab5c562fc1fcb9"
       },
       "log": "CI-OK pinned 38224612161\n",
-      "verifiedAt": "2026-10-12T08:49:56.331Z"
+      "verifiedAt": "2026-11-02T17:51:35.171Z"
     },
     {
       "id": "SPEC-003.AC-003",
@@ -2913,11 +2913,11 @@
       "exit": 0,
       "hashes": {
         "scripts/discovery-to-roadmap.mjs": "f71fc2988240fbc5",
-        ".spec-graph/ROADMAP.md": "58150fa5a0ee41b3",
+        ".spec-graph/ROADMAP.md": "32582824236636ca",
         ".spec-graph/DISCOVERY.md": "6fe449af2459af7d"
       },
       "log": "DISCOVERY-OK — 18 candidate(s) match .spec-graph/DISCOVERY.md\nIDEMPOTENT-OK\n",
-      "verifiedAt": "2026-11-02T14:59:47.502Z"
+      "verifiedAt": "2026-11-02T17:54:29.218Z"
     },
     {
       "id": "SPEC-019.AC-001",
@@ -3133,11 +3133,11 @@
         "src/services/audioEngine.ts": "99f6e37bf1d408e4",
         "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132",
         "src/lib/avExport.ts": "555b663c0f5be285",
-        "src/lib/audioMetrics.ts": "0d4232778b3d5e46",
+        "src/lib/audioMetrics.ts": "344d8061ca7a2078",
         "tests/unit/av-export-audio.test.ts": "64031812ea9be428"
       },
-      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  13:48:26\n   Duration  14.68s (setup 92%, transform 6%, worker 1%)\n\n",
-      "verifiedAt": "2026-11-02T13:48:41.534Z"
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  16:58:08\n   Duration  17.20s (setup 93%, transform 6%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T16:58:25.751Z"
     },
     {
       "id": "SPEC-020.AC-002",
@@ -3193,8 +3193,8 @@
         "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132",
         "tests/unit/av-export-audio.test.ts": "64031812ea9be428"
       },
-      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  13:51:12\n   Duration  13.53s (setup 94%, transform 5%, worker 1%)\n\n",
-      "verifiedAt": "2026-11-02T13:51:25.839Z"
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  16:58:31\n   Duration  12.68s (setup 89%, transform 9%, worker 1%, import 1%)\n\n",
+      "verifiedAt": "2026-11-02T16:58:44.818Z"
     },
     {
       "id": "SPEC-020.AC-003",
@@ -3250,7 +3250,7 @@
         "src/components/studio/AVVideoPlayer.tsx": "36e2952077995132"
       },
       "log": "DEAD-SURFACE PASS — no unused public methods or callbacks in 2 target(s)\n",
-      "verifiedAt": "2026-11-02T13:51:32.057Z"
+      "verifiedAt": "2026-11-02T16:58:52.235Z"
     },
     {
       "id": "SPEC-020.AC-004",
@@ -3313,7 +3313,7 @@
       "kind": "spec_atom",
       "spec": "SPEC-021",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-021 AC-001",
       "domains": [
         "perf",
@@ -3325,7 +3325,7 @@
       "kind": "task",
       "spec": "SPEC-021",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-021.AC-001"
       ]
@@ -3335,7 +3335,7 @@
       "kind": "code",
       "spec": "SPEC-021",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -3343,27 +3343,33 @@
       "kind": "test",
       "spec": "SPEC-021",
       "ac": "AC-001",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-analyze.test.ts"
     },
     {
       "id": "SPEC-021.AC-001.ev",
       "kind": "evidence",
       "spec": "SPEC-021",
       "ac": "AC-001",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-analyze.test.ts",
+      "exit": 0,
+      "hashes": {
+        "scripts/av-analyze.mjs": "545f8767a0224e11",
+        "src/lib/avMetricsCore.mjs": "09710c3958d025fa",
+        "src/lib/avFacts.ts": "8e63d9824e26219a",
+        "tests/unit/av-analyze.test.ts": "ba694bb2827e521a"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  6 passed (6)\n   Start at  17:02:18\n   Duration  22.35s (setup 68%, tests 28%, transform 2%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T17:02:40.628Z"
     },
     {
       "id": "SPEC-021.AC-002",
       "kind": "spec_atom",
       "spec": "SPEC-021",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-021 AC-002",
       "domains": [
         "perf",
@@ -3375,7 +3381,7 @@
       "kind": "task",
       "spec": "SPEC-021",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-021.AC-002"
       ]
@@ -3385,7 +3391,7 @@
       "kind": "code",
       "spec": "SPEC-021",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -3393,27 +3399,33 @@
       "kind": "test",
       "spec": "SPEC-021",
       "ac": "AC-002",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-metrics.test.ts"
     },
     {
       "id": "SPEC-021.AC-002.ev",
       "kind": "evidence",
       "spec": "SPEC-021",
       "ac": "AC-002",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-metrics.test.ts",
+      "exit": 0,
+      "hashes": {
+        "src/lib/avFacts.ts": "8e63d9824e26219a",
+        "src/lib/avMetricsCore.mjs": "09710c3958d025fa",
+        "src/lib/audioMetrics.ts": "344d8061ca7a2078",
+        "tests/unit/av-metrics.test.ts": "d44b09385b6e9ee0"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  5 passed (5)\n   Start at  17:02:47\n   Duration  17.73s (setup 94%, transform 4%, worker 1%, tests 1%)\n\n",
+      "verifiedAt": "2026-11-02T17:03:05.287Z"
     },
     {
       "id": "SPEC-021.AC-003",
       "kind": "spec_atom",
       "spec": "SPEC-021",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-021 AC-003",
       "domains": [
         "perf",
@@ -3425,7 +3437,7 @@
       "kind": "task",
       "spec": "SPEC-021",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-021.AC-003"
       ]
@@ -3435,7 +3447,7 @@
       "kind": "code",
       "spec": "SPEC-021",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -3443,27 +3455,31 @@
       "kind": "test",
       "spec": "SPEC-021",
       "ac": "AC-003",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-analyze.test.ts"
     },
     {
       "id": "SPEC-021.AC-003.ev",
       "kind": "evidence",
       "spec": "SPEC-021",
       "ac": "AC-003",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-analyze.test.ts",
+      "exit": 0,
+      "hashes": {
+        "scripts/av-analyze.mjs": "545f8767a0224e11",
+        "tests/unit/av-analyze.test.ts": "ba694bb2827e521a"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  6 passed (6)\n   Start at  17:06:40\n   Duration  17.43s (setup 61%, tests 36%, transform 2%)\n\n",
+      "verifiedAt": "2026-11-02T17:06:57.579Z"
     },
     {
       "id": "SPEC-021.AC-004",
       "kind": "spec_atom",
       "spec": "SPEC-021",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "title": "SPEC-021 AC-004",
       "domains": [
         "perf",
@@ -3475,7 +3491,7 @@
       "kind": "task",
       "spec": "SPEC-021",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "dependsOn": [
         "SPEC-021.AC-004"
       ]
@@ -3485,7 +3501,7 @@
       "kind": "code",
       "spec": "SPEC-021",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "paths": []
     },
     {
@@ -3493,20 +3509,25 @@
       "kind": "test",
       "spec": "SPEC-021",
       "ac": "AC-004",
-      "status": "open",
+      "status": "verified",
       "paths": [],
-      "cmd": ""
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-analyze.test.ts"
     },
     {
       "id": "SPEC-021.AC-004.ev",
       "kind": "evidence",
       "spec": "SPEC-021",
       "ac": "AC-004",
-      "status": "open",
-      "cmd": "",
-      "exit": null,
-      "hashes": {},
-      "log": ""
+      "status": "verified",
+      "cmd": "node ./node_modules/vitest/vitest.mjs run tests/unit/av-analyze.test.ts",
+      "exit": 0,
+      "hashes": {
+        "scripts/av-analyze.mjs": "545f8767a0224e11",
+        "src/lib/avMetricsCore.mjs": "09710c3958d025fa",
+        "tests/unit/av-analyze.test.ts": "ba694bb2827e521a"
+      },
+      "log": "\n RUN  v5.0.3 /mnt/d/Promote-IT_AV-Studio\n\n\n Test Files  1 passed (1)\n      Tests  6 passed (6)\n   Start at  17:07:03\n   Duration  19.14s (setup 68%, tests 29%, transform 2%, worker 1%)\n\n",
+      "verifiedAt": "2026-11-02T17:07:22.765Z"
     },
     {
       "id": "SPEC-022.AC-001",

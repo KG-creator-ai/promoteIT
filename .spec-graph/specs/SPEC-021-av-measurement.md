@@ -1,5 +1,5 @@
 # SPEC-021: AV measurement harness — machine facts about picture and sound
-- Status: draft
+- Status: done
 - Phase: 10
 - Owner-persona: builder
 - Domains: perf, resilience
@@ -16,20 +16,20 @@ no server (D-014).
 - No change to the product's rendering behaviour.
 
 ## Acceptance Criteria
-- [ ] AC-001 (SPEC-021.AC-001): `scripts/av-analyze.mjs` emits a machine-readable
+- [x] AC-001 (SPEC-021.AC-001): `scripts/av-analyze.mjs` emits a machine-readable
   AV facts JSON — per-stream codec, duration, bitrate, channels, sample rate;
   audio peak, RMS, clipping ratio, silence ratio; A/V duration drift; black-frame
   and freeze-frame counts — each bound to the source artifact's sha256 prefix —
   verified by: `node ./node_modules/vitest/vitest.mjs run tests/unit/av-analyze.test.ts`
-- [ ] AC-002 (SPEC-021.AC-002): the same audio facts are computable **in-browser**
+- [x] AC-002 (SPEC-021.AC-002): the same audio facts are computable **in-browser**
   from the exported blob via `decodeAudioData` (no server), and the in-browser
   and on-disk paths agree on duration within one frame tolerance —
   verified by: `node ./node_modules/vitest/vitest.mjs run tests/unit/av-metrics.test.ts`
-- [ ] AC-003 (SPEC-021.AC-003): the analyser is CI-safe — with no artifact it
+- [x] AC-003 (SPEC-021.AC-003): the analyser is CI-safe — with no artifact it
   prints `AV-ARTIFACTS-ABSENT` and exits 0 (D11); with an artifact but no
   ffmpeg it fails loudly with a non-zero exit (no silent skip) —
   verified by: `node ./node_modules/vitest/vitest.mjs run tests/unit/av-analyze.test.ts`
-- [ ] AC-004 (SPEC-021.AC-004): *(redteam)* a synthetic artifact with a silent
+- [x] AC-004 (SPEC-021.AC-004): *(redteam)* a synthetic artifact with a silent
   audio track and a truncated video track is **rejected** by the facts check —
   no false "audible, in sync" verdict — verified by:
   `node ./node_modules/vitest/vitest.mjs run tests/unit/av-analyze.test.ts`
